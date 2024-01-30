@@ -1,46 +1,35 @@
+import { Link } from "react-router-dom"
 
 function EditStatusMaster() {
     return (
         <>
-            <section>
-                <div className='container'>
-                    <div className='row'>
-                        <div className="col-xl-12 row-sm mt-3">
-                            <div className="card">
-                                <div className="card-header pb-0">
-                                    <div className="d-flex justify-content-between">
-                                        <h4 className="card-title mg-b-2 mt-2">Update Status Master</h4>
-                                    </div>
-                                    <hr />
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">UPDATE STATUS MASTER</h4>
                                 </div>
-                                <div className="card-body">
-                                    <div className="table-responsive">
-                                        <div id="my_table_wrapper" className="dataTables_wrapper dt-bootstrap4 no-footer">
-                                            <div className="row">
-                                                <div className="col-sm-12 col-md-4">
-                                                    <div className="dataTables_lengthh" id="my_table_length">
-                                                        <label>Staus Title</label>
-                                                        <input type="search" className="form-control form-control-sm" placeholder="Staus Title" aria-controls="my_table" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-sm-12 col-md-4 mt-3 mb-3">
-                                                    <div className="dataTables_lengthh text-center" id="my_table_length">
-                                                        <button type="button" class="btn btn-primary">Save Bank</button>
-                                                    </div>
-                                                </div>
-
+                                <form className="tbl-captionn">
+                                    <div className="row">
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput1" className="form-label">Staus Title <span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Staus Title" />
+                                        </div>
+                                        <div className="col-xl-6 mb-4 mt-4">
+                                            <div>
+                                                <Link to='/admin/status-master' className="btn btn-danger light ms-1">Cancel</Link>
+                                                <button className="btn btn-primary me-1">Submit</button>
                                             </div>
                                         </div>
-                                        {/* Script */}
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </>
     )
 }

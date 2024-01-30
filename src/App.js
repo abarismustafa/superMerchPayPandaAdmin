@@ -1,5 +1,6 @@
 
 import { Route, Routes } from 'react-router-dom';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css'
 import DasBoardPage from './pages/dasBoardPage';
 import DasBoardRight from './pages/dasBoardRight/DasBoardRight';
@@ -44,6 +45,8 @@ import StatusMasterPage from './pages/topNavigationPages/Master/statusMaster';
 import EditStatusMaster from './components/topNavigationComp/masters/statusMaster/editStatusMaster/EditStatusMaster';
 import ServiceMasterPage from './pages/topNavigationPages/Master/serviceMaster';
 import EditServiceMaster from './components/topNavigationComp/masters/serviceMaster/serviceMasterEdit/ServiceMasterEdit';
+import AddRoleMaster from './components/topNavigationComp/masters/roleMaster/addRoleMaster/AddRoleMaster';
+import AddStatusMaster from './components/topNavigationComp/masters/statusMaster/addStatusMaster/AddStatusMaster';
 // import PaymentMethodMasterPage from './pages/topNavigationPages/Master/paymentMethodMaster';
 // import AddPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/addPaymentMethod/AddPaymentMethod';
 // import EditPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/editPaymentMethod/EditPaymentMethod';
@@ -65,26 +68,28 @@ function App() {
 
 
           <Route path="bank-master" element={<BankMasterP />} />
-          {/* <Route path="add-bank" element={<AddBank />} />
+          <Route path="add-bank" element={<AddBank />} />
           <Route path="edit-add-bank" element={<EditAddBank />} />
           <Route path="role-master" element={<RoleMasterPage />} />
+          <Route path="add-role-master" element={<AddRoleMaster />} />
           <Route path="edit-role-master" element={<EditRoleMaster />} />
-          <Route path="company-staff-" element={<CompanyStaffPages />} />
-          <Route path="company-staff-permission" element={<MasterPages />} />
+          {/* <Route path="company-staff-" element={<CompanyStaffPages />} /> */}
+          {/* <Route path="company-staff-permission" element={<MasterPages />} /> */}
           <Route path="status-master" element={<StatusMasterPage />} />
+          <Route path="add-status-master" element={<AddStatusMaster />} />
           <Route path="edit-status-master" element={<EditStatusMaster />} />
-          <Route path="service-master" element={<ServiceMasterPage />} />
-          <Route path="edit-service-master" element={<EditServiceMaster />} />
-          <Route path="boardcast" element={<BoardcastPage />} />
-          <Route path="payment-method" element={<PaymentMethodMasterPage />} />
-          <Route path="add-payment-method" element={<AddPaymentMethod />} />
-          <Route path="update-payment-method" element={<EditPaymentMethod />} />
-          <Route path="payout-beneficiary-master" element={<PayoutBeneficiaryMasterPage />} />
-          <Route path="add-payout-beneficiary-master" element={<AddPayoutBeneficiaryMaster />} />
-          <Route path="update-payout-beneficiary-master" element={<EditPayoutBeneficiaryMaster />} />
-          <Route path="agent-onboarding-list" element={<AgentOnbordingPage />} />
-          <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
-          <Route path="update-agent-onboarding" element={<UpdateAgentOnbording />} /> */}
+          {/* <Route path="service-master" element={<ServiceMasterPage />} /> */}
+          {/* <Route path="edit-service-master" element={<EditServiceMaster />} /> */}
+          {/* <Route path="boardcast" element={<BoardcastPage />} /> */}
+          {/* <Route path="payment-method" element={<PaymentMethodMasterPage />} /> */}
+          {/* <Route path="add-payment-method" element={<AddPaymentMethod />} /> */}
+          {/* <Route path="update-payment-method" element={<EditPaymentMethod />} /> */}
+          {/* <Route path="payout-beneficiary-master" element={<PayoutBeneficiaryMasterPage />} /> */}
+          {/* <Route path="add-payout-beneficiary-master" element={<AddPayoutBeneficiaryMaster />} /> */}
+          {/* <Route path="update-payout-beneficiary-master" element={<EditPayoutBeneficiaryMaster />} /> */}
+          {/* <Route path="agent-onboarding-list" element={<AgentOnbordingPage />} /> */}
+          {/* <Route path="add-agent-onboarding" element={<AddAgentOnbording />} /> */}
+          {/* <Route path="update-agent-onboarding" element={<UpdateAgentOnbording />} />  */}
 
 
           {/*  Shoib Route start */}

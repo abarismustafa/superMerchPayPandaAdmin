@@ -11,7 +11,9 @@ function DasBoardPage() {
                 <Aside />
                 <div className="content-body" style={{ minHeight: '816px' }}>
                     <PageTitle />
-                    <Outlet></Outlet>
+                    <div className="container-fluid">
+                        <Outlet></Outlet>
+                    </div>
                 </div>
             </div>
         </>
