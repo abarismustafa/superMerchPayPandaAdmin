@@ -85,10 +85,12 @@ body {
     margin-right: 5px;
 }
 
+/* ---------------------------------- */
+
 /* .sidebar-content{
     height: 0;
     overflow: hidden;
-} */
-.sidebar .open .sidebar-content {
-    height: auto;
 }
+.sidebar .isOpen .sidebar-content {
+    height: auto;
+} */

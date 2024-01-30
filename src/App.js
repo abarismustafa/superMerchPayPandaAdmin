@@ -1,5 +1,6 @@
 
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import './assets/css/style.css'
 import './assets/css/style.css'
 import DasBoardPage from './pages/dasBoardPage';
 import DasBoardRight from './pages/dasBoardRight/DasBoardRight';
@@ -59,16 +60,14 @@ function App() {
   return (
     <>
       <Routes>
+      <Route path="/" element={<Navigate to="/admin" />} />
         <Route path='/admin' element={<DasBoardPage />} >
-          <Route path='' element={<DasBoardRight />} />
-          <Route path='link' element={<Link />} />
-
-
+        <Route path='' element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
-          {/* <Route path="add-bank" element={<AddBank />} />
-          <Route path="edit-add-bank" element={<EditAddBank />} />
+           {/* <Route path="add-bank" element={<AddBank />} /> */}
+          {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
           <Route path="role-master" element={<RoleMasterPage />} />
-          <Route path="edit-role-master" element={<EditRoleMaster />} />
+          {/*<Route path="edit-role-master" element={<EditRoleMaster />} />
           <Route path="company-staff-" element={<CompanyStaffPages />} />
           <Route path="company-staff-permission" element={<MasterPages />} />
           <Route path="status-master" element={<StatusMasterPage />} />
@@ -119,7 +118,6 @@ function App() {
           <Route path="credit-report" element={<CreditReportPage />} />
           <Route path="agent" element={<MyCommissionRechargePage />} /> */}
         </Route>
-
       </Routes>
     </>
   );
