@@ -20250,6 +20250,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .deznav .metismenu {
   display: flex;
   flex-direction: column;
+  /* background-color: rgba(13, 153, 255, 0.05); */
+  flex: 1;
 }
 
 .deznav .metismenu.fixed {
@@ -20314,9 +20316,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 .deznav .metismenu>li>a {
-  font-weight: 400;
+  font-weight: 800;
   display: inline-block;
-  font-size: 0.813rem;
   color: #2C2C2C;
 }
 
@@ -20334,6 +20335,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   display: inline-block;
   vertical-align: middle;
   position: relative;
+  font-size: 1.2rem;
   height: auto;
   width: auto;
   text-align: center;
@@ -20346,11 +20348,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   fill: #8088a1;
 }
 
-.deznav .metismenu>li:hover>a,
+/* .deznav .metismenu>li:hover>a,
 .deznav .metismenu>li:focus>a {
-  /*  background-color: lighten($color: $primary, $amount: 40%); */
+   background-color: lighten($color: $primary, $amount: 40%);
   color: var(--primary);
-}
+} */
 
 .deznav .metismenu>li:hover>a g [fill],
 .deznav .metismenu>li:focus>a g [fill] {
@@ -20358,9 +20360,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 .deznav .metismenu>li.mm-active>a {
-  color: var(--primary);
-  background-color: rgba(13, 153, 255, 0.05);
-  font-weight: 400;
+  
+  font-weight: 600;
 }
 
 .deznav .metismenu>li.mm-active>a i {
@@ -20413,7 +20414,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   padding-top: .5rem;
   padding-bottom: .5rem;
   position: relative;
-  font-size: 0.813rem;
+  font-size: 0.878rem;
   padding-left: 2.5rem;
   -webkit-transition: all 0.5s;
   -ms-transition: all 0.5s;
@@ -20465,7 +20466,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .deznav .metismenu ul a:focus,
 .deznav .metismenu ul a.mm-active {
   text-decoration: none;
-  color: var(--primary);
+  color: #000;
 }
 
 .deznav .metismenu ul a:before {
@@ -20488,7 +20489,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .deznav .metismenu a {
   position: relative;
   display: block;
-  padding: 0.625rem 1.875rem;
+  padding: 0.825rem 1.875rem;
   outline-width: 0;
   color: #737B8B;
   text-decoration: none;
@@ -46509,7 +46510,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .help-desk {
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 0.6rem;
 }
 
 .help-desk .btn {

@@ -1,5 +1,6 @@
 
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import './assets/css/style.css'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css'
 import DasBoardPage from './pages/dasBoardPage';
@@ -62,11 +63,9 @@ function App() {
   return (
     <>
       <Routes>
+      <Route path="/" element={<Navigate to="/admin" />} />
         <Route path='/admin' element={<DasBoardPage />} >
-          <Route path='' element={<DasBoardRight />} />
-          <Route path='link' element={<Link />} />
-
-
+        <Route path='' element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
           <Route path="edit-add-bank" element={<EditAddBank />} />
@@ -124,7 +123,6 @@ function App() {
           <Route path="credit-report" element={<CreditReportPage />} />
           <Route path="agent" element={<MyCommissionRechargePage />} /> */}
         </Route>
-
       </Routes>
     </>
   );
