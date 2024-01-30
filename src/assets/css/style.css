@@ -59,21 +59,23 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700");
-/* @import url("../icons/simple-line-icons/css/simple-line-icons.css"); */
-/* @import url("../icons/fontawesome6/css/all.min.css"); */
-/* @import url("../icons/fontawesome/css/all.min.css"); */
-/* @import url("../icons/material-design-iconic-font/css/materialdesignicons.min.css"); */
-/* @import url("../icons/themify-icons/css/themify-icons.css");
+@import url("../icons/simple-line-icons/css/simple-line-icons.css");
+@import url("../icons/fontawesome6/css/all.min.css");
+@import url("../icons/fontawesome/css/all.min.css");
+@import url("../icons/material-design-iconic-font/css/materialdesignicons.min.css");
+@import url("../icons/themify-icons/css/themify-icons.css");
 @import url("../icons/line-awesome/css/line-awesome.min.css");
-@import url("../icons/avasta/css/style.css"); */
-/* @import url("../icons/flaticon/flaticon.css"); */
-/* @import url("../icons/flaticon_1/flaticon_1.css"); */
-/* @import url("../icons/icomoon/icomoon.css"); */
-/* @import url("../icons/bootstrap-icons/font/bootstrap-icons.css"); */
-/* @import url(../vendor/animate/animate.min.css);
-@import url(../vendor/aos/css/aos.min.css);
-@import url(../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
-@import url(../vendor/metismenu/css/metisMenu.min.css); */
+@import url("../icons/avasta/css/style.css");
+@import url("../icons/flaticon/flaticon.css");
+@import url("../icons/flaticon_1/flaticon_1.css");
+@import url("../icons/icomoon/icomoon.css");
+@import url("../icons/bootstrap-icons/font/bootstrap-icons.css");
+@import url('../vendor/animate/animate.min.css');
+@import url('../vendor/aos/css/aos.min.css');
+@import url('../vendor/perfect-scrollbar/css/perfect-scrollbar.css');
+@import url('../vendor/metismenu/css/metisMenu.min.css');
+@import url('../vendor/datatables/css/jquery.dataTables.min.css');
+@import url('../vendor/bootstrap-select/dist/css/bootstrap-select.min.css');
 
 :root {
   --primary: #0D99FF;
@@ -9258,6 +9260,7 @@ fieldset:disabled .btn {
 
 .ms-1 {
   margin-left: 0.25rem !important;
+  margin-right: 0.25rem !important;
 }
 
 .ms-2 {
@@ -45758,7 +45761,8 @@ table.dataTable thead .sorting_asc {
 }
 
 .active-projects thead tr th:last-child {
-  text-align: right;
+  /* text-align: right; */
+  text-align: left;
 }
 
 .active-projects thead tr th:first-child {
@@ -45834,7 +45838,7 @@ table.dataTable thead .sorting_asc {
 
 @media only screen and (max-width: 100rem) {
   .active-projects.style-1 .dt-buttons .dt-button {
-    right: 269px;
+    right: 158px;
   }
 }
 
@@ -54992,6 +54996,14 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .nav-header {
   position: fixed;
   border-top-left-radius: 0;
+}
+
+.tbl-captionn {
+  padding: 20px;
+}
+
+.tbl-caption-2 {
+  background-color: #F0F4F9;
 }
 
 /*# sourceMappingURL=style-rtl.css.map */

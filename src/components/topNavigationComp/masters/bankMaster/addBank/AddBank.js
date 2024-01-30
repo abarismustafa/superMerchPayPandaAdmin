@@ -1,59 +1,43 @@
+import { Link } from "react-router-dom"
+
 function AddBank() {
     return (
         <>
-            <section>
-                <div className='container'>
-                    <div className='row'>
-                        <div className="col-xl-12 row-sm mt-3">
-                            <div className="card">
-                                <div className="card-header pb-0">
-                                    <div className="d-flex justify-content-between">
-                                        <h4 className="card-title mg-b-2 mt-2">Add Bank Master</h4>
-
-
-
-                                    </div>
-                                    <hr />
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">ADD BANK MASTER</h4>
                                 </div>
-                                <div className="card-body">
-                                    <div className="table-responsive">
-                                        <div id="my_table_wrapper" className="dataTables_wrapper dt-bootstrap4 no-footer">
-                                            <div className="row">
-                                                <div className="col-sm-12 col-md-4">
-                                                    <div className="dataTables_lengthh" id="my_table_length">
-                                                        <label>Bank Name</label>
-                                                        <input type="search" className="form-control form-control-sm" placeholder="bank Name" aria-controls="my_table" />
-
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-4">
-                                                    <div className="dataTables_lengthh" id="my_table_length">
-                                                        <label>IFSC Code</label>
-                                                        <input type="search" className="form-control form-control-sm" placeholder="IFSC Code" aria-controls="my_table" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-4">
-                                                    <div className="dataTables_lengthh" id="my_table_length">
-                                                        <label>Bank ID</label>
-                                                        <input type="search" className="form-control form-control-sm" placeholder="Bank ID" aria-controls="my_table" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-12 col-md-12 mt-3">
-                                                    <div className="dataTables_lengthh text-center" id="my_table_length">
-                                                        <button type="button" class="btn btn-primary">Save Bank</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                <form className="tbl-captionn">
+                                    <div className="row">
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput1" className="form-label">Bank Name <span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Bank Name" />
                                         </div>
-                                        {/* Script */}
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">IFSC Code<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Employee Email<span className="text-danger">*</span></label>
+                                            <input type="email" className="form-control" id="exampleFormControlInput3" placeholder="Employee Email" />
+                                        </div>
                                     </div>
-                                </div>
+                                    <div>
+                                        <Link to='/admin/bank-master' className="btn btn-danger light ms-1">Cancel</Link>
+                                        <button className="btn btn-primary me-1">Submit</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
 
         </>
     )
