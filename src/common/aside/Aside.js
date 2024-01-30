@@ -39,7 +39,7 @@ function Aside() {
                                 </div>
                                 <span className="nav-text">{item?.title}</span>
                                 </div>
-                                <span className="nav-text">{item?.dIcon}</span>
+                                
                             </Link>
 
                                 {isOpen && item.id === matchid ? <ul aria-expanded="false" className="mm-collapse mm-show left" >

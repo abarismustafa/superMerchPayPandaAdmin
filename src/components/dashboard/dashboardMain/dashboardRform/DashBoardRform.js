@@ -1,7 +1,7 @@
 import React from 'react'
 
 // import css start 
-import "./DashBoardRform.css"
+// import "./DashBoardRform.css"
 // import css End
 
 
@@ -9,28 +9,28 @@ function DashBoardRform() {
     return (
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
             <div className='p-3'>
-            <div className="card overflow-hidden">
-                <div className="card-body pb-3">
-                    <form action="https://merchant.paypanda.in/admin/dashboard" method="get">
-                        <div className="row">
-                            <div className="col-lg-4 col-md-8 form-group mg-b-0">
-                                <label className="form-label">From: <span className="tx-danger">*</span></label>
-                                <input className="form-control fc-datepicker hasDatepicker" value="2024-01-17" type="date" id="fromdate" name="fromdate" autocomplete="off"/>
-                            </div>
+                <div className="card overflow-hidden">
+                    <div className="card-body pb-3">
+                        <form action="https://merchant.paypanda.in/admin/dashboard" method="get">
+                            <div className="row">
+                                <div className="col-lg-4 col-md-8 form-group mg-b-0">
+                                    <label className="form-label">From: <span className="tx-danger">*</span></label>
+                                    <input className="form-control fc-datepicker hasDatepicker" value="2024-01-17" type="date" id="fromdate" name="fromdate" autocomplete="off" />
+                                </div>
 
-                            <div className="col-lg-4 col-md-8 form-group mg-b-0">
-                                <label className="form-label">To: <span className="tx-danger">*</span></label>
-                                <input className="form-control fc-datepicker hasDatepicker" value="2024-01-17" type="date" id="todate" name="todate" autocomplete="off"/>
-                            </div>
+                                <div className="col-lg-4 col-md-8 form-group mg-b-0">
+                                    <label className="form-label">To: <span className="tx-danger">*</span></label>
+                                    <input className="form-control fc-datepicker hasDatepicker" value="2024-01-17" type="date" id="todate" name="todate" autocomplete="off" />
+                                </div>
 
-                            <div className="col-lg-4 col-md-4 mg-t-10 mg-sm-t-25">
-                            <label className="form-label"><b>search</b></label>
-                                <button className="btn btn-main-primary pd-x-20 bg-primary text-light" type="submit">Search</button>
+                                <div className="col-lg-4 col-md-4 mg-t-10 mg-sm-t-25">
+                                    <label className="form-label"><b>search</b></label>
+                                    <button className="btn btn-main-primary pd-x-20 bg-primary text-light" type="submit">Search</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
-                    <hr/>
+                        <hr />
                         <div className="table-responsive mb-0 projects-stat tx-14">
                             <table className="table table-hover table-bordered mb-0 text-md-nowrap text-lg-nowrap text-xl-nowrap  ">
                                 <thead>
@@ -141,8 +141,8 @@ function DashBoardRform() {
                                 </tbody>
                             </table>
                         </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     )

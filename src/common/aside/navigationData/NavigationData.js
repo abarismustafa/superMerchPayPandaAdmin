@@ -9,12 +9,10 @@ export const navigationData = {
         /* {
             id: "1",
             title: "Dashboard",
-            dIcon:<MdKeyboardArrowRight  />,
             icon: <AiFillDashboard />,
         }, */
         {
             id: "2",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "Members",
             icon: <FaUserFriends />,
             subMenus: [
@@ -46,7 +44,6 @@ export const navigationData = {
         },
         {
             id: "3",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "Reports",
             icon: <BiSolidReport />,
             subMenus: [
@@ -102,7 +99,6 @@ export const navigationData = {
         },
         {
             id: "4",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "Payment:",
             icon: <MdPayment />,
             subMenus: [
@@ -135,7 +131,6 @@ export const navigationData = {
         },
         {
             id: "5",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "Dispute",
             icon: <MdDiscFull />,
             subMenus: [
@@ -155,7 +150,6 @@ export const navigationData = {
         },
         {
             id: "11",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "User Income",
             icon: <FaUsers />,
             subMenus: [
@@ -176,7 +170,6 @@ export const navigationData = {
         {
             id: "6",
             title: "Masters",
-            dIcon:<MdKeyboardArrowRight  />,
             icon: <MdDashboard />,
             subMenus: [
                 {
@@ -262,7 +255,6 @@ export const navigationData = {
         },
         {
             id: "7",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "APIs Masters",
             icon: <FaBookReader />,
             subMenus: [
@@ -319,7 +311,6 @@ export const navigationData = {
         },
         {
             id: "8",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "Settings",
             icon: <AiFillSetting />,
             subMenus: [
@@ -383,7 +374,6 @@ export const navigationData = {
         },
         {
             id: "9",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "Website Masters:",
             icon: <MdWeb />,
             subMenus: [
@@ -410,7 +400,6 @@ export const navigationData = {
         },
         {
             id: "10",
-            dIcon:<MdKeyboardArrowRight  />,
             title: "WhatsApp",
             icon: <IoLogoWhatsapp />,
             subMenus: [
