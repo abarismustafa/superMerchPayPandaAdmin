@@ -1,0 +1,6 @@
+.modal-content{
+    border-radius: 0 !important;
+}
+.form-control,.b-radius-none{
+    border-radius: 0 !important;
+}

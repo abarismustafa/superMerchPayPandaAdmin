@@ -1,0 +1,33 @@
+.b-radius{
+    border-radius: 0 !important;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
+}.dataTables_wrapper .dataTables_paginate .paginate_button.previous {
+    margin-right: 3px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    background-color: #dedcef;
+    color: #bbb8e2 !important;
+}
+
+
+div.dataTables_wrapper div.dataTables_info {
+    padding-top: 0.85em;
+    white-space: nowrap;
+    
+
+}
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+    background-color: #cfc1de28;
+    text-align: center;
+    color: #150101;
+}
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #50e012;
+}
+.table-responsive{
+    scrollbar-width: thin;
+}
