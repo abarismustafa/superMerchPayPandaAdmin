@@ -7,7 +7,7 @@ function CreateUserRetailer() {
     return (
         <>
             <section className="CreateUserDistributer mt-3">
-                <div className="container">
+                <div className="">
                     <BasicDetailsRetails />
                     <PermanentDetailsRetailer />
                     <ServiceRetailer />

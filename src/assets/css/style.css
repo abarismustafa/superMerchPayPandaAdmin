@@ -5600,7 +5600,7 @@ fieldset:disabled .btn {
   float: left;
   padding-right: var(--bs-breadcrumb-item-padding-x);
   color: var(--bs-breadcrumb-divider-color);
-  content: var(--bs-breadcrumb-divider, "https://w3crm.dexignzone.com/")
+  content: var(--bs-breadcrumb-divider, "https://superadmin.paypandabnk.com/")
     /* rtl: var(--bs-breadcrumb-divider, "/") */
   ;
 }
@@ -7385,7 +7385,7 @@ fieldset:disabled .btn {
 .offcanvas-xxl,
 .offcanvas {
   --bs-offcanvas-zindex: 1045;
-  --bs-offcanvas-width: 400px;
+  --bs-offcanvas-width: 600px;
   --bs-offcanvas-height: 30vh;
   --bs-offcanvas-padding-x: 1rem;
   --bs-offcanvas-padding-y: 1rem;
@@ -15325,7 +15325,6 @@ label {
   font-size: 1.4rem;
   padding: 0.125rem 0.5rem 0;
   border-radius: 0.125rem;
-  background-color: var(--primary);
   width: 3.063rem;
   height: 3.063rem;
 }
@@ -20361,7 +20360,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .deznav .metismenu>li.mm-active>a {
 
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .deznav .metismenu>li.mm-active>a i {
@@ -39370,10 +39369,8 @@ button:focus {
 }
 
 .btn {
-  padding: 0.719rem 1.563rem;
+  margin: 0.119rem 0.763rem;
   border-radius: 0.375rem;
-  font-weight: 500;
-  font-size: 15px;
   line-height: 20px;
 }
 
@@ -45816,6 +45813,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .active-projects .dataTables_info {
+
   padding-left: 20px;
   font-size: 12px;
   color: #888888;
@@ -45826,6 +45824,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .active-projects.style-1 .tbl-caption {
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45839,7 +45838,7 @@ table.dataTable thead .sorting_asc {
 
 @media only screen and (max-width: 100rem) {
   .active-projects.style-1 .dt-buttons .dt-button {
-    right: 225px;
+    right: "";
   }
 }
 
@@ -54985,7 +54984,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
 }

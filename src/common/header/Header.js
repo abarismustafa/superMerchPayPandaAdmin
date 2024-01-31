@@ -1,5 +1,5 @@
 import HeaderLogo from "./headerLogo/HeaderLogo"
-
+import profile from "../../assets/images/logo/profile.jpg"
 function Header() {
     return (
         <>
@@ -250,11 +250,11 @@ function Header() {
                                         <a className="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <div className="header-info2 d-flex align-items-center">
                                                 <div className="header-media">
-                                                    <img src="images/tab/1.jpg" alt />
+                                                    <img src={profile} alt="profile" />
                                                 </div>
                                                 <div className="header-info">
-                                                    <h6>Thomas Fleming</h6>
-                                                    <p>info@gmail.com</p>
+                                                    <h6 className="text-light">Rahul Sharma</h6>
+                                                    <p>rahulsharma@gmail.com</p>
                                                 </div>
                                             </div>
                                         </a>
