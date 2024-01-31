@@ -52,9 +52,18 @@ import AddServiceMaster from './components/topNavigationComp/masters/serviceMast
 import PaymentMethodMasterPage from './pages/topNavigationPages/Master/paymentMethodMaster';
 import AddPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/addPaymentMethod/AddPaymentMethod';
 import EditPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/editPaymentMethod/EditPaymentMethod';
-// import PayoutBeneficiaryMasterPage from './pages/topNavigationPages/payoutBenefisiaryMaster';
-// import AddPayoutBeneficiaryMaster from './components/topNavigationComp/masters/PayoutBeneficiaryMaster/addPayoutBeneficiaryMaster/AddPayoutBeneficiaryMaster';
-// import EditPayoutBeneficiaryMaster from './components/topNavigationComp/masters/PayoutBeneficiaryMaster/EditPayoutBeneficiaryMaster/EditPayoutBeneficiaryMaster';
+import PayoutBeneficiaryMasterPage from './pages/topNavigationPages/payoutBenefisiaryMaster';
+import AddPayoutBeneficiaryMaster from './components/topNavigationComp/masters/PayoutBeneficiaryMaster/addPayoutBeneficiaryMaster/AddPayoutBeneficiaryMaster';
+import EditPayoutBeneficiaryMaster from './components/topNavigationComp/masters/PayoutBeneficiaryMaster/EditPayoutBeneficiaryMaster/EditPayoutBeneficiaryMaster';
+import ServiceCategoryMasterPage from './pages/topNavigationPages/Master/serviceCategoryMaster';
+import AddServiceCategoryMaster from './components/topNavigationComp/masters/serviceCategoryMaster/addServiceCategoryMaster/AddServiceCategoryMaster';
+import UpdateServiceCategoryMaster from './components/topNavigationComp/masters/serviceCategoryMaster/updateServiceCategoryMaster/UpdateServiceCategoryMaster';
+import AreaPage from './pages/topNavigationPages/ZoneModule/area';
+import AddArea from './components/topNavigationComp/ZoneModule/area/addArea/AddArea';
+import EditArea from './components/topNavigationComp/ZoneModule/area/editArea/EditArea';
+import CountryPage from './pages/topNavigationPages/ZoneModule/country';
+import CountryAdd from './components/topNavigationComp/ZoneModule/country/countryAdd/CountryAdd';
+import UpdateCountry from './components/topNavigationComp/ZoneModule/country/updateCountry/UpdateCountry';
 // import AgentOnbordingPage from './pages/topNavigationPages/agentOnbording';
 // import AddAgentOnbording from './components/topNavigationComp/masters/agentOnbording/addAgentOnbording/AddAgentOnbording';
 // import UpdateAgentOnbording from './components/topNavigationComp/masters/agentOnbording/UpdateAgentOnbording/UpdateAgentOnbording';
@@ -81,13 +90,22 @@ function App() {
           <Route path="service-master" element={<ServiceMasterPage />} />
           <Route path="add-service-master" element={<AddServiceMaster />} />
           <Route path="edit-service-master" element={<EditServiceMaster />} />
+          <Route path="service-category" element={<ServiceCategoryMasterPage />} />
+          <Route path="add-service-category" element={<AddServiceCategoryMaster />} />
+          <Route path="update-service-category" element={<UpdateServiceCategoryMaster />} />
           {/* <Route path="boardcast" element={<BoardcastPage />} /> */}
           <Route path="payment-method" element={<PaymentMethodMasterPage />} />
           <Route path="add-payment-method" element={<AddPaymentMethod />} />
           <Route path="update-payment-method" element={<EditPaymentMethod />} />
-          {/* <Route path="payout-beneficiary-master" element={<PayoutBeneficiaryMasterPage />} /> */}
-          {/* <Route path="add-payout-beneficiary-master" element={<AddPayoutBeneficiaryMaster />} /> */}
-          {/* <Route path="update-payout-beneficiary-master" element={<EditPayoutBeneficiaryMaster />} /> */}
+          <Route path="payout-beneficiary-master" element={<PayoutBeneficiaryMasterPage />} />
+          <Route path="add-payout-beneficiary-master" element={<AddPayoutBeneficiaryMaster />} />
+          <Route path="update-payout-beneficiary-master" element={<EditPayoutBeneficiaryMaster />} />
+          <Route path="area" element={<AreaPage />} />
+          <Route path="add-area" element={<AddArea />} />
+          <Route path="update-area" element={<EditArea />} />
+          <Route path="country" element={<CountryPage />} />
+          <Route path="add-country" element={<CountryAdd />} />
+          <Route path="update-country" element={<UpdateCountry />} />
           {/* <Route path="agent-onboarding-list" element={<AgentOnbordingPage />} /> */}
           {/* <Route path="add-agent-onboarding" element={<AddAgentOnbording />} /> */}
           {/* <Route path="update-agent-onboarding" element={<UpdateAgentOnbording />} />  */}

@@ -18,12 +18,47 @@ function AddServiceMaster() {
                                             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Service Name" />
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Service Charge<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Service Charge" />
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">Code<span className="text-danger">*</span></label>
+                                            <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Code" />
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Service Background Color<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput3" placeholder="Employee Email" />
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Short Description<span className="text-danger">*</span></label>
+                                            <textarea className="form-control" defaultValue={"Short Description"} />
+
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Full Description<span className="text-danger">*</span></label>
+                                            <textarea className="form-control" defaultValue={"Full Description"} />
+
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Icon Image<span className="text-danger">*</span></label>
+                                            <input type="file" className="form-control" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Banner Image<span className="text-danger">*</span></label>
+                                            <input type="file" className="form-control" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Service Category<span className="text-danger">*</span></label>
+                                            <select class="form-control" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Permit By Area<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" placeholder="Permit By Area" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Status<span className="text-danger">*</span></label>
+                                            <select class="form-control" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Enabled</option>
+                                                <option value="2">Disabled</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div>
