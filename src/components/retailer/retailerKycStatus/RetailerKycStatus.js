@@ -2,8 +2,8 @@ import { FaSearch } from "react-icons/fa";
 function RetailerKycStatus() {
     return (
         <>
-            <div className="kycStatus mt-3">
-                <div className="container">
+             <div className="kycStatus mt-3">
+                <div className="">
                     <div className="row">
                         <div className="col-lg-12 col-md-12">
                             <div className="card">
@@ -20,7 +20,7 @@ function RetailerKycStatus() {
                                                 </select>
                                             </div>
                                             <div className="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
-                                                <button className="btn btn-primary pd-x-20" style={{ marginTop: '30px' }} type="button" ><FaSearch style={{ marginBottom: '5px' }} /> Search</button>
+                                                <button className="btn btn-primary pd-x-20" style={{ marginTop: '25px' }} type="submit" ><FaSearch style={{ marginBottom: '5px' }} /> Search</button>
                                             </div>
                                         </div>
                                     </form>

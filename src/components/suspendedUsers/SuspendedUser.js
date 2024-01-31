@@ -4,7 +4,7 @@ function SuspendedUsers() {
     return (
         <>
             <section className="CreateUserDistributer mt-3">
-                <div className="container">
+                <div className="">
                     <SuspendedUserList />
                 </div>
             </section>
