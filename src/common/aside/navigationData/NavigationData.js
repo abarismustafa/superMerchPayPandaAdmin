@@ -1,7 +1,7 @@
-import { FaBookReader,FaUserFriends,FaUsers } from "react-icons/fa";
+import { FaBookReader, FaUserFriends, FaUsers } from "react-icons/fa";
 import { AiFillSetting } from "react-icons/ai";
 import { IoLogoWhatsapp } from "react-icons/io5";
-import { MdDashboard, MdWeb,MdDiscFull,MdPayment,MdKeyboardArrowRight      } from "react-icons/md";
+import { MdDashboard, MdWeb, MdDiscFull, MdPayment, MdKeyboardArrowRight } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
 
 export const navigationData = {
@@ -82,7 +82,7 @@ export const navigationData = {
                     title: "Ledger Report",
 
                     path: "ledger-report",
-                    subSubmenus:[
+                    subSubmenus: [
                         {
                             id: "1",
                             title: "Debit Report",
@@ -93,7 +93,7 @@ export const navigationData = {
                             title: "credit Report",
                             path: "credit-report",
                         },
-                    ] 
+                    ]
                 },
             ]
         },
@@ -200,7 +200,7 @@ export const navigationData = {
                     id: "5",
                     title: "Payment methods",
 
-                    path: "page-not-found"
+                    path: "payment-method"
                 },
                 {
                     id: "5",

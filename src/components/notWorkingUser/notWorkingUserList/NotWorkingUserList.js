@@ -19,7 +19,7 @@ function NotWorkingUserList() {
                             <div className="card-body p-0">
                                 <div className="table-responsive active-projects style-1">
                                     <div className="tbl-caption">
-                                        <h4 className="heading mb-0"><b>Suspended User List </b></h4>
+                                        <h4 className="heading mb-0"><b>NOT WORKING USERS LIST</b></h4>
                                         <div>
                                             {/* <Link className="btn btn-primary btn-sm" to="/admin/create-user/retailer" role="button" aria-controls="offcanvasExample">+  Create Retailer</Link> */}
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
@@ -100,9 +100,9 @@ function NotWorkingUserList() {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div className="mx-4 my-3">
+                                        {/* <div className="mx-4 my-3">
                                             <button className="btn btn-danger btn-sm" variant="primary" onClick={handleShow} > 1044 View</button>
-                                        </div>
+                                        </div> */}
                                         <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>
                                 </div>
                             </div>

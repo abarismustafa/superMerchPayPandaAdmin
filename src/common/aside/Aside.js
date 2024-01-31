@@ -17,14 +17,11 @@ function Aside() {
     }
     return (
         <>
-            
-
-            {/* --------------------------------------------------------- */}
              <div className="deznav">
                 <div className="deznav-scroll mm-active d-flex flex-column justify-content-between ">
                     <ul className="metismenu mm-show flex-1" id="menu" >
                         <li className=" ">
-                            <Link className="has-arrow" to={"dashboard"} aria-expanded="false" >
+                            <Link className="has-arrow" to={"/admin"} aria-expanded="false" >
                                 <div className="d-flex align-items-baseline">
                                 <span className="menu-icon">
                                     <AiFillDashboard />
@@ -51,8 +48,8 @@ function Aside() {
                         })}
                     </ul>
                     <div className="help-desk ">
-                        <Link to="#" className="btn btn-primary">Help Desk</Link>
-                        &nbsp;
+                            {/* <Link to="#" className="btn btn-primary">Help Desk</Link>
+                            &nbsp; */}
                         <Link to="#" className="btn btn-warning"><CgLogOut/> <span>Log out</span></Link>
                     </div>
                 </div>

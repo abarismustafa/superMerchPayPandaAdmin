@@ -48,9 +48,10 @@ import ServiceMasterPage from './pages/topNavigationPages/Master/serviceMaster';
 import EditServiceMaster from './components/topNavigationComp/masters/serviceMaster/serviceMasterEdit/ServiceMasterEdit';
 import AddRoleMaster from './components/topNavigationComp/masters/roleMaster/addRoleMaster/AddRoleMaster';
 import AddStatusMaster from './components/topNavigationComp/masters/statusMaster/addStatusMaster/AddStatusMaster';
-// import PaymentMethodMasterPage from './pages/topNavigationPages/Master/paymentMethodMaster';
-// import AddPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/addPaymentMethod/AddPaymentMethod';
-// import EditPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/editPaymentMethod/EditPaymentMethod';
+import AddServiceMaster from './components/topNavigationComp/masters/serviceMaster/addServiceMaster/AddServiceMaster';
+import PaymentMethodMasterPage from './pages/topNavigationPages/Master/paymentMethodMaster';
+import AddPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/addPaymentMethod/AddPaymentMethod';
+import EditPaymentMethod from './components/topNavigationComp/masters/paymentMethodMaster/editPaymentMethod/EditPaymentMethod';
 // import PayoutBeneficiaryMasterPage from './pages/topNavigationPages/payoutBenefisiaryMaster';
 // import AddPayoutBeneficiaryMaster from './components/topNavigationComp/masters/PayoutBeneficiaryMaster/addPayoutBeneficiaryMaster/AddPayoutBeneficiaryMaster';
 // import EditPayoutBeneficiaryMaster from './components/topNavigationComp/masters/PayoutBeneficiaryMaster/EditPayoutBeneficiaryMaster/EditPayoutBeneficiaryMaster';
@@ -65,7 +66,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/admin" />} />
         <Route path='/admin' element={<DasBoardPage />} >
-          <Route path='dashboard' element={<DasBoardRight />} />
+          <Route path='' element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
           <Route path="edit-add-bank" element={<EditAddBank />} />
@@ -77,12 +78,13 @@ function App() {
           <Route path="status-master" element={<StatusMasterPage />} />
           <Route path="add-status-master" element={<AddStatusMaster />} />
           <Route path="edit-status-master" element={<EditStatusMaster />} />
-          {/* <Route path="service-master" element={<ServiceMasterPage />} /> */}
-          {/* <Route path="edit-service-master" element={<EditServiceMaster />} /> */}
+          <Route path="service-master" element={<ServiceMasterPage />} />
+          <Route path="add-service-master" element={<AddServiceMaster />} />
+          <Route path="edit-service-master" element={<EditServiceMaster />} />
           {/* <Route path="boardcast" element={<BoardcastPage />} /> */}
-          {/* <Route path="payment-method" element={<PaymentMethodMasterPage />} /> */}
-          {/* <Route path="add-payment-method" element={<AddPaymentMethod />} /> */}
-          {/* <Route path="update-payment-method" element={<EditPaymentMethod />} /> */}
+          <Route path="payment-method" element={<PaymentMethodMasterPage />} />
+          <Route path="add-payment-method" element={<AddPaymentMethod />} />
+          <Route path="update-payment-method" element={<EditPaymentMethod />} />
           {/* <Route path="payout-beneficiary-master" element={<PayoutBeneficiaryMasterPage />} /> */}
           {/* <Route path="add-payout-beneficiary-master" element={<AddPayoutBeneficiaryMaster />} /> */}
           {/* <Route path="update-payout-beneficiary-master" element={<EditPayoutBeneficiaryMaster />} /> */}

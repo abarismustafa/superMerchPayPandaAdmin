@@ -5600,7 +5600,7 @@ fieldset:disabled .btn {
   float: left;
   padding-right: var(--bs-breadcrumb-item-padding-x);
   color: var(--bs-breadcrumb-divider-color);
-  content: var(--bs-breadcrumb-divider, "https://superadmin.paypandabnk.com")
+  content: var(--bs-breadcrumb-divider, "https://superadmin.paypandabnk.com/")
     /* rtl: var(--bs-breadcrumb-divider, "/") */
   ;
 }
