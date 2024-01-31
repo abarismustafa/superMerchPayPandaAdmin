@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-function EditServiceMaster() {
+function AddServiceMaster() {
     return (
         <>
             <div className="row">
@@ -9,7 +9,7 @@ function EditServiceMaster() {
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">UPDATE SERVICE MASTER</h4>
+                                    <h4 className="heading mb-0">ADD SERVICE MASTER</h4>
                                 </div>
                                 <form className="tbl-captionn">
                                     <div className="row">
@@ -24,14 +24,6 @@ function EditServiceMaster() {
                                         <div className="col-xl-6 mb-3">
                                             <label htmlFor="exampleFormControlInput3" className="form-label">Service Background Color<span className="text-danger">*</span></label>
                                             <input type="text" className="form-control" id="exampleFormControlInput3" placeholder="Employee Email" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">status<span className="text-danger">*</span></label>
-                                            <select class="form-control" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Enabled</option>
-                                                <option value="2">Disabled</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div>
@@ -48,4 +40,4 @@ function EditServiceMaster() {
         </>
     )
 }
-export default EditServiceMaster
+export default AddServiceMaster
