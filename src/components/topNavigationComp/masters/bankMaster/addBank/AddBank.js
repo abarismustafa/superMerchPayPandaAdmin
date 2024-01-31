@@ -37,8 +37,6 @@ function AddBank() {
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }

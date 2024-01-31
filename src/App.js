@@ -63,9 +63,9 @@ function App() {
   return (
     <>
       <Routes>
-      <Route path="/" element={<Navigate to="/admin" />} />
+        <Route path="/" element={<Navigate to="/admin" />} />
         <Route path='/admin' element={<DasBoardPage />} >
-        <Route path='' element={<DasBoardRight />} />
+          <Route path='dashboard' element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
           <Route path="edit-add-bank" element={<EditAddBank />} />
@@ -98,15 +98,16 @@ function App() {
 
           {/*  Navigation Start */}
           {/*  Shoib Route */}
-          {/* <Route path="/dashboard" element={<Dashboardpage />} />
+          {/* <Route path="/dashboard" element={<Dashboardpage />} />*/}
+
           <Route path="member-list/distributor" element={<DistributerPage />} />
           <Route path="create-user/distributor" element={<CreateUserDistributerPage />} />
           <Route path="member-list/retailer" element={<RetailerPage />} />
           <Route path="create-user/retailer" element={<CreateUserRetailerPage />} />
-          <Route path="suspended-users" element={<SuspendedUserPage />} />
+           <Route path="suspended-users" element={<SuspendedUserPage />} />
           <Route path="not-working-users" element={<NotWorkingUserPage />} />
           <Route path="all-transactions-report" element={< AlltransportationReportsPage />} />
-          <Route path="pancard-report" element={< PanCardReportPages />} />
+          {/*<Route path="pancard-report" element={< PanCardReportPages />} />
           <Route path="pending-transaction-report" element={< PendingTransactionReport />} />
           <Route path="operator-wise-sale" element={<OperatorWiseSalePage />} />
           <Route path="ledger-report" element={<LedgerReportPage />} />
@@ -121,7 +122,7 @@ function App() {
           <Route path="income/my-income" element={<MyIncomePage />} />
           <Route path="debit-report" element={<DebitReportPage />} />
           <Route path="credit-report" element={<CreditReportPage />} />
-          <Route path="agent" element={<MyCommissionRechargePage />} /> */}
+          <Route path="agent" element={<MyCommissionRechargePage />} />  */}
         </Route>
       </Routes>
     </>

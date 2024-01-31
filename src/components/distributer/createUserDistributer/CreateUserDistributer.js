@@ -6,11 +6,10 @@ function CreateUserDistributer() {
     return (
         <>
             <section className="CreateUserDistributer mt-3">
-                <div className="container">
+                <div className="">
                     <BasicDetails />
                     <Presnoaldetails />
                     <Services />
-
                 </div>
             </section>
         </>

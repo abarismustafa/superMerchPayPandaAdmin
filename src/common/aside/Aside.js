@@ -17,13 +17,15 @@ function Aside() {
     }
     return (
         <>
-            <div className="deznav">
+            
+
+            {/* --------------------------------------------------------- */}
+             <div className="deznav">
                 <div className="deznav-scroll mm-active d-flex flex-column justify-content-between ">
                     <ul className="metismenu mm-show flex-1" id="menu" >
                         <li className=" ">
                             <Link className="has-arrow" to={"dashboard"} aria-expanded="false" >
-                                
-                                <div className="">
+                                <div className="d-flex align-items-baseline">
                                 <span className="menu-icon">
                                     <AiFillDashboard />
                                 </span>
@@ -32,26 +34,24 @@ function Aside() {
                             </Link>
                         </li>
                         {asideMenu?.map((item, i) => {
-                            return <li className="mm-active" onClick={() => getData(item.id)} key={i}><Link className="has-arrow d-flex justify-content-between " to={""} aria-expanded="false" >
+                            return <li className="mm-active" onClick={() => getData(item.id)} key={i}><Link className="has-arrow"  aria-expanded="false" >
                                 <div className="">
                                 <div className="menu-icon">
                                     <span>{item?.icon}</span>
                                 </div>
                                 <span className="nav-text">{item?.title}</span>
                                 </div>
-                                
                             </Link>
-
                                 {isOpen && item.id === matchid ? <ul aria-expanded="false" className="mm-collapse mm-show left" >
                                     {expandData && expandData.map((subItem, i) => {
-                                        return <li className="mm-active sidebar-content" ><Link to={subItem?.path} className="mm-active" >{subItem?.title}</Link></li>
+                                        return <li className="mm-active sidebar-content"  ><Link to={subItem?.path} className="mm-active" >{subItem?.title}</Link></li>
                                     })}
                                 </ul> : ''}
                             </li>
                         })}
                     </ul>
                     <div className="help-desk ">
-                        <Link to="javascript:void(0)" className="btn btn-primary">Help Desk</Link>
+                        <Link to="#" className="btn btn-primary">Help Desk</Link>
                         &nbsp;
                         <Link to="#" className="btn btn-warning"><CgLogOut/> <span>Log out</span></Link>
                     </div>
