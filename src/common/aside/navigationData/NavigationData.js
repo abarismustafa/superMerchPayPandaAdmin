@@ -3,6 +3,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { MdDashboard, MdWeb, MdDiscFull, MdPayment, MdKeyboardArrowRight } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
+import { SiQzone } from "react-icons/si";
 
 export const navigationData = {
     menus: [
@@ -197,6 +198,12 @@ export const navigationData = {
                     path: "service-master"
                 },
                 {
+                    id: "4",
+                    title: "Services Category Master",
+
+                    path: "service-category"
+                },
+                {
                     id: "5",
                     title: "Payment methods",
 
@@ -206,7 +213,7 @@ export const navigationData = {
                     id: "5",
                     title: "Payout Beneficiary ",
 
-                    path: "page-not-found"
+                    path: "payout-beneficiary-master"
                 },
 
                 {
@@ -251,6 +258,36 @@ export const navigationData = {
 
                     path: "boardcast"
                 }
+            ]
+        },
+        {
+            id: "16",
+            title: "Zone Module",
+            icon: <SiQzone />,
+            subMenus: [
+                {
+                    id: "1",
+                    title: "Area",
+                    path: "area"
+                },
+                {
+                    id: "2",
+                    title: "Country",
+
+                    path: "country"
+                },
+                {
+                    id: "3",
+                    title: "State",
+
+                    path: "page-not-found"
+                },
+                {
+                    id: "3",
+                    title: "District",
+
+                    path: "page-not-found"
+                },
             ]
         },
         {

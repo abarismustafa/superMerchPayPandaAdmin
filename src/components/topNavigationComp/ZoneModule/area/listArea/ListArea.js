@@ -1,7 +1,6 @@
-import { FaRegEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-function ServiceMaster() {
+function ListArea() {
     return (
         <>
             <div className="row">
@@ -10,9 +9,9 @@ function ServiceMaster() {
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption">
-                                    <h4 className="heading mb-0">SERVICE MASTER</h4>
+                                    <h4 className="heading mb-0">AREA MASTER</h4>
                                     <div>
-                                        <Link className="btn btn-primary btn-sm" to="/admin/add-service-master" role="button" aria-controls="offcanvasExample">+ SERVICE MASTER</Link>
+                                        <Link className="btn btn-primary btn-sm" to="/admin/add-area" role="button" aria-controls="offcanvasExample">+ AREA MASTER</Link>
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
@@ -22,25 +21,11 @@ function ServiceMaster() {
                                     <thead>
                                         <tr role="row">
                                             <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                ID
+                                                Name
                                             </th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
-                                                Service Name
+                                                Level
                                             </th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Code</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Short Description</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Full Description</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Icon Image</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Banner Image</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Service Category</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Permit By Area</th>
 
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                 Status</th>
@@ -50,29 +35,17 @@ function ServiceMaster() {
                                     </thead>
                                     <tbody>
                                         <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
+                                            <td className="sorting_1"><span>Country</span></td>
                                             <td>
                                                 Activation
                                             </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-
 
                                             <td>
                                                 <span className="badge badge-success light border-0">Inactive</span>
                                             </td>
                                             <td>
                                                 <div className="d-flex">
-                                                    <Link to="/admin/edit-service-master" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                    <Link to="/admin/update-area" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
                                                     <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
                                                 </div>
 
@@ -80,29 +53,16 @@ function ServiceMaster() {
 
                                         </tr>
                                         <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
+                                            <td className="sorting_1"><span>State</span></td>
                                             <td>
                                                 Activation
                                             </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-
-
                                             <td>
                                                 <span className="badge badge-danger light border-0">Inactive</span>
                                             </td>
                                             <td>
                                                 <div className="d-flex">
-                                                    <Link to="/admin/edit-service-master" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                    <Link to="/admin/update-area" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
                                                     <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
                                                 </div>
 
@@ -120,4 +80,4 @@ function ServiceMaster() {
         </>
     )
 }
-export default ServiceMaster
+export default ListArea

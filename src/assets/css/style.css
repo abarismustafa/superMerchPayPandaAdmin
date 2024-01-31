@@ -20360,7 +20360,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 .deznav .metismenu>li.mm-active>a {
-  
+
   font-weight: 600;
 }
 
@@ -45839,7 +45839,7 @@ table.dataTable thead .sorting_asc {
 
 @media only screen and (max-width: 100rem) {
   .active-projects.style-1 .dt-buttons .dt-button {
-    right: 158px;
+    right: 225px;
   }
 }
 

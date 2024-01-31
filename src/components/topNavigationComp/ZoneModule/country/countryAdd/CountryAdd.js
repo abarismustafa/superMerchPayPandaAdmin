@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-function EditServiceMaster() {
+function CountryAdd() {
     return (
         <>
             <div className="row">
@@ -9,38 +9,39 @@ function EditServiceMaster() {
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">UPDATE SERVICE MASTER</h4>
+                                    <h4 className="heading mb-0">ADD COUNTRY</h4>
                                 </div>
                                 <form className="tbl-captionn">
                                     <div className="row">
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Service Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Service Name" />
+                                            <label htmlFor="exampleFormControlInput1" className="form-label">Shorting number <span className="text-danger">*</span></label>
+                                            <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Service Name" />
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Code<span className="text-danger">*</span></label>
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">Uniq Code<span className="text-danger">*</span></label>
                                             <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Code" />
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Short Description<span className="text-danger">*</span></label>
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Description<span className="text-danger">*</span></label>
                                             <textarea className="form-control" defaultValue={"Short Description"} />
 
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Full Description<span className="text-danger">*</span></label>
-                                            <textarea className="form-control" defaultValue={"Full Description"} />
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Meta Title<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Meta Title" />
 
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Icon Image<span className="text-danger">*</span></label>
-                                            <input type="file" className="form-control" />
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Meta Description<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Meta Description" />
+
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Banner Image<span className="text-danger">*</span></label>
-                                            <input type="file" className="form-control" />
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Meta KeyWord<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Meta KeyWord" />
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Service Category<span className="text-danger">*</span></label>
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Area Type<span className="text-danger">*</span></label>
                                             <select class="form-control" aria-label="Default select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -49,8 +50,8 @@ function EditServiceMaster() {
                                             </select>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Permit By Area<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" placeholder="Permit By Area" />
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Parent Area<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Parent Area" />
                                         </div>
                                         <div className="col-xl-6 mb-3">
                                             <label htmlFor="exampleFormControlInput3" className="form-label">Status<span className="text-danger">*</span></label>
@@ -62,7 +63,7 @@ function EditServiceMaster() {
                                         </div>
                                     </div>
                                     <div>
-                                        <Link to='service-master' className="btn btn-danger light ms-1">Cancel</Link>
+                                        <Link to='/admin/country' className="btn btn-danger light ms-1">Cancel</Link>
                                         <button className="btn btn-primary me-1">Submit</button>
                                     </div>
                                 </form>
@@ -75,4 +76,4 @@ function EditServiceMaster() {
         </>
     )
 }
-export default EditServiceMaster
+export default CountryAdd
