@@ -30,7 +30,7 @@ import RetailerIncomePage from './pages/retailerIncome';
 import MyIncomePage from './pages/myIncome';
 import DebitReportPage from './pages/debitReport';
 import CreditReportPage from './pages/creditReport';
-// import PageNotFound from './common/pageNotFound/PageNotFound';
+import PageNotFound from './common/pageNotFound/PageNotFound';
 import MyCommissionRechargePage from './pages/profile/myCommisionRecharge';
 import MasterPages from './pages/topNavigationPages/Master';
 import CompanyStaffPages from './pages/topNavigationPages/companyStaff/CompanyStaffPages';
@@ -143,6 +143,7 @@ function App() {
           <Route path="debit-report" element={<DebitReportPage />} />
           <Route path="credit-report" element={<CreditReportPage />} />
           <Route path="agent" element={<MyCommissionRechargePage />} />  */}
+          <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>
     </>
