@@ -55007,4 +55007,26 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   background-color: #F0F4F9;
 }
 
+.dilog-class {
+  width: 500px !important;
+  height: 500px !important;
+  margin: auto !important;
+  z-index: 11111 !important;
+}
+
+.color-picker-container input {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.dt-button-2 {
+  font-size: 13px !important;
+  color: #111717;
+  font-weight: 400;
+  background: rgb(24 165 148 / 10%);
+  padding: 5px 12px;
+}
+
 /*# sourceMappingURL=style-rtl.css.map */
