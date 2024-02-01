@@ -7,9 +7,9 @@ function SideBarRight({ name, ...props }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const background = 'linear-gradient(90deg, rgba(131, 58, 180, 1) 0 %, rgba(253, 29, 29, 1) 50 %, rgba(252, 176, 69, 1) 100 %)'
+    
 
-    const [selectedColor, setSelectedColor] = useState(background);
+    const [selectedColor, setSelectedColor] = useState("#000");
 
     const handleColorChange = (e) => {
         const newColor = e.target.value;
@@ -44,7 +44,6 @@ function SideBarRight({ name, ...props }) {
     return (
         <>
             <a class="sidebar-right-trigger wave-effect wave-effect-x" onClick={handleShow} data-bs-toggle="tooltip" data-placement="right" data-original-title="Change Layout" href="javascript:void(0);"><span><i class="fa fa-cog fa-spin"></i></span></a>
-
             <Offcanvas className='dilog-class' show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton style={{ background: 'blue', color: 'white' }}>
                     <Offcanvas.Title style={{ color: 'white' }}>Pick your style</Offcanvas.Title>

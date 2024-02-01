@@ -1,10 +1,10 @@
 import HeaderLogo from "./headerLogo/HeaderLogo"
 import profile from "../../assets/images/logo/profile.jpg"
-function Header() {
+function Header({showAsideBar}) {
     return (
         <>
-            <HeaderLogo />
-            <div className="header" id="abc">
+            <HeaderLogo showAsideBar={showAsideBar} />
+            <div className="header">
                 <div className="header-content">
                     <nav className="navbar navbar-expand">
                         <div className="collapse navbar-collapse justify-content-between">
