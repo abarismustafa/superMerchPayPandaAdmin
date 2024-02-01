@@ -64,9 +64,9 @@ import EditArea from './components/topNavigationComp/ZoneModule/area/editArea/Ed
 import CountryPage from './pages/topNavigationPages/ZoneModule/country';
 import CountryAdd from './components/topNavigationComp/ZoneModule/country/countryAdd/CountryAdd';
 import UpdateCountry from './components/topNavigationComp/ZoneModule/country/updateCountry/UpdateCountry';
-// import AgentOnbordingPage from './pages/topNavigationPages/agentOnbording';
-// import AddAgentOnbording from './components/topNavigationComp/masters/agentOnbording/addAgentOnbording/AddAgentOnbording';
-// import UpdateAgentOnbording from './components/topNavigationComp/masters/agentOnbording/UpdateAgentOnbording/UpdateAgentOnbording';
+import AgentOnbordingPage from './pages/topNavigationPages/agentOnbording/index';
+import AddAgentOnbording from './components/topNavigationComp/masters/agentOnbording/addAgentOnbording/AddAgentOnbording';
+import UpdateAgentOnbording from './components/topNavigationComp/masters/agentOnbording/UpdateAgentOnbording/UpdateAgentOnbording';
 
 
 function App() {
@@ -82,8 +82,8 @@ function App() {
           <Route path="role-master" element={<RoleMasterPage />} />
           <Route path="add-role-master" element={<AddRoleMaster />} />
           <Route path="edit-role-master" element={<EditRoleMaster />} />
-          {/* <Route path="company-staff-" element={<CompanyStaffPages />} /> */}
-          {/* <Route path="company-staff-permission" element={<MasterPages />} /> */}
+          <Route path="company-staff-" element={<CompanyStaffPages />} />
+          <Route path="company-staff-permission" element={<MasterPages />} />
           <Route path="status-master" element={<StatusMasterPage />} />
           <Route path="add-status-master" element={<AddStatusMaster />} />
           <Route path="edit-status-master" element={<EditStatusMaster />} />
@@ -106,9 +106,9 @@ function App() {
           <Route path="country" element={<CountryPage />} />
           <Route path="add-country" element={<CountryAdd />} />
           <Route path="update-country" element={<UpdateCountry />} />
-          {/* <Route path="agent-onboarding-list" element={<AgentOnbordingPage />} /> */}
-          {/* <Route path="add-agent-onboarding" element={<AddAgentOnbording />} /> */}
-          {/* <Route path="update-agent-onboarding" element={<UpdateAgentOnbording />} />  */}
+          <Route path="agent-onboarding-list" element={<AgentOnbordingPage />} />
+          <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
+          <Route path="update-agent-onboarding" element={<UpdateAgentOnbording />} />
 
 
           {/*  Shoib Route start */}
@@ -124,7 +124,7 @@ function App() {
           <Route path="create-user/distributor" element={<CreateUserDistributerPage />} />
           <Route path="member-list/retailer" element={<RetailerPage />} />
           <Route path="create-user/retailer" element={<CreateUserRetailerPage />} />
-           <Route path="suspended-users" element={<SuspendedUserPage />} />
+          <Route path="suspended-users" element={<SuspendedUserPage />} />
           <Route path="not-working-users" element={<NotWorkingUserPage />} />
           <Route path="all-transactions-report" element={< AlltransportationReportsPage />} />
           {/*<Route path="pancard-report" element={< PanCardReportPages />} />

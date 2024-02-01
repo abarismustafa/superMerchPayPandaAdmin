@@ -11,19 +11,18 @@ import Leadgenerations from './leadgenerations/Leadgenerations'
 
 function Master() {
   return (
-    <section>
-      <div className='container'>
-        <MastersForm/>
-        <ApiMasterForm/>
-        <SettingMaster/>
-        <WebsiteMaster/>
-        <Members/>
-        <Reports/>
-        <Payment/>
-        <Dispute/>
-        <Leadgenerations/>
-      </div>
-    </section>
+    <>
+      <MastersForm />
+      <ApiMasterForm />
+      <SettingMaster />
+      <WebsiteMaster />
+      <Members />
+      <Reports />
+      <Payment />
+      <Dispute />
+      <Leadgenerations />
+    </>
+
   )
 }
 
