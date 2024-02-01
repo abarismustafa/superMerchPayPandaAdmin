@@ -69,10 +69,13 @@ import UpdateAgentOnbording from './components/topNavigationComp/masters/agentOn
 import PageNotFound from './common/pageNotFound/PageNotFound';
 
 
+
 function App() {
   return (
     <>
+
       <Routes>
+
         <Route path="/" element={<Navigate to="/admin" />} />
         <Route path='/admin' element={<DasBoardPage />} >
           <Route path='' element={<DasBoardRight />} />
@@ -129,20 +132,24 @@ function App() {
           <Route path="all-transactions-report" element={< AlltransportationReportsPage />} />
           <Route path="pancard-report" element={< PanCardReportPages />} />
           <Route path="pending-transaction-report" element={< PendingTransactionReport />} />
-          {/*<Route path="operator-wise-sale" element={<OperatorWiseSalePage />} />
-          <Route path="ledger-report" element={<LedgerReportPage />} />
+
+
+          {/* <Route path="operator-wise-sale" element={<OperatorWiseSalePage />} /> */}
+          {/* <Route path="ledger-report" element={<LedgerReportPage />} /> */}
           <Route path="balance-trasnfer" element={< BalanceTransferPage />} />
-          <Route path="balance-return-request" element={<BalanceReturnRequestPage />} />
-          <Route path="payment-request-view" element={<PaymentRequestViewPage />} />
-          <Route path="payment-request" element={<PaymentRequestPage />} />
-          <Route path="pending-dispute" element={<PendingDisputPage />} />
-          <Route path="solve-dispute" element={<SolveDisputePage />} />
-          <Route path="user-income/distributor" element={<DistributerIncomePage />} />
-          <Route path="income/user-income/retailer" element={<RetailerIncomePage />} />
-          <Route path="income/my-income" element={<MyIncomePage />} />
-          <Route path="debit-report" element={<DebitReportPage />} />
-          <Route path="credit-report" element={<CreditReportPage />} />
-          <Route path="agent" element={<MyCommissionRechargePage />} />  */}
+          {/* <Route path="balance-return-request" element={<BalanceReturnRequestPage />} /> */}
+          {/* <Route path="payment-request-view" element={<PaymentRequestViewPage />} /> */}
+          {/* <Route path="payment-request" element={<PaymentRequestPage />} /> */}
+          {/* <Route path="pending-dispute" element={<PendingDisputPage />} /> */}
+          {/* <Route path="solve-dispute" element={<SolveDisputePage />} /> */}
+          {/* <Route path="user-income/distributor" element={<DistributerIncomePage />} /> */}
+          {/* <Route path="income/user-income/retailer" element={<RetailerIncomePage />} /> */}
+          {/* <Route path="income/my-income" element={<MyIncomePage />} /> */}
+          {/* <Route path="debit-report" element={<DebitReportPage />} /> */}
+          {/* <Route path="credit-report" element={<CreditReportPage />} /> */}
+          {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
+
+
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>
