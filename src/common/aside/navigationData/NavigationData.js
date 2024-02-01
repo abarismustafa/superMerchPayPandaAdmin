@@ -56,7 +56,7 @@ export const navigationData = {
                 },
                 {
                     id: "2",
-                    title: "Pending Report",
+                    title: "Pancard Report",
 
                     path: "pancard-report"
                 },
@@ -70,7 +70,7 @@ export const navigationData = {
                     id: "4",
                     title: "Pending Transaction",
 
-                    path: "page-not-found"
+                    path: "pending-transaction-report"
                 },
                 {
                     id: "5",

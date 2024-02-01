@@ -15843,6 +15843,7 @@ svg.pulse-svg .third-circle {
 @media only screen and (max-width: 100rem) {
   .header-left .search-area {
     width: 18.75rem;
+    border-radius: 25px;
   }
 }
 
