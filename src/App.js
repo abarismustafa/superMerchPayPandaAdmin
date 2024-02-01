@@ -127,9 +127,9 @@ function App() {
           <Route path="suspended-users" element={<SuspendedUserPage />} />
           <Route path="not-working-users" element={<NotWorkingUserPage />} />
           <Route path="all-transactions-report" element={< AlltransportationReportsPage />} />
-          {/*<Route path="pancard-report" element={< PanCardReportPages />} />
+          <Route path="pancard-report" element={< PanCardReportPages />} />
           <Route path="pending-transaction-report" element={< PendingTransactionReport />} />
-          <Route path="operator-wise-sale" element={<OperatorWiseSalePage />} />
+          {/*<Route path="operator-wise-sale" element={<OperatorWiseSalePage />} />
           <Route path="ledger-report" element={<LedgerReportPage />} />
           <Route path="balance-trasnfer" element={< BalanceTransferPage />} />
           <Route path="balance-return-request" element={<BalanceReturnRequestPage />} />

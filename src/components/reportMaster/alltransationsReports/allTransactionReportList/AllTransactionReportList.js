@@ -85,11 +85,14 @@ function AllTransactionReportList() {
 
                                                     </td>
                                                     <td>
+
+                                                    </td>
+                                                    <td>
                                                         <span className="badge badge-success light border-0">Inactive</span>
                                                     </td>
                                                     <td>
-                                                    </td>
 
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
