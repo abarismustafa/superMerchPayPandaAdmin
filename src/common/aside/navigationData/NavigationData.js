@@ -220,7 +220,7 @@ export const navigationData = {
                     id: "7",
                     title: "Agent Onboarding",
 
-                    path: "page-not-found"
+                    path: "agent-onboarding-list"
                 },
                 {
                     id: "8",

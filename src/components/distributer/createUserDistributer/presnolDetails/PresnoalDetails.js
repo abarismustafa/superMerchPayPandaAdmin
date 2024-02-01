@@ -31,7 +31,7 @@ function Presnoaldetails() {
                                        
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">District<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect " class=" form-control form-select rounded-0">
+                                            <select id="disabledSelect " className=" form-select select2">
                                                 <option disabled value={true}> -Select District-</option>
                                                 <option value="1">Maharashtra</option><option value="2">Delhi</option><option value="3">Tamil Nadu</option><option value="4">Gujarat</option><option value="5">Uttar Pradesh East</option><option value="6">Rajasthan</option><option value="7">West Bengal</option><option value="8">Madhya Pradesh</option>
                                             </select>

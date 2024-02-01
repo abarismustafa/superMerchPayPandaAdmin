@@ -1,9 +1,9 @@
 import HeaderLogo from "./headerLogo/HeaderLogo"
 import profile from "../../assets/images/logo/profile.jpg"
-function Header() {
+function Header({showAsideBar}) {
     return (
         <>
-            <HeaderLogo />
+            <HeaderLogo showAsideBar={showAsideBar} />
             <div className="header">
                 <div className="header-content">
                     <nav className="navbar navbar-expand">
