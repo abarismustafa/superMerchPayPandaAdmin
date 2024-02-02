@@ -13,7 +13,7 @@ function PancardReportList() {
                                 <h4 className="heading mb-0">Pancard Report
 </h4>
                                 <div>
-                                    {/* <Link className="btn btn-primary btn-sm" to="/admin/add-bank" role="button" aria-controls="offcanvasExample">+ BANK MASTER</Link> */}
+                                    <Link className="btn btn-primary btn-sm" to="/admin/add-pancard-report" role="button" aria-controls="offcanvasExample">+ ADD PANCARD REPORT</Link>
                                     {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
@@ -66,9 +66,12 @@ function PancardReportList() {
                                         <td>
                                         </td>
                                         <td>
-                                            <div className="d-flex">
-                                            </div>
-
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
                                         </td>
 
                                     </tr>

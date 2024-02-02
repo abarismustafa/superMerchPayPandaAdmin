@@ -23,7 +23,7 @@ function AllTransactionReportsForm() {
                                     <div className="col-xl-4 mb-3">
                                         <label htmlFor="exampleFormControlInput2" className="form-label">Status<span className="text-danger">*</span></label>
                                         {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                        <select id="disabledSelect" class="form-control">
+                                        <select id="disabledSelect" class="form-select">
                                             <option disabled>--select --</option>
                                             <option value="0" selected="" data-select2-id="2">
                                                 All Status
@@ -40,7 +40,7 @@ function AllTransactionReportsForm() {
                                     <div className="col-xl-4 mb-3">
                                         <label htmlFor="exampleFormControlInput2" className="form-label">Select User<span className="text-danger">*</span></label>
                                         {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                        <select id="disabledSelect" class="form-control">
+                                        <select id="disabledSelect" class="form-select">
                                             <option disabled>--All Users--</option>
                                             <option>Rahul Sharma</option>
                                         </select>
@@ -48,7 +48,7 @@ function AllTransactionReportsForm() {
                                     <div className="col-xl-4 mb-3">
                                         <label htmlFor="exampleFormControlInput2" className="form-label">Select Provider<span className="text-danger">*</span></label>
                                         {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                        <select id="disabledSelect" class="form-control">
+                                        <select id="disabledSelect" class="form-select">
                                             <option value="0" selected="" data-select2-id="6"> All Provider</option>
                                             <option value="1"> AIRTEL</option>
                                             <option value="2"> VI</option>

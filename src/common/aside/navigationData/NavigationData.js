@@ -57,19 +57,16 @@ export const navigationData = {
                 {
                     id: "2",
                     title: "Pancard Report",
-
                     path: "pancard-report"
                 },
                 {
                     id: "3",
                     title: "Upi Transfer Report",
-
                     path: "pending-transaction-report"
                 },
                 {
                     id: "4",
                     title: "Pending Transaction",
-
                     path: "pending-transaction-report"
                 },
                 {
@@ -79,23 +76,24 @@ export const navigationData = {
                     path: "operator-wise-sale"
                 },
                 {
+                    id: "6",
+                    title: "Debit Report",
+                    path: "debit-report",
+                },
+                {
+                    id: "7",
+                    title: "credit Report",
+                    path: "credit-report",
+                },
+                /* {
                     id: "5",
                     title: "Ledger Report",
 
                     path: "ledger-report",
                     subSubmenus: [
-                        {
-                            id: "1",
-                            title: "Debit Report",
-                            path: "debit-report",
-                        },
-                        {
-                            id: "2",
-                            title: "credit Report",
-                            path: "credit-report",
-                        },
+                        
                     ]
-                },
+                }, */
             ]
         },
         {
@@ -157,13 +155,13 @@ export const navigationData = {
                 {
                     id: "1",
                     title: "Distrbuter Income",
-                    path: "page-not-found"
+                    path: "myincome/distributor/user-income"
                 },
                 {
                     id: "2",
                     title: "Retailer Income",
 
-                    path: "page-not-found"
+                    path: "myincome/user-income/retailer"
                 },
             ]
         },

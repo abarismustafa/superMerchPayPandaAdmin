@@ -5,10 +5,8 @@ import OperatorWiseReportList from './operatorWiseReportList/OperatorWiseReportL
 function OperatorWiseSale() {
     return (
         <section>
-            <div className='container'>
                 <OperatorWiseForm />
                 <OperatorWiseReportList/>
-            </div>
         </section>
     )
 }
