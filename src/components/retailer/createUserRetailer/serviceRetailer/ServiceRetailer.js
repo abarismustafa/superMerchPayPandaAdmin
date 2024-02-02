@@ -15,35 +15,35 @@ function ServiceRetailer() {
                                     <div className="row">
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Housing Society Services<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect " class=" form-control form-select rounded-0">
+                                            <select id="disabledSelect " className=" form-select select2">
                                                 <option disabled value={true}> -Select Status-</option>
                                                 <option value="1">Active</option><option value="2">Delhi</option><option value="3">De-Active</option>
                                             </select>
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Cable TV Services<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect " class=" form-control form-select rounded-0">
+                                            <select id="disabledSelect " className=" form-select select2">
                                                 <option disabled value={true}> -Select Status-</option>
                                                 <option value="1">Active</option><option value="2">Delhi</option><option value="3">De-Active</option>
                                             </select>
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">LPG Gas Services<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect " class=" form-control form-select rounded-0">
+                                            <select id="disabledSelect " className=" form-select select2">
                                                 <option disabled value={true}> -Select Status-</option>
                                                 <option value="1">Active</option><option value="2">Delhi</option><option value="3">De-Active</option>
                                             </select>
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Pancard Services<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect " class=" form-control form-select rounded-0">
+                                            <select id="disabledSelect " className=" form-select select2">
                                                 <option disabled value={true}> -Select Status-</option>
                                                 <option value="1">Active</option><option value="2">Delhi</option><option value="3">De-Active</option>
                                             </select>
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Cable TV Services<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect " class=" form-control form-select rounded-0">
+                                            <select id="disabledSelect " className=" form-select select2">
                                                 <option disabled value={true}> -Select Status-</option>
                                                 <option value="1">Active</option><option value="2">Delhi</option><option value="3">De-Active</option>
                                             </select>
