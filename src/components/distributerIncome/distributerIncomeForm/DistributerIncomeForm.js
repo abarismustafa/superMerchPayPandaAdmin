@@ -1,38 +1,70 @@
 import { useState } from "react";
 import DistributeIncomeModle from "./distributerIncomeModle/DistributerIncomeModle"
+import { FaDownload } from "react-icons/fa";
 
 function DistributerIncomeForm() {
     const [modalShow, setModalShow] = useState(false);
+    const [formData, setFormData] = useState({
+        fromdate: '2024-01-18',
+        todate: '2024-01-18',
+        userId: '0', // Assuming "All User" is the default
+    });
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
     return (
         <>
-            <div className="col-lg-12 col-md-12">
-                <div className="card">
-                    <div className="card-body">
-                        <form action="" method="get">
-                            <div className="row">
-                                <div className="col-sm-4">
-                                    <div className="form-group">
-                                        <label className="form-label">From: <span className="tx-danger">*</span></label>
-                                        <input className="form-control fc-datepicker hasDatepicker" type="date" />
-                                    </div>
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0"><b>Distributer INCOME REPORT - </b></h4>
                                 </div>
-                                <div className="col-sm-4">
-                                    <div className="form-group">
-                                        <label className="form-label">To: <span className="tx-danger">*</span></label>
-                                        <input className="form-control fc-datepicker hasDatepicker" type="date" />
-                                    </div>
-                                </div>
+                                <form className="tbl-captionn">
+                                    <div className="row">
+                                        <div className="col-xl-4 mb-3">
+                                            <label htmlFor="exampleFormControlInput1" className="form-label">From <span className="text-danger">*</span></label>
+                                            <input className="form-control" value={formData.fromdate}
+                                                type="date"
+                                                id="fromdate"
+                                                name="fromdate"
+                                                autoComplete="off"
+                                                onChange={handleInputChange} />
+                                        </div>
+                                        <div className="col-xl-4 mb-3">
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">To<span className="text-danger">*</span></label>
+                                            <input className="form-control" value={formData.fromdate}
+                                                type="date"
+                                                id="fromdate"
+                                                name="fromdate"
+                                                autoComplete="off"
+                                                onChange={handleInputChange} />
+                                        </div>
 
-                                <div className="col-sm-4 mg-sm-t-25 mt-4">
-                                    <button className="btn btn-primary pd-x-20 me-2-2" type="button" fdprocessedid="4y92n"><i className="fas fa-search" /> Search</button>
-                                    <button className="btn btn-danger pd-x-20 me-2-2" type="button" onClick={() => setModalShow(true)}><i className="fas fa-download" /> Download</button>
-                                </div>
+                                        <div className="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
+                                            <label className="form-label">Search & Download:</label>
+                                            <br />
+                                            <button className="btn btn-primary pd-x-20 rounded-0 " type="submit"><i className="fas fa-search"></i> Search</button>
+                                            <button className="btn btn-danger pd-x-20" type="button" data-toggle="modal" data-target="#transaction_download_model" onClick={()=>setModalShow(true)}>
+                                                <FaDownload /> Download
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
 
                             </div>
-
-                        </form>
-
-
+                        </div>
                     </div>
                 </div>
                 <DistributeIncomeModle show={modalShow}

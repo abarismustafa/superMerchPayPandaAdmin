@@ -21,11 +21,12 @@ function NotWorkingUserList() {
                                     <div className="tbl-caption">
                                         <h4 className="heading mb-0"><b>NOT WORKING USERS LIST</b></h4>
                                         <div>
-                                            {/* <Link className="btn btn-primary btn-sm" to="/admin/create-user/retailer" role="button" aria-controls="offcanvasExample">+  Create Retailer</Link> */}
+                                            
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
                                             <button className="btn btn-primary btn-sm" type="button" onClick={() => setModalShow(true)}>Download Not Working Users</button>
+                                            <Link className="btn btn-primary btn-sm" to="/admin/add-not-working-user" role="button" aria-controls="offcanvasExample">+ ADD NOT WORKING USERS LIST</Link>
                                         </div>
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer">

@@ -5,7 +5,7 @@ import CreditReportList from './creditReportList/CreditReportList'
 function CreditReport() {
   return (
     <section>
-      <div className='container'>
+      <div className=''>
         <CreditReportForm/>
         <CreditReportList/>
       </div>
