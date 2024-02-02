@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function PendingTranRepList() {
   return (
@@ -12,7 +13,7 @@ function PendingTranRepList() {
                                 <h4 className="heading mb-0">Pending Transaction Report List
 </h4>
                                 <div>
-                                    {/* <Link className="btn btn-primary btn-sm" to="/admin/add-bank" role="button" aria-controls="offcanvasExample">+ BANK MASTER</Link> */}
+                                    <Link className="btn btn-primary btn-sm" to="/admin/add-pending-transaction-report" role="button" aria-controls="offcanvasExample">+ ADD PENDING TRANSACTION REPORT </Link>
                                     {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}

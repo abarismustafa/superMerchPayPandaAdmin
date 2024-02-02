@@ -1,15 +1,13 @@
 import React from 'react'
-import DebitReportForm from './debitReportForm/debitReportForm'
+import DebitReportForm from './debitReportForm/DebitReportForm'
 import DebitReportList from './debitReportList/DebitReportList'
 
 function DebitReport() {
   return (
-    <section>
-      <div className=' container'>
+      <div className=' '>
         <DebitReportForm/>
         <DebitReportList/>
       </div>
-    </section>
   )
 }
 
