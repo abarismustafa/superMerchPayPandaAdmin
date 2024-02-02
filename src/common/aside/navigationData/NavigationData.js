@@ -139,13 +139,13 @@ export const navigationData = {
                     id: "1",
                     title: "Pending Dispute",
 
-                    path: "page-not-found"
+                    path: "pending-dispute"
                 },
                 {
                     id: "1",
                     title: "Solve Dispute",
 
-                    path: "page-not-found"
+                    path: "solve-dispute"
                 },
             ]
         },

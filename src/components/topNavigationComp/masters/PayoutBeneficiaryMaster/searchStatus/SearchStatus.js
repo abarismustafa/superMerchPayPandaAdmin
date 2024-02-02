@@ -12,7 +12,7 @@ function SearchStatus() {
                                         <div className="col-sm-12 col-md-4 mb-3">
                                             <div className="dataTables_lengthh" id="my_table_length">
                                                 <label>Status</label>
-                                                <select class="form-control" aria-label="Default select example">
+                                                <select id="disabledSelect" class="form-select">
                                                     <option selected>Open this select menu</option>
                                                     <option value="1">Pending</option>
                                                     <option value="2">Approved</option>

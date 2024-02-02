@@ -31,7 +31,7 @@ function BasicDetailsRetails() {
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Member Type<span className="text-danger">*</span></label>
                                             {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                            <select id="disabledSelect" class="form-control">
+                                            <select id="disabledSelect" class="form-select">
                                                 <option>Disabled select</option>
                                             </select>
                                         </div>
@@ -39,7 +39,7 @@ function BasicDetailsRetails() {
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Shop Name<span className="text-danger">*</span></label>
                                             <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Shop Name" />
                                         </div>
-                                       
+
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">Lock Amount <span className="text-danger">*</span></label>
                                             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Lock Amount" />

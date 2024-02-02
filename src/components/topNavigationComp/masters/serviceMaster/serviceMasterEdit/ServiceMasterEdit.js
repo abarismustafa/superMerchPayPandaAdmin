@@ -41,7 +41,7 @@ function EditServiceMaster() {
                                         </div>
                                         <div className="col-xl-6 mb-3">
                                             <label htmlFor="exampleFormControlInput3" className="form-label">Service Category<span className="text-danger">*</span></label>
-                                            <select class="form-control" aria-label="Default select example">
+                                            <select id="disabledSelect" class="form-select">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -54,7 +54,7 @@ function EditServiceMaster() {
                                         </div>
                                         <div className="col-xl-6 mb-3">
                                             <label htmlFor="exampleFormControlInput3" className="form-label">Status<span className="text-danger">*</span></label>
-                                            <select class="form-control" aria-label="Default select example">
+                                            <select id="disabledSelect" class="form-select">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">Enabled</option>
                                                 <option value="2">Disabled</option>

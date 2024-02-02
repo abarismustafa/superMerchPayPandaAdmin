@@ -15,7 +15,7 @@ function ApiMasterForm() {
                                 <div className="row">
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Provider Master:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -23,7 +23,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Api Master:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -31,7 +31,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Add New Api:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -39,7 +39,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Update Api:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -47,7 +47,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Denomination Wise Api:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -55,7 +55,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Number Series Master:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -63,7 +63,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">State Wise Api:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -71,7 +71,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Backup Api Master:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -79,7 +79,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Api Switching:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -87,7 +87,7 @@ function ApiMasterForm() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">User Operator Limit:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
