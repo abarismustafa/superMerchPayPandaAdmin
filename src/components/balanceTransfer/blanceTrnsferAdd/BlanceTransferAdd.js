@@ -9,7 +9,7 @@ function BalanceTransferAdd() {
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD SERVICE MASTER</h4>
+                                    <h4 className="heading mb-0">ADD BALANCE TRANSFER</h4>
                                 </div>
                                 <form className="tbl-captionn">
                                     <div className="row">
