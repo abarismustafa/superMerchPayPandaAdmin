@@ -1,51 +1,56 @@
+import { Link } from "react-router-dom"
 
 function PaymentRequestForm() {
     return (
         <>
-            <div className="col-lg-5 col-md-12">
-                <div className="card">
-                    <div className="card-body">
-                        <div>
-                            <h6 className="card-title mb-1">Payment Request</h6>
-                            <hr />
-                        </div>
-                        <div className="mb-4">
-                            <label>Bank Name</label>
-                            <select className="form-control" id="bankdetail_id" fdprocessedid="ux2mmog">
-                                <option value={1}>AXIS BANK</option>
-                                <option value={4}>ICICI BANK</option>
-                                <option value={5}>AXIS BANK (Auto Update)</option>
-                            </select>
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">PAYMENT REQUEST</h4>
+                                </div>
+                                <form className="tbl-captionn">
+                                    <div className="row">
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">Bank Name<span className="text-danger">*</span></label>
+                                            <select id="disabledSelect" class="form-select">
+                                                <option selected>--Select Bank Name--</option>
+                                                <option value="1">AXIS BANK</option>
+                                                <option value="2">ICICI BANK</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">Payment Method<span className="text-danger">*</span></label>
+                                            <select id="disabledSelect" class="form-select">
+                                                <option selected>--Select Payment Method--</option>
+                                                <option value="1">CASH PAYMENT</option>
+                                                <option value="2">NEFT / RTGS</option>
+                                                <option value="2">IMPS</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput2" className="form-label">Payment Date<span className="text-danger">*</span></label>
+                                            <input type="date" className="form-control" id="exampleFormControlInput2" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Amount<span className="text-danger">*</span></label>
+                                            <input type="number" className="form-control" placeholder="Amount" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Bank Ref Number<span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" placeholder="Bank Ref Number" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <Link to='/admin/payment-request-view' className="btn btn-danger light ms-1">Cancel</Link>
+                                        <button className="btn btn-primary me-1">Submit</button>
+                                    </div>
+                                </form>
 
+                            </div>
                         </div>
-                        <div className="mb-4">
-                            <label>Payment Method</label>
-                            <select className="form-control" id="paymentmethod_id" fdprocessedid="2q3pvb">
-                                <option value={1}>CASH PAYMENT</option>
-                                <option value={2}>NEFT / RTGS</option>
-                                <option value={3}>IMPS</option>
-                            </select>
-
-                        </div>
-                        <div className="mb-4">
-                            <label>Payment Date</label>
-                            <input type="text" className="form-control hasDatepicker" placeholder="Payment Date" id="payment_date" autoComplete="off" defaultValue="2024-01-18" fdprocessedid="596wdw" />
-
-                        </div>
-                        <div className="mb-4">
-                            <label>Amount</label>
-                            <input type="number" className="form-control" placeholder="Amount" id="amount" fdprocessedid="3x8wcg" />
-
-                        </div>
-                        <div className="mb-4">
-                            <label>Bank Ref Number</label>
-                            <input type="text" className="form-control" placeholder="Bank Ref Number" id="bankref" fdprocessedid="ho5l" />
-
-                        </div>
-                    </div>
-                    <div className="modal-footer-btn">
-                        <button className="btn ripple btn-primary me-3" type="button" >Save Now</button>
-                        <button className="btn ripple btn-secondary" >Close</button>
                     </div>
                 </div>
             </div>

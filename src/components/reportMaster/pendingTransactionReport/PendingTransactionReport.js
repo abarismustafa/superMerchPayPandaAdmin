@@ -6,7 +6,7 @@ import { FaDownload } from "react-icons/fa";
 import PendingTransctionModal from './pendingTransactionModal/PendingTransctionModal';
 import { Link } from 'react-router-dom';
 import PendingReportForm from './pendTransRepForm/PendingReportForm';
-import PendingTranRepList from './PendingTranRepList/PendingTranRepList';
+import PendingTranRepList from './pendingTranRepList/PendingTranRepList';
 
 function PendingTransactionReport() {
     const [show, setShow] = useState(false);
@@ -15,8 +15,8 @@ function PendingTransactionReport() {
     const handleShow = () => setShow(true);
     return (
         <>
-            <PendingReportForm/>
-            <PendingTranRepList/>
+            <PendingReportForm />
+            <PendingTranRepList />
         </>
     )
 }

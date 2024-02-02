@@ -395,7 +395,7 @@ function AllTransactionReportsForm() {
                                         <button className="btn btn-primary pd-x-20 rounded-0 " type="submit"><i className="fas fa-search"></i> Search</button>
                                         <button className="btn btn-danger pd-x-20 rounded-0" type="button" data-toggle="modal" data-target="#transaction_download_model"><i className="fas fa-download"></i> Download</button>
                                     </div>
-                                    
+
                                 </div>
                             </form>
 

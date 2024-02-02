@@ -15,7 +15,7 @@ function Leadgenerations() {
                                 <div className="row">
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Lead GEneration Create:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -23,7 +23,7 @@ function Leadgenerations() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Lead Generation Update:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>

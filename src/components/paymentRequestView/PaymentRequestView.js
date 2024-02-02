@@ -5,15 +5,8 @@ import PaymentRequestViewList from "./paymentRequestViewList/PaymentRequestViewL
 function PaymentRequestView() {
     return (
         <>
-            <section className="PaymentRequestView mt-3">
-                <div className="container">
-                    <div className="row">
-                        <PaymentRequestViewForm />
-                        <PaymentRequestViewList />
-
-                    </div>
-                </div>
-            </section>
+            <PaymentRequestViewForm />
+            <PaymentRequestViewList />
         </>
     )
 }
