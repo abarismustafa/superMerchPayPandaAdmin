@@ -303,19 +303,25 @@ export const navigationData = {
                     id: "2",
                     title: "API  Master",
 
-                    path: "page-not-found"
+                    path: "api-master"
                 },
                 {
                     id: "3",
                     title: "Denomination Wise APIs Master",
 
-                    path: "page-not-found"
+                    path: "denomination-wise-api"
+                },
+                {
+                    id: "1",
+                    title: "Number Series Master",
+
+                    path: "number-series-master"
                 },
                 {
                     id: "1",
                     title: "State Wise APIs Master     ",
 
-                    path: "page-not-found"
+                    path: "state-wise-api"
                 },
                 {
                     id: "4",
