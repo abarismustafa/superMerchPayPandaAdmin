@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 // import react icon start
 import { FaSearch } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa";
 // import react icon end
-import PendingTransctionModal from './pendingTransactionModal/PendingTransctionModal';
-import { Link } from 'react-router-dom';
-import PendingReportForm from './pendTransRepForm/PendingReportForm';
-import PendingTranRepList from './pendingTranRepList/PendingTranRepList';
+import PendingTransctionModal from "./pendingTransactionModal/PendingTransctionModal";
+import { Link } from "react-router-dom";
+import PendingReportForm from "./pendTransRepForm/PendingReportForm";
+import PendingTranRepList from "./pendingTranRepList/PendingTranRepList";
 
 function PendingTransactionReport() {
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    return (
-        <>
-            <PendingReportForm />
-            <PendingTranRepList />
-        </>
-    )
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      <PendingReportForm />
+      <PendingTranRepList />
+    </>
+  );
 }
 
-export default PendingTransactionReport
+export default PendingTransactionReport;
