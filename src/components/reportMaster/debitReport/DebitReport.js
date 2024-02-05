@@ -1,6 +1,6 @@
 import React from 'react'
-import DebitReportForm from './debitReportForm/DebitReportForm'
 import DebitReportList from './debitReportList/DebitReportList'
+import DebitReportForm from './debitReportForm/debitReportForm'
 
 function DebitReport() {
   return (
