@@ -13,7 +13,7 @@ function ApiVandorPaymentList() {
                                 <div className="tbl-caption">
                                     <h4 className="heading mb-0">VENDOR PAYMENT</h4>
                                     <div>
-                                        <Link className="btn btn-primary btn-sm" to="/admin/add-service-master" role="button" aria-controls="offcanvasExample">+ VENDOR PAYMENT</Link>
+                                        {/* <Link className="btn btn-primary btn-sm" to="/admin/add-service-master" role="button" aria-controls="offcanvasExample">+ VENDOR PAYMENT</Link> */}
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
