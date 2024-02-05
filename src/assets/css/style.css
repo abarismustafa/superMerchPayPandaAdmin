@@ -53,6 +53,7 @@
         _page-user-lock
 
 */
+
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&amp;display=swap");
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
@@ -5244,6 +5245,7 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+  -webkit-box-shadow: 6px 11px 41px -28px #796eb1;
 }
 
 .card>hr {
@@ -55084,6 +55086,29 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .dt-button-2:hover {
   background-color: var(--bs-blue);
   color: white;
+}
+
+.btn-xss {
+  width: 7.4rem !important;
+  ;
+}
+
+.btn-xsss {}
+
+.tbl-caption-2 {
+  width: 111rem;
+}
+
+.d-flex-2 {
+  align-items: center !important;
+}
+
+.tbl-caption-3 {
+  width: 104rem;
+}
+
+.empoloyees-tblwrapper_wrapper-2 {
+  width: 1456px !important;
 }
 
 /*# sourceMappingURL=style-rtl.css.map */

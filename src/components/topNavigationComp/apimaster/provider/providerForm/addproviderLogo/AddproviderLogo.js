@@ -1,31 +1,37 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const AddproviderLogo = () => {
     return (
-        <div className='container'>
-            <div className='row my-4'>
-                <div className='col-md-4 col-12 m-auto card'>
-                    <div className='bg-aqua my-2'>
-                        <div><h5>Add Provider</h5></div>
-                        <h6 className='border p-2 bg-info'>Airtel</h6>
-                        <label className="form-label">
-                            Select Logo: <span className="tx-danger">*</span>
-                        </label>
-                        <input
-                            className="form-control fc-datepicker hasDatepicker"
-                            // value={formData.fromdate}
-                            type="file"
-                            id="fromdate"
-                            name="fromdate"
-                            autoComplete="off"
-                            // onChange={handleInputChange} 
-                        />
-                    </div>
-                    {/* <Button className='btn-danger 'style={{minWidth:"content"}}>Close</Button> */}
-                    <Button className='btn-info my-2  '>Save</Button>
-                </div>
+        <div className="row">
+            <div className="col-xl-12">
+                <div className="card">
+                    <div className="card-body p-0">
+                        <div className="table-responsive active-projects style-1">
+                            <div className="tbl-caption">
+                                <h4 className="heading mb-0">ADD LOGO PROVIDER</h4>
+                            </div>
+                            <form className="tbl-captionn">
+                                <div className="row">
+                                    <div className="col-xl-6 mb-3">
+                                        <label htmlFor="exampleFormControlInput3" className="form-label">Provider Name<span className="text-danger">*</span></label>
+                                        <input type="text" className="form-control" placeholder="Provider Name" />
+                                    </div>
+                                    <div className="col-xl-6 mb-3">
+                                        <label htmlFor="exampleFormControlInput3" className="form-label">Select Logo:<span className="text-danger">*</span></label>
+                                        <input type="file" className="form-control" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <Link to='/admin/provider' className="btn btn-danger light ms-1">Cancel</Link>
+                                    <button className="btn btn-primary me-1">Submit</button>
+                                </div>
+                            </form>
 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

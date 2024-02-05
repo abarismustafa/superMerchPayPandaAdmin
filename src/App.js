@@ -84,6 +84,26 @@ import AddSuspendedUser from './components/suspendedUsers/add SuspendedUser/AddS
 import AddOperatorWiseReport from './components/reportMaster/operatorWiseSale/addOperatorWiseReports/AddOperatorWiseReport';
 import AddDebitReport from './components/reportMaster/debitReport/addDebitReport/AddDebitReport';
 import AddCreditReport from './components/reportMaster/creditReport/addCreditReport/AddCreditReport';
+import AddProvider from './components/topNavigationComp/apimaster/provider/addProvider/AddProvider';
+import UpdateProvider from './components/topNavigationComp/apimaster/provider/updateProvider/UpdateProvider';
+import ApiMasterPage from './pages/topNavigationPages/apisMaster/apiMaster';
+import AddApiMaster from './components/topNavigationComp/apimaster/appiMaster/addApiMaster/AddApiMaster';
+import UpdateApiMaster from './components/topNavigationComp/apimaster/appiMaster/updateApiMaster/UpdateApiMaster';
+import DominationWiseMasterPage from './pages/topNavigationPages/apisMaster/dominationWiseMaster';
+import AddDominationWiseMaster from './components/topNavigationComp/apimaster/dominationWiseMaster/addDominationWiseMaster/AddDominationWiseMaster';
+import UpdateDonimationWiseMaster from './components/topNavigationComp/apimaster/dominationWiseMaster/updateDominationWiseMaster/UpdateDominationWiseMaster';
+import NumberSeriesMasterPage from './pages/topNavigationPages/apisMaster/numberSeriesMaster';
+import AddNumberSeriesMaster from './components/topNavigationComp/apimaster/numberSeriesMaster/addNumberSeriesMaster/AddNumberSeriesMaster';
+import UpdateNumberSeriesMaster from './components/topNavigationComp/apimaster/numberSeriesMaster/updateNumberSeriesMaster/UpdateNumberSeriesMaster';
+import StateWiseApiPage from './pages/topNavigationPages/apisMaster/stateWiseApi';
+import StateWiseProviderSetting from './components/topNavigationComp/apimaster/stateWiseApi/stateWiseProviderSettings/StateWiseProviderSetting';
+import BackupApiMasterPage from './pages/topNavigationPages/apisMaster/backupApiMaster';
+import AddBackupApiMaster from './components/topNavigationComp/apimaster/backupApiMaster/addBackupApiMaster/AddBackupApiMaster';
+import UpdateBackupApiMaster from './components/topNavigationComp/apimaster/backupApiMaster/updateBackupApiMaster/UpdateBackupApiMaster';
+import ApiSwitchingPage from './pages/topNavigationPages/apisMaster/apiSwitch';
+import UserOperatorLimitPage from './pages/topNavigationPages/apisMaster/userOperatorLimit';
+import ViewOperatorLimit from './components/topNavigationComp/apimaster/userOperatorLimit/viewOperatorLimit/ViewOperatorLimit';
+import ApiVandorPaymentPage from './pages/topNavigationPages/apisMaster/apiVandorPayment';
 
 
 
@@ -130,8 +150,30 @@ function App() {
           <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
           <Route path="update-agent-onboarding" element={<UpdateAgentOnbording />} />
           {/*  Shoib Route start */}
-          {/* <Route path="provider" element={<Provider />} />
-          <Route path="add-provider-logo" element={<AddproviderLogo />} /> */}
+          <Route path="provider" element={<Provider />} />
+          <Route path="add-provider" element={<AddProvider />} />
+          <Route path="add-provider-logo" element={<AddproviderLogo />} />
+          <Route path="update-provider-logo" element={<UpdateProvider />} />
+          <Route path="api-master" element={<ApiMasterPage />} />
+          <Route path="add-api-master" element={<AddApiMaster />} />
+          <Route path="update-api-master" element={<UpdateApiMaster />} />
+          <Route path="denomination-wise-api" element={<DominationWiseMasterPage />} />
+          <Route path="add-denomination-wise-api" element={<AddDominationWiseMaster />} />
+          <Route path="update-denomination-wise-api" element={<UpdateDonimationWiseMaster />} />
+          <Route path="number-series-master" element={<NumberSeriesMasterPage />} />
+          <Route path="add-number-series-master" element={<AddNumberSeriesMaster />} />
+          <Route path="update-number-series-master" element={<UpdateNumberSeriesMaster />} />
+          <Route path="state-wise-api" element={<StateWiseApiPage />} />
+          <Route path="state-provider-settings" element={<StateWiseProviderSetting />} />
+          <Route path="backup-api-master" element={<BackupApiMasterPage />} />
+          <Route path="add-backup-api-master" element={<AddBackupApiMaster />} />
+          <Route path="update-backup-api-master" element={<UpdateBackupApiMaster />} />
+          <Route path="api-switching" element={<ApiSwitchingPage />} />
+          <Route path="user-operator-limit" element={<UserOperatorLimitPage />} />
+          <Route path="view-operator-limit" element={<ViewOperatorLimit />} />
+          <Route path="vandor/payment/welcome" element={<ApiVandorPaymentPage />} />
+
+
           {/* Top Navigation End */}
 
           {/*  Navigation Start */}
