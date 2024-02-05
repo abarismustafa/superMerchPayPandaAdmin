@@ -97,6 +97,13 @@ import AddNumberSeriesMaster from './components/topNavigationComp/apimaster/numb
 import UpdateNumberSeriesMaster from './components/topNavigationComp/apimaster/numberSeriesMaster/updateNumberSeriesMaster/UpdateNumberSeriesMaster';
 import StateWiseApiPage from './pages/topNavigationPages/apisMaster/stateWiseApi';
 import StateWiseProviderSetting from './components/topNavigationComp/apimaster/stateWiseApi/stateWiseProviderSettings/StateWiseProviderSetting';
+import BackupApiMasterPage from './pages/topNavigationPages/apisMaster/backupApiMaster';
+import AddBackupApiMaster from './components/topNavigationComp/apimaster/backupApiMaster/addBackupApiMaster/AddBackupApiMaster';
+import UpdateBackupApiMaster from './components/topNavigationComp/apimaster/backupApiMaster/updateBackupApiMaster/UpdateBackupApiMaster';
+import ApiSwitchingPage from './pages/topNavigationPages/apisMaster/apiSwitch';
+import UserOperatorLimitPage from './pages/topNavigationPages/apisMaster/userOperatorLimit';
+import ViewOperatorLimit from './components/topNavigationComp/apimaster/userOperatorLimit/viewOperatorLimit/ViewOperatorLimit';
+import ApiVandorPaymentPage from './pages/topNavigationPages/apisMaster/apiVandorPayment';
 
 
 
@@ -158,6 +165,13 @@ function App() {
           <Route path="update-number-series-master" element={<UpdateNumberSeriesMaster />} />
           <Route path="state-wise-api" element={<StateWiseApiPage />} />
           <Route path="state-provider-settings" element={<StateWiseProviderSetting />} />
+          <Route path="backup-api-master" element={<BackupApiMasterPage />} />
+          <Route path="add-backup-api-master" element={<AddBackupApiMaster />} />
+          <Route path="update-backup-api-master" element={<UpdateBackupApiMaster />} />
+          <Route path="api-switching" element={<ApiSwitchingPage />} />
+          <Route path="user-operator-limit" element={<UserOperatorLimitPage />} />
+          <Route path="view-operator-limit" element={<ViewOperatorLimit />} />
+          <Route path="vandor/payment/welcome" element={<ApiVandorPaymentPage />} />
 
 
           {/* Top Navigation End */}

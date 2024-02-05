@@ -5245,6 +5245,7 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+  -webkit-box-shadow: 6px 11px 41px -28px #796eb1;
 }
 
 .card>hr {
@@ -55053,6 +55054,14 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .d-flex-2 {
   align-items: center !important;
+}
+
+.tbl-caption-3 {
+  width: 104rem;
+}
+
+.empoloyees-tblwrapper_wrapper-2 {
+  width: 1456px !important;
 }
 
 /*# sourceMappingURL=style-rtl.css.map */

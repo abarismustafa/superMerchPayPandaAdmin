@@ -327,25 +327,25 @@ export const navigationData = {
                     id: "4",
                     title: "Backup API Master",
 
-                    path: "page-not-found"
+                    path: "backup-api-master"
                 },
                 {
                     id: "5",
                     title: "API Switching ",
 
-                    path: "page-not-found"
+                    path: "api-switching"
                 },
                 {
                     id: "6",
                     title: "User Operator Limit",
 
-                    path: "page-not-found"
+                    path: "user-operator-limit"
                 },
                 {
                     id: "7",
                     title: "API Vendor Payment",
 
-                    path: "page-not-found"
+                    path: "vandor/payment/welcome"
                 },
 
             ]
