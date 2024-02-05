@@ -15,7 +15,7 @@ function SettingMaster() {
                                 <div className="row">
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Company Settings:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -23,7 +23,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Site Settings:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -31,7 +31,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Sms Templete:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -39,7 +39,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Pakage Settings:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -47,7 +47,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Bank Settings:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -55,7 +55,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Logo Upload:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -63,7 +63,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Service Banner:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -71,7 +71,7 @@ function SettingMaster() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Notification Settis ngs:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>

@@ -5,7 +5,7 @@ function DistributerIncome() {
     return (
         <>
             <section className="DistributerIncome mt-3">
-                <div className="container">
+                <div className="">
                     <div className="row">
                         <DistributerIncomeForm />
                         <DistributerIncomeList />

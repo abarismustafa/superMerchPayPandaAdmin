@@ -45815,7 +45815,7 @@ table.dataTable thead .sorting_asc {
   top: -47px;
   right: 20px;
   font-size: 13px !important;
-  color: var(--bs-light-bg-subtle );
+  color: var(--bs-light-bg-subtle);
   font-weight: 400;
   background: var(--bs-primary);
   padding: 5px 12px;
@@ -47538,7 +47538,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   overflow: hidden;
   height: 3rem;
   padding-left: 0;
-  
+
 }
 
 .messages .input-group.search-area .input-group-text {
@@ -55059,6 +55059,31 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 .mm-active.active>a{
   background-color: #8080806e;
+}
+
+.dilog-class {
+  width: 500px !important;
+  height: 500px !important;
+  margin: auto !important;
+  z-index: 11111;
+}
+
+.color-picker-container input {
+  width: 100%;
+  height: 30px;
+  border-radius: 5%;
+}
+
+.dt-button-2 {
+  background: #4ee021;
+  color: white;
+  width: 32%;
+  font-weight: 900;
+}
+
+.dt-button-2:hover {
+  background-color: var(--bs-blue);
+  color: white;
 }
 
 /*# sourceMappingURL=style-rtl.css.map */

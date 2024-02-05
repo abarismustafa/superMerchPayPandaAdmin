@@ -4,12 +4,10 @@ import DebitReportList from './debitReportList/DebitReportList'
 
 function DebitReport() {
   return (
-    <section>
-      <div className=' container'>
-        <DebitReportForm/>
-        <DebitReportList/>
-      </div>
-    </section>
+    <div className=' '>
+      <DebitReportForm />
+      <DebitReportList />
+    </div>
   )
 }
 

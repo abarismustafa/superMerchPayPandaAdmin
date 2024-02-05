@@ -15,7 +15,7 @@ function Dispute() {
                                 <div className="row">
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Pending Dispute:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -23,7 +23,7 @@ function Dispute() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Dispute Chat:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -31,7 +31,7 @@ function Dispute() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Dispute Update:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -39,7 +39,7 @@ function Dispute() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Solve Dispute:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -47,7 +47,7 @@ function Dispute() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Reopen Dispute:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>

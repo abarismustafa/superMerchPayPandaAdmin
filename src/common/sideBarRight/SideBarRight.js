@@ -7,7 +7,7 @@ function SideBarRight({ name, ...props }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    
+
 
     const [selectedColor, setSelectedColor] = useState("#000");
 
@@ -49,24 +49,44 @@ function SideBarRight({ name, ...props }) {
                     <Offcanvas.Title style={{ color: 'white' }}>Pick your style</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <div className="backgroundset">
-                        <div className="them">
-                            <h3>Background Color Change</h3>
-                            <div className="color-picker-container">
-                                <input
-                                    type="color"
-                                    value={selectedColor}
-                                    onChange={handleColorChange}
-                                />
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <div className="them">
+                                <h3>Background Theme</h3>
+                                <div className="color-picker-container">
+                                    <input
+                                        type="color"
+                                        value={selectedColor}
+                                        onChange={handleColorChange}
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div className="active-projects">
-                            <h3>Font Size Change</h3>
-                            <button className="dt-button-2  btn btn-sm border-0" onClick={decreaseFontSize}>A-</button>
-                            <button className="dt-button-2 btn btn-sm border-0" onClick={increaseFontSize}>A+</button>
+                        <div className="col-lg-6">
+                            <div className="active-projects">
+                                <h3>Font Size Change</h3>
+                                <button className="dt-button-2  btn btn-sm border-0" onClick={decreaseFontSize}>A-</button>
+                                <button className="dt-button-2 btn btn-sm border-0" onClick={increaseFontSize}>A+</button>
+                            </div>
+                        </div>
+                        <div className="col-lg-6 mt-3">
+                            <label htmlFor="exampleFormControlInput2" className="form-label">Select Country</label>
+                            <select id="disabledSelect" class="form-select">
+                                <option selected>--Select Country--</option>
+                                <option value="1">--India--</option>
+                                <option value="2">--Dubai--</option>
+                            </select>
+                        </div>
+                        <div className="col-lg-6 mt-3">
+                            <label htmlFor="exampleFormControlInput2" className="form-label">Select Language</label>
+                            <select id="disabledSelect" class="form-select">
+                                <option selected>--Select Language--</option>
+                                <option value="1">--English--</option>
+                                <option value="2">--Hindi--</option>
+                                <option value="2">--Arabic--</option>
+                            </select>
                         </div>
                     </div>
-
                 </Offcanvas.Body>
             </Offcanvas>
         </>
