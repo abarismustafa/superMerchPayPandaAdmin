@@ -17,7 +17,7 @@ function DasBoardPage() {
         <div className="main-wrapper-details">
           <Aside showAsideBar={showAsideBar} />
           <div
-            className={`content-body${!showAsideBar ? "hide" : ""}`}
+            className={`content-body ${!showAsideBar ? "hide" : ""}`}
             style={{ minHeight: "816px" }}
           >
             <PageTitle />

@@ -55054,5 +55054,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   white-space: nowrap;
   padding: 10px 20px;
 }
+.mm-active>a:hover{
+  background-color: #8080806e;
+}
+.mm-active.active>a{
+  background-color: #8080806e;
+}
 
 /*# sourceMappingURL=style-rtl.css.map */

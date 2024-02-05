@@ -1,41 +1,74 @@
 import { Link } from "react-router-dom";
 import { navigationData } from "./navigationData/NavigationData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDashboard } from "react-icons/ai";
+import { useLocation } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
 const asideMenu = navigationData.menus;
 function Aside({ showAsideBar }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [expandData, setExpandData] = useState([]);
-  const [matchid, setMatchId] = useState(null);
   const [parentId, setParentId] = useState(null);
-  const [chuldId, setChildId] = useState(null);
+  const [childId, setChildId] = useState(null);
+  const location = useLocation();
 
   const menuClicked = (parentId) => {
     setParentId((prev) => (prev === parentId ? null : parentId));
+    setChildId(null);
   };
-  const subMenuClicked = (childId) => {
-    setChildId(childId);
+  const subMenuClicked = (e, childId) => {
+    setChildId((prev) => (prev === childId ? null : childId));
+    e.stopPropagation();
   };
+
+  // useEffect(() => {
+  //   const modifiedPath = location.pathname.replace("/admin/", "");
+  //   asideMenu.forEach((item) => {
+  //     item?.subMenus.map((submenu) => {
+  //       if (submenu.path === modifiedPath) {
+  //         setChildId(submenu.uniqueId);
+  //         setParentId(item.uniqueId);
+  //       }
+  //     });
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const modifiedPath = location.pathname.replace("/admin/", "");
+
+    const foundSubMenu = asideMenu
+      .flatMap((item) => item?.subMenus || [])
+      .find((submenu) => submenu.path === modifiedPath);
+
+    if (foundSubMenu) {
+      setChildId(foundSubMenu.uniqueId);
+      const parentItem = asideMenu.find((item) =>
+        item.subMenus?.includes(foundSubMenu)
+      );
+      if (parentItem) {
+        setParentId(parentItem.uniqueId);
+      }
+    }
+  }, []);
   return (
     <>
       <div className={`deznav ${!showAsideBar ? "showMenu" : ""}`} id="abcd">
         <div className="deznav-scroll mm-active d-flex flex-column justify-content-between ">
           <ul className="metismenu mm-show flex-1" id="menu">
-            <li className=" ">
+            <li className={`mm-active ${!showAsideBar ? "hide" : ""}`}>
               <Link className="has-arrow" to={"/admin"} aria-expanded="false">
                 <div className="d-flex align-items-baseline">
                   <span className="menu-icon">
                     <AiFillDashboard />
                   </span>
-                  <span> Dashboard</span>
+                  <span className={`nav-text`}> Dashboard</span>
                 </div>
               </Link>
             </li>
             {asideMenu?.map((item, i) => {
               return (
                 <li
-                  className={`mm-active ${!showAsideBar ? "hide" : ""}`}
+                  className={`mm-active ${!showAsideBar ? "hide" : ""} ${
+                    parentId === item.uniqueId ? "active" : ""
+                  }`}
                   onClick={() => menuClicked(item.uniqueId)}
                   key={i}
                 >
@@ -57,8 +90,10 @@ function Aside({ showAsideBar }) {
                     {item?.subMenus.map((subItem, i) => {
                       return (
                         <li
-                          className="mm-active sidebar-content"
-                          onClick={() => subMenuClicked(subItem.uniqueId)}
+                          className={`mm-active sidebar-content ${
+                            childId === subItem.uniqueId ? "active" : ""
+                          }`}
+                          onClick={(e) => subMenuClicked(e, subItem.uniqueId)}
                         >
                           <Link to={subItem?.path} className="mm-active">
                             {subItem?.title}
