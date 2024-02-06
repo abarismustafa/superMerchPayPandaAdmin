@@ -5,7 +5,6 @@ import './assets/css/style.css'
 import './assets/css/style.css'
 import DasBoardPage from './pages/dasBoardPage';
 import DasBoardRight from './pages/dasBoardRight/DasBoardRight';
-import Link from './components/link/Link';
 import DistributerPage from './pages/distributer';
 import CreateUserDistributerPage from './pages/distributer/createUserDistributer/CreateUserDistributer';
 import RetailerPage from './pages/retailer';
@@ -104,6 +103,10 @@ import ApiSwitchingPage from './pages/topNavigationPages/apisMaster/apiSwitch';
 import UserOperatorLimitPage from './pages/topNavigationPages/apisMaster/userOperatorLimit';
 import ViewOperatorLimit from './components/topNavigationComp/apimaster/userOperatorLimit/viewOperatorLimit/ViewOperatorLimit';
 import ApiVandorPaymentPage from './pages/topNavigationPages/apisMaster/apiVandorPayment';
+import AddDistributerInc from './components/distributerIncome/distributerIncomeForm/addDistributerInc/AddDistributerInc';
+import AddRetailerInc from './components/retailerIncome/addRetailerInc/AddRetailerInc';
+import ContactInquery from './pages/topNavigationPages/Master/contactInquery/index';
+import AddContactEnquiry from './components/topNavigationComp/masters/contactEnquiry/addContactEnquiry/AddContactEnquiry';
 
 
 
@@ -133,7 +136,7 @@ function App() {
           <Route path="service-category" element={<ServiceCategoryMasterPage />} />
           <Route path="add-service-category" element={<AddServiceCategoryMaster />} />
           <Route path="update-service-category" element={<UpdateServiceCategoryMaster />} />
-          {/* <Route path="boardcast" element={<BoardcastPage />} /> */}
+          <Route path="boardcast" element={<BoardcastPage />} />
           <Route path="payment-method" element={<PaymentMethodMasterPage />} />
           <Route path="add-payment-method" element={<AddPaymentMethod />} />
           <Route path="update-payment-method" element={<EditPaymentMethod />} />
@@ -172,8 +175,6 @@ function App() {
           <Route path="user-operator-limit" element={<UserOperatorLimitPage />} />
           <Route path="view-operator-limit" element={<ViewOperatorLimit />} />
           <Route path="vandor/payment/welcome" element={<ApiVandorPaymentPage />} />
-
-
           {/* Top Navigation End */}
 
           {/*  Navigation Start */}
@@ -212,17 +213,22 @@ function App() {
           <Route path="solve-dispute" element={<SolveDisputePage />} />
           <Route path="add-solve-dispute" element={<AddSolveDispute />} />
           <Route path="update-solve-dispute" element={<UpdateSolveDispute />} />
-          {/* <Route path="user-income/distributor" element={<DistributerIncomePage />} /> */}
-          {/* <Route path="income/user-income/retailer" element={<RetailerIncomePage />} /> */}
-          {/* <Route path="income/my-income" element={<MyIncomePage />} /> */}
+          <Route path="user-income/distributor" element={<DistributerIncomePage />} />
+          <Route path="add/distributor/income" element={<AddDistributerInc />} />
+          <Route path="user-income/retailer" element={<RetailerIncomePage />} />
+          <Route path="add/retailer/income" element={<AddRetailerInc />} />
+          <Route path="income/my-income" element={<MyIncomePage />} />
           <Route path="debit-report" element={<DebitReportPage />} />
           <Route path="add-debit-report" element={<AddDebitReport />} />
           <Route path="credit-report" element={<CreditReportPage />} />
           <Route path="add-credit-report" element={<AddCreditReport />} />
+          {/* onClick Profile Route  */}
           {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
 
-
+          <Route path="contact-enquiry" element={<ContactInquery />} />
+          <Route path="edit-contact-enquiry" element={<AddContactEnquiry />} />
           <Route path="page-not-found" element={<PageNotFound />} />
+
         </Route>
       </Routes>
     </>

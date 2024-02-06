@@ -42,8 +42,8 @@ function Header({ showAsideBar }) {
                                     <div className="input-group search-area">
                                         <span className="input-group-text"><button className="bg-transparent border-0">
                                             <svg width={19} height={19} viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="8.78605" cy="8.78605" r="8.23951" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
-                                                <path d="M14.5168 14.9447L17.7471 18.1667" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+                                                <circle cx="8.78605" cy="8.78605" r="8.23951" stroke="blue" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M14.5168 14.9447L17.7471 18.1667" stroke="blue" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </button></span>
                                         <input type="text" className="form-control" placeholder="Search" />

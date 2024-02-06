@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 function RetailerKycStatus() {
     return (
         <>
-            <div className="kycStatus mt-3">
+            <div className="kycStatus">
                 <div className="">
                     <div className="row">
                         <div className="col-lg-12 col-md-12">

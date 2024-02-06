@@ -14070,13 +14070,11 @@ fieldset:disabled .btn {
 }
 
 body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   background-color: #F5F5F5;
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  display: block;
 }
 
 p {
@@ -15840,13 +15838,14 @@ svg.pulse-svg .third-circle {
 
 .header-left .search-area {
   width: 15rem;
-  background-color: var(--rgba-primary-1);
+  /* background-color: var(--rgba-primary-1); */
+  background-color: #fff;
   border-radius: 0;
 }
 
 @media only screen and (max-width: 100rem) {
   .header-left .search-area {
-    width: 18.75rem;
+    width: 40.75rem;
     border-radius: 25px;
   }
 }

@@ -50,9 +50,14 @@ function Aside({ showAsideBar }) {
   }, []);
   return (
     <>
+
+      
+
       <div className={`deznav ${!showAsideBar ? "showMenu" : ""}`} id="abcd">
         <div className="deznav-scroll mm-active d-flex flex-column justify-content-between ">
+
           <ul className="metismenu mm-show flex-1" id="menu">
+
             <li className={`mm-active ${!showAsideBar ? "hide" : ""}`}>
               <Link className="has-arrow" to={"/admin"} aria-expanded="false">
                 <div className="d-flex align-items-baseline">
@@ -66,9 +71,8 @@ function Aside({ showAsideBar }) {
             {asideMenu?.map((item, i) => {
               return (
                 <li
-                  className={`mm-active ${!showAsideBar ? "hide" : ""} ${
-                    parentId === item.uniqueId ? "active" : ""
-                  }`}
+                  className={`mm-active ${!showAsideBar ? "hide" : ""} ${parentId === item.uniqueId ? "active" : ""
+                    }`}
                   onClick={() => menuClicked(item.uniqueId)}
                   key={i}
                 >
@@ -83,16 +87,14 @@ function Aside({ showAsideBar }) {
 
                   <ul
                     aria-expanded="false"
-                    className={`mm-collapse left ${
-                      item.uniqueId === parentId ? "mm-show" : ""
-                    }`}
+                    className={`mm-collapse left ${item.uniqueId === parentId ? "mm-show" : ""
+                      }`}
                   >
                     {item?.subMenus.map((subItem, i) => {
                       return (
                         <li
-                          className={`mm-active sidebar-content ${
-                            childId === subItem.uniqueId ? "active" : ""
-                          }`}
+                          className={`mm-active sidebar-content ${childId === subItem.uniqueId ? "active" : ""
+                            }`}
                           onClick={(e) => subMenuClicked(e, subItem.uniqueId)}
                         >
                           <Link to={subItem?.path} className="mm-active">
