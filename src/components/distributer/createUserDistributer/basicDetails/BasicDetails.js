@@ -50,7 +50,7 @@ function BasicDetails() {
                                             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Pan Number" />
                                         </div>
                                         <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">GST Number <span className="text-danger">*</span></label>
+                                            <label htmlFor="exampleFormControlInput1" className="form-label">GST Number <span className="text-danger">(Optional)</span></label>
                                             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="GST Number" />
                                         </div>
                                         <div className="col-xl-4 mb-3">

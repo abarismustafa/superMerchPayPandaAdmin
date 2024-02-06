@@ -6,7 +6,6 @@ import {
   MdWeb,
   MdDiscFull,
   MdPayment,
-  MdKeyboardArrowRight,
 } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
 import { SiQzone } from "react-icons/si";
@@ -82,6 +81,18 @@ export const navigationData = {
           path: "operator-wise-sale",
         },
         {
+          uniqueId: "subsubmenu_3_6",
+          id: "1",
+          title: "Debit Report",
+          path: "debit-report",
+        },
+        {
+          uniqueId: "subsubmenu_3_7",
+          id: "2",
+          title: "Credit Report",
+          path: "credit-report",
+        },
+        /* {
           uniqueId: "submenu_3_6",
           id: "6",
           title: "Ledger Report",
@@ -100,7 +111,7 @@ export const navigationData = {
               path: "credit-report",
             },
           ],
-        },
+        }, */
       ],
     },
     {
@@ -165,13 +176,19 @@ export const navigationData = {
           uniqueId: "submenu_11_1",
           id: "1",
           title: "Distributor Income",
-          path: "page-not-found",
+          path: "user-income/distributor",
         },
         {
           uniqueId: "submenu_11_2",
           id: "2",
           title: "Retailer Income",
-          path: "page-not-found",
+          path: "user-income/retailer",
+        },
+        {
+          uniqueId: "submenu_11_3",
+          id: "2",
+          title: "My Income",
+          path: "income/my-income",
         },
       ],
     },
@@ -233,13 +250,13 @@ export const navigationData = {
           uniqueId: "submenu_6_9",
           id: "9",
           title: "Agent Onboarding List (EKO)",
-          path: "page-not-found",
+          path: "agent-onboarding-list",
         },
         {
           uniqueId: "submenu_6_10",
           id: "10",
           title: "Contact Enquiry",
-          path: "page-not-found",
+          path: "contact-enquiry",
         },
         {
           uniqueId: "submenu_6_11",
@@ -247,12 +264,12 @@ export const navigationData = {
           title: "Company Staff Permissions",
           path: "company-staff-permission",
         },
-        {
+        /* {
           uniqueId: "submenu_6_12",
           id: "12",
           title: "Contact Enquiry",
           path: "page-not-found",
-        },
+        }, */
         {
           uniqueId: "submenu_6_13",
           id: "13",

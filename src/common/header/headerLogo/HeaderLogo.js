@@ -4,7 +4,7 @@ function HeaderLogo({showAsideBar}) {
     return (
         <>
             <div className="nav-header">
-                <a href="index.html" className="brand-logo">
+                <a href="/" className="brand-logo">
                     <img src={logo} alt="" style={{ width: '100%' }} />
                 </a>
                 <div className="nav-control" onClick={showAsideBar}>

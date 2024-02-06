@@ -42,6 +42,14 @@ function PaymentRequestForm() {
                                             <label htmlFor="exampleFormControlInput3" className="form-label">Bank Ref Number<span className="text-danger">*</span></label>
                                             <input type="text" className="form-control" placeholder="Bank Ref Number" />
                                         </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Slip Upload<span className="text-danger">*</span></label>
+                                            <input type="file" className="form-control" placeholder="Slip" />
+                                        </div>
+                                        <div className="col-xl-6 mb-3">
+                                            <label htmlFor="exampleFormControlInput3" className="form-label">Remark<span className="text-danger"><i>(Optional)</i></span></label>
+                                            <textarea className="form-control" defaultValue={"Remark"} /> 
+                                        </div>
                                     </div>
                                     <div>
                                         <Link to='/admin/payment-request-view' className="btn btn-danger light ms-1">Cancel</Link>
