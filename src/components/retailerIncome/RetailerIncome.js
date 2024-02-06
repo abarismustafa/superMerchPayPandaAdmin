@@ -4,13 +4,11 @@ import RetailerIncomeList from "./retailerIncomeList/RetailerIncomeList"
 function RetailerIncone() {
     return (
         <>
-            <section className="RetailerIncone mt-3">
-                <div className="container">
+            <section className="RetailerIncone">
                     <div className="row">
                         <RetailerIncomeForm />
                         <RetailerIncomeList />
                     </div>
-                </div>
             </section>
         </>
     )

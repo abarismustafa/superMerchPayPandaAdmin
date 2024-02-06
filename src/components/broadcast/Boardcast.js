@@ -5,16 +5,15 @@ import BordcastTextEditor from './bordcastTextEditor/BordcastTextEditor'
 function Boardcast() {
     return (
         <section>
-            <div className='container'>
-                <div className='row m-5'>
+            <div className=''>
+                <div className='row '>
                     <div className='col-md-12 col-12'>
-                        <div className='card-body  m-auto ' style={{ maxWidth: "800px" }}>
                             <div className='card p-4'>
                                 <div className='border-bottom'>
                                     <h6><strong>Broadcast</strong></h6>
                                 </div>
                                 <div className='row'>
-                                    <div className="col-lg-12 col-md-12 form-group mg-b-0">
+                                    <div className="col-lg-4 col-md-12 form-group mg-b-0">
                                         <label className="form-label">
                                             Broadcast Heading <span className="tx-danger">*</span>
                                         </label>
@@ -27,7 +26,7 @@ function Boardcast() {
                                             placeholder='Dear Merchant'
                                         />
                                     </div>
-                                    <div className="col-lg-6 col-md-12 form-group mg-b-0">
+                                    <div className="col-lg-4 col-md-12 form-group mg-b-0">
                                         <label className="form-label">
                                             Image<span className="tx-danger">*</span>
                                         </label>
@@ -40,11 +39,11 @@ function Boardcast() {
                                             placeholder='Dear Merchant'
                                         />
                                     </div>
-                                    <div className="col-sm-12 col-lg-6 ">
+                                    <div className="col-sm-12 col-lg-4 ">
 
                                         <div className="form-group">
                                             <label className="form-label">Image Status</label>
-                                            <Form.Select aria-label=" b-radius Default select example" className='rounded-0'>
+                                            <Form.Select aria-label=" form-select Default select example" className='rounded-0'>
                                                 <option value="0" selected="" data-select2-id="2">
                                                     Disabled
                                                 </option>
@@ -57,12 +56,10 @@ function Boardcast() {
                                 <div className='py-5'>
                                 <BordcastTextEditor/>
                                 </div>
-
-                                <div className="col-sm-12 col-lg-12 ">
-
+                                <div className="col-sm-12 col-lg-6 ">
                                         <div className="form-group">
                                             <label className="form-label"> Status</label>
-                                            <Form.Select aria-label=" b-radius Default select example" className='rounded-0'>
+                                            <Form.Select aria-label="form-select example">
                                                 <option value="0" selected="" data-select2-id="2">
                                                     Disabled
                                                 </option>
@@ -76,8 +73,6 @@ function Boardcast() {
                                     </div>
                                     <Button style={{width:"max-content"}} className='my-2'>Update Details</Button>
                             </div>
-
-                        </div>
                     </div>
                 </div>
                 

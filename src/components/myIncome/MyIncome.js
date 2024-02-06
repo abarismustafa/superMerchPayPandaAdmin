@@ -4,12 +4,10 @@ import MyIncomeList from "./myIncomeList/MyIncomeList"
 function MyIncome() {
     return (
         <>
-            <section className="MyIncome mt-3">
-                <div className="container">
+            <section className="MyIncome">
                     <div className="row">
                         <MyIncomeForm />
                         <MyIncomeList />
-                    </div>
                 </div>
             </section>
         </>
