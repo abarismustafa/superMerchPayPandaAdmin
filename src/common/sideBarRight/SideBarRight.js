@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap"
+
+const DEFAULT_COLOR = ""
 
 function SideBarRight({ name, ...props }) {
     const [show, setShow] = useState(false);
@@ -9,10 +11,13 @@ function SideBarRight({ name, ...props }) {
 
 
 
-    const [selectedColor, setSelectedColor] = useState("#000");
+    const [selectedColor, setSelectedColor] = useState(DEFAULT_COLOR);
+
+
 
     const handleColorChange = (e) => {
         const newColor = e.target.value;
+        // setResetTheamm(newColor)
         setSelectedColor(newColor);
         document.body.style.backgroundColor = newColor;
         document.getElementById("abc").style.backgroundColor = newColor
@@ -41,6 +46,24 @@ function SideBarRight({ name, ...props }) {
         }
     };
 
+    const reset = () => {
+        setFontSize(14)
+    }
+
+    const resetTheam = () => {
+        setSelectedColor(DEFAULT_COLOR);
+        document.body.style.backgroundColor = DEFAULT_COLOR;
+        document.getElementById("abc").style.backgroundColor = DEFAULT_COLOR
+        document.getElementById("abcd").style.backgroundColor = DEFAULT_COLOR
+        setShow(false)
+    }
+
+    useEffect(() => {
+        updateBodyFontSize(fontSize)
+
+    }, [fontSize])
+
+
     return (
         <>
             <a class="sidebar-right-trigger wave-effect wave-effect-x" onClick={handleShow} data-bs-toggle="tooltip" data-placement="right" data-original-title="Change Layout" href="javascript:void(0);"><span><i class="fa fa-cog fa-spin"></i></span></a>
@@ -59,6 +82,7 @@ function SideBarRight({ name, ...props }) {
                                         value={selectedColor}
                                         onChange={handleColorChange}
                                     />
+                                    <button className=" btn btn-sm border-0 btn-danger btn-danger-2" onClick={resetTheam}>Reset</button>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +91,7 @@ function SideBarRight({ name, ...props }) {
                                 <h3>Font Size Change</h3>
                                 <button className="dt-button-2  btn btn-sm border-0" onClick={decreaseFontSize}>A-</button>
                                 <button className="dt-button-2 btn btn-sm border-0" onClick={increaseFontSize}>A+</button>
+                                <button className=" btn btn-sm border-0 btn-danger" onClick={reset}>Reset</button>
                             </div>
                         </div>
                         <div className="col-lg-6 mt-3">
