@@ -156,7 +156,7 @@ export const navigationData = {
           uniqueId: "submenu_5_1",
           id: "1",
           title: "Pending Dispute",
-          path: "pending-dispute  ",
+          path: "pending-dispute",
         },
         {
           uniqueId: "submenu_5_2",
@@ -394,25 +394,25 @@ export const navigationData = {
           uniqueId: "submenu_8_2",
           id: "2",
           title: "Site Settings",
-          path: "page-not-found",
+          path: "site-setting/welcome",
         },
         {
           uniqueId: "submenu_8_3",
           id: "3",
           title: "SMS Settings",
-          path: "page-not-found",
+          path: "sms-templete/welcome",
         },
         {
           uniqueId: "submenu_8_4",
           id: "4",
           title: "Package  Settings",
-          path: "page-not-found",
+          path: "package-settings",
         },
         {
           uniqueId: "submenu_8_5",
           id: "5",
           title: "Bank  Settings",
-          path: "page-not-found",
+          path: "bank-settings",
         },
         {
           uniqueId: "submenu_8_6",

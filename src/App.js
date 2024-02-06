@@ -103,6 +103,14 @@ import ApiSwitchingPage from './pages/topNavigationPages/apisMaster/apiSwitch';
 import UserOperatorLimitPage from './pages/topNavigationPages/apisMaster/userOperatorLimit';
 import ViewOperatorLimit from './components/topNavigationComp/apimaster/userOperatorLimit/viewOperatorLimit/ViewOperatorLimit';
 import ApiVandorPaymentPage from './pages/topNavigationPages/apisMaster/apiVandorPayment';
+import SiteSettingPage from './pages/topNavigationPages/settings/siteSetting';
+import SmsSettingsPage from './pages/topNavigationPages/settings/smsSetting';
+import PackageSettingsPage from './pages/topNavigationPages/settings/packageSettings';
+import CommissionSetup from './components/topNavigationComp/settings/packageSettings/commissionSetup/CommissionSetup';
+import SetOperatorSettings from './components/topNavigationComp/settings/packageSettings/commissionSetup/setOperatorSettings/SetOperatorsettings';
+import BankSettingsPage from './pages/topNavigationPages/settings/bankSettings';
+import AddBankSettings from './components/topNavigationComp/settings/bankSettings/addBankSetting/AddBankSettings';
+import UpdateBankSettings from './components/topNavigationComp/settings/bankSettings/updateBankSettings/UpdateBanksettings';
 import AddDistributerInc from './components/distributerIncome/distributerIncomeForm/addDistributerInc/AddDistributerInc';
 import AddRetailerInc from './components/retailerIncome/addRetailerInc/AddRetailerInc';
 import ContactInquery from './pages/topNavigationPages/Master/contactInquery/index';
@@ -175,6 +183,15 @@ function App() {
           <Route path="user-operator-limit" element={<UserOperatorLimitPage />} />
           <Route path="view-operator-limit" element={<ViewOperatorLimit />} />
           <Route path="vandor/payment/welcome" element={<ApiVandorPaymentPage />} />
+          <Route path="site-setting/welcome" element={<SiteSettingPage />} />
+          <Route path="sms-templete/welcome" element={<SmsSettingsPage />} />
+          <Route path="package-settings" element={<PackageSettingsPage />} />
+          <Route path="commission-setup" element={<CommissionSetup />} />
+          <Route path="set-operator-commission" element={<SetOperatorSettings />} />
+          <Route path="bank-settings" element={<BankSettingsPage />} />
+          <Route path="add-bank-settings" element={<AddBankSettings />} />
+          <Route path="update-bank-settings" element={<UpdateBankSettings />} />
+
           {/* Top Navigation End */}
 
           {/*  Navigation Start */}
