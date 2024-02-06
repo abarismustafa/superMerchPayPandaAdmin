@@ -15,8 +15,8 @@ function PendingTransactionReport() {
     const handleShow = () => setShow(true);
     return (
         <>
-            <PendingReportForm/>
-            <PendingTranRepList/>
+            <PendingReportForm />
+            <PendingTranRepList />
         </>
     )
 }

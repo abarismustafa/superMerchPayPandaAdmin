@@ -12,7 +12,7 @@ function NotWorkingUserList() {
 
     return (
         <>
-           <section className="ListDistributer mt-3">
+           <section className="ListDistributer">
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="card">

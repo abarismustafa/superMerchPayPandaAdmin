@@ -1,10 +1,39 @@
 import HeaderLogo from "./headerLogo/HeaderLogo"
 import profile from "../../assets/images/logo/profile.jpg"
-function Header({showAsideBar}) {
+import { useState } from "react";
+function Header({ showAsideBar }) {
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const toggleFullscreen = () => {
+        const element = document.documentElement;
+
+        if (isFullscreen) {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        } else {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        }
+
+        setIsFullscreen(!isFullscreen);
+    };
     return (
         <>
             <HeaderLogo showAsideBar={showAsideBar} />
-            <div className="header">
+            <div className="header" id="abc">
                 <div className="header-content">
                     <nav className="navbar navbar-expand">
                         <div className="collapse navbar-collapse justify-content-between">
@@ -13,8 +42,8 @@ function Header({showAsideBar}) {
                                     <div className="input-group search-area">
                                         <span className="input-group-text"><button className="bg-transparent border-0">
                                             <svg width={19} height={19} viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="8.78605" cy="8.78605" r="8.23951" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
-                                                <path d="M14.5168 14.9447L17.7471 18.1667" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+                                                <circle cx="8.78605" cy="8.78605" r="8.23951" stroke="blue" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M14.5168 14.9447L17.7471 18.1667" stroke="blue" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </button></span>
                                         <input type="text" className="form-control" placeholder="Search" />
@@ -240,7 +269,7 @@ function Header({showAsideBar}) {
                                     </a>
                                 </li>
                                 <li className="nav-item dropdown notification_dropdown">
-                                    <a className="nav-link bell dz-fullscreen" href="javascript:void(0);">
+                                    <a className="nav-link bell dz-fullscreen" href="#" onClick={toggleFullscreen}>
                                         <svg id="icon-full" viewBox="0 0 24 24" width={20} height={20} stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" style={{ strokeDasharray: '37, 57', strokeDashoffset: 0 }} /></svg>
                                         <svg id="icon-minimize" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="A098AE" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-minimize"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" style={{ strokeDasharray: '37, 57', strokeDashoffset: 0 }} /></svg>
                                     </a>

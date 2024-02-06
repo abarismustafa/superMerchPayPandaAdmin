@@ -15,7 +15,7 @@ function Reports() {
                                 <div className="row">
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">All Transaction Reports:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -23,7 +23,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Update Transaction (Refund or Success):<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -31,7 +31,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">View Api Logs:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -39,7 +39,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Recharge Reports:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -47,7 +47,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Pan Card Reports:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -55,7 +55,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Auto Payment Report:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -63,7 +63,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Pending Transaction:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -71,7 +71,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Profit Distribution:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -79,7 +79,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Refund Message:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -87,7 +87,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Api Summary:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -95,7 +95,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Operator Wise Sale:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -103,7 +103,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Aeps Report:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -111,7 +111,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Payout Settlement:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -119,7 +119,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Aeps Operator Report:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -127,7 +127,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Account Validate Report:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -135,7 +135,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Money Transfer Report:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>
@@ -143,7 +143,7 @@ function Reports() {
                                     </div>
                                     <div className="col-xl-6 mb-3">
                                         <label htmlFor="exampleFormControlInput3" className="form-label">Money Transfer Operator Reports:<span className="text-danger">*</span></label>
-                                        <select class="form-control" aria-label="Default select example">
+                                        <select id="disabledSelect" class="form-select">
                                             <option selected>Open this select menu</option>
                                             <option value="1">Disabled</option>
                                             <option value="2">Enabled</option>

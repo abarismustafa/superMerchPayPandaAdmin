@@ -67,6 +67,15 @@ import AgentOnbordingPage from './pages/topNavigationPages/agentOnbording/index'
 import AddAgentOnbording from './components/topNavigationComp/masters/agentOnbording/addAgentOnbording/AddAgentOnbording';
 import UpdateAgentOnbording from './components/topNavigationComp/masters/agentOnbording/UpdateAgentOnbording/UpdateAgentOnbording';
 import PageNotFound from './common/pageNotFound/PageNotFound';
+import BalanceTransferAdd from './components/balanceTransfer/blanceTrnsferAdd/BlanceTransferAdd';
+import UpdateBlanceTransfer from './components/balanceTransfer/UpdateBlanceTransfer/UpdateBlanceTransfer';
+import AddBlanceReturnRequest from './components/balanceReturnRequest/addBlanceReturnRequest/AddBlanceReturnRequest';
+import UpdateBlanceReturnRequest from './components/balanceReturnRequest/updateBlanceReturnRequest/UpdateBlanceReturnRequest';
+import AddPaymentRequestView from './components/paymentRequestView/addPaymentRequestView/AddPaymentRequestView';
+import AddPendingDispute from './components/pendingDisput/addPendingDisput/AddPendingDipute';
+import UpdatePendingDisput from './components/pendingDisput/updatePendingDisput/UpdatePendingDisput';
+import AddSolveDispute from './components/solveDispute/addSolveDispute/AddSolveDispute';
+import UpdateSolveDispute from './components/solveDispute/updateSolveDispute/UpdateSolveDispute';
 import AddTransactionReport from './components/reportMaster/alltransationsReports/addTransactionReport/AddTransactionReport';
 import AddpanCardReport from './components/reportMaster/pancardReport/addPanCardReport/AddpanCardReport';
 import AddPendingTransactionReport from './components/reportMaster/pendingTransactionReport/addPendingTarnsactionReport/AddPendingTransactionReport';
@@ -146,13 +155,23 @@ function App() {
           <Route path="add-operator-wise-sale" element={<AddOperatorWiseReport />} />
           {/* <Route path="ledger-report" element={<LedgerReportPage />} /> */}
           <Route path="balance-trasnfer" element={< BalanceTransferPage />} />
-          {/* <Route path="balance-return-request" element={<BalanceReturnRequestPage />} /> */}
-          {/* <Route path="payment-request-view" element={<PaymentRequestViewPage />} /> */}
-          {/* <Route path="payment-request" element={<PaymentRequestPage />} /> */}
-          {/* <Route path="pending-dispute" element={<PendingDisputPage />} /> */}
-          {/* <Route path="solve-dispute" element={<SolveDisputePage />} /> */}
-          <Route path="myincome/distributor/user-income" element={<DistributerIncomePage />} />
-          <Route path="myincome/user-income/retailer" element={<RetailerIncomePage />} />
+          <Route path="add-balance-trasnfer" element={<BalanceTransferAdd />} />
+          <Route path="update-balance-trasnfer" element={<UpdateBlanceTransfer />} />
+          <Route path="balance-return-request" element={<BalanceReturnRequestPage />} />
+          <Route path="add-balance-return-request" element={<AddBlanceReturnRequest />} />
+          <Route path="update-balance-return-request" element={<UpdateBlanceReturnRequest />} />
+          <Route path="payment-request-view" element={<PaymentRequestViewPage />} />
+          <Route path="add-payment-request-view" element={<AddPaymentRequestView />} />
+          <Route path="update-payment-request-view" element={<AddPaymentRequestView />} />
+          <Route path="payment-request" element={<PaymentRequestPage />} />
+          <Route path="pending-dispute" element={<PendingDisputPage />} />
+          <Route path="add-pending-dispute" element={<AddPendingDispute />} />
+          <Route path="update-pending-dispute" element={<UpdatePendingDisput />} />
+          <Route path="solve-dispute" element={<SolveDisputePage />} />
+          <Route path="add-solve-dispute" element={<AddSolveDispute />} />
+          <Route path="update-solve-dispute" element={<UpdateSolveDispute />} />
+          {/* <Route path="user-income/distributor" element={<DistributerIncomePage />} /> */}
+          {/* <Route path="income/user-income/retailer" element={<RetailerIncomePage />} /> */}
           {/* <Route path="income/my-income" element={<MyIncomePage />} /> */}
           <Route path="debit-report" element={<DebitReportPage />} />
           <Route path="add-debit-report" element={<AddDebitReport />} />
