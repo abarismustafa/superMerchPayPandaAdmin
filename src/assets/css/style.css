@@ -55130,4 +55130,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   float: left !important;
 }
 
+.mt-4-2 {
+  margin-top: 30px;
+}
+
 /*# sourceMappingURL=style-rtl.css.map */
