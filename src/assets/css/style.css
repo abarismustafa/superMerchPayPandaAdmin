@@ -35473,6 +35473,9 @@ input#checkAll.form-check-input:checked {
   border-color: #CCCCCC;
   box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11);
 }
+#search-inp{
+  box-shadow: none;
+}
 
 .form-control:hover,
 .form-control:focus,
@@ -55103,9 +55106,9 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .btn-xsss {}
 
-.tbl-caption-2 {
+/* .tbl-caption-2 {
   width: 111rem;
-}
+} */
 
 .d-flex-2 {
   align-items: center !important;

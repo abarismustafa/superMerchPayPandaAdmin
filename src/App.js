@@ -115,15 +115,18 @@ import AddDistributerInc from './components/distributerIncome/distributerIncomeF
 import AddRetailerInc from './components/retailerIncome/addRetailerInc/AddRetailerInc';
 import ContactInquery from './pages/topNavigationPages/Master/contactInquery/index';
 import AddContactEnquiry from './components/topNavigationComp/masters/contactEnquiry/addContactEnquiry/AddContactEnquiry';
+import AddCompanyStaff from './components/topNavigationComp/companyStaff/addCompanyStaff/AddCompanyStaff';
+import CashfreeGateWayMasterPages from './pages/topNavigationPages/Master/cashfreeGateWayMasterPages';
+import AddCashFreeGateway from './components/topNavigationComp/masters/cashfreeGatewayMaster/addCashFreeGateway/AddCashFreeGateway';
+import SendRoleWise from './pages/topNavigationPages/whatsAppPages';
+import CompanySettings from './components/topNavigationComp/settings/companySetting/CompanySettings';
 
 
 
 function App() {
   return (
     <>
-
       <Routes>
-
         <Route path="/" element={<Navigate to="/admin" />} />
         <Route path='/admin' element={<DasBoardPage />} >
           <Route path='' element={<DasBoardRight />} />
@@ -133,7 +136,8 @@ function App() {
           <Route path="role-master" element={<RoleMasterPage />} />
           <Route path="add-role-master" element={<AddRoleMaster />} />
           <Route path="edit-role-master" element={<EditRoleMaster />} />
-          <Route path="company-staff-" element={<CompanyStaffPages />} />
+          <Route path="company-staff/welcome" element={<CompanyStaffPages />} />
+          <Route path="add-company-staff/welcome" element={<AddCompanyStaff />} />
           <Route path="company-staff-permission" element={<MasterPages />} />
           <Route path="status-master" element={<StatusMasterPage />} />
           <Route path="add-status-master" element={<AddStatusMaster />} />
@@ -191,9 +195,7 @@ function App() {
           <Route path="bank-settings" element={<BankSettingsPage />} />
           <Route path="add-bank-settings" element={<AddBankSettings />} />
           <Route path="update-bank-settings" element={<UpdateBankSettings />} />
-
           {/* Top Navigation End */}
-
           {/*  Navigation Start */}
           {/*  Shoib Route */}
           {/* <Route path="/dashboard" element={<Dashboardpage />} />*/}
@@ -239,11 +241,15 @@ function App() {
           <Route path="add-debit-report" element={<AddDebitReport />} />
           <Route path="credit-report" element={<CreditReportPage />} />
           <Route path="add-credit-report" element={<AddCreditReport />} />
-          {/* onClick Profile Route  */}
+          {/* onClick Profile Route start  */}
           {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
-
+          {/* onClick Profile Route End  */}
           <Route path="contact-enquiry" element={<ContactInquery />} />
           <Route path="edit-contact-enquiry" element={<AddContactEnquiry />} />
+          <Route path="cashfree-gateway-master" element={<CashfreeGateWayMasterPages />} />
+          <Route path="add-cashfree-gateway-master" element={<AddCashFreeGateway />} />
+          <Route path="whatapp/send-role-wise" element={<SendRoleWise />} />
+          <Route path="company-setting" element={<CompanySettings />} />
           <Route path="page-not-found" element={<PageNotFound />} />
 
         </Route>
