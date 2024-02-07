@@ -115,6 +115,13 @@ import AddDistributerInc from './components/distributerIncome/distributerIncomeF
 import AddRetailerInc from './components/retailerIncome/addRetailerInc/AddRetailerInc';
 import ContactInquery from './pages/topNavigationPages/Master/contactInquery/index';
 import AddContactEnquiry from './components/topNavigationComp/masters/contactEnquiry/addContactEnquiry/AddContactEnquiry';
+import LogoUploadPage from './pages/topNavigationPages/settings/logoUpload';
+import SignatureUploadPage from './pages/topNavigationPages/settings/signatureUpload';
+import ServiceBannerPage from './pages/topNavigationPages/settings/serviceBanner';
+import NotificationSettingsPage from './pages/topNavigationPages/settings/notificationSettings';
+import DynemicPage from './pages/topNavigationPages/websiteMaster/dynemicPage';
+import FrontBannerPage from './pages/topNavigationPages/websiteMaster/frontBanner';
+import UserPannelSliderPage from './pages/topNavigationPages/websiteMaster/userPannelSlider';
 
 
 
@@ -191,6 +198,15 @@ function App() {
           <Route path="bank-settings" element={<BankSettingsPage />} />
           <Route path="add-bank-settings" element={<AddBankSettings />} />
           <Route path="update-bank-settings" element={<UpdateBankSettings />} />
+          <Route path="logo-upload" element={<LogoUploadPage />} />
+          <Route path="signature-upload" element={<SignatureUploadPage />} />
+          <Route path="service-banner" element={<ServiceBannerPage />} />
+          <Route path="notification/welcome" element={<NotificationSettingsPage />} />
+          <Route path="dynemic-page" element={<DynemicPage />} />
+          <Route path="front-banner" element={<FrontBannerPage />} />
+          <Route path="user-pannel-slider" element={<UserPannelSliderPage />} />
+          {/* <Route path="user-pannel-slider" element={<UserPannelSliderPage />} /> */}
+
 
           {/* Top Navigation End */}
 
