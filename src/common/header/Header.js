@@ -46,7 +46,7 @@ function Header({ showAsideBar }) {
                                                 <path d="M14.5168 14.9447L17.7471 18.1667" stroke="blue" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </button></span>
-                                        <input type="text" className="form-control" placeholder="Search" />
+                                        <input type="text" className="form-control " id="search-inp" placeholder="Search" />
                                     </div>
                                 </form>
                             </div>

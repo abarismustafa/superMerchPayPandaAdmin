@@ -262,7 +262,7 @@ export const navigationData = {
           uniqueId: "submenu_6_11",
           id: "11",
           title: "Company Staff Permissions",
-          path: "company-staff-permission",
+          path: "company-staff/welcome",
         },
         /* {
           uniqueId: "submenu_6_12",
@@ -274,7 +274,7 @@ export const navigationData = {
           uniqueId: "submenu_6_13",
           id: "13",
           title: "Cashfree Gateway master",
-          path: "page-not-found",
+          path: "cashfree-gateway-master",
         },
         {
           uniqueId: "submenu_6_14",
@@ -388,7 +388,7 @@ export const navigationData = {
           uniqueId: "submenu_8_1",
           id: "1",
           title: "Company Settings",
-          path: "page-not-found",
+          path: "company-setting",
         },
         {
           uniqueId: "submenu_8_2",
@@ -476,7 +476,7 @@ export const navigationData = {
           uniqueId: "submenu_10_1",
           id: "1",
           title: "Send Role Wise ",
-          path: "page-not-found",
+          path: "whatapp/send-role-wise",
         },
       ],
     },

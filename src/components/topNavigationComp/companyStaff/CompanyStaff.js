@@ -5,10 +5,8 @@ import CompanyStaffList from './companyStaffList/CompanyStaffList'
 function CompanyStaff() {
     return (
         <section>
-            <div className='container'>
                 <CompanyStaffForm />
                 <CompanyStaffList/>
-            </div>
         </section>
     )
 }
