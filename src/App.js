@@ -205,7 +205,7 @@ function App() {
           <Route path="dynemic-page" element={<DynemicPage />} />
           <Route path="front-banner" element={<FrontBannerPage />} />
           <Route path="user-pannel-slider" element={<UserPannelSliderPage />} />
-          {/* <Route path="user-pannel-slider" element={<UserPannelSliderPage />} /> */}
+          <Route path="user-pannel-slider" element={<UserPannelSliderPage />} />
 
 
           {/* Top Navigation End */}
