@@ -69,7 +69,7 @@ function DistributerKycStatus() {
                     </div>
                   </form>
                 </div>
-                <div className="p-2">
+                {/* <div className="p-2">
                   <CustomInputField
                     type="text"
                     placeholder="Enter placeholder here"
@@ -83,7 +83,7 @@ function DistributerKycStatus() {
                     icon={true}
                     onChange={changeHandle}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

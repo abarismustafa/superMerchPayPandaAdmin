@@ -55191,6 +55191,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .relative{
   position: relative;
 }
+.absolute {
+  position: absolute;
+  z-index: 111;
+  width: 100%;
+}
 
 /* TODO please don't touch */
 
