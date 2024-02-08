@@ -51,21 +51,21 @@ function Aside({ showAsideBar }) {
   return (
     <>
 
-      
 
-      <div className={`deznav ${!showAsideBar ? "showMenu" : ""}`} id="abcd">
+
+      <div className={`deznav ${!showAsideBar ? "showMenu" : "hideMenu"}`} id="abcd">
         <div className="deznav-scroll mm-active d-flex flex-column justify-content-between ">
 
           <ul className="metismenu mm-show flex-1" id="menu">
 
             <li className={`mm-active ${!showAsideBar ? "hide" : ""}`}>
               <Link className="has-arrow" to={"/admin"} aria-expanded="false">
-                <div className="d-flex align-items-baseline">
-                  <span className="menu-icon">
-                    <AiFillDashboard />
-                  </span>
-                  <span className={`nav-text`}> Dashboard</span>
-                </div>
+                {/* <div className="d-flex align-items-baseline"> */}
+                <span className="menu-icon">
+                  <AiFillDashboard />
+                </span>
+                <span className={`nav-text`}> Dashboard</span>
+                {/* </div> */}
               </Link>
             </li>
             {asideMenu?.map((item, i) => {

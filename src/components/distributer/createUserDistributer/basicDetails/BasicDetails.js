@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import CustomInputField from "../../../../common/CustomInputField"
 
 function BasicDetails() {
     return (
@@ -13,9 +14,14 @@ function BasicDetails() {
                                 </div>
                                 <form className="tbl-captionn">
                                     <div className="row">
-                                        <div className="col-xl-4 mb-3">
+                                        <div className="col-xl-4 mb-3 CustomInputField_wrapper__CsPRL">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">First Name <span className="text-danger">*</span></label>
                                             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="First Name" />
+                                            {/* <CustomInputField
+                                                type="text"
+                                                placeholder="Enter First Name"
+                                                errorMsg={'gffdhgkjdfhj'}
+                                            /> */}
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Last Name<span className="text-danger">*</span></label>
