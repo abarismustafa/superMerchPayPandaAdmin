@@ -55245,6 +55245,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   overflow: scroll;
 }
 
+.absolute {
+  position: absolute;
+  z-index: 111;
+  width: 100%;
+}
+
 /* TODO please don't touch */
 
 /*# sourceMappingURL=style-rtl.css.map */

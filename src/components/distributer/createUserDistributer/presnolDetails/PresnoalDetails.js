@@ -1,3 +1,4 @@
+import CustomInputField from "../../../../common/CustomInputField"
 
 function Presnoaldetails() {
     return (
@@ -14,21 +15,33 @@ function Presnoaldetails() {
                                     <div className="row">
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">Address <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Address" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="Address"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">City<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="City" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="City"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput3" className="form-label"> Pincode<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput3" placeholder=" Pincode" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="Pincode"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">State<span className="text-danger">*</span></label>
-                                            <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Mobile Number" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="State"
+                                            />
                                         </div>
-                                       
+
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">District<span className="text-danger">*</span></label>
                                             <select id="disabledSelect " className=" form-select select2">
