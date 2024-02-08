@@ -4,30 +4,30 @@ import CustomDropdown from "../../../../common/CustomDropdown"
 
 function BasicDetails() {
     const name = "dropdown";
-  const placeholder = "Course Name";
-  const type = "dropdown";
-  const itemList = [
-    {
-      name: "MBA",
-      value: "MBA",
-    },
-    {
-      name: "Data Science",
-      value: "Data Science",
-    },
-    {
-      name: "Doctorate",
-      value: "Doctorate",
-    },
-    {
-      name: "Software & Tech",
-      value: "Software & Tech",
-    },
-  ];
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+        {
+            name: "MBA",
+            value: "MBA",
+        },
+        {
+            name: "Data Science",
+            value: "Data Science",
+        },
+        {
+            name: "Doctorate",
+            value: "Doctorate",
+        },
+        {
+            name: "Software & Tech",
+            value: "Software & Tech",
+        },
+    ];
 
-  const changeHandle = (selectedData) => {
-    // TODO
-  };
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './assets/css/style.css'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css'
+import './common/CustomInputField/index.module.scss'
 import DasBoardPage from './pages/dasBoardPage';
 import DasBoardRight from './pages/dasBoardRight/DasBoardRight';
 import DistributerPage from './pages/distributer';

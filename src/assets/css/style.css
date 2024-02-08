@@ -14370,6 +14370,36 @@ h6,
     padding-right: 0.9375rem;
     padding-left: 0.9375rem;
   }
+
+  .header {
+    padding: 0px !important;
+  }
+
+  .breadcrumb-item+.breadcrumb-item::before {
+    display: none;
+  }
+
+  .content-body {
+    margin-left: 0px !important;
+  }
+
+  .hideMenu {
+    left: -100% !important;
+    width: 3.75rem;
+    transition: all .2s ease;
+    overflow: visible;
+  }
+
+  /* .mm-active.hide .nav-text {
+    display: inline-block !important;
+  } */
+
+  /* .deznav.showMenu {
+    margin-left: 41px !important;
+  }
+  .deznav {
+left: ;
+  } */
 }
 
 /*sp*/
@@ -35473,7 +35503,8 @@ input#checkAll.form-check-input:checked {
   border-color: #CCCCCC;
   box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11);
 }
-#search-inp{
+
+#search-inp {
   box-shadow: none;
 }
 
@@ -55056,7 +55087,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .mm-active.hide ul {
   position: absolute;
   box-shadow: 0rem 0rem 2.5rem 0rem rgba(82, 63, 105, 0.1);
- 
+
   background-color: #fff;
   left: 3.75rem;
   top: 0;
@@ -55143,54 +55174,82 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .p-spacing16 {
   padding: 1rem;
 }
-.rounded-xl{
+
+.rounded-xl {
   border-radius: 0.75rem;
 
 }
-.border-greyscale-5{
-  border:1px solid #E6E6E6;
+
+.border-greyscale-5 {
+  border: 1px solid #E6E6E6;
 }
+
 .mt-spacing8 {
   margin-top: .5rem;
 }
-.gap-spacing16{
+
+.gap-spacing16 {
   gap: 1rem;
 }
-.rounded-2xl{
+
+.rounded-2xl {
   border-radius: 1rem;
 }
-.p-spacing20{
+
+.p-spacing20 {
   padding: 1.25rem;
 }
+
 .flex-col {
   flex-direction: column;
 }
-.custom-checkbox-wrapper  {
+
+.custom-checkbox-wrapper {
   display: flex;
   gap: 10px;
   align-items: center;
   cursor: pointer;
 }
+
 /* .custom-checkbox-wrapper:hover{
   background-color:#333333;
 } */
-.text-greyscale-1{
+.text-greyscale-1 {
   color: #333333;
 }
-.justify-between{
+
+.justify-between {
   justify-content: space-between;
 }
-.items-center{
+
+.items-center {
   align-items: center;
   cursor: pointer;
   height: 44px;
 }
+
 .text-bodySmall {
   color: #000;
 }
-.relative{
+
+.relative {
   position: relative;
 }
+.absolute {
+  position: absolute;
+  z-index: 111;
+  width: 100%;
+}
+
+
+.popupfirst .modal-dialog .modal-content .modal-footer {
+  justify-content: space-between;
+}
+
+.dataTables_wrapper {
+  overflow: scroll;
+}
+
 .absolute {
   position: absolute;
   z-index: 111;

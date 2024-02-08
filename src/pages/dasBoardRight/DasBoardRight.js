@@ -1,5 +1,11 @@
+import { useEffect, useState } from "react";
+import DearMearchantPopUp from "../../common/dearMearchantPopUp/DearMearchantPopUp"
 
 function DasBoardRight() {
+    const [modalShow, setModalShow] = useState(false);
+    useEffect(() => {
+        setModalShow(true)
+    }, [])
     return (
         <>
             <div className="container-fluid">
@@ -1391,8 +1397,12 @@ function DasBoardRight() {
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <DearMearchantPopUp
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
 
         </>
     )

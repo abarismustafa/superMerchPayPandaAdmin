@@ -42,7 +42,16 @@ function DistributerKycStatus() {
                         <label className="form-label">
                           KYC Status: <span className="tx-danger">*</span>
                         </label>
-                        <select
+                        <div className="dropdownWrapper p-2">
+                          <CustomDropdown
+                            itemList={itemList}
+                            placeholder="Select KYC Status"
+                            isSingleSelect={false}
+                            icon={true}
+                            onChange={changeHandle}
+                          />
+                        </div>
+                        {/* <select
                           className="form-control  example select2"
                           id="kyc_status"
                           name="kyc_status"
@@ -55,7 +64,7 @@ function DistributerKycStatus() {
                           <option value="approved">Approved (0)</option>
                           <option value="rejected">Rejected (0)</option>
                           <option value="pending">Pending (0)</option>
-                        </select>
+                        </select> */}
                       </div>
                       <div className="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
                         <button
@@ -74,8 +83,8 @@ function DistributerKycStatus() {
                     type="text"
                     placeholder="Enter placeholder here"
                   />
-                </div>
-                <div className="dropdownWrapper p-2">
+                </div> */}
+                {/* <div className="dropdownWrapper p-2">
                   <CustomDropdown
                     itemList={itemList}
                     placeholder="Select KYC Status"
