@@ -2,11 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import Styles from "./index.module.scss";
 
-function CustomInputField({
+function CustomTextArea({
   defaultValue,
   value,
   hasError,
-  type,
   name,
   disable,
   readOnly,
@@ -19,15 +18,16 @@ function CustomInputField({
   errorMsg,
   actionButtons,
   id,
+  rows, // Add rows prop
 }) {
   return (
     <div className={Styles.wrapper}>
-      <input
+      <textarea
         className={classNames(Styles.input, {
-          [Styles.hasError]: hasError,
+          [Styles.hasError]: hasError || errorMsg,
         })}
+        rows={rows} // Set rows attribute to the value of rows prop
         id={id}
-        type={type}
         name={name}
         disabled={disable}
         readOnly={readOnly}
@@ -50,4 +50,4 @@ function CustomInputField({
   );
 }
 
-export default CustomInputField;
+export default CustomTextArea;
