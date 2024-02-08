@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function Dispute() {
     return (
@@ -55,6 +56,7 @@ function Dispute() {
                                     </div>
                                 </div>
                                 <div>
+                                <Link to={"/admin/company-staff/welcome"} className="btn btn-warning me-1">cancel</Link>
                                     <button className="btn btn-primary me-1">Update Dispute</button>
                                 </div>
                             </form>
