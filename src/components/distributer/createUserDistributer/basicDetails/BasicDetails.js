@@ -1,7 +1,33 @@
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../common/CustomInputField"
+import CustomDropdown from "../../../../common/CustomDropdown"
 
 function BasicDetails() {
+    const name = "dropdown";
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+        {
+            name: "MBA",
+            value: "MBA",
+        },
+        {
+            name: "Data Science",
+            value: "Data Science",
+        },
+        {
+            name: "Doctorate",
+            value: "Doctorate",
+        },
+        {
+            name: "Software & Tech",
+            value: "Software & Tech",
+        },
+    ];
+
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">
@@ -14,50 +40,78 @@ function BasicDetails() {
                                 </div>
                                 <form className="tbl-captionn">
                                     <div className="row">
-                                        <div className="col-xl-4 mb-3 CustomInputField_wrapper__CsPRL">
+                                        <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">First Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="First Name" />
-                                            {/* <CustomInputField
+                                            <CustomInputField
                                                 type="text"
-                                                placeholder="Enter First Name"
-                                                errorMsg={'gffdhgkjdfhj'}
-                                            /> */}
+                                                placeholder="First Name"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Last Name<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Last Name" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="Last Name"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput3" className="form-label"> Email<span className="text-danger">*</span></label>
-                                            <input type="email" className="form-control" id="exampleFormControlInput3" placeholder=" Email" />
+                                            <CustomInputField
+                                                type="email"
+                                                placeholder="Email"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Mobile Number<span className="text-danger">*</span></label>
-                                            <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Mobile Number" />
+                                            <CustomInputField
+                                                type="number"
+                                                placeholder="Mobile Number"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Member Type<span className="text-danger">*</span></label>
+                                            <div className="dropdownWrapper">
+                                                <CustomDropdown
+                                                    itemList={itemList}
+                                                    placeholder="Select KYC Status"
+                                                    isSingleSelect={false}
+                                                    icon={true}
+                                                    onChange={changeHandle}
+                                                />
+                                            </div>
                                             {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                            <select id="disabledSelect" class="form-select">
+                                            {/* <select id="disabledSelect" class="form-select">
                                                 <option>Disabled select</option>
-                                            </select>
+                                            </select> */}
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Shop Name<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Shop Name" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="Shop Name"
+                                            />
                                         </div>
 
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">Lock Amount <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Lock Amount" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="Lock Amount"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">Pan Number <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Pan Number" />
+                                            <CustomInputField
+                                                type="number"
+                                                placeholder="Pan Number"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">GST Number <span className="text-danger">(Optional)</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="GST Number" />
+                                            <CustomInputField
+                                                type="text"
+                                                placeholder="GST Number "
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">Office Address<span className="text-danger">*</span></label>
