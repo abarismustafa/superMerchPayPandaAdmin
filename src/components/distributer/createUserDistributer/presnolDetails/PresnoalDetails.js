@@ -57,7 +57,6 @@ function Presnoaldetails() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
