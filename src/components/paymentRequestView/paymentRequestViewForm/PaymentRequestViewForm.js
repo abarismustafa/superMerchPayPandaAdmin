@@ -1,10 +1,35 @@
 import { useState } from "react";
 import PaymentRequestViewDownload from "./paymentRequestViewDownload/PaymentRequestViewDownload"
 import { FaDownload, FaSearch } from "react-icons/fa";
+import CustomDropdown from "../../../common/CustomDropdown";
 
 function PaymentRequestViewForm() {
     const [modalShow, setModalShow] = useState(false);
+    const name = "dropdown";
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+        {
+            name: "Abc",
+            value: "Abc",
+        },
+        {
+            name: "Abcd",
+            value: "Abcd",
+        },
+        {
+            name: "Abce",
+            value: "Abce",
+        },
+        {
+            name: "Abcf",
+            value: "Abcf",
+        },
+    ];
 
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
 
     return (
         <>
@@ -27,22 +52,19 @@ function PaymentRequestViewForm() {
                                             <label htmlFor="exampleFormControlInput2" className="form-label">To:<span className="text-danger">*</span></label>
                                             <input type="date" className="form-control" id="exampleFormControlInput2" placeholder="Code" />
                                         </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Status:<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Status--</option>
-                                                <option value="1">Success</option>
-                                                <option value="2">Failure</option>
-                                                <option value="3">Pending</option>
-                                            </select>
-
+                                        <div className="col-xl-4 mb-3">
+                                            <div className="dropdownWrapper">
+                                                <CustomDropdown
+                                                    itemList={itemList}
+                                                    placeholder="Select KYC Status *"
+                                                    isSingleSelect={false}
+                                                    icon={true}
+                                                    onChange={changeHandle}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="col-sm-3 mg-sm-t-25">
                                             <div className="form-group">
-                                                <label className="form-label ms-3">
-                                                    Search & Download <span className="tx-danger"></span>
-                                                </label>
-                                                <br />
                                                 <button className="btn btn-primary pd-x-20 me-2  me-2-2" type="button" fdprocessedid="4y92n"><i className="fas fa-search" /> Search</button>
                                                 <button className="btn btn-danger pd-x-20 me-2-2" type="button" onClick={() => setModalShow(true)}> <i className="fas fa-download" /> Download</button>
                                             </div>
@@ -94,9 +116,7 @@ function PaymentRequestViewForm() {
                                         </div>
                                         <div className="col-sm-3 mg-sm-t-25">
                                             <div className="form-group">
-                                                <label className="form-label ms-3">
-                                                    Search & Download <span className="tx-danger"></span>
-                                                </label>
+                                                
                                                 <br />
                                                 <button className="btn btn-primary pd-x-20 me-2  me-2-2" type="button" fdprocessedid="4y92n"><i className="fas fa-search" /> Search</button>
                                                 <button className="btn btn-danger pd-x-20 me-2-2" type="button" onClick={() => setModalShow(true)}> <i className="fas fa-download" /> Download</button>
