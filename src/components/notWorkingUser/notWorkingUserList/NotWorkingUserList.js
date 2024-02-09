@@ -10,9 +10,11 @@ function NotWorkingUserList() {
     const handleShow = () => setShow(true);
     const [modalShow, setModalShow] = useState(false);
 
+
+
     return (
         <>
-           <section className="ListDistributer">
+            <section className="ListDistributer">
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="card">
@@ -21,7 +23,7 @@ function NotWorkingUserList() {
                                     <div className="tbl-caption">
                                         <h4 className="heading mb-0"><b>NOT WORKING USERS LIST</b></h4>
                                         <div>
-                                            
+
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}

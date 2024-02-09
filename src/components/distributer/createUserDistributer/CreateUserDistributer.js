@@ -38,6 +38,7 @@ function CreateUserDistributer() {
   };
 
   const tabChange = (position) => {
+
     setSelectedTabPosition(position);
   };
   return (
@@ -51,10 +52,9 @@ function CreateUserDistributer() {
                   <div className="tbl-caption tbl-caption-2" id="justify-none_Tab1">
                     {TAB.map((item, index) => (
                       <button
-                        className={`heading mb-0 ${
-                          selectedTabPosition === index ? "active" : ""
-                        }`}
-                        disabled={selectedTabPosition !== index}
+                        className={`heading mb-0 ${selectedTabPosition === index ? "active" : ""
+                          }`}
+                        // disabled={selectedTabPosition !== index}
                         onClick={() => tabChange(index)}
                         key={`tab_${index}`}
                       >
