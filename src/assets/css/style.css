@@ -15237,7 +15237,7 @@ label {
 }
 
 .nav-header {
-  height: 3.125rem;
+  height:4rem;
   width: 15rem;
   display: inline-block;
   text-align: left;
@@ -15489,7 +15489,7 @@ label {
 }
 
 .header {
-  height: 3.125rem;
+  height: 4rem;
   z-index: 1;
   position: relative;
   padding: 0rem;
@@ -45842,7 +45842,26 @@ table.dataTable thead .sorting_asc {
 }
 
 .active-projects .tbl-caption {
-  padding: 20px;
+  padding-top: 10px;
+    padding-left: 20px;
+}
+.active-projects .tbl-caption button{
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+ 
+}
+.active-projects .tbl-caption button:disabled{
+  cursor: auto;
+}
+
+.active-projects .tbl-caption button.active{
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .active-projects .dt-buttons {
@@ -45887,9 +45906,10 @@ table.dataTable thead .sorting_asc {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-flow: wrap;
   background-color: rgb(44 44 44);
+  gap:10px;
 }
 
 .active-projects.style-1 .dt-buttons .dt-button {
