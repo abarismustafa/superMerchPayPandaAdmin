@@ -31,9 +31,7 @@ function PancardReportForm() {
                                             <input type="date" className="form-control" id="exampleFormControlInput2" placeholder="Code" />
                                         </div>
                                         <div className="col-lg-4 col-md-4 mg-t-10 mg-sm-t-25">
-                                                <label className="form-label ms-3">
-                                                    Search & Download <span className="tx-danger"></span>
-                                                </label>
+                                                
                                                 <br />
                                                 <button className="btn bg-primary border-0 me-3 pd-x-20 text-light" type="submit">
                                                     <FaSearch /> Search
