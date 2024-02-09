@@ -1,6 +1,125 @@
 import React from 'react'
+import CustomInputField from '../../../common/CustomInputField'
+import { Formik } from 'formik';
+import CustomDropdown from '../../../common/CustomDropdown';
 
 function AddSuspendedUser() {
+
+    const itemList = [
+        {
+            name: "Success",
+            value: "Success",
+        },
+        {
+            name: "Failed",
+            value: "Failed",
+        },
+        {
+            name: "Pending",
+            value: "Pending",
+        },
+        {
+            name: "Refund",
+            value: "Refund",
+        },
+        {
+            name: "Credit",
+            value: "Credit",
+        },
+        {
+            name: "Debit",
+            value: "Debit",
+        },
+    ];
+
+    const initialValues = {
+        date: '',
+        shopName: '',
+        mobileNumber: '',
+        memberType: '',
+        normalBalance: '',
+        parent: '',
+        package: '',
+        kycStatus: '',
+        useActivity: ''
+
+    }
+
+
+    const validate = (values) => {
+        let errors = {};
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+        const regexGstNumber =
+            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+
+        if (!values.date) {
+            errors.date = "Date is required";
+        }
+
+        if (!values.shopName) {
+            errors.shopName = "Shop Name is required";
+        }
+
+        // if (!values.email) {
+        //     errors.email = "Email is required";
+        // } else if (!regexEmail.test(values.email)) {
+        //     errors.email = "Invalid Email";
+        // }
+
+        if (!values.mobileNumber) {
+            errors.mobileNumber = "Mobile Number is required";
+        } else if (!regexMobileNumber.test(values.mobileNumber)) {
+            errors.mobileNumber = "Invalid Mobile Number";
+        }
+
+        if (!values.memberType) {
+            errors.memberType = "Member Type is required";
+        }
+
+        if (!values.normalBalance) {
+            errors.normalBalance = "Normal Balance is required";
+        }
+        if (!values.parent) {
+            errors.parent = "Parent  is required";
+        }
+        if (!values.package) {
+            errors.package = "Package  is required";
+        }
+        if (!values.kycStatus) {
+            errors.kycStatus = "KYC Status is required";
+        }
+        if (!values.useActivity) {
+            errors.useActivity = "Use Activity is required";
+        }
+
+        // if (!values.panNumber) {
+        //     errors.panNumber = "PAN Number is required";
+        // } else if (!regexPanNumber.test(values.panNumber)) {
+        //     errors.panNumber = "Invalid PAN Number";
+        // }
+
+        // if (!values.gstNumber) {
+        //   errors.gstNumber = "GST Number is required";
+        // } else if (!regexGstNumber.test(values.gstNumber)) {
+        //   errors.gstNumber = "Invalid GST Number";
+        // }
+
+
+
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
+
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
+
+
     return (
         <div className="row">
             <div className="col-xl-12">
@@ -10,67 +129,178 @@ function AddSuspendedUser() {
                             <div className="tbl-caption tbl-caption-2">
                                 <h4 className="heading mb-0"><b>Add Suspended user - </b></h4>
                             </div>
-                            <form className="tbl-captionn">
-                                <div className="row">
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput1" className="form-label">Date <span className="text-danger">*</span></label>
-                                        <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="Date" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Shop Name<span className="text-danger">*</span></label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Shop Name" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Mobile<span className="text-danger">*</span></label>
-                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Mobile" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Member Type	<span className="text-danger">*</span></label>
-                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Member Type	" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Normal Balance<span className="text-danger">*</span></label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Normal Balance" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Parent<span className="text-danger">*</span></label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Parent" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Package<span className="text-danger">*</span></label>
-                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Package" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">Status<span className="text-danger">*</span></label>
-                                        {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                        <select id="disabledSelect" class="form-select">
-                                            <option disabled>--select --</option>
-                                            <option value="0" selected="" data-select2-id="2">
-                                                All Status
-                                            </option>
-                                            <option value="1">Success</option>
-                                            <option value="2">Failed</option>
-                                            <option value="3">Pending</option>
-                                            <option value="4">Refunded</option>
-                                            <option value="5">Refund</option>
-                                            <option value="6">Credit</option>
-                                            <option value="7">Debit</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">KYC Status	<span className="text-danger">*</span></label>
-                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="KYC Status	" />
-                                    </div>
-                                    <div className="col-xl-4 mb-3">
-                                        <label htmlFor="exampleFormControlInput2" className="form-label">	User Activity	<span className="text-danger">*</span></label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="User Activity" />
-                                    </div>
-                                    <div className='border-top'>
-                                        <button className="btn btn-primary pd-x-20 rounded-2 mt-4 " type="submit"> Save </button>
-                                    </div>
+                            <Formik
+                                initialValues={initialValues}
+                                validate={validate}
+                                onSubmit={submitForm}
+                            >
 
-                                </div>
-                            </form>
+                                {(formik) => {
+                                    const {
+                                        values,
+                                        handleChange,
+                                        handleSubmit,
+                                        errors,
+                                        touched,
+                                        handleBlur,
+                                        isValid,
+                                        dirty,
+                                    } = formik;
+                                    return (
+                                        <form className="tbl-captionn" onSubmit={handleSubmit}>
+                                            <div className="row">
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="date"
+                                                        value={values.date}
+                                                        hasError={errors.date && touched.date}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.date}
+                                                        autoFocus={true}
+                                                        id="date"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="text"
+                                                        value={values.shopName}
+                                                        hasError={errors.shopName && touched.shopName}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.shopName}
+                                                        autoFocus={true}
+                                                        id="shopName"
+                                                        placeholder="Shop Name"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="number"
+                                                        placeholder="Mobile*"
+                                                        value={values.mobileNumber}
+                                                        hasError={errors.mobileNumber && touched.mobileNumber}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.mobileNumber}
+                                                        id="Mobile"
+                                                        name="mobileNumber"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="text"
+                                                        value={values.memberType}
+                                                        hasError={errors.memberType && touched.memberType}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.memberType}
+                                                        autoFocus={true}
+                                                        id="Member Type"
+                                                        placeholder="Member Type"
+                                                        name="memberType"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="number"
+                                                        value={values.normalBalance}
+                                                        hasError={errors.normalBalance && touched.normalBalance}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.normalBalance}
+                                                        autoFocus={true}
+                                                        id="Normal Balance"
+                                                        placeholder="Normal Balance"
+                                                        name="normalBalance"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="text"
+                                                        value={values.parent}
+                                                        hasError={errors.parent && touched.parent}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.parent}
+                                                        autoFocus={true}
+                                                        id="parent"
+                                                        placeholder="Parent"
+                                                        name="parent"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="text"
+                                                        value={values.package}
+                                                        hasError={errors.package && touched.package}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.package}
+                                                        autoFocus={true}
+                                                        id="package"
+                                                        placeholder="Package"
+                                                        name="package"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomDropdown
+                                                        itemList={itemList}
+                                                        placeholder="Select Status *"
+                                                        isSingleSelect={false}
+                                                        icon={true}
+                                                        onChange={changeHandle}
+                                                    />
+
+
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="text"
+                                                        value={values.kycStatus}
+                                                        hasError={errors.kycStatus && touched.kycStatus}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.kycStatus}
+                                                        autoFocus={true}
+                                                        id="kycStatus"
+                                                        placeholder="KYC Status"
+                                                        name="kycStatus"
+                                                    />
+                                                </div>
+                                                <div className="col-xl-4 mb-3">
+
+                                                    <CustomInputField
+                                                        type="text"
+                                                        value={values.useActivity}
+                                                        hasError={errors.useActivity && touched.useActivity}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        errorMsg={errors.useActivity}
+                                                        autoFocus={true}
+                                                        id="useActivity"
+                                                        placeholder="User Activity"
+                                                        name="useActivity"
+                                                    />
+                                                </div>
+                                                <div className='border-top'>
+                                                    <button className="btn btn-primary pd-x-20 rounded-2 mt-4 " type="submit"> Save </button>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    );
+                                }}
+                            </Formik>
 
                         </div>
                     </div>
