@@ -66,7 +66,7 @@ const CustomDropdown = ({
   const placeholderIconWrapperClass = `items-center cursor-pointer d-flex justify-between p-spacing16 border-greyscale-5 py-spacing12 rounded-xl   ${
     classes ? classes.placeholderIconWrapper : ""
   }`;
-  const selectWrapperClass = `p-spacing20 absolute mt-spacing8 d-flex gap-spacing16 flex-col w-full rounded-2xl z-10 bg-white border-greyscale-5 border-t shadow-sm dropdown-scrollbar ${
+  const selectWrapperClass = `p-spacing20 absolute  mt-spacing8 d-flex gap-spacing16 flex-col w-full rounded-2xl z-10 bg-white border-greyscale-5 border-t shadow-sm dropdown-scrollbar ${
     classes ? classes.selectWrapper : ""
   }`;
 

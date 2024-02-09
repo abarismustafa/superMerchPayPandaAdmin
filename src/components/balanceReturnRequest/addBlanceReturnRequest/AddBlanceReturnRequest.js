@@ -1,49 +1,135 @@
+import { Formik } from "formik";
 import { Link } from "react-router-dom"
+import CustomInputField from "../../../common/CustomInputField";
 
+const initialValues = {
+    basicDetails: {
+        date: "",
+        requestBy: "",
+        remark: "",
+        amount: "",
+    },
+};
 
 function AddBlanceReturnRequest() {
+    const validate = (values) => {
+        let errors = {};
+        if (!values.date) {
+            errors.date = "Date is required";
+        }
+
+        if (!values.requestBy) {
+            errors.requestBy = "Request is required";
+        }
+        if (!values.remark) {
+            errors.remark = "Remark is required";
+        }
+        if (!values.amount) {
+            errors.amount = "Amount  is required";
+        }
+
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
     return (
         <>
-            <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD BALANCE RETURN REQUEST</h4>
+            <Formik
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={submitForm}
+                className="tbl-captionn"
+            >
+                {(formik) => {
+                    const {
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        errors,
+                        touched,
+                        handleBlur,
+                    } = formik;
+                    return (
+
+                        <div className="row">
+                            <div className="col-xl-12">
+                                <div className="card">
+                                    <div className="card-body p-0">
+                                        <div className="table-responsive active-projects style-1">
+                                            <div className="tbl-caption tbl-caption-2">
+                                                <h4 className="heading mb-0">ADD BALANCE RETURN REQUEST</h4>
+                                            </div>
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
+                                                <div className="row">
+                                                <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="date"
+                                                            placeholder="Date *"
+                                                            value={values.date}
+                                                            hasError={errors.date && touched.date}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.date}
+                                                            autoFocus={true}
+                                                            id="date"
+                                                        />
+                                                    </div>
+                                                <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Request By *"
+                                                            value={values.requestBy}
+                                                            hasError={errors.requestBy && touched.requestBy}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.requestBy}
+                                                            autoFocus={true}
+                                                            id="requestBy"
+                                                        />
+                                                    </div>
+                                                <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Remark *"
+                                                            value={values.remark}
+                                                            hasError={errors.remark && touched.remark}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.remark}
+                                                            autoFocus={true}
+                                                            id="remark"
+                                                        />
+                                                    </div>
+                                                <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Amount *"
+                                                            value={values.amount}
+                                                            hasError={errors.amount && touched.amount}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.amount}
+                                                            autoFocus={true}
+                                                            id="amount"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <Link to='/admin/balance-return-request' className="btn btn-danger light ms-1">Cancel</Link>
+                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">DATE<span className="text-danger">*</span></label>
-                                            <input type="date" className="form-control" id="exampleFormControlInput1" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">REQUEST BY <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="REQUEST BY" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">REMARK<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="REMARK" />
-
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">AMOUNT<span className="text-danger">*</span></label>
-                                            <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="AMOUNT" />
-
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Link to='/admin/balance-return-request' className="btn btn-danger light ms-1">Cancel</Link>
-                                        <button className="btn btn-primary me-1">Submit</button>
-                                    </div>
-                                </form>
-
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    );
+                }}
+            </Formik>
         </>
     )
 }

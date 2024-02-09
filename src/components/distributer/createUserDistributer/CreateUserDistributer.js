@@ -43,13 +43,13 @@ function CreateUserDistributer() {
   };
   return (
     <>
-      <section className="CreateUserDistributer mt-3">
+      <section className="CreateUserDistributer ">
         <div className="row">
           <div className="col-xl-12">
             <div className="card">
               <div className="card-body p-0">
-                <div className="table-responsive active-projects style-1">
-                  <div className="tbl-caption tbl-caption-2">
+                <div className="table-responsive active-projects style-1 " >
+                  <div className="tbl-caption tbl-caption-2" id="justify-none_Tab1">
                     {TAB.map((item, index) => (
                       <button
                         className={`heading mb-0 ${selectedTabPosition === index ? "active" : ""
@@ -76,19 +76,19 @@ function CreateUserDistributer() {
                   <Services initialValues={initialValues.service} />
                 )}
               </div>
-              <div className="card-footer text-right">
+              {/* <div className="card-footer text-right">
                 <button
                   type="submit"
                   className="btn btn-danger waves-effect waves-light"
                 >
                   Next
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           {/* <BasicDetails />
-                    <Presnoaldetails />
-                    <Services /> */}
+                <Presnoaldetails />
+            <Services /> */}
         </div>
       </section>
     </>

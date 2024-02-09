@@ -1,70 +1,210 @@
+import { Formik } from "formik";
 import { Link } from "react-router-dom"
-
+import CustomInputField from "../../../common/CustomInputField";
+const initialValues = {
+    userName: "",
+    requestDate: "",
+    paymentDate: "",
+    bank:"",
+    method: "",
+    amount: "",
+    utr: "",
+    paymentType: "",
+};
 function AddPaymentRequestView() {
+    const validate = (values) => {
+        let errors = {};
+        if (!values.userName) {
+            errors.userName = "User Name is required";
+        }
+
+        if (!values.requestDate) {
+            errors.requestDate = "Request Date is required";
+        }
+
+        if (!values.bank) {
+            errors.bank = "Bank Name is required";
+        }
+        if (!values.paymentDate) {
+            errors.paymentDate = "Payment Date is required";
+        }
+
+
+
+        if (!values.method) {
+            errors.method = " Method Type is required";
+        }
+
+        if (!values.amount) {
+            errors.amount = "Amount is required";
+        }
+
+        if (!values.utr) {
+            errors.utr = "UTR is required";
+        }
+
+
+
+        // if (!values.gstNumber) {
+        //   errors.gstNumber = "GST Number is required";
+        // } else if (!regexGstNumber.test(values.gstNumber)) {
+        //   errors.gstNumber = "Invalid GST Number";
+        // }
+
+        if (!values.paymentType) {
+            errors.paymentType = "Payment Type is required";
+        }
+
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
     return (
         <>
-            <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD PAYMENT REQUEST VIEW</h4>
-                                </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">User Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="User Name" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Request Date<span className="text-danger">*</span></label>
-                                            <input type="date" className="form-control" id="exampleFormControlInput2" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Payment Date<span className="text-danger">*</span></label>
-                                            <input type="date" className="form-control" id="exampleFormControlInput2" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Bank<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Bank--</option>
-                                                <option value="1">State Bank Of India</option>
-                                                <option value="2">Bank Of India</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Method<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Method" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Amount<span className="text-danger">*</span></label>
-                                            <input type="number" className="form-control" placeholder="Amount" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">UTR<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" placeholder="UTR" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Payment Type<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Payment Type--</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Link to='/admin/payment-request-view' className="btn btn-danger light ms-1">Cancel</Link>
-                                        <button className="btn btn-primary me-1">Submit</button>
-                                    </div>
-                                </form>
+            <Formik
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={submitForm}
+                className="tbl-captionn"
+            >
+                {(formik) => {
+                    const {
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        errors,
+                        touched,
+                        handleBlur,
+                        isValid,
+                        dirty,
+                    } = formik;
+                    return (
+                        <div className="row">
+                            <div className="col-xl-12">
+                                <div className="card">
+                                    <div className="card-body p-0">
+                                        <div className="table-responsive active-projects style-1">
+                                            <div className="tbl-caption tbl-caption-2">
+                                                <h4 className="heading mb-0">ADD PAYMENT REQUEST VIEW</h4>
+                                            </div>
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="User Name *"
+                                                            value={values.userName}
+                                                            hasError={errors.userName && touched.userName}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.userName}
+                                                            autoFocus={true}
+                                                            id="userName"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="date"
+                                                            placeholder="Request Date *"
+                                                            value={values.requestDate}
+                                                            hasError={errors.requestDate && touched.requestDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.requestDate}
+                                                            autoFocus={true}
+                                                            id="requestDate"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Paymet Date *"
+                                                            value={values.paymentDate}
+                                                            hasError={errors.paymentDate && touched.paymentDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.paymentDate}
+                                                            autoFocus={true}
+                                                            id="paymentDate"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Bank *"
+                                                            value={values.bank}
+                                                            hasError={errors.bank && touched.bank}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.bank}
+                                                            autoFocus={true}
+                                                            id="bank"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Method *"
+                                                            value={values.method}
+                                                            hasError={errors.method && touched.method}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.method}
+                                                            autoFocus={true}
+                                                            id="method"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="number"
+                                                            placeholder="Amount *"
+                                                            value={values.amount}
+                                                            hasError={errors.amount && touched.amount}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.amount}
+                                                            autoFocus={true}
+                                                            id="amount"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="UTR *"
+                                                            value={values.utr}
+                                                            hasError={errors.utr && touched.utr}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.utr}
+                                                            autoFocus={true}
+                                                            id="utr"
+                                                        />
+                                                    </div>
+                                                    
+                                                    <div className="col-xl-4 mb-3">
+                                                        <select id="disabledSelect" class="form-select">
+                                                            <option selected>--Select Payment Type--</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <Link to='/admin/payment-request-view' className="btn btn-danger light ms-1">Cancel</Link>
+                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                </div>
+                                            </form>
 
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    );
+                }}
+            </Formik>
         </>
     )
 }
