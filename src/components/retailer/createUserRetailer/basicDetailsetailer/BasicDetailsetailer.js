@@ -1,70 +1,258 @@
+import { Link } from "react-router-dom";
+import CustomInputField from "../../../../common/CustomInputField";
+import CustomDropdown from "../../../../common/CustomDropdown";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import CustomTextArea from "../../../../common/CustomTextArea";
 
-function BasicDetailsRetails() {
+function BasicDetailsRetails({initialValues}) {
+    
+    const name = "dropdown";
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+      {
+        name: "Abc",
+        value: "Abc",
+      },
+      {
+        name: "Abcd",
+        value: "Abcd",
+      },
+      {
+        name: "Abce",
+        value: "Abce",
+      },
+      {
+        name: "Abcf",
+        value: "Abcf",
+      },
+    ];
+  
+    const validate = (values) => {
+      let errors = {};
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+      const regexMobileNumber = /^[0-9]{10}$/;
+      const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+      const regexGstNumber =
+        /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+  
+      if (!values.firstName) {
+        errors.firstName = "First Name is required";
+      }
+  
+      if (!values.lastName) {
+        errors.lastName = "Last Name is required";
+      }
+  
+      if (!values.email) {
+        errors.email = "Email is required";
+      } else if (!regexEmail.test(values.email)) {
+        errors.email = "Invalid Email";
+      }
+  
+      if (!values.mobileNumber) {
+        errors.mobileNumber = "Mobile Number is required";
+      } else if (!regexMobileNumber.test(values.mobileNumber)) {
+        errors.mobileNumber = "Invalid Mobile Number";
+      }
+  
+      if (!values.masterType) {
+        errors.masterType = "Master Type is required";
+      }
+  
+      if (!values.shopName) {
+        errors.shopName = "Shop Name is required";
+      }
+  
+      if (!values.lockAmount) {
+        errors.lockAmount = "Lock Amount is required";
+      }
+  
+      if (!values.panNumber) {
+        errors.panNumber = "PAN Number is required";
+      } else if (!regexPanNumber.test(values.panNumber)) {
+        errors.panNumber = "Invalid PAN Number";
+      }
+  
+      // if (!values.gstNumber) {
+      //   errors.gstNumber = "GST Number is required";
+      // } else if (!regexGstNumber.test(values.gstNumber)) {
+      //   errors.gstNumber = "Invalid GST Number";
+      // }
+  
+      if (!values.officeAddress) {
+        errors.officeAddress = "Office Address is required";
+      }
+  
+      return errors;
+    };
+  
+    const submitForm = (values) => {
+      console.log(values);
+    };
+  
+    const changeHandle = (selectedData) => {
+      // TODO
+    };
+  
     return (
-        <>
-            <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0"><b>Basic Details</b></h4>
-                                </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">First Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="First Name" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Last Name<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Last Name" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label"> Email<span className="text-danger">*</span></label>
-                                            <input type="email" className="form-control" id="exampleFormControlInput3" placeholder=" Email" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Mobile Number<span className="text-danger">*</span></label>
-                                            <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Mobile Number" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Member Type<span className="text-danger">*</span></label>
-                                            {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                            <select id="disabledSelect" class="form-select">
-                                                <option>Disabled select</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Shop Name<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Shop Name" />
-                                        </div>
-
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Lock Amount <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Lock Amount" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Pan Number <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Pan Number" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">GST Number <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="GST Number" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Office Address<span className="text-danger">*</span></label>
-                                            <textarea type="text" className="form-control" id="exampleFormControlInput2" placeholder="Office Address" />
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
+      <>
+        <Formik
+          initialValues={initialValues}
+          validate={validate}
+          onSubmit={submitForm}
+          className="tbl-captionn"
+        >
+          {(formik) => {
+            const {
+              values,
+              handleChange,
+              handleSubmit,
+              errors,
+              touched,
+              handleBlur,
+              isValid,
+              dirty,
+            } = formik;
+            return (
+              <form className="tbl-captionn" onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="text"
+                      placeholder="First Name *"
+                      value={values.firstName}
+                      hasError={errors.firstName && touched.firstName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.firstName}
+                      autoFocus={true}
+                      id="firstName"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="text"
+                      placeholder="Last Name *"
+                      value={values.lastName}
+                      hasError={errors.lastName && touched.lastName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.lastName}
+                      id="lastName"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="email"
+                      placeholder="Email *"
+                      value={values.email}
+                      hasError={errors.email && touched.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.email}
+                      id="email"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="number"
+                      placeholder="Mobile Number *"
+                      value={values.mobileNumber}
+                      hasError={errors.mobileNumber && touched.mobileNumber}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.mobileNumber}
+                      id="mobileNumber"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <div className="dropdownWrapper">
+                      <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Member Type *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                      />
                     </div>
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="text"
+                      placeholder="Shop Name *"
+                      value={values.shopName}
+                      hasError={errors.shopName && touched.shopName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.shopName}
+                      id="shopName"
+                    />
+                  </div>
+  
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="text"
+                      placeholder="Lock Amount *"
+                      value={values.lockAmount}
+                      hasError={errors.lockAmount && touched.lockAmount}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.lockAmount}
+                      id="lockAmount"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="text"
+                      placeholder="Pan Number *"
+                      value={values.panNumber}
+                      hasError={errors.panNumber && touched.panNumber}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.panNumber}
+                      id="panNumber"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomInputField
+                      type="text"
+                      placeholder="GST Number "
+                      value={values.gstNumber}
+                      hasError={errors.gstNumber && touched.gstNumber}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.gstNumber}
+                      id="gstNumber"
+                    />
+                  </div>
+                  <div className="col-xl-4 mb-3">
+                    <CustomTextArea
+                      placeholder="Office Address *"
+                      value={values.officeAddress}
+                      hasError={errors.officeAddress && touched.officeAddress}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorMsg={errors.officeAddress} 
+                      autoFocus={false}
+                      rows="6"
+                      id="officeAddress"
+                    />
+                  </div>
                 </div>
-            </div>
-        </>
-    )
+                <div className="card-footer text-right">
+                  <button
+                    type="submit"
+                    className="btn btn-danger waves-effect waves-light"
+                  >
+                    Next
+                  </button>
+                </div>
+              </form>
+            );
+          }}
+        </Formik>
+      </>
+    );
 }
 export default BasicDetailsRetails
