@@ -1,46 +1,126 @@
+import { Formik } from "formik";
 import { Link } from "react-router-dom"
-
+import CustomInputField from "../../../../../common/CustomInputField";
+import CustomDropdown from "../../../../../common/CustomDropdown";
+const initialValues = {
+    name: "",
+    level: ""
+}
 function AddArea() {
+    const name = "dropdown";
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+        {
+            name: "Enabled",
+            value: "Enabled",
+        },
+        {
+            name: "Disabled",
+            value: "Disabled",
+        },
+    ];
+    const validate = (values) => {
+        let errors = {};
+        if (!values.name) {
+            errors.name = "Name is required";
+        }
+
+        if (!values.level) {
+            errors.level = "Level is required";
+        }
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
-            <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD AREA MASTER</h4>
-                                </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Name" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Level<span className="text-danger">*</span></label>
-                                            <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Level" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Status<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Enabled</option>
-                                                <option value="2">Disabled</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Link to='/admin/area' className="btn btn-danger light ms-1">Cancel</Link>
-                                        <button className="btn btn-primary me-1">Submit</button>
-                                    </div>
-                                </form>
+            <Formik
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={submitForm}
+                className="tbl-captionn"
+            >
+                {(formik) => {
+                    const {
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        errors,
+                        touched,
+                        handleBlur,
+                        isValid,
+                        dirty,
+                    } = formik;
+                    return (
+                        <div className="row">
+                            <div className="col-xl-12">
+                                <div className="card">
+                                    <div className="card-body p-0">
+                                        <div className="table-responsive active-projects style-1">
+                                            <div className="tbl-caption tbl-caption-2">
+                                                <h4 className="heading mb-0">ADD AREA MASTER</h4>
+                                            </div>
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Name *"
+                                                            value={values.name}
+                                                            hasError={errors.name && touched.name}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.name}
+                                                            autoFocus={true}
+                                                            id="name"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Level *"
+                                                            value={values.level}
+                                                            hasError={errors.level && touched.level}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.level}
+                                                            autoFocus={true}
+                                                            id="level"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Open this select status *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div>
+                                                    <Link to='/admin/area' className="btn btn-danger light ms-1">Cancel</Link>
+                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                </div>
+                                            </form>
 
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    );
+                }}
+            </Formik>
         </>
     )
 }

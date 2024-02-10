@@ -169,7 +169,7 @@ function BasicDetails({ initialValues }) {
                   <div className="dropdownWrapper">
                     <CustomDropdown
                       itemList={itemList}
-                      placeholder="Select KYC Status *"
+                      placeholder="Select Member Type *"
                       isSingleSelect={false}
                       icon={true}
                       onChange={changeHandle}
