@@ -45842,7 +45842,8 @@ table.dataTable thead .sorting_asc {
 }
 
 .active-projects .tbl-caption {
-  padding-top: 10px;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
     padding-left: 20px;
 }
 .active-projects .tbl-caption button{
@@ -45906,7 +45907,7 @@ table.dataTable thead .sorting_asc {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   flex-flow: wrap;
   background-color: rgb(44 44 44);
   gap:10px;
@@ -55275,7 +55276,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   z-index: 111;
   width: 100%;
 }
-
+#justify-none_Tab1{
+  justify-content: flex-start ;
+  padding-top: .4rem;
+  padding-bottom: 0;
+}
 /* TODO please don't touch */
 
 /*# sourceMappingURL=style-rtl.css.map */

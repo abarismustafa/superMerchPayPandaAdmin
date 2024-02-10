@@ -232,7 +232,7 @@ function BasicDetails({ initialValues }) {
                     hasError={errors.officeAddress && touched.officeAddress}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    errorMsg={errors.officeAddress}
+                    errorMsg={errors.officeAddress} 
                     autoFocus={false}
                     rows="6"
                     id="officeAddress"
