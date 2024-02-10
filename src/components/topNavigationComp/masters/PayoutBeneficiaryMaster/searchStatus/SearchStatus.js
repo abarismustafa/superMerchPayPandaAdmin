@@ -1,5 +1,19 @@
+import CustomDropdown from "../../../../../common/CustomDropdown";
 
 function SearchStatus() {
+    const itemList = [
+        {
+            name: "Enabled",
+            value: "Enabled",
+        },
+        {
+            name: "Disabled",
+            value: "Disabled",
+        },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className='row'>
@@ -12,16 +26,17 @@ function SearchStatus() {
                                         <div className="col-sm-12 col-md-4 mb-3">
                                             <div className="dataTables_lengthh" id="my_table_length">
                                                 <label>Status</label>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">Pending</option>
-                                                    <option value="2">Approved</option>
-                                                    <option value="3">Success</option>
-                                                </select>
+                                                <CustomDropdown
+                                                    itemList={itemList}
+                                                    placeholder="Select Status *"
+                                                    isSingleSelect={false}
+                                                    icon={true}
+                                                    onChange={changeHandle}
+                                                />
                                             </div>
                                         </div>
-                                        <div className="col-sm-12 col-md-4 mt-4">
-                                            <div className="dataTables_lengthh text-center" id="my_table_length">
+                                        <div className="col-sm-12 col-md-4 mt-5">
+                                            <div className="dataTables_lengthh text-center mb-5" id="my_table_length">
                                                 <button className="btn btn-primary me-1">Submit</button>
                                             </div>
                                         </div>
