@@ -1,17 +1,39 @@
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
+import CustomDropdown from "../../../common/CustomDropdown";
 const initialValues = {
     userName: "",
     requestDate: "",
     paymentDate: "",
-    bank:"",
+    bank: "",
     method: "",
     amount: "",
     utr: "",
     paymentType: "",
 };
 function AddPaymentRequestView() {
+    const name = "dropdown";
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+        {
+            name: "Phone Pay",
+            value: "Phone Pay",
+        },
+        {
+            name: "Credit Card",
+            value: "cCredit Cardash",
+        },
+        {
+            name: "Debit Card",
+            value: "Debit Card",
+        },
+        {
+            name: "Cash",
+            value: "Cash",
+        },
+    ];
     const validate = (values) => {
         let errors = {};
         if (!values.userName) {
@@ -60,6 +82,9 @@ function AddPaymentRequestView() {
 
     const submitForm = (values) => {
         console.log(values);
+    };
+    const changeHandle = (selectedData) => {
+        // TODO
     };
     return (
         <>
@@ -182,13 +207,16 @@ function AddPaymentRequestView() {
                                                             id="utr"
                                                         />
                                                     </div>
-                                                    
                                                     <div className="col-xl-4 mb-3">
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option selected>--Select Payment Type--</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                        </select>
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Select Payment Type *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div>
