@@ -1,8 +1,53 @@
+import { Formik } from "formik";
 import { Link } from "react-router-dom"
-
+import CustomInputField from "../../../../../common/CustomInputField";
+import CustomDropdown from "../../../../../common/CustomDropdown";
+import CustomTextArea from "../../../../../common/CustomTextArea";
+const initialValues = {
+    apiName : "",
+    apiUrl : "",
+}
 function AddApiMaster() {
+    const itemList = [
+        { name: "Airtel", value: "Airtel" },
+        { name: "Jio", value: "Jio" },
+        { name: "VI", value: "VI" },
+    ];
+    const validate = (values) => {
+        let errors = {};
+        if (!values.providerName) {
+            errors.providerName = "Provider Name is required";
+        }
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
+
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
+
     return (
-        <>
+        <><Formik
+        initialValues={initialValues}
+        validate={validate}
+        onSubmit={submitForm}
+        className="tbl-captionn"
+    >
+        {(formik) => {
+            const {
+                values,
+                handleChange,
+                handleSubmit,
+                errors,
+                touched,
+                handleBlur,
+                isValid,
+                dirty,
+            } = formik;
+            return (
             <div className="row">
                 <div className="col-xl-12">
                     <div className="card">
@@ -13,32 +58,54 @@ function AddApiMaster() {
                                 </div>
                                 <form className="tbl-captionn">
                                     <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Api Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Service Name" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Api Method<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--select Api Method--</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">Response Type<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--select Response Type--</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Api URL<span className="text-danger">*</span></label>
-                                            <textarea className="form-control" defaultValue={"Api URL"} />
-                                        </div>
+                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Provider  Name *"
+                                                            value={values.providerName}
+                                                            hasError={errors.providerName && touched.providerName}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.providerName}
+                                                            autoFocus={true}
+                                                            id="providerName"
+                                                        />
+                                                    </div>
+                                        <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="--Select Service Name-- "
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                        <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="--Select Service Name-- "
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                        <div className="col-xl-4 mb-3">
+                                                        <CustomTextArea
+                                                            type="text"
+                                                            placeholder="Provider  Name *"
+                                                            value={values.providerName}
+                                                            hasError={errors.providerName && touched.providerName}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.providerName}
+                                                            autoFocus={true}
+                                                            id="providerName"
+                                                        />
+                                                    </div>
                                     </div>
                                     <div>
                                         <Link to='/admin/api-master' className="btn btn-danger light ms-1">Cancel</Link>
@@ -51,6 +118,9 @@ function AddApiMaster() {
                     </div>
                 </div>
             </div>
+                  );
+              }}
+          </Formik>
         </>
     )
 }

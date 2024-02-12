@@ -7,20 +7,12 @@ function DistributerKycStatus() {
   const type = "dropdown";
   const itemList = [
     {
-      name: "MBA",
-      value: "MBA",
+      name: "Active",
+      value: "Active",
     },
     {
-      name: "Data Science",
-      value: "Data Science",
-    },
-    {
-      name: "Doctorate",
-      value: "Doctorate",
-    },
-    {
-      name: "Software & Tech",
-      value: "Software & Tech",
+      name: "De-Active",
+      value: "De-Active",
     },
   ];
 
@@ -35,13 +27,10 @@ function DistributerKycStatus() {
             <div className="col-lg-12 col-md-12">
               <div className="card">
                 <div className="card-body">
-                  wedEA
                   <form>
                     <div className="row">
                       <div className="col-lg-3 col-md-8 form-group mg-b-0">
-                        <label className="form-label">
-                          KYC Status: <span className="tx-danger">*</span>
-                        </label>
+                        
                         <div className="dropdownWrapper p-2">
                           <CustomDropdown
                             itemList={itemList}
@@ -69,10 +58,10 @@ function DistributerKycStatus() {
                       <div className="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
                         <button
                           className="btn btn-primary pd-x-20"
-                          style={{ marginTop: "35px" }}
+                          style={{ marginTop: "15px" }}
                           type="submit"
                         >
-                          <FaSearch style={{ marginBottom: "5px" }} /> Search
+                          <FaSearch /> Search
                         </button>
                       </div>
                     </div>

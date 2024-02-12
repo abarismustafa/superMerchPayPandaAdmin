@@ -1,6 +1,47 @@
 import { Link } from "react-router-dom"
+import CustomInputField from "../../../../../common/CustomInputField";
+import { Formik } from "formik";
+import CustomDropdown from "../../../../../common/CustomDropdown";
 
 function EditPaymentMethod() {
+    const itemList = [
+        {
+            name: "Enabled",
+            value: "Enabled",
+        },
+        {
+            name: "Disabled",
+            value: "Disabled",
+        },
+    ];
+    const initialValues = {
+        methodType: ''
+    }
+
+    const validate = (values) => {
+        let errors = {};
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+        const regexGstNumber =
+            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+
+        if (!values.methodType) {
+            errors.methodType = "Method Type is required";
+        }
+
+
+
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
+
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">
@@ -11,29 +52,60 @@ function EditPaymentMethod() {
                                 <div className="tbl-caption tbl-caption-2">
                                     <h4 className="heading mb-0">UPDATE PAYMENT METHOD</h4>
                                 </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Method Type<span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Method Type" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Status<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Enabled</option>
-                                                <option value="2">Disabled</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-xl-6 mb-3 mt-4">
-                                            <Link to='payment-method' className="btn btn-danger light ms-1">Cancel</Link>
-                                            <button className="btn btn-primary me-1">Submit</button>
-                                        </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
 
-                                    </div>
-
-                                </form>
-
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.methodType}
+                                                            hasError={errors.methodType && touched.methodType}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.methodType}
+                                                            autoFocus={true}
+                                                            id="methodType"
+                                                            name="methodType"
+                                                            placeholder="Method Type"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomDropdown
+                                                            itemList={itemList}
+                                                            placeholder="Select Status *"
+                                                            isSingleSelect={false}
+                                                            icon={true}
+                                                            onChange={changeHandle}
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-4 mt-2">
+                                                        <div>
+                                                            <Link to='/admin/payment-method' className="btn btn-danger light ms-1">Cancel</Link>
+                                                            <button className="btn btn-primary me-1">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        );
+                                    }}
+                                </Formik>
                             </div>
                         </div>
                     </div>

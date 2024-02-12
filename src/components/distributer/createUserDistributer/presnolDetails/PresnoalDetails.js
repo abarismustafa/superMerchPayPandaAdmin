@@ -1,71 +1,156 @@
+import { Formik } from "formik";
 import CustomInputField from "../../../../common/CustomInputField";
+import CustomDropdown from "../../../../common/CustomDropdown";
 
-function Presnoaldetails() {
+function Presnoaldetails({initialValues}) {
+    const name = "dropdown";
+    const placeholder = "Course Name";
+    const type = "dropdown";
+    const itemList = [
+        {
+            name: "Maharashtra",
+            value: "Maharashtra",
+        },
+        {
+            name: "Delhi",
+            value: "Delhi",
+        },
+        {
+            name: "Tamil Nadu",
+            value: "Tamil Nadu",
+        },
+        {
+            name: "Gujarat",
+            value: "Gujarat",
+        },
+    ];
+
+    const validate = (values) => {
+        let errors = {};
+      
+        if (!values.address) {
+            errors.address = "Address is required";
+        }
+
+        if (!values.city) {
+            errors.city = "City Name is required";
+        }
+
+        
+
+        if (!values.pincode) {
+            errors.pincode = "Pincode is required";
+        }
+
+        if (!values.state) {
+            errors.state = "State is required";
+        }
+
+        if (!values.lockAmount) {
+            errors.lockAmount = "Lock Amount is required";
+        }
+
+        if (!values.officeAddress) {
+            errors.officeAddress = "Office Address is required";
+        }
+
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
+
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
-            {/* <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0"><b>Permanent Details</b></h4>
-                                </div> */}
-            <form className="tbl-captionn">
-                <div className="row">
-                    <div className="col-xl-4 mb-3">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">
-                            Address <span className="text-danger">*</span>
-                        </label>
-                        <CustomInputField type="text" placeholder="Address" />
-                    </div>
-                    <div className="col-xl-4 mb-3">
-                        <label htmlFor="exampleFormControlInput2" className="form-label">
-                            City<span className="text-danger">*</span>
-                        </label>
-                        <CustomInputField type="text" placeholder="City" />
-                    </div>
-                    <div className="col-xl-4 mb-3">
-                        <label htmlFor="exampleFormControlInput3" className="form-label">
-                            {" "}
-                            Pincode<span className="text-danger">*</span>
-                        </label>
-                        <CustomInputField type="text" placeholder="Pincode" />
-                    </div>
-                    <div className="col-xl-4 mb-3">
-                        <label htmlFor="exampleFormControlInput2" className="form-label">
-                            State<span className="text-danger">*</span>
-                        </label>
-                        <CustomInputField type="text" placeholder="State" />
-                    </div>
 
-                    <div className="col-xl-4 mb-3">
-                        <label htmlFor="exampleFormControlInput2" className="form-label">
-                            District<span className="text-danger">*</span>
-                        </label>
-                        <select id="disabledSelect " className=" form-select select2">
-                            <option disabled value={true}>
-                                {" "}
-                                -Select District-
-                            </option>
-                            <option value="1">Maharashtra</option>
-                            <option value="2">Delhi</option>
-                            <option value="3">Tamil Nadu</option>
-                            <option value="4">Gujarat</option>
-                            <option value="5">Uttar Pradesh East</option>
-                            <option value="6">Rajasthan</option>
-                            <option value="7">West Bengal</option>
-                            <option value="8">Madhya Pradesh</option>
-                        </select>
-                    </div>
-                </div>
-            </form>
-
-            {/* </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+            <Formik
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={submitForm}
+                className="tbl-captionn"
+            >
+                {(formik) => {
+                    const {
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        errors,
+                        touched,
+                        handleBlur,
+                        isValid,
+                        dirty,
+                    } = formik;
+                    return (
+                        <form className="tbl-captionn">
+                            <div className="row">
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Address * "
+                                        value={values.address}
+                                        hasError={errors.address && touched.address}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.address}
+                                        id="address"
+                                    />
+                                </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="City"
+                                        value={values.city}
+                                        hasError={errors.city && touched.city}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.city}
+                                        id="city"
+                                    />
+                                </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Pincode"
+                                        value={values.pincode}
+                                        hasError={errors.pincode && touched.pincode}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.pincode}
+                                        id="pincode"
+                                    />
+                                </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="State"
+                                        value={values.state}
+                                        hasError={errors.state && touched.state}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.state}
+                                        id="state"
+                                    />
+                                </div>
+                                <div className="col-xl-4 mb-3">
+                                    <div className="dropdownWrapper">
+                                        <CustomDropdown
+                                            itemList={itemList}
+                                            placeholder="Select State *"
+                                            isSingleSelect={false}
+                                            icon={true}
+                                            onChange={changeHandle}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    );
+                }}
+            </Formik>
         </>
     );
 }

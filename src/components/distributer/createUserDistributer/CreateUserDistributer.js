@@ -76,19 +76,8 @@ function CreateUserDistributer() {
                   <Services initialValues={initialValues.service} />
                 )}
               </div>
-              {/* <div className="card-footer text-right">
-                <button
-                  type="submit"
-                  className="btn btn-danger waves-effect waves-light"
-                >
-                  Next
-                </button>
-              </div> */}
             </div>
           </div>
-          {/* <BasicDetails />
-                <Presnoaldetails />
-            <Services /> */}
         </div>
       </section>
     </>

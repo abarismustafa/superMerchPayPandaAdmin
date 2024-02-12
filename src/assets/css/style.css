@@ -55281,6 +55281,9 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   padding-top: .4rem;
   padding-bottom: 0;
 }
+input[type=file]::file-selector-button {
+  display: none;
+}
 /* TODO please don't touch */
 
 /*# sourceMappingURL=style-rtl.css.map */
