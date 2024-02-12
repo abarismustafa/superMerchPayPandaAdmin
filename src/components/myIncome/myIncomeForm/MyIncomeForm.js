@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MyincomeModal from "./myIncomeModal/MyincomeModal";
+import CustomInputField from "../../../common/CustomInputField";
 
 function MyIncomeForm() {
     const [formData, setFormData] = useState({
@@ -32,21 +33,17 @@ function MyIncomeForm() {
                                     <div className="row">
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput1" className="form-label">From <span className="text-danger">*</span></label>
-                                            <input className="form-control" value={formData.fromdate}
+                                            <CustomInputField
                                                 type="date"
-                                                id="fromdate"
-                                                name="fromdate"
-                                                autoComplete="off"
-                                                onChange={handleInputChange} />
+                                                id="date"
+                                            />
                                         </div>
                                         <div className="col-xl-4 mb-3">
                                             <label htmlFor="exampleFormControlInput2" className="form-label">To<span className="text-danger">*</span></label>
-                                            <input className="form-control" value={formData.fromdate}
+                                            <CustomInputField
                                                 type="date"
-                                                id="fromdate"
-                                                name="fromdate"
-                                                autoComplete="off"
-                                                onChange={handleInputChange} />
+                                                id="date"
+                                            />
                                         </div>
 
                                         <div className="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
