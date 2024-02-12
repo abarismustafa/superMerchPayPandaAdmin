@@ -1,165 +1,202 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import CustomDropdown from '../../../../common/CustomDropdown';
 
 function Reports() {
+    const itemList = [
+        {
+            name: "Disabled",
+            value: "Disabled",
+        },
+        {
+            name: "Enabled",
+            value: "Enabled",
+        },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
-        <div className="row">
-            <div className="col-xl-12">
-                <div className="card">
-                    <div className="card-body p-0">
-                        <div className="table-responsive active-projects style-1">
-                            <div className="tbl-caption tbl-caption-2">
-                                <h4 className="heading mb-0">REPORT</h4>
-                            </div>
-                            <form className="tbl-captionn">
-                                <div className="row">
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">All Transaction Reports:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Update Transaction (Refund or Success):<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">View Api Logs:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Recharge Reports:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Pan Card Reports:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Auto Payment Report:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Pending Transaction:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Profit Distribution:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Refund Message:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Api Summary:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Operator Wise Sale:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Aeps Report:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Payout Settlement:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Aeps Operator Report:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Account Validate Report:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Money Transfer Report:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Money Transfer Operator Reports:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                {/* <div>
-                                    <button className="btn btn-primary me-1">Submit</button>
-                                </div> */}
-                            </form>
 
-                        </div>
-                    </div>
+        <form className="tbl-captionn">
+            <div className="row">
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select All Transaction Reports *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Update Transaction (Refund or Success) *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select view Api Logs *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Recharge Reports *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Pan Card Reports *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Auto Payment Report *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Pending Transaction *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Profit Distribution *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Refund Message *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Api Summary Message *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Api Operator Wise Sale *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Aeps Report *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Payout Settlement *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Aeps Operator Report *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Account Validate Report *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Money Transfer Report *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Money Transfer Operator Reports *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
                 </div>
             </div>
-        </div>
+            {/* <div>
+                                    <button className="btn btn-primary me-1">Submit</button>
+                                </div> */}
+        </form>
+
+
     )
 }
 
