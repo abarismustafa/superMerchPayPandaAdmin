@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import CustomInputField from "../../../../common/CustomInputField";
 import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -164,7 +163,7 @@ function BasicDetails({ initialValues }) {
                     errorMsg={errors.mobileNumber}
                     id="mobileNumber"
                   />
-                </div>
+                </div>  
                 <div className="col-xl-4 mb-3">
                   <div className="dropdownWrapper">
                     <CustomDropdown

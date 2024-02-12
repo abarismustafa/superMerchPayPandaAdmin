@@ -1,5 +1,14 @@
+import CustomDropdown from "../../../../common/CustomDropdown"
 
 function ApiSwitching() {
+    const itemList = [
+        { name: "provider Name1", value: "provider Name1" },
+        { name: "provider Name2", value: "provider Name2" },
+        { name: "provider Name3", value: "provider Name3" },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">
@@ -30,7 +39,6 @@ function ApiSwitching() {
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Api</th>
 
-
                                             {/* <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                 Status</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
@@ -46,12 +54,15 @@ function ApiSwitching() {
                                             <td><span>Mobile</span></td>
 
                                             <td>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected> --select Api--</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
+                                                <div className="dropdownWrapper">
+                                                <CustomDropdown
+                                                    itemList={itemList}
+                                                    placeholder="--Select Api-- "
+                                                    isSingleSelect={false}
+                                                    icon={true}
+                                                    onChange={changeHandle}
+                                                />
+                                            </div>
                                             </td>
 
 
@@ -76,15 +87,16 @@ function ApiSwitching() {
                                             <td><span>Mobile</span></td>
 
                                             <td>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected> --select Api--</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
+                                                <div className="dropdownWrapper">
+                                                <CustomDropdown
+                                                    itemList={itemList}
+                                                    placeholder="--Select Api-- "
+                                                    isSingleSelect={false}
+                                                    icon={true}
+                                                    onChange={changeHandle}
+                                                />
+                                            </div>
                                             </td>
-
-
 
                                             {/* <td>
                                                 <span className="badge badge-success light border-0">Inactive</span>

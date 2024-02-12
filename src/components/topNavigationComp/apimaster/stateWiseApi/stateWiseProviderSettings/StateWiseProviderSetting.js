@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom"
+import CustomDropdown from "../../../../../common/CustomDropdown"
 
 function StateWiseProviderSetting() {
+    const itemList = [
+        { name: "provider Name1", value: "provider Name1" },
+        { name: "provider Name2", value: "provider Name2" },
+        { name: "provider Name3", value: "provider Name3" },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">
@@ -39,18 +48,26 @@ function StateWiseProviderSetting() {
                                                 Airtel
                                             </td>
                                             <td>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected>--Select Status--</option>
-                                                    <option value="1">Enabled</option>
-                                                    <option value="2">Disabled</option>
-                                                </select>
+                                                <div className="dropdownWrapper">
+                                                    <CustomDropdown
+                                                        itemList={itemList}
+                                                        placeholder="--Select Status-- "
+                                                        isSingleSelect={false}
+                                                        icon={true}
+                                                        onChange={changeHandle}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected>--Select Api--</option>
-                                                    <option value="1">Enabled</option>
-                                                    <option value="2">Disabled</option>
-                                                </select>
+                                                <div className="dropdownWrapper">
+                                                    <CustomDropdown
+                                                        itemList={itemList}
+                                                        placeholder="--Select Status-- "
+                                                        isSingleSelect={false}
+                                                        icon={true}
+                                                        onChange={changeHandle}
+                                                    />
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr role="row" className="odd">
@@ -59,18 +76,26 @@ function StateWiseProviderSetting() {
                                                 Airtel
                                             </td>
                                             <td>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected>--Select Status--</option>
-                                                    <option value="1">Enabled</option>
-                                                    <option value="2">Disabled</option>
-                                                </select>
+                                            <div className="dropdownWrapper">
+                                                    <CustomDropdown
+                                                        itemList={itemList}
+                                                        placeholder="--Select API-- "
+                                                        isSingleSelect={false}
+                                                        icon={true}
+                                                        onChange={changeHandle}
+                                                    />
+                                                </div>
                                             </td>
                                             <td>
-                                                <select id="disabledSelect" class="form-select">
-                                                    <option selected>--Select Api--</option>
-                                                    <option value="1">Enabled</option>
-                                                    <option value="2">Disabled</option>
-                                                </select>
+                                            <div className="dropdownWrapper">
+                                                    <CustomDropdown
+                                                        itemList={itemList}
+                                                        placeholder="--Select API-- "
+                                                        isSingleSelect={false}
+                                                        icon={true}
+                                                        onChange={changeHandle}
+                                                    />
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
