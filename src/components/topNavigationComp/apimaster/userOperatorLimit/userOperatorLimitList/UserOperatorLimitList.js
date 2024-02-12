@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom"
-import SearchUserOperator from "./searchUserOperator/SearchUserOperator"
-
 function UserOperatorLimitList() {
     return (
         <>
-            <SearchUserOperator />
+            
             <div className="row">
                 <div className="col-xl-12">
                     <div className="card">

@@ -63,7 +63,7 @@ function AddDominationWiseMaster() {
                                                         <div className="dropdownWrapper">
                                                             <CustomDropdown
                                                                 itemList={itemList}
-                                                                placeholder="--Select Service Name-- "
+                                                                placeholder="--Select Api-- "
                                                                 isSingleSelect={false}
                                                                 icon={true}
                                                                 onChange={changeHandle}
@@ -75,7 +75,7 @@ function AddDominationWiseMaster() {
                                                         <div className="dropdownWrapper">
                                                             <CustomDropdown
                                                                 itemList={itemList}
-                                                                placeholder="--Select Service Name-- "
+                                                                placeholder="--Select Providers-- "
                                                                 isSingleSelect={false}
                                                                 icon={true}
                                                                 onChange={changeHandle}
