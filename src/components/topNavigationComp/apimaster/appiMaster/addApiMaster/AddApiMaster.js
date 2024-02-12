@@ -15,8 +15,11 @@ function AddApiMaster() {
     ];
     const validate = (values) => {
         let errors = {};
-        if (!values.providerName) {
-            errors.providerName = "Provider Name is required";
+        if (!values.apiName) {
+            errors.apiName = "API Name is required";
+        }
+        if (!values.apiUrl) {
+            errors.apiUrl = "API URL is required";
         }
         return errors;
     };
@@ -61,21 +64,21 @@ function AddApiMaster() {
                                     <div className="col-xl-4 mb-3">
                                                         <CustomInputField
                                                             type="text"
-                                                            placeholder="Provider  Name *"
-                                                            value={values.providerName}
-                                                            hasError={errors.providerName && touched.providerName}
+                                                            placeholder="Api Name *"
+                                                            value={values.apiName}
+                                                            hasError={errors.apiName && touched.apiName}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.providerName}
+                                                            errorMsg={errors.apiName}
                                                             autoFocus={true}
-                                                            id="providerName"
+                                                            id="apiName"
                                                         />
                                                     </div>
                                         <div className="col-xl-4 mb-3">
                                                         <div className="dropdownWrapper">
                                                             <CustomDropdown
                                                                 itemList={itemList}
-                                                                placeholder="--Select Service Name-- "
+                                                                placeholder="--Api Method-- "
                                                                 isSingleSelect={false}
                                                                 icon={true}
                                                                 onChange={changeHandle}
@@ -86,7 +89,7 @@ function AddApiMaster() {
                                                         <div className="dropdownWrapper">
                                                             <CustomDropdown
                                                                 itemList={itemList}
-                                                                placeholder="--Select Service Name-- "
+                                                                placeholder="--Response Type-- "
                                                                 isSingleSelect={false}
                                                                 icon={true}
                                                                 onChange={changeHandle}
@@ -96,14 +99,14 @@ function AddApiMaster() {
                                         <div className="col-xl-4 mb-3">
                                                         <CustomTextArea
                                                             type="text"
-                                                            placeholder="Provider  Name *"
-                                                            value={values.providerName}
-                                                            hasError={errors.providerName && touched.providerName}
+                                                            placeholder="Api URL *"
+                                                            value={values.apiUrl}
+                                                            hasError={errors.apiUrl && touched.apiUrl}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.providerName}
+                                                            errorMsg={errors.apiUrl}
                                                             autoFocus={true}
-                                                            id="providerName"
+                                                            id="apiUrl"
                                                         />
                                                     </div>
                                     </div>

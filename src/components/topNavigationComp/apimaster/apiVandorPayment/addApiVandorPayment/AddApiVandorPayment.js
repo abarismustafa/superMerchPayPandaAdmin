@@ -1,5 +1,14 @@
+import CustomDropdown from "../../../../../common/CustomDropdown"
 
 function AddApiVandorPayment() {
+    const itemList = [
+        { name: "one 1", value: "one 1" },
+        { name: "one 2", value: "one 2" },
+        { name: "one 3", value: "one 3" },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">
@@ -13,12 +22,15 @@ function AddApiVandorPayment() {
                                 <form className="tbl-captionn">
                                     <div className="row">
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Api<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Api--</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                            <CustomDropdown 
+                                                itemList={itemList}
+                                                placeholder="--Select Limit Status -- "
+                                                isSingleSelect={false}
+                                                icon={true}
+                                                onChange={changeHandle}
+                                            />
+                                        </div>
                                         </div>
                                         <div className="col-xl-6 mt-3">
 
