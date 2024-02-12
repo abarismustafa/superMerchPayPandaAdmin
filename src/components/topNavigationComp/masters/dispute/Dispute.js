@@ -1,71 +1,84 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CustomDropdown from '../../../../common/CustomDropdown';
 
 function Dispute() {
+    const itemList = [
+        {
+            name: "Disabled",
+            value: "Disabled",
+        },
+        {
+            name: "Enabled",
+            value: "Enabled",
+        },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
-        <div className="row">
-            <div className="col-xl-12">
-                <div className="card">
-                    <div className="card-body p-0">
-                        <div className="table-responsive active-projects style-1">
-                            <div className="tbl-caption tbl-caption-2">
-                                <h4 className="heading mb-0">DISPUTE</h4>
-                            </div>
-                            <form className="tbl-captionn">
-                                <div className="row">
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Pending Dispute:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Dispute Chat:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Dispute Update:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Solve Dispute:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Reopen Dispute:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>
-                                <Link to={"/admin/company-staff/welcome"} className="btn btn-warning me-1">cancel</Link>
-                                    <button className="btn btn-primary me-1">Update Dispute</button>
-                                </div>
-                            </form>
 
-                        </div>
-                    </div>
+        <form className="tbl-captionn">
+            <div className="row">
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Pending Dispute *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Dispute Chat *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Dispute Update *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Solve Dispute *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Reopen Dispute *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
                 </div>
             </div>
-        </div>
+            <div>
+                <Link to={"/admin/company-staff/welcome"} className="btn btn-warning me-1">cancel</Link>
+                <button className="btn btn-primary me-1">Update </button>
+            </div>
+        </form>
+
+
     )
 }
 

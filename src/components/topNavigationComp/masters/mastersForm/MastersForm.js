@@ -1,94 +1,109 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CustomDropdown from '../../../../common/CustomDropdown';
 
 function MastersForm() {
+    const itemList = [
+        {
+            name: "Disabled",
+            value: "Disabled",
+        },
+        {
+            name: "Enabled",
+            value: "Enabled",
+        },
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
-        <div className="row">
-            <div className="col-xl-12">
-                <div className="card">
-                    <div className="card-body p-0">
-                        <div className="table-responsive active-projects style-1">
-                            <div className="tbl-caption tbl-caption-2">
-                                <h4 className="heading mb-0">MASTER</h4>
-                            </div>
-                            <form className="tbl-captionn">
-                                <div className="row">
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Bank Master:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Role Master:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Status Master:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Service Master:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Payment Method Master:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Payout Beneficiary Master:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Contact Enquiry:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-xl-6 mb-3">
-                                        <label htmlFor="exampleFormControlInput3" className="form-label">Agent Onboarding List:<span className="text-danger">*</span></label>
-                                        <select id="disabledSelect" class="form-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">Disabled</option>
-                                            <option value="2">Enabled</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                {/* <div>
-                                    <button className="btn btn-primary me-1">Submit</button>
-                                </div> */}
-                            </form>
 
-                        </div>
-                    </div>
+        <form className="tbl-captionn">
+            <div className="row">
+                <div className="col-xl-6 mb-3">
+                    {/* <label htmlFor="exampleFormControlInput3" className="form-label">Bank Master:<span className="text-danger">*</span></label> */}
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Bank Master *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Role Master *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Status Master *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Service Master *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Payment Method Master *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Payout Beneficiary Master *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Contact Enquiry *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
+                </div>
+                <div className="col-xl-6 mb-3">
+                    <CustomDropdown
+                        itemList={itemList}
+                        placeholder="Select Agent Onboarding List *"
+                        isSingleSelect={false}
+                        icon={true}
+                        onChange={changeHandle}
+                    />
                 </div>
             </div>
-        </div>
+            {/* <div>
+                                    <button className="btn btn-primary me-1">Submit</button>
+                                </div> */}
+        </form>
+
     )
 }
 
