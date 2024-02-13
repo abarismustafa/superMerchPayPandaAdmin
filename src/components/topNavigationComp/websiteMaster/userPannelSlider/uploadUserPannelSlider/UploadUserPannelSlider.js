@@ -1,5 +1,46 @@
+import { Formik } from "formik";
+import CustomDropdown from "../../../../../common/CustomDropdown";
+import CustomInputField from "../../../../../common/CustomInputField";
 
 function UploadUserPannelSlider() {
+    const itemList = [
+        {
+            name: "Abc",
+            value: "Abc",
+        },
+        {
+            name: "Def",
+            value: "Def",
+        },
+    ];
+    const initialValues = {
+        bannerType: '',
+        selectBanner: '',
+    }
+
+    const validate = (values) => {
+        let errors = {};
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+        const regexGstNumber =
+            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+
+        if (!values.selectBanner) {
+            errors.selectBanner = "Select Banner is required";
+        }
+
+        return errors;
+    };
+
+    const submitForm = (values) => {
+        console.log(values);
+    };
+
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
+
     return (
         <>
             <div className="row">
@@ -10,29 +51,62 @@ function UploadUserPannelSlider() {
                                 <div className="tbl-caption">
                                     <h4 className="heading mb-0">UPLOAD USER SLIDE BANNER</h4>
                                 </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">Banner Type<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Banner Type--</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
 
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Select Banner<span className="text-danger">*</span></label>
-                                            <input type="file" className="form-control" />
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    <div className="col-xl-6 mb-3">
 
-                                        </div>
-                                    </div>
-                                    <div>
-                                        {/* <Link to='service-master' className="btn btn-danger light ms-1">Cancel</Link> */}
-                                        <button className="btn btn-primary me-1">Submit</button>
-                                    </div>
-                                </form>
+                                                        <CustomDropdown
+                                                            itemList={itemList}
+                                                            placeholder="Select Banner Type *"
+                                                            isSingleSelect={false}
+                                                            icon={true}
+                                                            onChange={changeHandle}
+                                                        />
+                                                    </div>
+
+                                                    <div className="col-xl-6 mb-3">
+
+                                                        <CustomInputField
+                                                            type="file"
+                                                            value={values.selectBanner}
+                                                            hasError={errors.selectBanner && touched.selectBanner}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.selectBanner}
+                                                            autoFocus={true}
+                                                            id="selectBanner"
+                                                            name="selectBanner"
+                                                            placeholder="Select Banner"
+                                                        />
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {/* <Link to='service-master' className="btn btn-danger light ms-1">Cancel</Link> */}
+                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                </div>
+                                            </form>
+                                        );
+                                    }}
+                                </Formik>
 
                             </div>
                         </div>
