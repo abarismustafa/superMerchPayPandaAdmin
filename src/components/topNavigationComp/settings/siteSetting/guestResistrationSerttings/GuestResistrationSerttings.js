@@ -1,6 +1,32 @@
+import CustomDropdown from "../../../../../common/CustomDropdown";
 
 
 function GuestResistrationSerttings() {
+    const itemList = [
+        {
+            name: "Enable",
+            value: "Enable",
+        },
+        {
+            name: "Disable",
+            value: "Disable",
+        },
+        
+    ];
+    const itemList_2 = [
+        {
+            name: "Retailer",
+            value: "Retailer",
+        },
+        {
+            name: "Distributer",
+            value: "Distributer",
+        },
+        
+    ];
+    const changeHandle = (selectedData) => {
+        // TODO
+    };
     return (
         <>
             <div className="row">
@@ -14,68 +40,93 @@ function GuestResistrationSerttings() {
                                 <form className="tbl-captionn">
                                     <div className="row">
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Registration Status<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Registration Status--</option>
-                                                <option value="1">Enabled</option>
-                                                <option value="2">Disabled</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Registration Status"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default Retailer Scheme<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default Retailer Scheme--</option>
-                                                <option value="1">Distributer</option>
-                                                <option value="2">Retailer</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default Retailer Scheme"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default Guest Scheme<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default Guest Scheme--</option>
-                                                <option value="1">Distributer</option>
-                                                <option value="2">Retailer</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default Guest Scheme"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default Distributer Scheme<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default Distributer Scheme--</option>
-                                                <option value="1">Distributer</option>
-                                                <option value="2">Retailer</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default Distributer Scheme"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default Member Type<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default Member Type--</option>
-                                                <option value="1">Distributer</option>
-                                                <option value="2">Retailer</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default Member Type"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default Parents<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default Parents--</option>
-                                                <option value="1">Distributer</option>
-                                                <option value="2">Retailer</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default Parents"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                            
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default State<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default State--</option>
-                                                <option value="1">Delhi</option>
-                                                <option value="2">Mumbai</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default State"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                         <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput3" className="form-label">Default District<span className="text-danger">*</span></label>
-                                            <select id="disabledSelect" class="form-select">
-                                                <option selected>--Select Default State--</option>
-                                                <option value="1">Delhi</option>
-                                                <option value="2">Mumbai</option>
-                                            </select>
+                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList_2}
+                                                                placeholder="Default District"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                         </div>
                                     </div>
                                     {/* <div>
