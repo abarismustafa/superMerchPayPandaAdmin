@@ -15,8 +15,10 @@ const initialValues = {
         pincode: "",
         pancardNumber: "",
         gstNumber: "",
-        companyAddress1: "",
-        companyAddress2: "",
+        companyAddress_1: "",
+        companyAddress_2: "",
+        authorisedName:"",
+        designation:"",
     }
 }
 const CompanySettings = () => {
@@ -50,42 +52,49 @@ const CompanySettings = () => {
         const regexGstNumber =
             /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
-        if (!values.firstName) {
-            errors.firstName = "First Name is required";
+        if (!values.companyName) {
+            errors.companyName = "Company Name is required";
         }
 
-        if (!values.lastName) {
-            errors.lastName = "Last Name is required";
+        if (!values.companyWebsite) {
+            errors.companyWebsite = "Company Website is required";
+        }
+        if (!values.supportNo) {
+            errors.supportNo = "Support Number is required";
         }
 
-        if (!values.email) {
-            errors.email = "Email is required";
-        } else if (!regexEmail.test(values.email)) {
+        if (!values.companyEmail) {
+            errors.companyEmail = "Company Email is required";
+        } else if (!regexEmail.test(values.companyEmail)) {
             errors.email = "Invalid Email";
         }
 
-        if (!values.mobileNumber) {
-            errors.mobileNumber = "Mobile Number is required";
-        } else if (!regexMobileNumber.test(values.mobileNumber)) {
-            errors.mobileNumber = "Invalid Mobile Number";
+        if (!values.whattsappNo) {
+            errors.whattsappNo = "Mobile Number is required";
+        } else if (!regexMobileNumber.test(values.whattsappNo)) {
+            errors.whattsappNo = "Invalid Mobile Number";
         }
 
-        if (!values.masterType) {
-            errors.masterType = "Master Type is required";
+        if (!values.news) {
+            errors.news = "News is required";
         }
 
-        if (!values.shopName) {
-            errors.shopName = "Shop Name is required";
+        if (!values.smsSender) {
+            errors.smsSender = "Sender SMS is required";
         }
 
-        if (!values.lockAmount) {
-            errors.lockAmount = "Lock Amount is required";
+        if (!values.maintanenceMessage) {
+            errors.maintanenceMessage = "Maintanence Message is required";
         }
 
-        if (!values.panNumber) {
-            errors.panNumber = "PAN Number is required";
-        } else if (!regexPanNumber.test(values.panNumber)) {
-            errors.panNumber = "Invalid PAN Number";
+        if (!values.pincode) {
+        } else if (!regexPanNumber.test(values.pincode)) {
+            errors.pincode = "Invalid PAN Number";
+        }
+        if (!values.pancardNumber) {
+            errors.pancardNumber = "PAN Number is required";
+        } else if (!regexPanNumber.test(values.pancardNumber)) {
+            errors.pancardNumber = "Invalid PAN Number";
         }
 
         // if (!values.gstNumber) {
@@ -94,8 +103,14 @@ const CompanySettings = () => {
         //   errors.gstNumber = "Invalid GST Number";
         // }
 
-        if (!values.officeAddress) {
-            errors.officeAddress = "Office Address is required";
+        if (!values.companyAddress_1) {
+            errors.companyAddress_1 = "Company Address is required";
+        }
+        if (!values.authorisedName) {
+            errors.authorisedName = "Authorised Name is required";
+        }
+        if (!values.designation) {
+            errors.designation = "Degignation is required";
         }
 
         return errors;
@@ -143,26 +158,26 @@ const CompanySettings = () => {
                                                         <CustomInputField
                                                             type="text"
                                                             placeholder="Company Name *"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
+                                                            value={values.companyName}
+                                                            hasError={errors.companyName && touched.companyName}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
+                                                            errorMsg={errors.companyName}
                                                             autoFocus={true}
-                                                            id="firstName"
+                                                            id="companyName"
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
                                                         <CustomInputField
                                                             type="mail"
                                                             placeholder="Company E-mail *"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
+                                                            value={values.companyEmail}
+                                                            hasError={errors.companyEmail && touched.companyEmail}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
+                                                            errorMsg={errors.companyEmail}
                                                             autoFocus={true}
-                                                            id="firstName"
+                                                            id="companyEmail"
                                                         />
 
                                                     </div>
@@ -170,239 +185,317 @@ const CompanySettings = () => {
                                                         <CustomInputField
                                                             type="text"
                                                             placeholder="Company Website *"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
+                                                            value={values.companyWebsite}
+                                                            hasError={errors.companyWebsite && touched.companyWebsite}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
+                                                            errorMsg={errors.companyWebsite}
                                                             autoFocus={true}
-                                                            id="firstName"
+                                                            id="companyWebsite"
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
                                                         <CustomInputField
                                                             type="text"
                                                             placeholder="Support Nubmer *"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
+                                                            value={values.supportNo}
+                                                            hasError={errors.supportNo && touched.supportNo}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
+                                                            errorMsg={errors.supportNo}
                                                             autoFocus={true}
-                                                            id="firstName"
+                                                            id="supportNo"
                                                         />
                                                     </div>
 
                                                     <div className="col-xl-4 mb-3">
-                                                            <CustomInputField
-                                                                type="number"
-                                                                placeholder="WhatsApp No *"
-                                                                value={values.firstName}
-                                                                hasError={errors.firstName && touched.firstName}
-                                                                onChange={handleChange}
-                                                                onBlur={handleBlur}
-                                                                errorMsg={errors.firstName}
-                                                                autoFocus={true}
-                                                                id="firstName"
-                                                            />
-                                                        </div>
-                                                        
-                                                    <div className="col-xl-4 mb-3">
-                                                            <CustomInputField
-                                                                type="text"
-                                                                placeholder="News *"
-                                                                value={values.firstName}
-                                                                hasError={errors.firstName && touched.firstName}
-                                                                onChange={handleChange}
-                                                                onBlur={handleBlur}
-                                                                errorMsg={errors.firstName}
-                                                                autoFocus={true}
-                                                                id="firstName"
-                                                            />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                            <CustomInputField
-                                                                type="text"
-                                                                placeholder="Sms Sender *"
-                                                                value={values.firstName}
-                                                                hasError={errors.firstName && touched.firstName}
-                                                                onChange={handleChange}
-                                                                onBlur={handleBlur}
-                                                                errorMsg={errors.firstName}
-                                                                autoFocus={true}
-                                                                id="firstName"
-                                                            />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label"> Same Amount Recharge	<span className="text-danger">*</span></label>
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled>--select --</option>
-                                                            <option value="0" selected="" data-select2-id="2">
-                                                                1 Min
-                                                            </option>
-                                                            <option value="1">
-                                                                5 Min
-                                                            </option>
-                                                            <option value="2">10 Min</option>
-                                                            <option value="3">15 Min</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label"> Server<span className="text-danger">*</span></label>
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled selected="">--select --</option>
-                                                            <option value="0" data-select2-id="2">
-                                                                Running
-                                                            </option>
-                                                            <option value="1">
-                                                                Stop
-                                                            </option>
-                                                            <option value="2">
-                                                                In Progress
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">Maintainance Message<span className="text-danger">*</span></label>
-                                                        <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Working" />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">Select Sate<span className="text-danger">*</span></label>
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled selected="">--select --</option>
-                                                            <option value="AP">Andhra Pradesh</option>
-                                                            <option value="AR">Arunachal Pradesh</option>
-                                                            <option value="AS">Assam</option>
-                                                            <option value="BR">Bihar</option>
-                                                            <option value="CT">Chhattisgarh</option>
-                                                            <option value="GA">Gujarat</option>
-                                                            <option value="HR">Haryana</option>
-                                                            <option value="HP">Himachal Pradesh</option>
-                                                            <option value="JK">Jammu and Kashmir</option>
-                                                            <option value="GA">Goa</option>
-                                                            <option value="JH">Jharkhand</option>
-                                                            <option value="KA">Karnataka</option>
-                                                            <option value="KL">Kerala</option>
-                                                            <option value="MP">Madhya Pradesh</option>
-                                                            <option value="MH">Maharashtra</option>
-                                                            <option value="MN">Manipur</option>
-                                                            <option value="ML">Meghalaya</option>
-                                                            <option value="MZ">Mizoram</option>
-                                                            <option value="NL">Nagaland</option>
-                                                            <option value="OR">Odisha</option>
-                                                            <option value="PB">Punjab</option>
-                                                            <option value="RJ">Rajasthan</option>
-                                                            <option value="SK">Sikkim</option>
-                                                            <option value="TN">Tamil Nadu</option>
-                                                            <option value="TG">Telangana</option>
-                                                            <option value="TR">Tripura</option>
-                                                            <option value="UT">Uttarakhand</option>
-                                                            <option value="UP">Uttar Pradesh</option>
-                                                            <option value="WB">West Bengal</option>
-                                                            <option value="AN">Andaman and Nicobar Islands</option>
-                                                            <option value="CH">Chandigarh</option>
-                                                            <option value="DN">Dadra and Nagar Haveli</option>
-                                                            <option value="DD">Daman and Diu</option>
-                                                            <option value="DL">Delhi</option>
-                                                            <option value="LD">Lakshadweep</option>
-                                                            <option value="PY">Puducherry</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Pin Code	<span className="text-danger">*</span></label>
-                                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Pin Code" />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Pan Card Number	<span className="text-danger">*</span></label>
-                                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Pan Card Number" />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Gst Number	<span className="text-danger">(Optional)</span></label>
-                                                        <input type="number" className="form-control" id="exampleFormControlInput2" placeholder="Gst Number" />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">Login Type<span className="text-danger">*</span></label>
-                                                        {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled selected="">--select --</option>
-                                                            <option value="0" data-select2-id="2">
-                                                                With OTP
-                                                            </option>
-                                                            <option value="1">Without OTP</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Company Address	<span className="text-danger">*</span></label>
-                                                        <textarea className="form-control" id="exampleFormControlInput2" placeholder=" Company Addressode" />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Company Address	 (2)<span className="text-danger">(Optional)</span></label>
-                                                        <textarea className="form-control" id="exampleFormControlInput2" placeholder=" Company Addressode" />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Header Color Start	<span className="text-danger">*</span></label>
-                                                        <input type='color' className="form-control border-0" id="exampleFormControlInput2" />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Header Color End	<span className="text-danger">*</span></label>
-                                                        <input type='color' className="form-control border-0" id="exampleFormControlInput2" value={"#50e62b"} />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Facebook Link	<span className="text-danger">(Optional)</span></label>
-                                                        <input type='text' className="form-control border-0" id="exampleFormControlInput2" placeholder='Facebook Link' />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Instagram Link	<span className="text-danger">(Optional)</span></label>
-                                                        <input type='text' className="form-control border-0" id="exampleFormControlInput2" placeholder='Instagram Link' />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Twitter Link	<span className="text-danger">(Optional)</span></label>
-                                                        <input type='text' className="form-control border-0" id="exampleFormControlInput2" placeholder='Twitter Link' />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	YouTube Link	<span className="text-danger">(Optional)</span></label>
-                                                        <input type='text' className="form-control border-0" id="exampleFormControlInput2" placeholder='YouTube Link' />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Table Format	<span className="text-danger">*</span></label>
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled selected="">--select --</option>
-                                                            <option value="0" data-select2-id="2">
-                                                                Table 1
-                                                            </option>
-                                                            <option value="1">Table 2</option>
-                                                            <option value="1">Table 3</option>
-                                                            <option value="1">Table 4</option>
-                                                        </select>
+                                                        <CustomInputField
+                                                            type="number"
+                                                            placeholder="WhatsApp No *"
+                                                            value={values.whattsappNo}
+                                                            hasError={errors.whattsappNo && touched.whattsappNo}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.whattsappNo}
+                                                            autoFocus={true}
+                                                            id="whattsappNo"
+                                                        />
                                                     </div>
 
                                                     <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Transaction Pin	<span className="text-danger">*</span></label>
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled selected="">--select --</option>
-                                                            <option value="0" data-select2-id="2">
-                                                                Enable
-                                                            </option>
-                                                            <option value="1">Disable</option>
-                                                        </select>
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="News *"
+                                                            value={values.news}
+                                                            hasError={errors.news && touched.news}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.news}
+                                                            autoFocus={true}
+                                                            id="news"
+                                                        />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	UPI  Payout Route	<span className="text-danger">*</span></label>
-                                                        <select id="disabledSelect" class="form-select">
-                                                            <option disabled selected="">--select --</option>
-                                                            <option value="0" data-select2-id="2">
-                                                                Bachatpe
-                                                            </option>
-                                                            <option value="1">Without</option>
-                                                        </select>
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Sms Sender *"
+                                                            value={values.smsSender}
+                                                            hasError={errors.smsSender && touched.smsSender}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.smsSender}
+                                                            autoFocus={true}
+                                                            id="smsSender"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Same Amount Recharge  *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Server *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Maintainance Message "
+                                                            value={values.maintanenceMessage}
+                                                            hasError={errors.maintanenceMessage && touched.maintanenceMessage}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.maintanenceMessage}
+                                                            id="maintanenceMessage"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Select Sate *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                    <CustomInputField
+                                                            type="number"
+                                                            placeholder="Pin Code * "
+                                                            value={values.pincode}
+                                                            hasError={errors.pincode && touched.pincode}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.pincode}
+                                                            id="pincode"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Pancard  Number * "
+                                                            value={values.pancardNumber}
+                                                            hasError={errors.pancardNumber && touched.pancardNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.pancardNumber}
+                                                            id="pancardNumber"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Gst Number  (Optional)"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Login Type *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Authoriesed Name	<span className="text-danger">*</span></label>
-                                                        <input type='text' className="form-control border-0" id="exampleFormControlInput2" placeholder='Authoriesed Name' />
+                                                        <CustomTextArea
+                                                            placeholder="Company Address *"
+                                                            value={values.companyAddress_1}
+                                                            hasError={errors.companyAddress_1 && touched.companyAddress_1}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.companyAddress_1}
+                                                            autoFocus={false}
+                                                            rows="6"
+                                                            id="companyAddress_1"
+                                                        />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                        <label htmlFor="exampleFormControlInput2" className="form-label">	Designation	<span className="text-danger">*</span></label>
-                                                        <input type='text' className="form-control border-0" id="exampleFormControlInput2" placeholder='Designation' />
+                                                        <CustomTextArea
+                                                            placeholder="Company Address	 (2) (Optional) "
+                                                            value={values.companyAddress_2}
+                                                            hasError={errors.companyAddress_2 && touched.companyAddress_2}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.companyAddress_2}
+                                                            autoFocus={false}
+                                                            rows="6"
+                                                            id="companyAddress_2"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="color"
+                                                            placeholder="Header Color Start	"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="color"
+                                                            placeholder="Header Color End	*"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                       
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Facebook Link (Optional)	"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                       
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Instagram Link	(Optional)"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Twitter Link (Optional)"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="YouTube Link	(Optional)"
+                                                            value={values.gstNumber}
+                                                            hasError={errors.gstNumber && touched.gstNumber}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.gstNumber}
+                                                            id="gstNumber"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Table Format *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Transaction Pin *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="UPI  Payout Route *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Authoriesed Name *	"
+                                                            value={values.authorisedName}
+                                                            hasError={errors.authorisedName && touched.authorisedName}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.authorisedName}
+                                                            id="authorisedName"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                    <CustomInputField
+                                                            type="text"
+                                                            placeholder="Designation	*"
+                                                            value={values.designation}
+                                                            hasError={errors.designation && touched.designation}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.designation}
+                                                            id="designation"
+                                                        />
                                                     </div>
 
                                                     <div className=''>

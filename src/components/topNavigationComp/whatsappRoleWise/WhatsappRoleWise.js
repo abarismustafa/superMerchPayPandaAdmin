@@ -1,6 +1,6 @@
 import React from 'react'
-import SendRoleWise from './sendRoleWise/SendRoleWise'
 import SendRoleWiseWithImage from './sendRoleWiseWithImage/SendRoleWiseWidthImage'
+import SendRoleWise from '../../../pages/topNavigationPages/whatsAppPages'
 
 const WhatsappRoleWise = () => {
     return (

@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-function PendingTranRepList() {
+function PendingTranRepLists() {
     return (
         <section>
             <div className="row">
@@ -86,4 +85,4 @@ function PendingTranRepList() {
     )
 }
 
-export default PendingTranRepList
+export default PendingTranRepLists
