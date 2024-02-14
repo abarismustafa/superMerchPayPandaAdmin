@@ -15236,7 +15236,7 @@ label {
 }
 
 .nav-header {
-  height:4rem;
+  height: 4rem;
   width: 15rem;
   display: inline-block;
   text-align: left;
@@ -45843,22 +45843,24 @@ table.dataTable thead .sorting_asc {
 .active-projects .tbl-caption {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
-    padding-left: 20px;
+  padding-left: 20px;
 }
-.active-projects .tbl-caption button{
+
+.active-projects .tbl-caption button {
   padding: 10px 20px;
   color: #fff;
   cursor: pointer;
   border: none;
   outline: none;
   background: transparent;
- 
+
 }
-.active-projects .tbl-caption button:disabled{
+
+.active-projects .tbl-caption button:disabled {
   cursor: auto;
 }
 
-.active-projects .tbl-caption button.active{
+.active-projects .tbl-caption button.active {
   background-color: #fff;
   color: #000;
   border-radius: 5px 5px 0px 0px;
@@ -45909,7 +45911,7 @@ table.dataTable thead .sorting_asc {
   justify-content: space-between;
   flex-flow: wrap;
   background-color: rgb(44 44 44);
-  gap:10px;
+  gap: 10px;
 }
 
 .active-projects.style-1 .dt-buttons .dt-button {
@@ -55255,6 +55257,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .relative {
   position: relative;
 }
+
 .absolute {
   position: absolute;
   z-index: 111;
@@ -55275,14 +55278,26 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   z-index: 111;
   width: 100%;
 }
-#justify-none_Tab1{
-  justify-content: flex-start ;
+
+#justify-none_Tab1 {
+  justify-content: flex-start;
   padding-top: .4rem;
   padding-bottom: 0;
 }
+
 input[type=file]::file-selector-button {
   display: none;
 }
+
+.login-content a,
+img {
+  width: 200px;
+}
+
+.h-100-2 {
+  height: 100% !important;
+}
+
 /* TODO please don't touch */
 
 /*# sourceMappingURL=style-rtl.css.map */
