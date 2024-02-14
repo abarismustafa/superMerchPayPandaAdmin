@@ -20,8 +20,8 @@ function DasBoardPage() {
             className={`content-body ${!showAsideBar ? "hide" : ""}`}
             style={{ minHeight: "816px" }}
           >
-            <PageTitle />
-            <div className="container-fluid">
+            {/* <PageTitle /> */}
+            <div className="">
               <Outlet></Outlet>
             </div>
           </div>
