@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import DearMearchantPopUp from "../../common/dearMearchantPopUp/DearMearchantPopUp"
+import Breadcrumbs from "../../common/breadcrumb/Breadcrumbs";
 
 function DasBoardRight() {
     const [modalShow, setModalShow] = useState(false);
     useEffect(() => {
         setModalShow(true)
     }, [])
+    const breadCrumbsTitle = {
+        id:"1",
+        title_1:"Dashboard",
+        title_2:"",
+    }
     return (
         <>
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-xl-9 wid-100">

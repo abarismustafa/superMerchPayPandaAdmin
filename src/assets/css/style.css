@@ -5603,9 +5603,9 @@ fieldset:disabled .btn {
   float: left;
   padding-right: var(--bs-breadcrumb-item-padding-x);
   color: var(--bs-breadcrumb-divider-color);
-  content: var(--bs-breadcrumb-divider, "https://superadmin.paypandabnk.com/")
-    /* rtl: var(--bs-breadcrumb-divider, "/") */
-  ;
+  /* content: var(--bs-breadcrumb-divider, "https://superadmin.paypandabnk.com/")
+    rtl: var(--bs-breadcrumb-divider, "/")
+  ; */
 }
 
 .breadcrumb-item.active {
@@ -20263,7 +20263,6 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   padding-bottom: 10px;
   height: calc(100% - 3.125rem);
   position: absolute;
-  top: 3.125rem;
   padding-top: 1rem;
   z-index: 6;
   background-color: var(--sidebar-bg);
