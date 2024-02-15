@@ -24,7 +24,7 @@ function Login() {
     };
 
     const submitSignIn = async () => {
-        debugger
+
         let result = LoginSubmit(loginForm)
     }
 
