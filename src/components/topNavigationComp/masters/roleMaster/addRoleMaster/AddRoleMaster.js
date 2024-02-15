@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField"
 import { Formik } from "formik";
-
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Role Master",
+    title_2: "Add Role Master",
+}
 function AddRoleMaster() {
     const initialValues = {
         roleTitle: ''
@@ -57,7 +63,8 @@ function AddRoleMaster() {
     };
     return (
         <>
-            <div className="row">
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

@@ -91,7 +91,7 @@ function Boardcast() {
     return (
         <section>
             <div className=''>
-                <div className='row '>
+                <div className='row m-4'>
                     <div className='col-md-12 col-12'>
                         <div className='card p-4'>
                             <div className='border-bottom'>

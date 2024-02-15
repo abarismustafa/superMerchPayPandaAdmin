@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 
 function UpdateAgentOnbording() {
     const initialValues = {
@@ -13,6 +14,12 @@ function UpdateAgentOnbording() {
         email: '',
         aadharNumber: '',
         panNumber: ''
+    };
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Master",
+        title_2: "Agent Onboarding ",
+        title_3: "Update  Agent Onboarding ",
     }
 
     const validate = (values) => {
@@ -84,7 +91,8 @@ function UpdateAgentOnbording() {
     };
     return (
         <>
-            <div className="row">
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

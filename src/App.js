@@ -130,7 +130,7 @@ import FrontBannerPage from './pages/topNavigationPages/websiteMaster/frontBanne
 import UserPannelSliderPage from './pages/topNavigationPages/websiteMaster/userPannelSlider';
 import LoginPage from './pages/login';
 
-
+import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/updatePaymentRequestView';
 
 function App() {
   return (
@@ -244,7 +244,7 @@ function App() {
           <Route path="update-balance-return-request" element={<UpdateBlanceReturnRequest />} />
           <Route path="payment-request-view" element={<PaymentRequestViewPage />} />
           <Route path="add-payment-request-view" element={<AddPaymentRequestView />} />
-          <Route path="update-payment-request-view" element={<AddPaymentRequestView />} />
+          <Route path="update-payment-request-view" element={<UpdatePaymentRequestView />} />
           <Route path="payment-request" element={<PaymentRequestPage />} />
           <Route path="pending-dispute" element={<PendingDisputPage />} />
           <Route path="add-pending-dispute" element={<AddPendingDispute />} />

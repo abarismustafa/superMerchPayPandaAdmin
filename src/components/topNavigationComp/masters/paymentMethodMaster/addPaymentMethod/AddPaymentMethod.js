@@ -1,10 +1,17 @@
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 
 function AddPaymentMethod() {
     const initialValues = {
         methodType: ''
+    };
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Master",
+        title_2: "Payment Method",
+        title_3: "Add Payment Method",
     }
 
     const validate = (values) => {
@@ -33,7 +40,8 @@ function AddPaymentMethod() {
     };
     return (
         <>
-            <div className="row">
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

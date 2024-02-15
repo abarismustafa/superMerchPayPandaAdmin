@@ -2,9 +2,15 @@ import React from 'react'
 import CustomInputField from '../../../common/CustomInputField'
 import { Formik } from 'formik';
 import CustomDropdown from '../../../common/CustomDropdown';
+import Breadcrumbs from '../../../common/breadcrumb/Breadcrumbs';
 
 function AddSuspendedUser() {
-
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Members",
+        title_2: "Suspended User",
+        title_3: "Add Suspended User",
+    }
     const itemList = [
         {
             name: "Success",
@@ -119,9 +125,10 @@ function AddSuspendedUser() {
         // TODO
     };
 
-
     return (
-        <div className="row">
+        <>
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+        <div className="row m-4">
             <div className="col-xl-12">
                 <div className="card">
                     <div className="card-body p-0">
@@ -307,6 +314,7 @@ function AddSuspendedUser() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

@@ -2,7 +2,13 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
 import CustomTextArea from "../../../common/CustomTextArea";
-
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Dispute",
+    title_2: "Solve Dispute",
+    title_3: "Update Solve Dispute",
+}
 function UpdateSolveDispute() {
     const initialValues = {
         txnDate: '',
@@ -91,13 +97,14 @@ function UpdateSolveDispute() {
 
     return (
         <>
-            <div className="row">
+       <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD SOLVE DISPUTE</h4>
+                                    <h4 className="heading mb-0">UPDATE SOLVE DISPUTE</h4>
                                 </div>
                                 <Formik
                                     initialValues={initialValues}

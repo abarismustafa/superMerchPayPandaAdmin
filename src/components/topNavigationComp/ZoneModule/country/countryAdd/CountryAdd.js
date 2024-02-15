@@ -3,6 +3,7 @@ import CustomInputField from "../../../../../common/CustomInputField";
 import { Formik } from "formik";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import CustomTextArea from "../../../../../common/CustomTextArea";
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 const initialValues = {
     shortingNumber: "",
     uniqCode: "",
@@ -13,6 +14,12 @@ const initialValues = {
     parentArea: "",
     status: "",
     description: "",
+};
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Zone Module",
+    title_2: "Country",
+    title_3: "Add Country",
 }
 function CountryAdd() {
     const name = "dropdown";
@@ -99,6 +106,7 @@ function CountryAdd() {
 
     return (
         <>
+         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <Formik
                 initialValues={initialValues}
                 validate={validate}
@@ -117,7 +125,7 @@ function CountryAdd() {
                         dirty,
                     } = formik;
                     return (
-                        <div className="row">
+                        <div className="row m-4">
                             <div className="col-xl-12">
                                 <div className="card">
                                     <div className="card-body p-0">

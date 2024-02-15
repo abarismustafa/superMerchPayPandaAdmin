@@ -1,6 +1,8 @@
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
+import { BreadcrumbItem } from "react-bootstrap";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 const initialValues = {
     basicDetails: {
@@ -13,6 +15,13 @@ const initialValues = {
         normalBalance: ""
     },
 };
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Payment",
+    title_2: "Balalnce Transfer",
+    title_3: "Update Balalnce Transfer",
+    
+}
 function UpdateBlanceTransfer() {
     const validate = (values) => {
         let errors = {};
@@ -56,7 +65,9 @@ function UpdateBlanceTransfer() {
                         handleBlur,
                     } = formik;
                     return (
-                        <div className="row">
+                        <>
+                        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+                        <div className="row m-4">
                             <div className="col-xl-12">
                                 <div className="card">
                                     <div className="card-body p-0">
@@ -130,6 +141,7 @@ function UpdateBlanceTransfer() {
                                 </div>
                             </div>
                         </div>
+                        </>
                     );
                 }}
             </Formik>

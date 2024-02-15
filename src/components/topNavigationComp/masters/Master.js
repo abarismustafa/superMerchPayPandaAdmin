@@ -8,9 +8,17 @@ import Reports from './reports/Reports'
 import Payment from './payment/Payment'
 import Dispute from './dispute/Dispute'
 import Leadgenerations from './leadgenerations/Leadgenerations'
+import Breadcrumbs from '../../../common/breadcrumb/Breadcrumbs'
 
 
 const TAB = ["MASTER", "API MASTERS", "SETTINGS", "WEBSITE MASTER", 'MEMBER', "REPORT", "PAYMENT", "DISPUTE"];
+const breadCrumbsTitle = {
+  id: "1",
+  title_1: "Master",
+  title_2: "Company Staff",
+  title_3:'Company Staff Permission'
+}
+
 function Master() {
   const [selectedTabPosition, setSelectedTabPosition] = useState(0);
   const tabChange = (position) => {
@@ -19,9 +27,9 @@ function Master() {
   };
   return (
     <>
-
       <section className="CreateUserDistributer ">
-        <div className="row">
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+        <div className="row m-4">
           <div className="col-xl-12">
             <div className="card">
               <div className="card-body p-0">

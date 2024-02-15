@@ -16,8 +16,8 @@ function SearchStatus() {
     };
     return (
         <>
-            <div className='row'>
-                <div className="col-xl-12 row-sm mt-3">
+            <div className='row m-4'>
+                <div className="col-xl-12 row-sm ">
                     <div className="card">
                         <div className="card-body">
                             <div className="table-responsive">

@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom'
 function OperatorWiseReportList() {
     return (
         <>
-         <section className="ListDistributer mt-3">
-                <div className="row">
+            <section className="ListDistributer ">
+                <div className="row m-4">
                     <div className="col-xl-12">
                         <div className="card">
                             <div className="card-body p-0">
                                 <div className="table-responsive active-projects style-1">
                                     <div className="tbl-caption">
-                                        <h4 className="heading mb-0"><b>All Transaction List</b></h4>
+                                        <h4 className="heading mb-0"><b>Operator Wise List</b></h4>
                                         <div>
                                             <Link className="btn btn-primary btn-sm" to="/admin/add-operator-wise-sale" role="button" aria-controls="offcanvasExample">+  ADD Operator Wise Report
- </Link>
+                                            </Link>
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
@@ -26,18 +26,18 @@ function OperatorWiseReportList() {
                                             <thead>
                                                 <tr role="row">
                                                     <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                    Sr No
+                                                        Sr No
                                                     </th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
-                                                    Provider
+                                                        Provider
                                                     </th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                    Amount</th>
+                                                        Amount</th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
-                                                    User common
+                                                        User common
                                                     </th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Count</th>
+                                                        Count</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

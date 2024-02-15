@@ -3,8 +3,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CustomInputField from '../../../../../common/CustomInputField';
 import CustomDropdown from '../../../../../common/CustomDropdown';
+import Breadcrumbs from '../../../../../common/breadcrumb/Breadcrumbs';
 
 const AddCashFreeGateway = () => {
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Master",
+        title_2: "Cashfree Gateway Master ",
+        title_3: "Add Cashfree Gateway Master ",
+    }
+
     const itemList = [
         {
             name: "Active",
@@ -88,141 +96,144 @@ const AddCashFreeGateway = () => {
         // TODO
     };
     return (
-        <div className="row">
-            <div className="col-xl-12">
-                <div className="card">
-                    <div className="card-body p-0">
-                        <div className="table-responsive active-projects style-1">
-                            <div className="tbl-caption tbl-caption-2">
-                                <h4 className="heading mb-0">ADD CASHFREE GATEWAY -</h4>
-                            </div>
-                            <Formik
-                                initialValues={initialValues}
-                                validate={validate}
-                                onSubmit={submitForm}
+        <>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">ADD CASHFREE GATEWAY -</h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
 
-                            >
-                                {(formik) => {
-                                    const {
-                                        values,
-                                        handleChange,
-                                        handleSubmit,
-                                        errors,
-                                        touched,
-                                        handleBlur,
-                                        isValid,
-                                        dirty,
-                                    } = formik;
-                                    return (
-                                        <form className="tbl-captionn">
-                                            <div className="row">
-                                                {/* <div className="col-xl-4 mb-3">
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    {/* <div className="col-xl-4 mb-3">
                                         <label htmlFor="exampleFormControlInput1" className="form-label">Joining Date <span className="text-danger">*</span></label>
                                         <input type="date" className="form-control" id="exampleFormControlInput1" />
                                     </div> */}
-                                                <div className="col-xl-4 mb-3">
+                                                    <div className="col-xl-4 mb-3">
 
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.appId}
-                                                        hasError={errors.appId && touched.appId}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.appId}
-                                                        autoFocus={true}
-                                                        id="appId"
-                                                        name="appId"
-                                                        placeholder="App Id"
-                                                    />
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.appId}
+                                                            hasError={errors.appId && touched.appId}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.appId}
+                                                            autoFocus={true}
+                                                            id="appId"
+                                                            name="appId"
+                                                            placeholder="App Id"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.secreteKey}
+                                                            hasError={errors.secreteKey && touched.secreteKey}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.secreteKey}
+                                                            autoFocus={true}
+                                                            id="secreteKey"
+                                                            name="secreteKey"
+                                                            placeholder="Secrete Key"
+                                                        />
+
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.baseUrl}
+                                                            hasError={errors.baseUrl && touched.baseUrl}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.baseUrl}
+                                                            autoFocus={true}
+                                                            id="baseUrl"
+                                                            name="baseUrl"
+                                                            placeholder="Base Url"
+                                                        />
+
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <CustomDropdown
+                                                            itemList={itemList}
+                                                            placeholder="Select Status *"
+                                                            isSingleSelect={false}
+                                                            icon={true}
+                                                            onChange={changeHandle}
+                                                        />
+                                                        {/* <textarea className="form-control" defaultValue={"Reason"} /> */}
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.minAmount}
+                                                            hasError={errors.minAmount && touched.minAmount}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.minAmount}
+                                                            autoFocus={true}
+                                                            id="minAmount"
+                                                            name="minAmount"
+                                                            placeholder="Min-Amount"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.maxAmount}
+                                                            hasError={errors.maxAmount && touched.maxAmount}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.maxAmount}
+                                                            autoFocus={true}
+                                                            id="maxAmount"
+                                                            name="maxAmount"
+                                                            placeholder="Max-Amount"
+                                                        />
+                                                    </div>
                                                 </div>
-                                                <div className="col-xl-4 mb-3">
-
-                                                    <CustomInputField
-                                                        type="text"
-                                                        value={values.secreteKey}
-                                                        hasError={errors.secreteKey && touched.secreteKey}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.secreteKey}
-                                                        autoFocus={true}
-                                                        id="secreteKey"
-                                                        name="secreteKey"
-                                                        placeholder="Secrete Key"
-                                                    />
-
+                                                <div>
+                                                    <Link to='/admin/cashfree-gateway-master' className="btn btn-danger light ms-1">Cancel</Link>
+                                                    <button className="btn btn-primary me-1">Submit</button>
                                                 </div>
-                                                <div className="col-xl-4 mb-3">
+                                            </form>
+                                        );
+                                    }}
+                                </Formik>
 
-                                                    <CustomInputField
-                                                        type="text"
-                                                        value={values.baseUrl}
-                                                        hasError={errors.baseUrl && touched.baseUrl}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.baseUrl}
-                                                        autoFocus={true}
-                                                        id="baseUrl"
-                                                        name="baseUrl"
-                                                        placeholder="Base Url"
-                                                    />
-
-                                                </div>
-                                                <div className="col-xl-4 mb-3">
-
-                                                    <CustomDropdown
-                                                        itemList={itemList}
-                                                        placeholder="Select Status *"
-                                                        isSingleSelect={false}
-                                                        icon={true}
-                                                        onChange={changeHandle}
-                                                    />
-                                                    {/* <textarea className="form-control" defaultValue={"Reason"} /> */}
-                                                </div>
-                                                <div className="col-xl-4 mb-3">
-
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.minAmount}
-                                                        hasError={errors.minAmount && touched.minAmount}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.minAmount}
-                                                        autoFocus={true}
-                                                        id="minAmount"
-                                                        name="minAmount"
-                                                        placeholder="Min-Amount"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-4 mb-3">
-
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.maxAmount}
-                                                        hasError={errors.maxAmount && touched.maxAmount}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.maxAmount}
-                                                        autoFocus={true}
-                                                        id="maxAmount"
-                                                        name="maxAmount"
-                                                        placeholder="Max-Amount"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <Link to='/admin/cashfree-gateway-master' className="btn btn-danger light ms-1">Cancel</Link>
-                                                <button className="btn btn-primary me-1">Submit</button>
-                                            </div>
-                                        </form>
-                                    );
-                                }}
-                            </Formik>
-
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

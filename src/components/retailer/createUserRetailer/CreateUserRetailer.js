@@ -42,7 +42,7 @@ function CreateUserRetailer() {
   };
     return (
         <>
-            <section className="CreateUserDistributer ">
+            <section className="CreateUserDistributer m-4">
         <div className="row">
           <div className="col-xl-12">
             <div className="card">
