@@ -4,8 +4,12 @@ import loginimg from '../../assets/images/logo/login.jpg'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
+import { Spinner } from 'react-bootstrap';
+import { LoginSubmit } from '../../api/login/Login';
+import CustomInputField from '../../common/CustomInputField';
 function Login() {
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
     const [loginForm, setLoginForm] = useState({
         email: "",
         password: "",
@@ -20,14 +24,11 @@ function Login() {
     };
 
     const submitSignIn = async () => {
-        // try {
-        //     const res = await axios.post('https://api.paypandabnk.com/staff/login', loginForm)
-        //     console.log(res);
-        // } catch (error) {
-
-        // }
-        navigate('/admin')
+        debugger
+        let result = LoginSubmit(loginForm)
     }
+
+
     return (
         <>
             <div className="authincation h-100 h-100-2">
@@ -41,12 +42,37 @@ function Login() {
                                 </div>
                                 <form action="#">
                                     <div className="mb-4">
-                                        <label className="mb-1 text-dark">Email</label>
-                                        <input type="email" className="form-control form-control" name='email' value={loginForm.email} placeholder='Enter Email' onChange={handleChangeLogin} />
+                                        {/* <label className="mb-1 text-dark">Email</label> */}
+
+                                        <CustomInputField
+                                            type="email"
+                                            placeholder="Enter Email *"
+                                            value={loginForm.email}
+                                            name='email'
+                                            // hasError={errors.firstName && touched.firstName}
+                                            onChange={handleChangeLogin}
+                                        // onBlur={handleBlur}
+                                        // errorMsg={errors.firstName}
+                                        // autoFocus={true}
+                                        // id="firstName"
+                                        />
+
                                     </div>
                                     <div className="mb-4 position-relative">
-                                        <label className="mb-1 text-dark">Password</label>
-                                        <input type="password" id="dz-password" className="form-control" name='password' value={loginForm.password} placeholder='Enter Password' onChange={handleChangeLogin} />
+                                        {/* <label className="mb-1 text-dark">Password</label> */}
+                                        <CustomInputField
+                                            type="password"
+                                            placeholder="Enter Password *"
+                                            value={loginForm.password}
+                                            name='password'
+                                            // hasError={errors.firstName && touched.firstName}
+                                            onChange={handleChangeLogin}
+                                        // onBlur={handleBlur}
+                                        // errorMsg={errors.firstName}
+                                        // autoFocus={true}
+                                        // id="firstName"
+                                        />
+
                                         {/* <span className="show-pass eye">
                                             <i className="fa fa-eye-slash" />
                                             <i className="fa fa-eye" />
@@ -64,7 +90,7 @@ function Login() {
                                         </div>
                                     </div>
                                     <div className="text-center mb-4">
-                                        <button type="button" className="btn btn-primary btn-block" onClick={submitSignIn}>Sign In</button>
+                                        <button type="button" className="btn btn-primary btn-block" onClick={submitSignIn}>{loading && <Spinner animation="border" />}Sign In</button>
                                     </div>
                                     <h6 className="login-title"><span>Or continue with</span></h6>
                                     <div className="mb-3">
