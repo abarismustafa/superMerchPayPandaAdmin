@@ -317,6 +317,32 @@ export const navigationData = {
       ],
     },
     {
+      uniqueId: "menu_17",
+      id: "17",
+      title: "Setup & Configurations",
+      icon: <SiQzone />,
+      subMenus: [
+        {
+          uniqueId: "submenu_17_1",
+          id: "1",
+          title: "Country",
+          path: "#",
+        },
+        {
+          uniqueId: "submenu_17_2",
+          id: "2",
+          title: "Language",
+          path: "#",
+        },
+        {
+          uniqueId: "submenu_18_3",
+          id: "3",
+          title: "Currency",
+          path: "currency",
+        },
+      ],
+    },
+    {
       uniqueId: "menu_7",
       id: "7",
       title: "APIs Masters",

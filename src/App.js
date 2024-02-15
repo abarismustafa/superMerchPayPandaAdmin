@@ -129,6 +129,8 @@ import DynemicPage from './pages/topNavigationPages/websiteMaster/dynemicPage';
 import FrontBannerPage from './pages/topNavigationPages/websiteMaster/frontBanner';
 import UserPannelSliderPage from './pages/topNavigationPages/websiteMaster/userPannelSlider';
 import LoginPage from './pages/login';
+import CurrencyPage from './pages/currency';
+import AddCurrency from './components/currency/addCurrency/AddCurrency';
 
 import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/updatePaymentRequestView';
 
@@ -270,6 +272,8 @@ function App() {
           <Route path="add-cashfree-gateway-master" element={<AddCashFreeGateway />} />
           <Route path="whatapp/send-role-wise" element={<SendRoleWise />} />
           <Route path="company-setting" element={<CompanySettings />} />
+          <Route path="currency" element={<CurrencyPage />} />
+          <Route path="add-currency" element={<AddCurrency />} />
           <Route path="page-not-found" element={<PageNotFound />} />
 
         </Route>
