@@ -128,13 +128,16 @@ import NotificationSettingsPage from './pages/topNavigationPages/settings/notifi
 import DynemicPage from './pages/topNavigationPages/websiteMaster/dynemicPage';
 import FrontBannerPage from './pages/topNavigationPages/websiteMaster/frontBanner';
 import UserPannelSliderPage from './pages/topNavigationPages/websiteMaster/userPannelSlider';
-import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/UpdatePaymentRequestView';
+import LoginPage from './pages/login';
+import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/updatePaymentRequestView';
 
 function App() {
   return (
     <>
+
       <Routes>
-        <Route path="/" element={<Navigate to="/admin" />} />
+        <Route path="/loginPage" element={<LoginPage />} />
+        <Route path="/" element={<Navigate to="/loginPage" />} />
         <Route path='/admin' element={<DasBoardPage />} >
           <Route path='' element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
