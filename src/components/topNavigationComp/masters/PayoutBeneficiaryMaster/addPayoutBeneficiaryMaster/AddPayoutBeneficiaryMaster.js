@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 
 function AddPayoutBeneficiaryMaster() {
     const initialValues = {
@@ -10,6 +11,12 @@ function AddPayoutBeneficiaryMaster() {
         accountNumber: '',
         holderName: '',
         IFSCCode: '',
+    };
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Master",
+        title_2: "Payout Beneficiary ",
+        title_3: "Add Payout Beneficiary ",
     }
 
     const validate = (values) => {
@@ -76,7 +83,8 @@ function AddPayoutBeneficiaryMaster() {
     };
     return (
         <>
-            <div className="row">
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

@@ -128,8 +128,7 @@ import NotificationSettingsPage from './pages/topNavigationPages/settings/notifi
 import DynemicPage from './pages/topNavigationPages/websiteMaster/dynemicPage';
 import FrontBannerPage from './pages/topNavigationPages/websiteMaster/frontBanner';
 import UserPannelSliderPage from './pages/topNavigationPages/websiteMaster/userPannelSlider';
-
-
+import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/UpdatePaymentRequestView';
 
 function App() {
   return (
@@ -241,7 +240,7 @@ function App() {
           <Route path="update-balance-return-request" element={<UpdateBlanceReturnRequest />} />
           <Route path="payment-request-view" element={<PaymentRequestViewPage />} />
           <Route path="add-payment-request-view" element={<AddPaymentRequestView />} />
-          <Route path="update-payment-request-view" element={<AddPaymentRequestView />} />
+          <Route path="update-payment-request-view" element={<UpdatePaymentRequestView />} />
           <Route path="payment-request" element={<PaymentRequestPage />} />
           <Route path="pending-dispute" element={<PendingDisputPage />} />
           <Route path="add-pending-dispute" element={<AddPendingDispute />} />

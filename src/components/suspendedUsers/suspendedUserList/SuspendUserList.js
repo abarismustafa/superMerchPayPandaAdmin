@@ -10,9 +10,9 @@ function SuspendedUserList() {
                             <div className="card-body p-0">
                                 <div className="table-responsive active-projects style-1">
                                     <div className="tbl-caption">
-                                        <h4 className="heading mb-0"><b>Suspended User List LIST</b></h4>
+                                        <h4 className="heading mb-0"><b>Suspended User List </b></h4>
                                         <div>
-                                            <Link className="btn btn-primary btn-sm" to="/admin/add-suspended-users" role="button" aria-controls="offcanvasExample">+  Create Retailer</Link>
+                                            <Link className="btn btn-primary btn-sm" to="/admin/add-suspended-users" role="button" aria-controls="offcanvasExample">+  Create Suspended User</Link>
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}

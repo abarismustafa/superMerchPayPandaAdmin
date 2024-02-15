@@ -21,7 +21,7 @@ function DistributerKycStatus() {
   };
   return (
     <>
-      <div className="kycStatus ">
+      <div className="kycStatus m-4">
         <div className="">
           <div className="row">
             <div className="col-lg-12 col-md-12">

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 function DebitReportList() {
     return <>
-        <section className="ListDistributer mt-3">
-                <div className="row">
+        <section className="ListDistribute">
+                <div className="row m-4">
                     <div className="col-xl-12">
                         <div className="card">
                             <div className="card-body p-0">

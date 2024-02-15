@@ -21,7 +21,7 @@ function DistributeIncomeModle(props) {
                             <div className="col-sm-12 mt-3">
                                 <div className="form-group">
                                     <label htmlFor="name" className="mb-2">Menu Name</label>
-                                    <input type="text" id="download_menu_name" className="form-control" defaultValue="Not Working Users" readOnly />
+                                    <input type="text" id="download_menu_name" className="form-control" defaultValue="Distributor Income" readOnly />
                                 </div>
                             </div>
                             <div className="col-sm-12 mt-3">

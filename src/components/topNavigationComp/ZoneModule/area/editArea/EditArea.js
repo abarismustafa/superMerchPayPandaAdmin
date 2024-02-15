@@ -2,11 +2,17 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 const initialValues = {
     name: "",
     level: ""
 }
-
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Zone Module",
+    title_2: "Area",
+    title_3: "Update Area",
+}
 function EditArea() {
     const name = "dropdown";
     const placeholder = "Course Name";
@@ -41,6 +47,7 @@ function EditArea() {
     };
     return (
         <>
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <Formik
                 initialValues={initialValues}
                 validate={validate}
@@ -59,7 +66,7 @@ function EditArea() {
                         dirty,
                     } = formik;
                     return (
-                        <div className="row">
+                        <div className="row m-4">
                             <div className="col-xl-12">
                                 <div className="card">
                                     <div className="card-body p-0">

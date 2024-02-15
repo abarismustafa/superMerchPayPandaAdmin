@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
 import CustomDropdown from "../../../common/CustomDropdown";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 const initialValues = {
     userName: "",
     requestDate: "",
@@ -12,6 +13,12 @@ const initialValues = {
     utr: "",
     paymentType: "",
 };
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Payment",
+    title_2: "Payment Request View",
+    title_3: "Add Payment Request View",
+}
 function AddPaymentRequestView() {
     const name = "dropdown";
     const placeholder = "Course Name";
@@ -106,130 +113,134 @@ function AddPaymentRequestView() {
                         dirty,
                     } = formik;
                     return (
-                        <div className="row">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0">ADD PAYMENT REQUEST VIEW</h4>
-                                            </div>
-                                            <form className="tbl-captionn">
-                                                <div className="row">
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="User Name *"
-                                                            value={values.userName}
-                                                            hasError={errors.userName && touched.userName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.userName}
-                                                            autoFocus={true}
-                                                            id="userName"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="date"
-                                                            placeholder="Request Date *"
-                                                            value={values.requestDate}
-                                                            hasError={errors.requestDate && touched.requestDate}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.requestDate}
-                                                            autoFocus={true}
-                                                            id="requestDate"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Paymet Date *"
-                                                            value={values.paymentDate}
-                                                            hasError={errors.paymentDate && touched.paymentDate}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.paymentDate}
-                                                            autoFocus={true}
-                                                            id="paymentDate"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Bank *"
-                                                            value={values.bank}
-                                                            hasError={errors.bank && touched.bank}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.bank}
-                                                            autoFocus={true}
-                                                            id="bank"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Method *"
-                                                            value={values.method}
-                                                            hasError={errors.method && touched.method}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.method}
-                                                            autoFocus={true}
-                                                            id="method"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="number"
-                                                            placeholder="Amount *"
-                                                            value={values.amount}
-                                                            hasError={errors.amount && touched.amount}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.amount}
-                                                            autoFocus={true}
-                                                            id="amount"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="UTR *"
-                                                            value={values.utr}
-                                                            hasError={errors.utr && touched.utr}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.utr}
-                                                            autoFocus={true}
-                                                            id="utr"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <div className="dropdownWrapper">
-                                                            <CustomDropdown
-                                                                itemList={itemList}
-                                                                placeholder="Select Payment Type *"
-                                                                isSingleSelect={false}
-                                                                icon={true}
-                                                                onChange={changeHandle}
+                        <>
+                            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+
+                            <div className="row m-4">
+                                <div className="col-xl-12">
+                                    <div className="card">
+                                        <div className="card-body p-0">
+                                            <div className="table-responsive active-projects style-1">
+                                                <div className="tbl-caption tbl-caption-2">
+                                                    <h4 className="heading mb-0">ADD PAYMENT REQUEST VIEW</h4>
+                                                </div>
+                                                <form className="tbl-captionn">
+                                                    <div className="row">
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="User Name *"
+                                                                value={values.userName}
+                                                                hasError={errors.userName && touched.userName}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.userName}
+                                                                autoFocus={true}
+                                                                id="userName"
                                                             />
                                                         </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="date"
+                                                                placeholder="Request Date *"
+                                                                value={values.requestDate}
+                                                                hasError={errors.requestDate && touched.requestDate}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.requestDate}
+                                                                autoFocus={true}
+                                                                id="requestDate"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Paymet Date *"
+                                                                value={values.paymentDate}
+                                                                hasError={errors.paymentDate && touched.paymentDate}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.paymentDate}
+                                                                autoFocus={true}
+                                                                id="paymentDate"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Bank *"
+                                                                value={values.bank}
+                                                                hasError={errors.bank && touched.bank}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.bank}
+                                                                autoFocus={true}
+                                                                id="bank"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Method *"
+                                                                value={values.method}
+                                                                hasError={errors.method && touched.method}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.method}
+                                                                autoFocus={true}
+                                                                id="method"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="number"
+                                                                placeholder="Amount *"
+                                                                value={values.amount}
+                                                                hasError={errors.amount && touched.amount}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.amount}
+                                                                autoFocus={true}
+                                                                id="amount"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="UTR *"
+                                                                value={values.utr}
+                                                                hasError={errors.utr && touched.utr}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.utr}
+                                                                autoFocus={true}
+                                                                id="utr"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <div className="dropdownWrapper">
+                                                                <CustomDropdown
+                                                                    itemList={itemList}
+                                                                    placeholder="Select Payment Type *"
+                                                                    isSingleSelect={false}
+                                                                    icon={true}
+                                                                    onChange={changeHandle}
+                                                                />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <Link to='/admin/payment-request-view' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
-                                                </div>
-                                            </form>
+                                                    <div>
+                                                        <Link to='/admin/payment-request-view' className="btn btn-danger light ms-1">Cancel</Link>
+                                                        <button className="btn btn-primary me-1">Submit</button>
+                                                    </div>
+                                                </form>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </>
                     );
                 }}
             </Formik>

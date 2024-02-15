@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 function BlanceTransferList() {
     return (
         <>
-            <div className="row">
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

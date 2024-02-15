@@ -45,8 +45,8 @@ function CreditReportForm() {
             dirty,
           } = formik;
           return (
-            <section>
-              <div className="row">
+            <>
+              <div className="row m-4">
                 <div className="col-xl-12">
                   <div className="card">
                     <div className="card-body p-0">
@@ -84,7 +84,7 @@ function CreditReportForm() {
                             </div>
 
                             <div className="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
-                              
+
                               <button className="btn btn-primary pd-x-20 rounded-0 " type="submit"><i className="fas fa-search"></i> Search</button>
                               <button className="btn btn-danger pd-x-20" type="button" data-toggle="modal" data-target="#transaction_download_model" onClick={() => { setModalShow(true) }}>
                                 <FaDownload /> Download
@@ -99,8 +99,8 @@ function CreditReportForm() {
                 </div>
               </div>
               <CreditReportModal show={modalShow}
-                    onHide={() => setModalShow(false)} />
-            </section>
+                onHide={() => setModalShow(false)} />
+            </>
           );
         }}
       </Formik>

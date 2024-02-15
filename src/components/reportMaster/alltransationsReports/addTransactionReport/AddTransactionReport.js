@@ -2,8 +2,15 @@ import { Formik } from 'formik';
 import React from 'react'
 import CustomInputField from '../../../../common/CustomInputField';
 import CustomDropdown from '../../../../common/CustomDropdown';
+import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
 
 function AddTransactionReport() {
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Reports",
+        title_2: "All Transactions Report",
+        title_3: "Add Transactions Report",
+    }
     const itemList = [
         {
             name: "Success",
@@ -129,7 +136,9 @@ function AddTransactionReport() {
         // TODO
     };
     return (
-        <div className="row">
+        <>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+        <div className="row m-4">
             <div className="col-xl-12">
                 <div className="card">
                     <div className="card-body p-0">
@@ -346,6 +355,7 @@ function AddTransactionReport() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

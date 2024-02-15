@@ -2,9 +2,15 @@ import { Formik } from 'formik';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CustomInputField from '../../../common/CustomInputField';
+import Breadcrumbs from '../../../common/breadcrumb/Breadcrumbs';
 
 // ADD Retailer Income
-
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "User Income",
+    title_2: "Retailer  Income",
+    title_3: "Add Retailer  Income",
+}
 function AddRetailerInc() {
     const initialValues = {
         date: '',
@@ -102,6 +108,8 @@ function AddRetailerInc() {
         // TODO
     };
     return (
+        <>
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
         <div className="row">
             <div className="col-xl-12">
                 <div className="card">
@@ -299,6 +307,7 @@ function AddRetailerInc() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
 import CustomTextArea from "../../../common/CustomTextArea";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 function AddPendingDispute() {
     const initialValues = {
@@ -13,6 +14,12 @@ function AddPendingDispute() {
         amount: '',
         reason: '',
         message: ''
+    }
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Dispute",
+        title_2: "Pending Dispute",
+        title_3: "Add Pending Dispute",
     }
 
 
@@ -90,7 +97,8 @@ function AddPendingDispute() {
     };
     return (
         <>
-            <div className="row">
+         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
