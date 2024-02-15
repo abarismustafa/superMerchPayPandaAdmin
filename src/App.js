@@ -129,6 +129,7 @@ import DynemicPage from './pages/topNavigationPages/websiteMaster/dynemicPage';
 import FrontBannerPage from './pages/topNavigationPages/websiteMaster/frontBanner';
 import UserPannelSliderPage from './pages/topNavigationPages/websiteMaster/userPannelSlider';
 import LoginPage from './pages/login';
+
 import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/updatePaymentRequestView';
 
 function App() {
