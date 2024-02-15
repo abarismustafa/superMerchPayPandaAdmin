@@ -2,9 +2,16 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 const initialValues = {
     name: "",
     level: ""
+}
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Zone Module",
+    title_2: "Area",
+    title_3: "Add Area",
 }
 function AddArea() {
     const name = "dropdown";
@@ -33,13 +40,16 @@ function AddArea() {
     };
 
     const submitForm = (values) => {
-        console.log(values);
+
+       validate()
+       values.preventDefault()
     };
     const changeHandle = (selectedData) => {
         // TODO
     };
     return (
         <>
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <Formik
                 initialValues={initialValues}
                 validate={validate}
@@ -58,7 +68,7 @@ function AddArea() {
                         dirty,
                     } = formik;
                     return (
-                        <div className="row">
+                        <div className="row m-4">
                             <div className="col-xl-12">
                                 <div className="card">
                                     <div className="card-body p-0">
@@ -66,7 +76,7 @@ function AddArea() {
                                             <div className="tbl-caption tbl-caption-2">
                                                 <h4 className="heading mb-0">ADD AREA MASTER</h4>
                                             </div>
-                                            <form className="tbl-captionn">
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
                                                         <CustomInputField

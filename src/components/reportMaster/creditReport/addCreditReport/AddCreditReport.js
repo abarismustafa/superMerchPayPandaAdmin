@@ -1,8 +1,15 @@
 import { Formik } from 'formik';
 import React from 'react'
 import CustomInputField from '../../../../common/CustomInputField';
+import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
 
 function AddCreditReport() {
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Reports",
+        title_2: "Credit Report",
+        title_3: "Add Credit Report",
+    }
     const initialValues = {
         date: '',
         userName: '',
@@ -88,163 +95,166 @@ function AddCreditReport() {
         // TODO
     };
     return (
-        <div className="row">
-            <div className="col-xl-12">
-                <div className="card">
-                    <div className="card-body p-0">
-                        <div className="table-responsive active-projects style-1">
-                            <div className="tbl-caption tbl-caption-2">
-                                <h4 className="heading mb-0"><b>Credit Report  - </b></h4>
+        <>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0"><b>Credit Report  - </b></h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    <div className="col-xl-3 mb-3">
+                                                        <CustomInputField
+                                                            type="date"
+                                                            value={values.date}
+                                                            hasError={errors.date && touched.date}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.date}
+                                                            autoFocus={true}
+                                                            id="date"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.userName}
+                                                            hasError={errors.date && touched.userName}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.userName}
+                                                            autoFocus={true}
+                                                            id="userName"
+                                                            placeholder="User Name"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.transferTo}
+                                                            hasError={errors.transferTo && touched.transferTo}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.transferTo}
+                                                            autoFocus={true}
+                                                            id="transferTo"
+                                                            placeholder="Transfer To"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.providerName}
+                                                            hasError={errors.providerName && touched.providerName}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.providerName}
+                                                            autoFocus={true}
+                                                            id="providerName"
+                                                            placeholder="Provider Name"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.number}
+                                                            hasError={errors.number && touched.number}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.number}
+                                                            autoFocus={true}
+                                                            id="number"
+                                                            placeholder="Number"
+                                                            name="number"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.taxind}
+                                                            hasError={errors.taxind && touched.taxind}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.taxind}
+                                                            autoFocus={true}
+                                                            id="taxind"
+                                                            placeholder="Taxind"
+                                                            name="taxind"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.amount}
+                                                            hasError={errors.amount && touched.amount}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.amount}
+                                                            autoFocus={true}
+                                                            id="amount"
+                                                            placeholder="Amount"
+                                                            name="amount"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.blance}
+                                                            hasError={errors.blance && touched.blance}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.blance}
+                                                            autoFocus={true}
+                                                            id="blance"
+                                                            placeholder="Balance"
+                                                            name="blance"
+                                                        />
+                                                    </div>
+                                                    <div className='border-top'>
+                                                        <button className="btn btn-primary pd-x-20 rounded-2 mt-4 " type="submit"> Save </button>
+                                                    </div>
+
+                                                </div>
+
+                                            </form>
+                                        );
+                                    }}
+                                </Formik>
+
                             </div>
-                            <Formik
-                                initialValues={initialValues}
-                                validate={validate}
-                                onSubmit={submitForm}
-                            >
-                                {(formik) => {
-                                    const {
-                                        values,
-                                        handleChange,
-                                        handleSubmit,
-                                        errors,
-                                        touched,
-                                        handleBlur,
-                                        isValid,
-                                        dirty,
-                                    } = formik;
-                                    return (
-                                        <form className="tbl-captionn">
-                                            <div className="row">
-                                                <div className="col-xl-3 mb-3">
-                                                    <CustomInputField
-                                                        type="date"
-                                                        value={values.date}
-                                                        hasError={errors.date && touched.date}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.date}
-                                                        autoFocus={true}
-                                                        id="date"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="text"
-                                                        value={values.userName}
-                                                        hasError={errors.date && touched.userName}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.userName}
-                                                        autoFocus={true}
-                                                        id="userName"
-                                                        placeholder="User Name"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="text"
-                                                        value={values.transferTo}
-                                                        hasError={errors.transferTo && touched.transferTo}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.transferTo}
-                                                        autoFocus={true}
-                                                        id="transferTo"
-                                                        placeholder="Transfer To"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="text"
-                                                        value={values.providerName}
-                                                        hasError={errors.providerName && touched.providerName}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.providerName}
-                                                        autoFocus={true}
-                                                        id="providerName"
-                                                        placeholder="Provider Name"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.number}
-                                                        hasError={errors.number && touched.number}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.number}
-                                                        autoFocus={true}
-                                                        id="number"
-                                                        placeholder="Number"
-                                                        name="number"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.taxind}
-                                                        hasError={errors.taxind && touched.taxind}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.taxind}
-                                                        autoFocus={true}
-                                                        id="taxind"
-                                                        placeholder="Taxind"
-                                                        name="taxind"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.amount}
-                                                        hasError={errors.amount && touched.amount}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.amount}
-                                                        autoFocus={true}
-                                                        id="amount"
-                                                        placeholder="Amount"
-                                                        name="amount"
-                                                    />
-                                                </div>
-                                                <div className="col-xl-3 mb-3">
-
-                                                    <CustomInputField
-                                                        type="number"
-                                                        value={values.blance}
-                                                        hasError={errors.blance && touched.blance}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        errorMsg={errors.blance}
-                                                        autoFocus={true}
-                                                        id="blance"
-                                                        placeholder="Balance"
-                                                        name="blance"
-                                                    />
-                                                </div>
-                                                <div className='border-top'>
-                                                    <button className="btn btn-primary pd-x-20 rounded-2 mt-4 " type="submit"> Save </button>
-                                                </div>
-
-                                            </div>
-
-                                        </form>
-                                    );
-                                }}
-                            </Formik>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

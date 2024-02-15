@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 function DistributerList() {
     return (
         <>
-            <section className="ListDistributer">
+            <section className="ListDistributer m-4">
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="card">

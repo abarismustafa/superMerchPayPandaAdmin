@@ -2,7 +2,12 @@ import { useState } from "react";
 import PaymentRequestViewDownload from "./paymentRequestViewDownload/PaymentRequestViewDownload"
 import { FaDownload, FaSearch } from "react-icons/fa";
 import CustomDropdown from "../../../common/CustomDropdown";
-
+import CustomInputField from "../../../common/CustomInputField";
+import { Formik } from "formik";
+const initialValues = {
+    from: '',
+    to: '',
+}
 function PaymentRequestViewForm() {
     const [modalShow, setModalShow] = useState(false);
     const name = "dropdown";
@@ -27,61 +32,114 @@ function PaymentRequestViewForm() {
         },
     ];
 
+    const validate = (values) => {
+        let errors = {};
+        if (!values.from) {
+            errors.from = "From Date is required";
+        }
+        if (!values.to) {
+            errors.to = "To Date is required";
+        }
+
+
+
+        return errors;
+    };
+
+
+    const submitForm = (selectedData) => {
+        // TODO
+    };
     const changeHandle = (selectedData) => {
         // TODO
     };
 
     return (
         <>
+            <Formik
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={submitForm}
+                className="tbl-captionn"
+            >
+                {(formik) => {
+                    const {
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        errors,
+                        touched,
+                        handleBlur,
+                    } = formik;
 
-
-
-            <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">PAYMENT REQUEST VIEW</h4>
-                                </div>
-                                <form className="tbl-captionn">
-                                    <div className="row">
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput1" className="form-label">From:  <span className="text-danger">*</span></label>
-                                            <input type="date" className="form-control" id="exampleFormControlInput1" />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <label htmlFor="exampleFormControlInput2" className="form-label">To:<span className="text-danger">*</span></label>
-                                            <input type="date" className="form-control" id="exampleFormControlInput2" placeholder="Code" />
-                                        </div>
-                                        <div className="col-xl-4 mb-3">
-                                            <div className="dropdownWrapper">
-                                                <CustomDropdown
-                                                    itemList={itemList}
-                                                    placeholder="Select KYC Status *"
-                                                    isSingleSelect={false}
-                                                    icon={true}
-                                                    onChange={changeHandle}
-                                                />
+                    return (
+                        <div className="row m-4">
+                            <div className="col-xl-12">
+                                <div className="card">
+                                    <div className="card-body p-0">
+                                        <div className="table-responsive active-projects style-1">
+                                            <div className="tbl-caption tbl-caption-2">
+                                                <h4 className="heading mb-0">PAYMENT REQUEST VIEW</h4>
                                             </div>
-                                        </div>
-                                        <div className="col-sm-3 mg-sm-t-25">
-                                            <div className="form-group">
-                                                <button className="btn btn-primary pd-x-20 me-2  me-2-2" type="button" fdprocessedid="4y92n"><i className="fas fa-search" /> Search</button>
-                                                <button className="btn btn-danger pd-x-20 me-2-2" type="button" onClick={() => setModalShow(true)}> <i className="fas fa-download" /> Download</button>
-                                            </div>
+                                            <form className="tbl-captionn">
+                                                <div className="row">
+                                                    <div className="col-xl-3 mb-3">
+                                                        <CustomInputField
+                                                            type="date"
+                                                            placeholder="From *"
+                                                            value={values.from}
+                                                            hasError={errors.from && touched.from}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.from}
+                                                            autoFocus={true}
+                                                            id="from"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <CustomInputField
+                                                            type="date"
+                                                            placeholder="To *"
+                                                            value={values.to}
+                                                            hasError={errors.to && touched.to}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.to}
+                                                            autoFocus={true}
+                                                            id="to"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <div className="dropdownWrapper">
+                                                            <CustomDropdown
+                                                                itemList={itemList}
+                                                                placeholder="Select KYC Status *"
+                                                                isSingleSelect={false}
+                                                                icon={true}
+                                                                onChange={changeHandle}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-sm-3 mg-sm-t-25">
+                                                        <div className="form-group">
+                                                            <button className="btn btn-primary pd-x-20 me-2  me-2-2" type="button" fdprocessedid="4y92n"><i className="fas fa-search" /> Search</button>
+                                                            <button className="btn btn-danger pd-x-20 me-2-2" type="button" onClick={() => setModalShow(true)}> <i className="fas fa-download" /> Download</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
                                         </div>
                                     </div>
-                                </form>
-
+                                </div>
                             </div>
+                            <PaymentRequestViewDownload show={modalShow}
+                                onHide={() => setModalShow(false)} />
                         </div>
-                    </div>
-                </div>
-                <PaymentRequestViewDownload show={modalShow}
-                    onHide={() => setModalShow(false)} />
-            </div>
-        
+                    );
+                }}
+            </Formik>
+
 
             {/* <div className="row">
                 <div className="col-lg-12 col-md-12">

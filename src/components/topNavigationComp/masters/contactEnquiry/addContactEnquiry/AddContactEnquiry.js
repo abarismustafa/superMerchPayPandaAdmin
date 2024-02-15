@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import CustomInputField from '../../../../../common/CustomInputField';
 import { Formik } from 'formik';
 import CustomTextArea from '../../../../../common/CustomTextArea';
+import Breadcrumbs from '../../../../../common/breadcrumb/Breadcrumbs';
 
 const AddContactEnquiry = () => {
     const initialValues = {
@@ -11,6 +12,12 @@ const AddContactEnquiry = () => {
         email: '',
         mobileNumber: '',
         message: '',
+    };
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Master",
+        title_2: "Contact Inquery",
+        title_3: "Edit Contact Inquery",
     }
 
     const validate = (values) => {
@@ -55,7 +62,9 @@ const AddContactEnquiry = () => {
         // TODO
     };
     return (
-        <div className="row">
+        <>
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+        <div className="row m-4">
             <div className="col-xl-12">
                 <div className="card">
                     <div className="card-body p-0">
@@ -175,6 +184,7 @@ const AddContactEnquiry = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

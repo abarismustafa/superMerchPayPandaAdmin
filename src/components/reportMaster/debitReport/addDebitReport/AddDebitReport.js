@@ -1,7 +1,13 @@
 import { Formik } from 'formik';
 import React from 'react'
 import CustomInputField from '../../../../common/CustomInputField';
-
+import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Reports",
+    title_2: "Debit Report",
+    title_3: "Add Debit Report",
+}
 function AddDebitReport() {
     const initialValues = {
         date: '',
@@ -88,7 +94,9 @@ function AddDebitReport() {
         // TODO
     };
     return (
-        <div className="row">
+        <>
+          <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+        <div className="row m-4">
             <div className="col-xl-12">
                 <div className="card">
                     <div className="card-body p-0">
@@ -245,6 +253,7 @@ function AddDebitReport() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

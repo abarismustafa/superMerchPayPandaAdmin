@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function PendingTranRepLists() {
     return (
         <section>
-            <div className="row">
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
@@ -12,14 +13,14 @@ function PendingTranRepLists() {
                                     <h4 className="heading mb-0">Pending Transaction Report List
                                     </h4>
                                     <div>
-                                        {/* <Link className="btn btn-primary btn-sm" to="/admin/add-bank" role="button" aria-controls="offcanvasExample">+ BANK MASTER</Link> */}
+                                        <Link className="btn btn-primary btn-sm" to="/admin/add-pending-transaction-report" role="button" aria-controls="offcanvasExample">+ PENDING TRANSACTION REPORT</Link>
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
                                     </div>
                                 </div>
                                 <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer">
-                                    {/* <div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Export Report</span></button> </div> */}
+                                    <div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Export Report</span></button> </div>
                                     <table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
                                         <thead>
                                             <tr role="row">
@@ -71,7 +72,16 @@ function PendingTranRepLists() {
                                                     </div>
 
                                                 </td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                    </div>
 
+                                                </td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                    </div>
+
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

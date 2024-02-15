@@ -1,8 +1,10 @@
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 const initialValues = {
+
     basicDetails: {
         firstName: "",
         middleName: "",
@@ -13,6 +15,12 @@ const initialValues = {
         normalBalance: "",
     },
 };
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Payment",
+    title_2: "Balance Tarnsfer",
+    title_3: "Add Balance Tarnsfer",
+}
 function BalanceTransferAdd() {
     const validate = (values) => {
         let errors = {};
@@ -91,114 +99,117 @@ function BalanceTransferAdd() {
                         dirty,
                     } = formik;
                     return (
-                        <div className="row">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0">ADD BALANCE TRANSFER</h4>
-                                            </div>
-                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
-                                                <div className="row">
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="First Name *"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
-                                                            autoFocus={true}
-                                                            id="firstName"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Middle Name *"
-                                                            value={values.middleName}
-                                                            hasError={errors.middleName && touched.middleName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.middleName}
-                                                            id="middleName"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Last Name *"
-                                                            value={values.lastName}
-                                                            hasError={errors.lastName && touched.lastName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.lastName}
-                                                            id="lastName"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Shop Name *"
-                                                            value={values.shopName}
-                                                            hasError={errors.shopName && touched.shopName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.shopName}
-                                                            id="shopName"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="number"
-                                                            placeholder="Mobile Number *"
-                                                            value={values.mobileNumber}
-                                                            hasError={errors.mobileNumber && touched.mobileNumber}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.mobileNumber}
-                                                            id="mobileNumber"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Member Type *"
-                                                            value={values.memberType}
-                                                            hasError={errors.memberType && touched.memberType}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.memberType}
-                                                            id="memberType"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Normal Balance *"
-                                                            value={values.normalBalance}
-                                                            hasError={errors.normalBalance && touched.normalBalance}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.normalBalance}
-                                                            id="normalBalance"
-                                                        />
-                                                    </div>
-                                                    
+                        <>
+                            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+                            <div className="row m-4">
+                                <div className="col-xl-12">
+                                    <div className="card">
+                                        <div className="card-body p-0">
+                                            <div className="table-responsive active-projects style-1">
+                                                <div className="tbl-caption tbl-caption-2">
+                                                    <h4 className="heading mb-0">ADD BALANCE TRANSFER</h4>
                                                 </div>
-                                                <div>
-                                                    <Link to='/admin/balance-trasnfer' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
-                                                </div>
-                                            </form>
+                                                <form className="tbl-captionn" onSubmit={handleSubmit}>
+                                                    <div className="row">
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="First Name *"
+                                                                value={values.firstName}
+                                                                hasError={errors.firstName && touched.firstName}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.firstName}
+                                                                autoFocus={true}
+                                                                id="firstName"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Middle Name *"
+                                                                value={values.middleName}
+                                                                hasError={errors.middleName && touched.middleName}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.middleName}
+                                                                id="middleName"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Last Name *"
+                                                                value={values.lastName}
+                                                                hasError={errors.lastName && touched.lastName}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.lastName}
+                                                                id="lastName"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Shop Name *"
+                                                                value={values.shopName}
+                                                                hasError={errors.shopName && touched.shopName}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.shopName}
+                                                                id="shopName"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="number"
+                                                                placeholder="Mobile Number *"
+                                                                value={values.mobileNumber}
+                                                                hasError={errors.mobileNumber && touched.mobileNumber}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.mobileNumber}
+                                                                id="mobileNumber"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Member Type *"
+                                                                value={values.memberType}
+                                                                hasError={errors.memberType && touched.memberType}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.memberType}
+                                                                id="memberType"
+                                                            />
+                                                        </div>
+                                                        <div className="col-xl-4 mb-3">
+                                                            <CustomInputField
+                                                                type="text"
+                                                                placeholder="Normal Balance *"
+                                                                value={values.normalBalance}
+                                                                hasError={errors.normalBalance && touched.normalBalance}
+                                                                onChange={handleChange}
+                                                                onBlur={handleBlur}
+                                                                errorMsg={errors.normalBalance}
+                                                                id="normalBalance"
+                                                            />
+                                                        </div>
 
+                                                    </div>
+                                                    <div>
+                                                        <Link to='/admin/balance-trasnfer' className="btn btn-danger light ms-1">Cancel</Link>
+                                                        <button className="btn btn-primary me-1">Submit</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </>
                     );
                 }}
             </Formik>

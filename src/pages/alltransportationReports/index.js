@@ -4,7 +4,6 @@ import AlltransationsReport from '../../components/reportMaster/alltransationsRe
 function AlltransportationReportsPage() {
   return (
     <>
-    
       <AlltransationsReport/>
     </>
   )

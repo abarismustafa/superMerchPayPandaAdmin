@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
 import CustomTextArea from "../../../common/CustomTextArea";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 function UpdatePendingDisput() {
 
@@ -14,6 +15,12 @@ function UpdatePendingDisput() {
         amount: '',
         reason: '',
         message: ''
+    }
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Dispute",
+        title_2: "Pending Dispute",
+        title_3: "Update Pending Dispute",
     }
 
 
@@ -91,7 +98,8 @@ function UpdatePendingDisput() {
     };
     return (
         <>
-            <div className="row">
+         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

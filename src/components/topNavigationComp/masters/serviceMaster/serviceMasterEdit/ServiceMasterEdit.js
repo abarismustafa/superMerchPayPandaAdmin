@@ -3,7 +3,13 @@ import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import CustomTextArea from "../../../../../common/CustomTextArea";
-
+import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Service Master",
+    title_3: "Update Service Master",
+}
 function EditServiceMaster() {
     const itemList = [
         {
@@ -114,7 +120,8 @@ function EditServiceMaster() {
     };
     return (
         <>
-            <div className="row">
+         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

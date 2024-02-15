@@ -2,8 +2,14 @@ import { ErrorMessage, Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../common/CustomInputField";
 import CustomTextArea from "../../../common/CustomTextArea";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
-
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Dispute",
+    title_2: "Solve Dispute",
+    title_3: "Add Solve Dispute",
+}
 function AddSolveDispute() {
     const initialValues = {
         txnDate: '',
@@ -15,9 +21,6 @@ function AddSolveDispute() {
         reason: '',
         message: ''
     }
-
-
-
 
     const validate = (values) => {
         let errors = {};
@@ -93,7 +96,8 @@ function AddSolveDispute() {
     };
     return (
         <>
-            <div className="row">
+        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
