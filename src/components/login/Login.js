@@ -1,15 +1,15 @@
-
-import login from '../../assets/images/logo/merchant.paypanda-logo.png'
-import loginimg from '../../assets/images/logo/login.jpg'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
-import axios from 'axios';
-import { Spinner } from 'react-bootstrap';
-import { LoginSubmit } from '../../api/login/Login';
-import CustomInputField from '../../common/CustomInputField';
+import login from "../../assets/images/logo/merchant.paypanda-logo.png";
+import loginimg from "../../assets/images/logo/login.jpg";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
+import { LoginSubmit } from "../../api/login/Login";
+import CustomInputField from "../../common/CustomInputField";
+import { SaveUserDeatilsLocalStorage } from "../../utils/localStorage";
 function Login() {
-    const navigate = useNavigate()
-    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [loginForm, setLoginForm] = useState({
         email: "",
         password: "",
@@ -24,10 +24,22 @@ function Login() {
     };
 
     const submitSignIn = async () => {
+        setLoading(true)
+        try {
+            let result = await LoginSubmit(loginForm);
+            if (result.statusCode == '200') {
+                setLoading(false)
+                SaveUserDeatilsLocalStorage(result.data.token)
+                navigate('/admin')
+            } else {
+                throw new Error(result.data.message)
+            }
 
-        let result = LoginSubmit(loginForm)
-    }
-
+        } catch (error) {
+            setLoading(false)
+            alert(error.message)
+        }
+    };
 
     return (
         <>
@@ -48,7 +60,7 @@ function Login() {
                                             type="email"
                                             placeholder="Enter Email *"
                                             value={loginForm.email}
-                                            name='email'
+                                            name="email"
                                             // hasError={errors.firstName && touched.firstName}
                                             onChange={handleChangeLogin}
                                         // onBlur={handleBlur}
@@ -56,7 +68,6 @@ function Login() {
                                         // autoFocus={true}
                                         // id="firstName"
                                         />
-
                                     </div>
                                     <div className="mb-4 position-relative">
                                         {/* <label className="mb-1 text-dark">Password</label> */}
@@ -64,7 +75,7 @@ function Login() {
                                             type="password"
                                             placeholder="Enter Password *"
                                             value={loginForm.password}
-                                            name='password'
+                                            name="password"
                                             // hasError={errors.firstName && touched.firstName}
                                             onChange={handleChangeLogin}
                                         // onBlur={handleBlur}
@@ -81,28 +92,78 @@ function Login() {
                                     <div className="form-row d-flex justify-content-between mt-4 mb-2">
                                         <div className="mb-4">
                                             <div className="form-check custom-checkbox mb-3">
-                                                <input type="checkbox" className="form-check-input" id="customCheckBox1" required />
-                                                <label className="form-check-label" htmlFor="customCheckBox1">Remember my preference</label>
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    id="customCheckBox1"
+                                                    required
+                                                />
+                                                <label
+                                                    className="form-check-label"
+                                                    htmlFor="customCheckBox1"
+                                                >
+                                                    Remember my preference
+                                                </label>
                                             </div>
                                         </div>
                                         <div className="mb-4">
-                                            <a href="#" className="btn-link text-primary">Forgot Password?</a>
+                                            <a href="#" className="btn-link text-primary">
+                                                Forgot Password?
+                                            </a>
                                         </div>
                                     </div>
                                     <div className="text-center mb-4">
-                                        <button type="button" className="btn btn-primary btn-block" onClick={submitSignIn}>{loading && <Spinner animation="border" />}Sign In</button>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary btn-block"
+                                            onClick={submitSignIn}
+                                        >
+                                            {loading && <Spinner animation="border" />}Sign In
+                                        </button>
                                     </div>
-                                    <h6 className="login-title"><span>Or continue with</span></h6>
+                                    <h6 className="login-title">
+                                        <span>Or continue with</span>
+                                    </h6>
                                     <div className="mb-3">
                                         <ul className="d-flex align-self-center justify-content-center">
-                                            <li><a target="_blank" href="#" className="fab fa-facebook-f btn-facebook" /></li>
-                                            <li><a target="_blank" href="#" className="fab fa-google-plus-g btn-google-plus mx-2" /></li>
-                                            <li><a target="_blank" href="#" className="fab fa-linkedin-in btn-linkedin me-2" /></li>
-                                            <li><a target="_blank" href="#" className="fab fa-twitter btn-twitter" /></li>
+                                            <li>
+                                                <a
+                                                    target="_blank"
+                                                    href="#"
+                                                    className="fab fa-facebook-f btn-facebook"
+                                                />
+                                            </li>
+                                            <li>
+                                                <a
+                                                    target="_blank"
+                                                    href="#"
+                                                    className="fab fa-google-plus-g btn-google-plus mx-2"
+                                                />
+                                            </li>
+                                            <li>
+                                                <a
+                                                    target="_blank"
+                                                    href="#"
+                                                    className="fab fa-linkedin-in btn-linkedin me-2"
+                                                />
+                                            </li>
+                                            <li>
+                                                <a
+                                                    target="_blank"
+                                                    href="#"
+                                                    className="fab fa-twitter btn-twitter"
+                                                />
+                                            </li>
                                         </ul>
                                     </div>
-                                    <p className="text-center">Not registered?
-                                        <a className="btn-link text-primary" href="page-register.html">Register</a>
+                                    <p className="text-center">
+                                        Not registered?
+                                        <a
+                                            className="btn-link text-primary"
+                                            href="page-register.html"
+                                        >
+                                            Register
+                                        </a>
                                     </p>
                                 </form>
                             </div>
@@ -110,9 +171,14 @@ function Login() {
                         <div className="col-xl-6 col-lg-6">
                             <div className="pages-left h-100">
                                 <div className="login-content">
-                                    <a href="#"><img src={login} className="mb-3 logo-dark" alt /></a>
+                                    <a href="#">
+                                        <img src={login} className="mb-3 logo-dark" alt />
+                                    </a>
                                     {/* <a href="#"><img src={loginimg} alt="" /></a> */}
-                                    <p>PayPanda uses line charts to visualize customer-related metrics and trends over time.</p>
+                                    <p>
+                                        PayPanda uses line charts to visualize customer-related
+                                        metrics and trends over time.
+                                    </p>
                                 </div>
                                 <div className="login-media text-center">
                                     <img src={loginimg} alt="" />
@@ -122,8 +188,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-
         </>
-    )
+    );
 }
-export default Login
+export default Login;

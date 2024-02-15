@@ -338,7 +338,7 @@ export const navigationData = {
           uniqueId: "submenu_18_3",
           id: "3",
           title: "Currency",
-          path: "page-not-found",
+          path: "currency",
         },
       ],
     },

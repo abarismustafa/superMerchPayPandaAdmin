@@ -1,29 +1,16 @@
-import axios from "axios";
 import { baseUrl } from "../../baseUrl";
-import { SaveUserDeatilsLocalStorage } from "../../utils/localStorage";
-import AxiosServiceFactory from "../../axiosServiseFactory/AxiosServiseFactory";
+import axiosInstance from "../../axiosServiseFactory/AxiosServiseFactory";
 
+const token = window.localStorage.getItem('userToken')
 
+export const LoginSubmit = (data) =>
+    axiosInstance.post(`${baseUrl}staff/login`, data);
 
-
-export const LoginSubmit = async (loginForm) => {
-
-    // setLoading(true)
-    try {
-
-        return AxiosServiceFactory(`${baseUrl}staff/login`).post(
-            loginForm
-        );
-
-
-        // const res = await AxiosServiceFactory(`${baseUrl}staff/login`).post(loginForm)
-        // SaveUserDeatilsLocalStorage(res.data)
-        // return res.data
-        // console.log(res.data);
-
-
-    } catch (error) {
-        return error
-    }
-
+export const currencyAdd = (data) => {
+    return axiosInstance.post(`${baseUrl}currency/addcurrency`, data, {
+        headers: {
+            "content-type": "application/json; charset=UTF-8",
+            authorization: `Bearer ${token}`,
+        },
+    });
 }
