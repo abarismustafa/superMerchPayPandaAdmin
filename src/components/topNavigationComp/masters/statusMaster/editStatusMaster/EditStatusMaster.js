@@ -6,7 +6,9 @@ const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
     title_2: "status Master",
-    title_2: "Update status Master",
+    path_2:"/admin/status-master",
+    title_3: "Update status Master",
+    path_3:"/admin/edit-status-master",
 }
 function EditStatusMaster() {
     const initialValues = {
