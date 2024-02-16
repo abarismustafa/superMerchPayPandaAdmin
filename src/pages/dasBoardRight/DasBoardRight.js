@@ -10,7 +10,7 @@ function DasBoardRight() {
     const breadCrumbsTitle = {
         id:"1",
         title_1:"Dashboard",
-        title_2:"",
+        path_1:"/admin",
     }
     return (
         <>

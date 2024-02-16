@@ -7,6 +7,7 @@ function RoleMasterList() {
     id: "1",
     title_1: "Master",
     title_2: "Role Master",
+    path_2:"/admin/role-master"
 }
     return (
         <>
