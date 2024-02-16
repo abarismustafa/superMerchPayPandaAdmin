@@ -20,8 +20,7 @@ function hashStringWithSecretKey(string, secretKey) {
     var hash = hmac.finalize();
     return hash;
 
-    // const checksum = CryptoJS(string, secretKey).toString();
-    // return checksum
+
     // var ciphertext = CryptoJS.AES.encrypt(string, secretKey).toString();
     // return ciphertext
 }
