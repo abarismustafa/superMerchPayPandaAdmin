@@ -3,6 +3,7 @@ import CustomInputField from "../../../common/CustomInputField";
 import { Link } from "react-router-dom";
 import { currencyAdd } from "../../../api/login/Login";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 
 function AddCurrency() {
@@ -20,7 +21,6 @@ function AddCurrency() {
         const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
         const regexGstNumber =
             /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
-        console.log(values);
         if (!values.currency_name) {
             errors.currency_name = "Currency Name  is required";
         }
@@ -39,15 +39,25 @@ function AddCurrency() {
         return errors;
     };
 
+    const toastSuccessMessage = () => {
+        toast.success("Add Currency Successfully.", {
+            position: "top-center"
+        })
+    };
+
     const submitForm = async (values) => {
         setIsSubmit(true)
         try {
             let result = await currencyAdd(values);
             console.log(result);
+
+            if (result?.statusCode == '200') {
+                toastSuccessMessage()
+            }
         } catch (error) {
 
         }
-        console.log(values);
+
     };
 
 
@@ -137,6 +147,7 @@ function AddCurrency() {
                         </div>
                     </div>
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

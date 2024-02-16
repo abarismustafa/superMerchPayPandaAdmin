@@ -1,5 +1,5 @@
 const requestMiddleWare = (config) => {
-    console.log(config);
+    // console.log(config);
     return { ...config };
 };
 

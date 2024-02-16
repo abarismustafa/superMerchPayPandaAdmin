@@ -1,6 +1,30 @@
 import { Link } from "react-router-dom"
+import { currencyDelete, currencyList } from "../../../api/login/Login"
+import { useEffect, useState } from "react"
 
 function ListCurrency() {
+    const [curencyData, setCurrencyData] = useState(null)
+    const getCurrencyList = async () => {
+        try {
+            const data = await currencyList()
+            setCurrencyData(data?.data)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    const deleteCurrency = async (id) => {
+        try {
+            await currencyDelete(id)
+            getCurrencyList()
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+        getCurrencyList()
+    }, [])
     return (
         <>
             <div className="row">
@@ -39,22 +63,23 @@ function ListCurrency() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span> currency Name</span></td>
-                                            <td>
-                                                currency code
-                                            </td>
-                                            <td><span>Currency symbol</span></td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/edit-add-bank" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
+                                        {curencyData && curencyData?.map((item) => {
+                                            return <tr role="row" className="odd" key={item?._id}>
+                                                <td className="sorting_1"><span>{item?.currency_name}</span></td>
+                                                <td>
+                                                    {item?.currency_code}
+                                                </td>
+                                                <td><span>{item?.currency_symbol}</span></td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                        <Link to={`/admin/update-currency/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                        <Link to="#" className="btn btn-danger shadow btn-xs sharp" onClick={() => deleteCurrency(item?._id)}><i className="fa fa-trash" /></Link>
+                                                    </div>
 
-                                            </td>
+                                                </td>
 
-                                        </tr>
-
+                                            </tr>
+                                        })}
                                     </tbody>
                                 </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>

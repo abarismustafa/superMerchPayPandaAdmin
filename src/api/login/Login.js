@@ -14,3 +14,28 @@ export const currencyAdd = (data) => {
         },
     });
 }
+export const currencyList = (data) => {
+    return axiosInstance.get(`${baseUrl}currency`, {
+        headers: {
+            "content-type": "application/json; charset=UTF-8",
+            authorization: `Bearer ${token}`,
+        },
+    });
+}
+export const currencyDelete = (id) => {
+    return axiosInstance.delete(`${baseUrl}currency/deletecurrency/${id}`, {
+        headers: {
+            "content-type": "application/json; charset=UTF-8",
+            authorization: `Bearer ${token}`,
+        },
+    });
+}
+
+export const getCurrency = (id) => {
+    return axiosInstance.get(`${baseUrl}currency/${id}`, {
+        headers: {
+            "content-type": "application/json; charset=UTF-8",
+            authorization: `Bearer ${token}`,
+        },
+    });
+}

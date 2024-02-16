@@ -1,6 +1,8 @@
 import axios from "axios";
 import { baseUrl } from "../baseUrl";
 import CryptoJS from 'crypto-js';
+// import CryptoJS from 'crypto-js/sha256';
+
 
 import {
     errorHandlerMiddleWare,
@@ -9,14 +11,19 @@ import {
 } from "../httpInterSeptur/HttpInterSeptur";
 
 // jbuyviycutxydrxyrxyddyxyrdx
-
+// const CryptoJS = require("crypto")
 
 function hashStringWithSecretKey(string, secretKey) {
-    // return CryptoJS.SHA256(string, secretKey).toString(CryptoJS.enc.Hex)
-    var ciphertext = CryptoJS.AES.encrypt(string, secretKey).toString();
-    // var bytes = CryptoJS.AES.decrypt(string, secretKey);
-    // var originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return ciphertext
+    var hash = CryptoJS.HmacMD5(string, secretKey);
+    var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secretKey);
+    hmac.update(string);
+    var hash = hmac.finalize();
+    return hash;
+
+    // const checksum = CryptoJS(string, secretKey).toString();
+    // return checksum
+    // var ciphertext = CryptoJS.AES.encrypt(string, secretKey).toString();
+    // return ciphertext
 }
 
 // Create an instance of Axios
