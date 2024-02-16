@@ -1,32 +1,57 @@
 import { Link } from "react-router-dom"
 import { currencyDelete, currencyList } from "../../../api/login/Login"
 import { useEffect, useState } from "react"
+import Loadar from "../../../common/loader/Loader";
+import DeleteConfirmation from "../../../common/deleteConfirmation/DeleteConfirmation";
+import { Button, Popconfirm, message } from "antd";
+
+
 
 function ListCurrency() {
     const [curencyData, setCurrencyData] = useState(null)
+    const [loading, setLoading] = useState(false);
     const getCurrencyList = async () => {
+        setLoading(true)
         try {
             const data = await currencyList()
             setCurrencyData(data?.data)
+
         } catch (error) {
             alert(error.message)
         }
+        setLoading(false)
     }
 
     const deleteCurrency = async (id) => {
+        setLoading(true)
         try {
             await currencyDelete(id)
             getCurrencyList()
         } catch (error) {
             alert(error.message)
         }
+        setLoading(false)
     }
 
     useEffect(() => {
         getCurrencyList()
     }, [])
+
+
+    const confirm = (id) => {
+        deleteCurrency(id)
+        message.success('Delete Successfull!');
+
+    };
+    const cancel = (e) => {
+        // console.log(e);
+        message.error('Cancle Successfull!');
+    };
+
+
     return (
         <>
+            {loading && <Loadar />}
             <div className="row">
                 <div className="col-xl-12">
                     <div className="card">
@@ -73,7 +98,17 @@ function ListCurrency() {
                                                 <td>
                                                     <div className="d-flex">
                                                         <Link to={`/admin/update-currency/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                        <Link to="#" className="btn btn-danger shadow btn-xs sharp" onClick={() => deleteCurrency(item?._id)}><i className="fa fa-trash" /></Link>
+                                                        <Popconfirm
+                                                            title="Delete Currency !"
+                                                            description="Are you sure to delete ?"
+                                                            onConfirm={() => confirm(item?._id)}
+                                                            onCancel={cancel}
+                                                            okText="Yes"
+                                                            cancelText="No"
+                                                        >
+                                                            <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                        </Popconfirm>
+
                                                     </div>
 
                                                 </td>
@@ -87,7 +122,9 @@ function ListCurrency() {
                         </div>
                     </div>
                 </div>
+
             </div >
+
         </>
     )
 }
