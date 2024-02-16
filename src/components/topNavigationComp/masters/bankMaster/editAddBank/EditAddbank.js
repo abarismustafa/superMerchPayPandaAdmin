@@ -14,7 +14,9 @@ function EditAddBank() {
         id:"1",
         title_1:"Master",
         title_2:"Bank Master",
+        path_2:"/admin/bank-master",
         title_3:"Update Bank Master",
+        path_3:"/admin/edit-add-bank",
     }
 
 
