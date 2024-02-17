@@ -55,7 +55,7 @@ function AddCurrency() {
                 toastSuccessMessage()
             }
         } catch (error) {
-            // console.log(error);
+            console.log(error);
         }
 
     };
