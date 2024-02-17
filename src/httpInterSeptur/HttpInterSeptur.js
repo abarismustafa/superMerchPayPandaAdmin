@@ -1,11 +1,9 @@
 const token = window.localStorage.getItem("userToken");
 const requestMiddleWare = (config) => {
   const headers = {
-    headers: {
-      "content-type": "application/json; charset=UTF-8",
-      authorization: `Bearer ${token}`,
-    },
-    ...config?.headers, // Spread existing headers from config
+    "content-type": "application/json; charset=UTF-8",
+    authorization: `Bearer ${token}`,
+    ...config.headers, // Spread existing headers from config
   };
 
   // Merge the headers into the config
