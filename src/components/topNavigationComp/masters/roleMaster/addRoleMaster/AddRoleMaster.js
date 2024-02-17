@@ -6,7 +6,9 @@ const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
     title_2: "Role Master",
-    title_2: "Add Role Master",
+    path_2:"/admin/role-master",
+    title_3: "Add Role Master",
+    path_3:"/admin/add-role-master"
 }
 function AddRoleMaster() {
     const initialValues = {

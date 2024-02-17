@@ -55,7 +55,7 @@ function AddCurrency() {
                 toastSuccessMessage()
             }
         } catch (error) {
-
+            console.log(error);
         }
 
     };
@@ -107,7 +107,7 @@ function AddCurrency() {
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
-                                                            type="number"
+                                                            type="text"
                                                             value={values.currency_code}
                                                             hasError={errors.currency_code && touched.currency_code}
                                                             onChange={handleChange}
@@ -121,7 +121,7 @@ function AddCurrency() {
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
                                                         <CustomInputField
-                                                            type="type"
+                                                            type="text"
                                                             value={values.currency_symbol}
                                                             hasError={errors.currency_symbol && touched.currency_symbol}
                                                             onChange={handleChange}

@@ -12,6 +12,8 @@ function UpdateCurrency() {
         currency_code: '',
         currency_symbol: ''
     }
+    const [getData, setgetData] = useState(initialValues)
+    console.log(getData.currency_name);
 
     const validate = (values) => {
         let errors = {};
@@ -47,7 +49,10 @@ function UpdateCurrency() {
 
     const getCurrencyId = async () => {
         const getByIdCurrency = await getCurrency(params?.id)
-        console.log(getByIdCurrency);
+        const initialDataget = getByIdCurrency.data
+        console.log(initialDataget);
+        // const initialDataget2 = { ...initialDataget, ...initialValues, currency_name: initialDataget.currency_name }
+        setgetData(initialDataget);
     }
 
     useEffect(() => {
@@ -78,7 +83,7 @@ function UpdateCurrency() {
                                     <h4 className="heading mb-0">UPDATE CURRENCY</h4>
                                 </div>
                                 <Formik
-                                    initialValues={initialValues}
+                                    initialValues={getData}
                                     validate={isSubmit && validate}
                                     onSubmit={submitForm}
                                 >
