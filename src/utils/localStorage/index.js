@@ -10,4 +10,8 @@ export function getUserDetails() {
     return window.localStorage.getItem("userDetails")
 }
 
+export function getToken() {
+    return window.localStorage.getItem('userToken')
+}
+
 

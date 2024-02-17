@@ -1,6 +1,9 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import './assets/css/style.css'
+import 'react-toastify/dist/ReactToastify.css';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css'
 import './common/CustomInputField/index.module.scss'
@@ -133,6 +136,7 @@ import CurrencyPage from './pages/currency';
 import AddCurrency from './components/currency/addCurrency/AddCurrency';
 
 import UpdatePaymentRequestView from './components/paymentRequestView/updatePaymentRequestView/updatePaymentRequestView';
+import UpdateCurrency from './components/currency/updateCurrency/UpdateCurrency';
 
 function App() {
   return (
@@ -274,6 +278,7 @@ function App() {
           <Route path="company-setting" element={<CompanySettings />} />
           <Route path="currency" element={<CurrencyPage />} />
           <Route path="add-currency" element={<AddCurrency />} />
+          <Route path="update-currency/:id" element={<UpdateCurrency />} />
           <Route path="page-not-found" element={<PageNotFound />} />
 
         </Route>

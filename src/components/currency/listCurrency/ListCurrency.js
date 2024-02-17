@@ -1,8 +1,57 @@
 import { Link } from "react-router-dom"
+import { currencyDelete, currencyList } from "../../../api/login/Login"
+import { useEffect, useState } from "react"
+import Loadar from "../../../common/loader/Loader";
+import DeleteConfirmation from "../../../common/deleteConfirmation/DeleteConfirmation";
+import { Button, Popconfirm, message } from "antd";
+
+
 
 function ListCurrency() {
+    const [curencyData, setCurrencyData] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const getCurrencyList = async () => {
+        setLoading(true)
+        try {
+            const data = await currencyList()
+            setCurrencyData(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+    const deleteCurrency = async (id) => {
+        setLoading(true)
+        try {
+            await currencyDelete(id)
+            getCurrencyList()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        getCurrencyList()
+    }, [])
+
+
+    const confirm = (id) => {
+        deleteCurrency(id)
+        message.success('Delete Successfull!');
+
+    };
+    const cancel = (e) => {
+        // console.log(e);
+        message.error('Cancle Successfull!');
+    };
+
+
     return (
         <>
+            {loading && <Loadar />}
             <div className="row">
                 <div className="col-xl-12">
                     <div className="card">
@@ -39,22 +88,33 @@ function ListCurrency() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span> currency Name</span></td>
-                                            <td>
-                                                currency code
-                                            </td>
-                                            <td><span>Currency symbol</span></td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/edit-add-bank" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
+                                        {curencyData && curencyData?.map((item) => {
+                                            return <tr role="row" className="odd" key={item?._id}>
+                                                <td className="sorting_1"><span>{item?.currency_name}</span></td>
+                                                <td>
+                                                    {item?.currency_code}
+                                                </td>
+                                                <td><span>{item?.currency_symbol}</span></td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                        <Link to={`/admin/update-currency/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                        <Popconfirm
+                                                            title="Delete Currency !"
+                                                            description="Are you sure to delete ?"
+                                                            onConfirm={() => confirm(item?._id)}
+                                                            onCancel={cancel}
+                                                            okText="Yes"
+                                                            cancelText="No"
+                                                        >
+                                                            <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                        </Popconfirm>
 
-                                            </td>
+                                                    </div>
 
-                                        </tr>
+                                                </td>
 
+                                            </tr>
+                                        })}
                                     </tbody>
                                 </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>
@@ -62,7 +122,9 @@ function ListCurrency() {
                         </div>
                     </div>
                 </div>
+
             </div >
+
         </>
     )
 }
