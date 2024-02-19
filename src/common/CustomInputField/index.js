@@ -33,7 +33,7 @@ function CustomInputField({
         readOnly={readOnly}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        autoFocus={autoFocus}
+        // autoFocus={autoFocus}
         defaultValue={defaultValue}
         value={value}
         enterKeyHint={enterKeyHint}

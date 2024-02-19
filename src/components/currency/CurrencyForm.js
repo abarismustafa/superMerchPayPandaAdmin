@@ -1,54 +1,71 @@
 import { Formik } from "formik";
-import CustomInputField from "../../../common/CustomInputField";
-import { Link } from "react-router-dom";
-import { currencyAdd } from "../../../api/login/Login";
-import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import CustomInputField from "../../common/CustomInputField";
+import { currencyAdd, getCurrency } from "../../api/login/Login";
 
-function AddCurrency() {
-  const [isSubmit, setIsSubmit] = useState(false);
-  const initialValues = {
+function CurrencyForm() {
+  const [initialValues, setInitialValues] = useState({
     currency_name: "",
     currency_code: "",
     currency_symbol: "",
-  };
-
+  });
+  const params = useParams();
   const validate = (values) => {
     let errors = {};
     if (!values.currency_name) {
-      errors.currency_name = "Currency Name  is required";
+      errors.currency_name = "Currency Name is required";
     }
     if (!values.currency_code) {
       errors.currency_code = "Currency Code is required";
     }
     if (!values.currency_symbol) {
-      errors.currency_symbol = "Currency Symbol Code is required";
+      errors.currency_symbol = "Currency Symbol is required";
     }
     return errors;
   };
 
   const toastSuccessMessage = () => {
-    toast.success("Add Currency Successfully.", {
+    toast.success(`${params?.id ? "Update" : "Add"} Currency Successfully.`, {
       position: "top-center",
     });
   };
 
-  const submitForm = async (values, { setSubmitting }) => {
-    setIsSubmit(true);
+  const submitForm = async (values) => {
     try {
-      setSubmitting(true);
-      let result = await currencyAdd(values);
-      console.log(result);
-
-      if (result?.statusCode == "200") {
-        toastSuccessMessage();
+      if (!params?.id) {
+        await currencyAdd(values);
+      } else {
+        // await currencyUpdate(params.id, values);
       }
+      toastSuccessMessage();
     } catch (error) {
-      console.log(error);
-    } finally {
-      setSubmitting(false);
+      console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      try {
+        if (params?.id) {
+          const response = await getCurrency(params.id);
+          const currencyData = response.data;
+          setInitialValues(currencyData);
+        } else {
+          setInitialValues({
+            currency_name: "",
+            currency_code: "",
+            currency_symbol: "",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching currency:", error);
+      }
+    };
+
+    fetchCurrency();
+  }, [params?.id]);
 
   return (
     <>
@@ -58,14 +75,15 @@ function AddCurrency() {
             <div className="card-body p-0">
               <div className="table-responsive active-projects style-1">
                 <div className="tbl-caption tbl-caption-2">
-                  <h4 className="heading mb-0">ADD CURRENCY</h4>
+                  <h4 className="heading mb-0">
+                    {params?.id ? "UPDATE" : "ADD"} CURRENCY
+                  </h4>
                 </div>
                 <Formik
                   initialValues={initialValues}
                   validate={validate}
                   onSubmit={submitForm}
                   enableReinitialize
-                  validateOnMount={false}
                 >
                   {(formik) => {
                     const {
@@ -93,6 +111,7 @@ function AddCurrency() {
                               errorMsg={
                                 touched.currency_name && errors.currency_name
                               }
+                              autoFocus={true}
                               id="currency_name"
                               name="currency_name"
                               placeholder="Currency Name"
@@ -110,9 +129,10 @@ function AddCurrency() {
                               errorMsg={
                                 touched.currency_code && errors.currency_code
                               }
+                              autoFocus={true}
                               id="currency_code"
                               name="currency_code"
-                              placeholder=" Currency Code"
+                              placeholder="Currency Code"
                             />
                           </div>
                           <div className="col-xl-6 mb-3">
@@ -129,9 +149,10 @@ function AddCurrency() {
                                 touched.currency_symbol &&
                                 errors.currency_symbol
                               }
+                              autoFocus={true}
                               id="currency_symbol"
                               name="currency_symbol"
-                              placeholder=" Currency Symbol"
+                              placeholder="Currency Symbol"
                             />
                           </div>
                         </div>
@@ -147,7 +168,7 @@ function AddCurrency() {
                             type="submit"
                             disabled={!isValid || !dirty}
                           >
-                            Submit
+                            {params?.id ? "Update" : "Add"}
                           </button>
                         </div>
                       </form>
@@ -163,4 +184,4 @@ function AddCurrency() {
     </>
   );
 }
-export default AddCurrency;
+export default CurrencyForm;
