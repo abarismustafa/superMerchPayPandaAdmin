@@ -326,13 +326,13 @@ export const navigationData = {
           uniqueId: "submenu_17_1",
           id: "1",
           title: "Country",
-          path: "#",
+          path: "country",
         },
         {
           uniqueId: "submenu_17_2",
           id: "2",
           title: "Language",
-          path: "#",
+          path: "language",
         },
         {
           uniqueId: "submenu_18_3",
