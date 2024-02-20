@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import CustomInputField from "../../common/CustomInputField";
-import { currencyAdd, getCurrency } from "../../api/login/Login";
+import { currencyAdd, currencyUpdate, getCurrency } from "../../api/login/Login";
 
 function CurrencyForm() {
   const [initialValues, setInitialValues] = useState({
@@ -35,9 +35,19 @@ function CurrencyForm() {
   const submitForm = async (values) => {
     try {
       if (!params?.id) {
-        await currencyAdd(values);
+        try {
+          await currencyAdd(values);
+        } catch (error) {
+
+        }
+
       } else {
-        // await currencyUpdate(params.id, values);
+        try {
+          await currencyUpdate(params.id, values);
+        } catch (error) {
+
+        }
+
       }
       toastSuccessMessage();
     } catch (error) {

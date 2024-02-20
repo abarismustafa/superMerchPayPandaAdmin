@@ -62,9 +62,6 @@ import UpdateServiceCategoryMaster from "./components/topNavigationComp/masters/
 import AreaPage from "./pages/topNavigationPages/ZoneModule/area";
 import AddArea from "./components/topNavigationComp/ZoneModule/area/addArea/AddArea";
 import EditArea from "./components/topNavigationComp/ZoneModule/area/editArea/EditArea";
-import CountryPage from "./pages/topNavigationPages/ZoneModule/country";
-import CountryAdd from "./components/topNavigationComp/ZoneModule/country/countryAdd/CountryAdd";
-import UpdateCountry from "./components/topNavigationComp/ZoneModule/country/updateCountry/UpdateCountry";
 import AgentOnbordingPage from "./pages/topNavigationPages/agentOnbording/index";
 import AddAgentOnbording from "./components/topNavigationComp/masters/agentOnbording/addAgentOnbording/AddAgentOnbording";
 import UpdateAgentOnbording from "./components/topNavigationComp/masters/agentOnbording/UpdateAgentOnbording/UpdateAgentOnbording";
@@ -137,10 +134,18 @@ import AddCurrency from "./components/currency/addCurrency/AddCurrency";
 import UpdatePaymentRequestView from "./components/paymentRequestView/updatePaymentRequestView/updatePaymentRequestView";
 import UpdateCurrency from "./components/currency/updateCurrency/UpdateCurrency";
 import CurrencyForm from "./components/currency/CurrencyForm";
+import CountryPage from "./pages/country";
+import CountryForm from "./components/country/countryForm/CountryForm";
+import LanguagePage from "./pages/language";
+import FormLanguage from "./components/language/formLanguage.js/FormLanguage";
 
 function App() {
+
+
   return (
     <>
+
+
       <Routes>
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/" element={<Navigate to="/loginPage" />} />
@@ -195,9 +200,6 @@ function App() {
           <Route path="area" element={<AreaPage />} />
           <Route path="add-area" element={<AddArea />} />
           <Route path="update-area" element={<EditArea />} />
-          <Route path="country" element={<CountryPage />} />
-          <Route path="add-country" element={<CountryAdd />} />
-          <Route path="update-country" element={<UpdateCountry />} />
           <Route
             path="agent-onboarding-list"
             element={<AgentOnbordingPage />}
@@ -404,6 +406,13 @@ function App() {
           <Route path="currency" element={<CurrencyPage />} />
           <Route path="add-currency" element={<CurrencyForm />} />
           <Route path="update-currency/:id" element={<CurrencyForm />} />
+          <Route path="country" element={<CountryPage />} />
+          <Route path="add-country" element={<CountryForm />} />
+          <Route path="update-country/:id" element={<CountryForm />} />
+          <Route path="language" element={<LanguagePage />} />
+
+          <Route path="add-language" element={<FormLanguage />} />
+          <Route path="update_language/:id" element={<FormLanguage />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>

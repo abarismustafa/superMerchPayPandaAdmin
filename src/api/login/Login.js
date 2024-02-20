@@ -16,3 +16,48 @@ export const currencyDelete = (id) => {
 export const getCurrency = (id) => {
   return axiosInstance.get(`${baseUrl}currency/${id}`);
 };
+
+export const currencyUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}currency/updatcurrency/${id}`, value);
+};
+
+
+export const countryAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}country/addcountry`, data);
+};
+export const getCountryAdd = () => {
+  return axiosInstance.get(`${baseUrl}currency`);
+};
+export const countryList = (data) => {
+  return axiosInstance.get(`${baseUrl}country`);
+};
+export const countryDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}country/deletecountry/${id}`);
+};
+
+export const getcountry = (id) => {
+  return axiosInstance.get(`${baseUrl}country/${id}`);
+};
+
+export const countryUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}country/updatecountry/${id}`, value);
+};
+
+
+export const languageAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}language/addlanguage`, data);
+};
+export const languageList = () => {
+  return axiosInstance.get(`${baseUrl}language`);
+};
+export const languageDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}language/delete_language/${id}`);
+};
+
+export const getlanguage = (id) => {
+  return axiosInstance.get(`${baseUrl}language/${id}`);
+};
+
+export const languageUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}language/update_language/${id}`, value);
+};

@@ -1,19 +1,27 @@
+import { useState } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-const initialValues = {
-    name: "",
-    level: ""
-}
+
+
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Zone Module",
     title_2: "Area",
     title_3: "Add Area",
 }
+
 function AddArea() {
+    const [initialValues, setInitialValues] = useState({
+        name: "",
+        level: "",
+        meta_title: '',
+        meta_description: '',
+        meta_keyword: '',
+        is_active: ''
+    });
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -36,20 +44,29 @@ function AddArea() {
         if (!values.level) {
             errors.level = "Level is required";
         }
+        if (!values.meta_title) {
+            errors.meta_title = "Meta Title is required";
+        }
+        if (!values.meta_description) {
+            errors.meta_description = "Meta Description is required";
+        }
+        if (!values.meta_keyword) {
+            errors.meta_keyword = "Meta Keyword is required";
+        }
         return errors;
     };
 
     const submitForm = (values) => {
 
-       validate()
-       values.preventDefault()
+        validate()
+        values.preventDefault()
     };
     const changeHandle = (selectedData) => {
         // TODO
     };
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <Formik
                 initialValues={initialValues}
                 validate={validate}
@@ -105,21 +122,60 @@ function AddArea() {
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                        <div className="dropdownWrapper">
-                                                            <CustomDropdown
-                                                                itemList={itemList}
-                                                                placeholder="Open this select status *"
-                                                                isSingleSelect={false}
-                                                                icon={true}
-                                                                onChange={changeHandle}
-                                                            />
-                                                        </div>
+                                                        <select className="form-select" aria-label="Default select example" name="" >
+                                                            <option selected> select Country</option>
+                                                            <option value={'1'}>Enabled</option>
+                                                            <option value={'1'}>Enabled</option>
+                                                        </select>
                                                     </div>
-                                                    
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Meta Title *"
+                                                            value={values.meta_title}
+                                                            hasError={errors.meta_title && touched.meta_title}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_title}
+                                                            autoFocus={true}
+                                                            id="meta_title"
+
+                                                        />
+                                                    </div>
+
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Meta Description *"
+                                                            value={values.meta_description}
+                                                            hasError={errors.meta_description && touched.meta_description}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_description}
+                                                            autoFocus={true}
+                                                            id="meta_description"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Meta key Word *"
+                                                            value={values.meta_keyword}
+                                                            hasError={errors.meta_keyword && touched.meta_keyword}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_keyword}
+                                                            autoFocus={true}
+                                                            id="meta_keyword"
+                                                        />
+                                                    </div>
+
                                                 </div>
                                                 <div>
                                                     <Link to='/admin/area' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                    <button className="btn btn-primary me-1" disabled={!isValid || !dirty}>
+                                                        Submit
+                                                    </button>
                                                 </div>
                                             </form>
 
