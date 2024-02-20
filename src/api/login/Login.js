@@ -65,17 +65,17 @@ export const languageUpdate = (id, value) => {
 export const areaAdd = (data) => {
   return axiosInstance.post(`${baseUrl}area/addarea`, data);
 };
-// export const languageList = () => {
-//   return axiosInstance.get(`${baseUrl}language`);
-// };
-// export const languageDelete = (id) => {
-//   return axiosInstance.delete(`${baseUrl}language/delete_language/${id}`);
-// };
+export const areaList = () => {
+  return axiosInstance.get(`${baseUrl}area`);
+};
+export const areaDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}area/deletearea/${id}`);
+};
 
-// export const getlanguage = (id) => {
-//   return axiosInstance.get(`${baseUrl}language/${id}`);
-// };
+export const getarea = (id) => {
+  return axiosInstance.get(`${baseUrl}area/${id}`);
+};
 
-// export const languageUpdate = (id, value) => {
-//   return axiosInstance.put(`${baseUrl}language/update_language/${id}`, value);
-// };
+export const areaUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}area/updatearea/${id}`, value);
+};

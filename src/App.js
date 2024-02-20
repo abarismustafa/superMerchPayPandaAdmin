@@ -201,7 +201,7 @@ function App() {
           />
           <Route path="area" element={<AreaPage />} />
           <Route path="add-area" element={<AddArea />} />
-          <Route path="update-area" element={<EditArea />} />
+          <Route path="update-area/:id" element={<AddArea />} />
           <Route
             path="agent-onboarding-list"
             element={<AgentOnbordingPage />}
