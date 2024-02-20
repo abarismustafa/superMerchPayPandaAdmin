@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Formik } from "formik";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
+import { areaAdd } from "../../../../../api/login/Login";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const breadCrumbsTitle = {
@@ -22,6 +24,7 @@ function AddArea() {
         meta_keyword: '',
         is_active: ''
     });
+    const params = useParams()
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -35,6 +38,14 @@ function AddArea() {
             value: "Disabled",
         },
     ];
+
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Country Successfully.`, {
+            position: "top-center",
+        });
+    };
+
+
     const validate = (values) => {
         let errors = {};
         if (!values.name) {
@@ -56,10 +67,33 @@ function AddArea() {
         return errors;
     };
 
-    const submitForm = (values) => {
 
-        validate()
-        values.preventDefault()
+
+
+    const submitForm = async (values) => {
+        try {
+            if (!params?.id) {
+                try {
+                    const res = await areaAdd(values);
+                    if (res?.statusCode == "200") {
+                        toastSuccessMessage();
+                    }
+                } catch (error) {
+
+                }
+
+            } else {
+                try {
+                    // await countryUpdate(params.id, values);
+                } catch (error) {
+
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
     };
     const changeHandle = (selectedData) => {
         // TODO
@@ -67,32 +101,35 @@ function AddArea() {
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-            <Formik
-                initialValues={initialValues}
-                validate={validate}
-                onSubmit={submitForm}
-                className="tbl-captionn"
-            >
-                {(formik) => {
-                    const {
-                        values,
-                        handleChange,
-                        handleSubmit,
-                        errors,
-                        touched,
-                        handleBlur,
-                        isValid,
-                        dirty,
-                    } = formik;
-                    return (
-                        <div className="row m-4">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0">ADD AREA MASTER</h4>
-                                            </div>
+
+            <div className="row m-4">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">
+                                        {params?.id ? "UPDATE" : "ADD"}AREA MASTER
+                                    </h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
+                                    className="tbl-captionn"
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
                                             <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
@@ -122,10 +159,10 @@ function AddArea() {
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                        <select className="form-select" aria-label="Default select example" name="" >
+                                                        <select className="form-select" aria-label="Default select example" name="is_active" onChange={handleChange}>
                                                             <option selected> select Country</option>
-                                                            <option value={'1'}>Enabled</option>
-                                                            <option value={'1'}>Enabled</option>
+                                                            <option value={'Enabled'}>Enabled</option>
+                                                            <option value={'diasabled'}>diasabled</option>
                                                         </select>
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
@@ -178,15 +215,17 @@ function AddArea() {
                                                     </button>
                                                 </div>
                                             </form>
+                                        );
+                                    }}
+                                </Formik >
 
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    );
-                }}
-            </Formik>
+                    </div>
+                </div>
+                <ToastContainer />
+            </div>
+
         </>
     )
 }

@@ -138,6 +138,8 @@ import CountryPage from "./pages/country";
 import CountryForm from "./components/country/countryForm/CountryForm";
 import LanguagePage from "./pages/language";
 import FormLanguage from "./components/language/formLanguage.js/FormLanguage";
+import CountryZoneMudle from "./components/topNavigationComp/ZoneModule/country/Country";
+import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/countryAdd/CountryAdd";
 
 function App() {
 
@@ -203,6 +205,14 @@ function App() {
           <Route
             path="agent-onboarding-list"
             element={<AgentOnbordingPage />}
+          />
+          <Route
+            path="country-zone"
+            element={<CountryZoneMudle />}
+          />
+          <Route
+            path="add-country-zone"
+            element={<CountryAddZone />}
           />
           <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
           <Route

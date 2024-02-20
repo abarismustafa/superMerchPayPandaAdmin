@@ -61,3 +61,21 @@ export const getlanguage = (id) => {
 export const languageUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}language/update_language/${id}`, value);
 };
+
+export const areaAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}area/addarea`, data);
+};
+// export const languageList = () => {
+//   return axiosInstance.get(`${baseUrl}language`);
+// };
+// export const languageDelete = (id) => {
+//   return axiosInstance.delete(`${baseUrl}language/delete_language/${id}`);
+// };
+
+// export const getlanguage = (id) => {
+//   return axiosInstance.get(`${baseUrl}language/${id}`);
+// };
+
+// export const languageUpdate = (id, value) => {
+//   return axiosInstance.put(`${baseUrl}language/update_language/${id}`, value);
+// };

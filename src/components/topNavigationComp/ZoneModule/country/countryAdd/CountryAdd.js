@@ -21,7 +21,7 @@ const breadCrumbsTitle = {
     title_2: "Country",
     title_3: "Add Country",
 }
-function CountryAdd() {
+function CountryAddZone() {
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -38,7 +38,7 @@ function CountryAdd() {
             name: "Abce",
             value: "Abce",
         },
-        
+
     ];
     const status = [
         {
@@ -53,15 +53,15 @@ function CountryAdd() {
             name: "Abce",
             value: "Abce",
         },
-        
+
     ];
 
     const validate = (values) => {
         let errors = {};
-       
+
         const regexDecription = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
         const regexUnicode = /[\pL\pN_\-]+/;
-       
+
         if (!values.shortingNumber) {
             errors.shortingNumber = "Shorting Number  is required";
         }
@@ -106,7 +106,7 @@ function CountryAdd() {
 
     return (
         <>
-         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <Formik
                 initialValues={initialValues}
                 validate={validate}
@@ -225,7 +225,7 @@ function CountryAdd() {
                                                             />
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div className="col-xl-6 mb-3">
                                                         <div className="dropdownWrapper">
                                                             <CustomDropdown
@@ -268,4 +268,4 @@ function CountryAdd() {
         </>
     )
 }
-export default CountryAdd
+export default CountryAddZone
