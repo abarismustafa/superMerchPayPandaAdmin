@@ -300,7 +300,7 @@ export const navigationData = {
           uniqueId: "submenu_16_2",
           id: "2",
           title: "Country",
-          path: "country",
+          path: "country-zone",
         },
         {
           uniqueId: "submenu_16_3",

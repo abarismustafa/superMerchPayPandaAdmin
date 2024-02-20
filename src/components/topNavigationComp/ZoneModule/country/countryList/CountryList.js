@@ -11,7 +11,7 @@ function CountryList() {
                                 <div className="tbl-caption">
                                     <h4 className="heading mb-0">COUNTRY MASTER</h4>
                                     <div>
-                                        <Link className="btn btn-primary btn-sm" to="/admin/add-country" role="button" aria-controls="offcanvasExample">+ COUNTRY MASTER</Link>
+                                        <Link className="btn btn-primary btn-sm" to="/admin/add-country-zone" role="button" aria-controls="offcanvasExample">+ COUNTRY MASTER</Link>
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}

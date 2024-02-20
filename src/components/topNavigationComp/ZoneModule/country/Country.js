@@ -2,7 +2,7 @@ import Breadcrumbs from "../../../../common/breadcrumb/Breadcrumbs"
 import CountryList from "./countryList/CountryList"
 
 
-function Country() {
+function CountryZoneMudle() {
     const breadCrumbsTitle = {
         id: "1",
         title_1: "Zone Module",
@@ -15,4 +15,4 @@ function Country() {
         </>
     )
 }
-export default Country
+export default CountryZoneMudle
