@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-import { areaAdd, getarea, languageList } from "../../../../../api/login/Login";
+import { areaAdd, areaUpdate, getarea, languageList } from "../../../../../api/login/Login";
 import { ToastContainer, toast } from "react-toastify";
 import TabAddAreaForm from "./TabAddAreaForm";
 import Tab from 'react-bootstrap/Tab';
@@ -53,45 +53,44 @@ function AddArea() {
         });
     };
 
-    const GetFirstData = (value, id) => {
-        const clone = [...selectData]
-        if (clone.length) {
-            for (let index = 0; index < selectData.length; index++) {
-                const element = selectData[index];
-                console.log(element);
-                if (element.language_id == value.language_id) {
-                    clone.splice(index, 1, value)
-                } else {
-                    clone.push(value)
-                }
-            }
-        } else {
-            clone.push(value)
-        }
-        SetselectData(clone)
+
+    const setInitialdata = () => {
+        const data = language?.map((item) => {
+            return { name: "", level: "", language_id: item?._id, is_active: false, langName: item?.name }
+        })
+        SetselectData(data)
     }
 
 
-    const submitForm = async (values) => {
-        const clone = [...selectData]
-        if (clone.length) {
-            for (let index = 0; index < selectData.length; index++) {
-                const element = selectData[index];
-                console.log(element);
-                if (element.language_id == values.language_id) {
-                    clone.splice(index, 1, values)
+
+    useEffect(() => {
+        const fetchCurrency = async () => {
+            try {
+                if (params?.id) {
+                    const response = await getarea(params.id);
+                    const currencyData = response.data;
+                    const data = currencyData?.map((item, i) => {
+                        return { id: item.id, name: item.name, level: item.level, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name }
+                    })
+                    SetselectData(data)
                 } else {
-                    clone.push(values)
+                    setInitialdata()
                 }
+            } catch (error) {
+                console.error("Error fetching currency:", error);
             }
-        } else {
-            clone.push(values)
-        }
-        SetselectData(clone)
+        };
+
+        fetchCurrency();
+    }, [params?.id, language]);
+
+
+    const submitForm = async (values) => {
+        console.log(selectData);
         try {
             if (!params?.id) {
                 try {
-                    const res = await areaAdd({ list: clone });
+                    const res = await areaAdd({ list: selectData });
                     if (res?.statusCode == "200") {
                         toastSuccessMessage();
                     }
@@ -99,7 +98,7 @@ function AddArea() {
                 }
             } else {
                 try {
-                    // await countryUpdate(params.id, values);
+                    await areaUpdate({ id: params?.id, value: { list: selectData } });
                 } catch (error) {
 
                 }
@@ -108,6 +107,19 @@ function AddArea() {
             console.error("Error:", error);
         }
     };
+
+    const handleChangeCus = (e, id) => {
+        const maped = selectData.map((item) => {
+            if (item.language_id == id) {
+                const obj = { ...item, [e.target.name]: e.target.value }
+                return obj
+            } else {
+                return item
+            }
+        })
+        SetselectData(maped)
+    }
+
 
     return (
         <>
@@ -139,9 +151,9 @@ function AddArea() {
                                     id="uncontrolled-tab-example"
                                     className="mb-3"
                                 >
-                                    {language && language?.map((item, i) => {
-                                        return <Tab eventKey={item?._id} title={item?.name}>
-                                            <TabAddAreaForm i={i} language={language} languageId={item?._id} GetFirstData={GetFirstData} submitForm={submitForm} />
+                                    {selectData && selectData?.map((item, i) => {
+                                        return <Tab eventKey={item?.language_id} title={item?.langName}>
+                                            <TabAddAreaForm i={i} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus} />
                                         </Tab>
                                     })}
 

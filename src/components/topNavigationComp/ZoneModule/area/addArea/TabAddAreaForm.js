@@ -7,7 +7,7 @@ import CustomInputField from "../../../../../common/CustomInputField";
 
 import { areaAdd, getarea } from "../../../../../api/login/Login";
 import { ToastContainer, toast } from "react-toastify";
-function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
+function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, item }) {
 
     const params = useParams()
     const name = "dropdown";
@@ -23,18 +23,6 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
             value: "Disabled",
         },
     ];
-
-    const [initialValues, setInitialValues] = useState({
-        name: "",
-        level: "",
-        meta_title: '',
-        meta_description: '',
-        meta_keyword: '',
-        is_active: '',
-        language_id: languageId
-    });
-
-
 
 
     const validate = (values) => {
@@ -58,32 +46,12 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
         return errors;
     };
 
-    useEffect(() => {
-        const fetchCurrency = async () => {
-            try {
-                if (params?.id) {
-                    const response = await getarea(params.id);
-                    const currencyData = response.data;
-                    // setInitialValues(currencyData);
-                } else {
-                    // setInitialValues({
-                    //     name: "",
-                    //     code: "",
-                    //     curruncy_id: "",
-                    // });
-                }
-            } catch (error) {
-                console.error("Error fetching currency:", error);
-            }
-        };
 
-        fetchCurrency();
-    }, [params?.id]);
 
     return (
         <>
             <Formik
-                initialValues={initialValues}
+                initialValues={item}
                 validate={validate}
                 onSubmit={submitForm}
                 enableReinitialize
@@ -109,11 +77,12 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
                                         placeholder="Name *"
                                         value={values.name}
                                         hasError={errors.name && touched.name}
-                                        onChange={handleChange}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
                                         onBlur={handleBlur}
                                         errorMsg={errors.name}
                                         autoFocus={true}
                                         id="name"
+                                        name='name'
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
@@ -122,69 +91,28 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
                                         placeholder="Level *"
                                         value={values.level}
                                         hasError={errors.level && touched.level}
-                                        onChange={handleChange}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
                                         onBlur={handleBlur}
                                         errorMsg={errors.level}
                                         autoFocus={true}
                                         id="level"
+                                        name='level'
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
-                                    <select className="form-select" aria-label="Default select example" name="is_active" onChange={handleChange}>
+                                    <select className="form-select" aria-label="Default select example" name="is_active"  onChange={(e) => { handleChangeCus(e, item.language_id) }}>
                                         <option selected> select Country</option>
                                         <option value={'Enabled'}>Enabled</option>
                                         <option value={'diasabled'}>diasabled</option>
                                     </select>
                                 </div>
-                                <div className="col-xl-4 mb-3">
-                                    <CustomInputField
-                                        type="text"
-                                        placeholder="Meta Title *"
-                                        value={values.meta_title}
-                                        hasError={errors.meta_title && touched.meta_title}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        errorMsg={errors.meta_title}
-                                        autoFocus={true}
-                                        id="meta_title"
 
-                                    />
-                                </div>
-
-                                <div className="col-xl-4 mb-3">
-                                    <CustomInputField
-                                        type="text"
-                                        placeholder="Meta Description *"
-                                        value={values.meta_description}
-                                        hasError={errors.meta_description && touched.meta_description}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        errorMsg={errors.meta_description}
-                                        autoFocus={true}
-                                        id="meta_description"
-                                    />
-                                </div>
-                                <div className="col-xl-4 mb-3">
-                                    <CustomInputField
-                                        type="text"
-                                        placeholder="Meta key Word *"
-                                        value={values.meta_keyword}
-                                        hasError={errors.meta_keyword && touched.meta_keyword}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        errorMsg={errors.meta_keyword}
-                                        autoFocus={true}
-                                        id="meta_keyword"
-                                    />
-                                </div>
 
                             </div>
                             <div>
                                 <Link to='/admin/area' className="btn btn-danger light ms-1">Cancel</Link>
-                                {i == language.length - 1 ? <button className="btn btn-primary me-1" disabled={!isValid || !dirty}>
+                                {i == language?.length - 1 && <button type="button" onClick={submitForm} className="btn btn-primary me-1">
                                     Submit
-                                </button> : <button className="btn btn-primary me-1" type="button" onClick={() => GetFirstData(values, languageId)}>
-                                    Save
                                 </button>}
 
 
