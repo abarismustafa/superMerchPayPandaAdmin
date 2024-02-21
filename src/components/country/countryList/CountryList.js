@@ -83,7 +83,6 @@ function CountryList() {
                                     </thead>
                                     <tbody>
                                         {curencyData && curencyData?.map((item) => {
-                                            console.log(item);
                                             return <tr role="row" className="odd" key={item?._id}>
                                                 <td className="sorting_1"><span>{item?.name}</span></td>
                                                 <td>

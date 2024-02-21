@@ -140,6 +140,8 @@ import LanguagePage from "./pages/language";
 import FormLanguage from "./components/language/formLanguage.js/FormLanguage";
 import CountryZoneMudle from "./components/topNavigationComp/ZoneModule/country/Country";
 import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/ZoneCountryAdd";
+import Customer from "./components/topNavigationComp/customer/Customer";
+import AddUsers from "./components/topNavigationComp/customer/users/addUsers/AddUsers";
 
 function App() {
 
@@ -196,7 +198,7 @@ function App() {
           />
           <Route path="area" element={<AreaPage />} />
           <Route path="add-area" element={<AddArea />} />
-          <Route path="update-area" element={<EditArea />} />
+          <Route path="update-area/:id" element={<AddArea />} />
           <Route
             path="agent-onboarding-list"
             element={<AgentOnbordingPage />}
@@ -283,6 +285,8 @@ function App() {
             element={<SetOperatorSettings />}
           />
           <Route path="bank-settings" element={<BankSettingsPage />} />
+          <Route path="user" element={<Customer />} />
+          <Route path="user/add-user" element={<AddUsers />} />
           <Route path="add-bank-settings" element={<AddBankSettings />} />
           <Route path="update-bank-settings" element={<UpdateBankSettings />} />
           <Route path="logo-upload" element={<LogoUploadPage />} />
