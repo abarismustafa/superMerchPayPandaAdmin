@@ -110,7 +110,7 @@ function AddRetailerInc() {
     return (
         <>
         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
-        <div className="row">
+        <div className="row m-4">
             <div className="col-xl-12">
                 <div className="card">
                     <div className="card-body p-0">
