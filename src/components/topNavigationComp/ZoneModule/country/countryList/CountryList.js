@@ -9,9 +9,9 @@ function CountryList() {
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption">
-                                    <h4 className="heading mb-0">COUNTRY MASTER</h4>
+                                    <h4 className="heading mb-0">ZONE MASTER</h4>
                                     <div>
-                                        <Link className="btn btn-primary btn-sm" to="/admin/add-country-zone" role="button" aria-controls="offcanvasExample">+ COUNTRY MASTER</Link>
+                                        <Link className="btn btn-primary btn-sm" to="/admin/add-country-zone" role="button" aria-controls="offcanvasExample">+ ZONE MASTER</Link>
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}

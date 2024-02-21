@@ -4,17 +4,9 @@ import { Formik } from "formik";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import CustomTextArea from "../../../../../common/CustomTextArea";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-const initialValues = {
-    shortingNumber: "",
-    uniqCode: "",
-    metaTitle: "",
-    metaDescription: "",
-    metaKeyWord: "",
-    areaType: "",
-    parentArea: "",
-    status: "",
-    description: "",
-};
+import { zoneCountryAdd } from "../../../../../api/login/Login";
+import { useEffect, useState } from "react";
+
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Zone Module",
@@ -22,6 +14,22 @@ const breadCrumbsTitle = {
     title_3: "Add Country",
 }
 function CountryAddZone() {
+
+    const [initialValues, setInitialValues] = useState({
+        name: "",
+        sort_no: "",
+        uni_code: "",
+        description: "",
+        meta_title: "",
+        meta_description: "",
+        meta_keyword: "",
+        meta_image: "",
+        parent_id: "",
+        area_id: "",
+        language_id: "2",
+        id: "1",
+        is_active: true
+    })
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -104,35 +112,50 @@ function CountryAddZone() {
         // TODO
     };
 
+    const addZoneCountry = async () => {
+        try {
+            const zoneContData = await zoneCountryAdd()
+            console.log(zoneContData);
+            // setCont(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+    useEffect(() => {
+        addZoneCountry()
+    }, [])
+
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-            <Formik
-                initialValues={initialValues}
-                validate={validate}
-                onSubmit={submitForm}
-                className="tbl-captionn"
-            >
-                {(formik) => {
-                    const {
-                        values,
-                        handleChange,
-                        handleSubmit,
-                        errors,
-                        touched,
-                        handleBlur,
-                        isValid,
-                        dirty,
-                    } = formik;
-                    return (
-                        <div className="row m-4">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0">ADD COUNTRY</h4>
-                                            </div>
+
+            <div className="row m-4">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">ADD ZONE</h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
+                                    className="tbl-captionn"
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
                                             <form className="tbl-captionn">
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
@@ -256,15 +279,15 @@ function CountryAddZone() {
                                                     <button className="btn btn-primary me-1">Submit</button>
                                                 </div>
                                             </form>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                        );
+                                    }}
+                                </Formik>
                             </div>
                         </div>
-                    );
-                }}
-            </Formik>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
 }

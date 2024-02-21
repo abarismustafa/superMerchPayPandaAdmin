@@ -139,15 +139,15 @@ import CountryForm from "./components/country/countryForm/CountryForm";
 import LanguagePage from "./pages/language";
 import FormLanguage from "./components/language/formLanguage.js/FormLanguage";
 import CountryZoneMudle from "./components/topNavigationComp/ZoneModule/country/Country";
-import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/countryAdd/CountryAdd";
+import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/ZoneCountryAdd";
+import Customer from "./components/topNavigationComp/customer/Customer";
+import AddUsers from "./components/topNavigationComp/customer/users/addUsers/AddUsers";
 
 function App() {
 
 
   return (
     <>
-
-
       <Routes>
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/" element={<Navigate to="/loginPage" />} />
@@ -160,10 +160,7 @@ function App() {
           <Route path="add-role-master" element={<AddRoleMaster />} />
           <Route path="edit-role-master" element={<EditRoleMaster />} />
           <Route path="company-staff/welcome" element={<CompanyStaffPages />} />
-          <Route
-            path="add-company-staff/welcome"
-            element={<AddCompanyStaff />}
-          />
+          <Route path="add-company-staff/welcome"element={<AddCompanyStaff />}/>
           <Route path="company-staff-permission" element={<MasterPages />} />
           <Route path="status-master" element={<StatusMasterPage />} />
           <Route path="add-status-master" element={<AddStatusMaster />} />
@@ -214,6 +211,10 @@ function App() {
             path="add-country-zone"
             element={<CountryAddZone />}
           />
+          {/* <Route
+            path="add-country-zone/:id"
+            element={<CountryAddZone />}
+          /> */}
           <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
           <Route
             path="update-agent-onboarding"
@@ -284,6 +285,8 @@ function App() {
             element={<SetOperatorSettings />}
           />
           <Route path="bank-settings" element={<BankSettingsPage />} />
+          <Route path="user" element={<Customer />} />
+          <Route path="user/add-user" element={<AddUsers />} />
           <Route path="add-bank-settings" element={<AddBankSettings />} />
           <Route path="update-bank-settings" element={<UpdateBankSettings />} />
           <Route path="logo-upload" element={<LogoUploadPage />} />
@@ -420,7 +423,6 @@ function App() {
           <Route path="add-country" element={<CountryForm />} />
           <Route path="update-country/:id" element={<CountryForm />} />
           <Route path="language" element={<LanguagePage />} />
-
           <Route path="add-language" element={<FormLanguage />} />
           <Route path="update_language/:id" element={<FormLanguage />} />
           <Route path="page-not-found" element={<PageNotFound />} />
