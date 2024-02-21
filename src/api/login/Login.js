@@ -94,6 +94,6 @@ export const getarea = (id) => {
   return axiosInstance.get(`${baseUrl}area/${id}`);
 };
 
-export const areaUpdate = (id, value) => {
+export const areaUpdate = ({id, value}) => {
   return axiosInstance.put(`${baseUrl}area/updatearea/${id}`, value);
 };
