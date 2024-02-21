@@ -5,9 +5,10 @@ import { Link, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 
 
-import { areaAdd, getarea } from "../../../../../api/login/Login";
+import { areaAdd, getCountryAdd, getarea } from "../../../../../api/login/Login";
 import { ToastContainer, toast } from "react-toastify";
 function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
+    const [conbo, setCombo] = useState(null)
 
     const params = useParams()
     const name = "dropdown";
@@ -34,8 +35,7 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
         language_id: languageId
     });
 
-
-
+    // console.log(initialValues);
 
     const validate = (values) => {
         let errors = {};
@@ -58,13 +58,29 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
         return errors;
     };
 
+    const curencyidget = async () => {
+        try {
+            const data = await getCountryAdd()
+
+            setCombo(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+        curencyidget()
+    }, [])
+
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
                 if (params?.id) {
                     const response = await getarea(params.id);
                     const currencyData = response.data;
-                    // setInitialValues(currencyData);
+                    console.log(currencyData);
+                    setInitialValues(currencyData);
                 } else {
                     // setInitialValues({
                     //     name: "",
@@ -76,7 +92,6 @@ function TabAddAreaForm({ i, language, GetFirstData, languageId, submitForm }) {
                 console.error("Error fetching currency:", error);
             }
         };
-
         fetchCurrency();
     }, [params?.id]);
 

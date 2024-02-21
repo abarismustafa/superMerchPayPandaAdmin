@@ -192,28 +192,6 @@ function CountryForm() {
                                                         </select>
 
                                                     </div>
-
-
-                                                    {/* <div className="col-xl-6 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.currency_symbol}
-                                                            hasError={
-                                                                errors.currency_symbol &&
-                                                                touched.currency_symbol
-                                                            }
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={
-                                                                touched.currency_symbol &&
-                                                                errors.currency_symbol
-                                                            }
-                                                            autoFocus={true}
-                                                            id="currency_symbol"
-                                                            name="currency_symbol"
-                                                            placeholder="Currency Symbol"
-                                                        />
-                                                    </div> */}
                                                 </div>
                                                 <div>
                                                     <Link

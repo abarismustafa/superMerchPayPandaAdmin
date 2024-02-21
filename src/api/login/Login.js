@@ -79,3 +79,42 @@ export const getarea = (id) => {
 export const areaUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}area/updatearea/${id}`, value);
 };
+
+export const staffAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}staff/addstaff`, data);
+};
+export const staffList = () => {
+  return axiosInstance.get(`${baseUrl}staff`);
+};
+export const staffType = () => {
+  return axiosInstance.get(`${baseUrl}stafftype`);
+};
+export const staffDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}staff/deletestaff/${id}`);
+};
+
+export const getstaff = (id) => {
+  return axiosInstance.get(`${baseUrl}staff/${id}`);
+};
+
+export const staffUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}staff/updatestaff/${id}`, value);
+};
+
+export const staffTypeAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}stafftype/addstaff`, data);
+};
+export const staffTypeList = () => {
+  return axiosInstance.get(`${baseUrl}stafftype`);
+};
+export const staffTypeDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}stafftype/deleteStaff/${id}`);
+};
+
+export const getstaffType = (id) => {
+  return axiosInstance.get(`${baseUrl}stafftype/${id}`);
+};
+
+export const staffTypeUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}stafftype/updateStaff/${id}`, value);
+};
