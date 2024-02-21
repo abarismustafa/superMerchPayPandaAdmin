@@ -1,19 +1,30 @@
+import { useState } from "react";
 import { Formik } from "formik";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-const initialValues = {
-    name: "",
-    level: ""
-}
+import { areaAdd } from "../../../../../api/login/Login";
+import { ToastContainer, toast } from "react-toastify";
+
+
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Zone Module",
     title_2: "Area",
     title_3: "Add Area",
 }
+
 function AddArea() {
+    const [initialValues, setInitialValues] = useState({
+        name: "",
+        level: "",
+        meta_title: '',
+        meta_description: '',
+        meta_keyword: '',
+        is_active: ''
+    });
+    const params = useParams()
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -27,6 +38,14 @@ function AddArea() {
             value: "Disabled",
         },
     ];
+
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Country Successfully.`, {
+            position: "top-center",
+        });
+    };
+
+
     const validate = (values) => {
         let errors = {};
         if (!values.name) {
@@ -36,46 +55,81 @@ function AddArea() {
         if (!values.level) {
             errors.level = "Level is required";
         }
+        if (!values.meta_title) {
+            errors.meta_title = "Meta Title is required";
+        }
+        if (!values.meta_description) {
+            errors.meta_description = "Meta Description is required";
+        }
+        if (!values.meta_keyword) {
+            errors.meta_keyword = "Meta Keyword is required";
+        }
         return errors;
     };
 
-    const submitForm = (values) => {
 
-       validate()
-       values.preventDefault()
+
+
+    const submitForm = async (values) => {
+        try {
+            if (!params?.id) {
+                try {
+                    const res = await areaAdd(values);
+                    if (res?.statusCode == "200") {
+                        toastSuccessMessage();
+                    }
+                } catch (error) {
+
+                }
+
+            } else {
+                try {
+                    // await countryUpdate(params.id, values);
+                } catch (error) {
+
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
     };
     const changeHandle = (selectedData) => {
         // TODO
     };
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-            <Formik
-                initialValues={initialValues}
-                validate={validate}
-                onSubmit={submitForm}
-                className="tbl-captionn"
-            >
-                {(formik) => {
-                    const {
-                        values,
-                        handleChange,
-                        handleSubmit,
-                        errors,
-                        touched,
-                        handleBlur,
-                        isValid,
-                        dirty,
-                    } = formik;
-                    return (
-                        <div className="row m-4">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0">ADD AREA MASTER</h4>
-                                            </div>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+
+            <div className="row m-4">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0">
+                                        {params?.id ? "UPDATE" : "ADD"}AREA MASTER
+                                    </h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
+                                    className="tbl-captionn"
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
                                             <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
@@ -105,32 +159,73 @@ function AddArea() {
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                        <div className="dropdownWrapper">
-                                                            <CustomDropdown
-                                                                itemList={itemList}
-                                                                placeholder="Open this select status *"
-                                                                isSingleSelect={false}
-                                                                icon={true}
-                                                                onChange={changeHandle}
-                                                            />
-                                                        </div>
+                                                        <select className="form-select" aria-label="Default select example" name="is_active" onChange={handleChange}>
+                                                            <option selected> select Country</option>
+                                                            <option value={'Enabled'}>Enabled</option>
+                                                            <option value={'diasabled'}>diasabled</option>
+                                                        </select>
                                                     </div>
-                                                    
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Meta Title *"
+                                                            value={values.meta_title}
+                                                            hasError={errors.meta_title && touched.meta_title}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_title}
+                                                            autoFocus={true}
+                                                            id="meta_title"
+
+                                                        />
+                                                    </div>
+
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Meta Description *"
+                                                            value={values.meta_description}
+                                                            hasError={errors.meta_description && touched.meta_description}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_description}
+                                                            autoFocus={true}
+                                                            id="meta_description"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Meta key Word *"
+                                                            value={values.meta_keyword}
+                                                            hasError={errors.meta_keyword && touched.meta_keyword}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_keyword}
+                                                            autoFocus={true}
+                                                            id="meta_keyword"
+                                                        />
+                                                    </div>
+
                                                 </div>
                                                 <div>
                                                     <Link to='/admin/area' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                    <button className="btn btn-primary me-1" disabled={!isValid || !dirty}>
+                                                        Submit
+                                                    </button>
                                                 </div>
                                             </form>
+                                        );
+                                    }}
+                                </Formik >
 
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    );
-                }}
-            </Formik>
+                    </div>
+                </div>
+                <ToastContainer />
+            </div>
+
         </>
     )
 }
