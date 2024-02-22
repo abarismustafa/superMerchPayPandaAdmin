@@ -42,8 +42,6 @@ export const getcountry = (id) => {
 export const countryUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}country/updatecountry/${id}`, value);
 };
-
-
 export const languageAdd = (data) => {
   return axiosInstance.post(`${baseUrl}language/addlanguage`, data);
 };
@@ -65,6 +63,26 @@ export const languageUpdate = (id, value) => {
 export const areaAdd = (data) => {
   return axiosInstance.post(`${baseUrl}area/addarea`, data);
 };
+
+
+// ---------Zone Module Intrigation--------------
+
+export const zoneCountryAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}zone/addzone`, data);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const areaList = () => {
   return axiosInstance.get(`${baseUrl}area`);
 };

@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
 import { SiQzone } from "react-icons/si";
+import { FcCustomerSupport } from "react-icons/fc";
 
 export const navigationData = {
   menus: [
@@ -401,6 +402,26 @@ export const navigationData = {
           id: "9",
           title: "Number Series Master",
           path: "number-series-master",
+        },
+      ],
+    },
+    {
+      uniqueId: "menu_12",
+      id: "12",
+      title: "Customer",
+      icon: <FcCustomerSupport />,
+      subMenus: [
+        {
+          uniqueId: "submenu_12_1",
+          id: "1",
+          title: "User",
+          path: "user",
+        },
+        {
+          uniqueId: "submenu_12_2",
+          id: "2",
+          title: "User Type",
+          path: "user-type",
         },
       ],
     },
