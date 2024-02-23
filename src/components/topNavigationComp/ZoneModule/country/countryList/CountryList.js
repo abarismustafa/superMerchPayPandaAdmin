@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { getZoon } from "../../../../../api/login/Login";
 
 function CountryList() {
+    const [data, setData] = useState([])
+    const getData = async () => {
+        try {
+            const response = await getZoon();
+            setData(response.data)
+        } catch (error) {
+
+        }
+    }
+    useEffect(()=>{
+        getData()
+    },[])
     return (
         <>
             <div className="row m-4">
@@ -78,36 +92,7 @@ function CountryList() {
                                             </td>
 
                                         </tr>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
 
-
-                                            <td>
-                                                <span className="badge badge-danger light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/update-country" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
-
-                                            </td>
-
-                                        </tr>
                                     </tbody>
                                 </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>

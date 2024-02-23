@@ -3,36 +3,11 @@ import CustomInputField from "../../../../../common/CustomInputField";
 import { Formik } from "formik";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import CustomTextArea from "../../../../../common/CustomTextArea";
-import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-import { zoneCountryAdd } from "../../../../../api/login/Login";
+import { areaList, zoneCountryAdd } from "../../../../../api/login/Login";
 import { useEffect, useState } from "react";
 
-const breadCrumbsTitle = {
-    id: "1",
-    title_1: "Zone Module",
-    title_2: "Country",
-    title_3: "Add Country",
-}
-function CountryAddZone() {
 
-    const [initialValues, setInitialValues] = useState({
-        name: "",
-        sort_no: "",
-        uni_code: "",
-        description: "",
-        meta_title: "",
-        meta_description: "",
-        meta_keyword: "",
-        meta_image: "",
-        parent_id: "",
-        area_id: "",
-        language_id: "2",
-        id: "1",
-        is_active: true
-    })
-    const name = "dropdown";
-    const placeholder = "Course Name";
-    const type = "dropdown";
+function CountryAddZone({ i, language, languageId, submitForm, handleChangeCus, item }) {
     const areaType = [
         {
             name: "Abc",
@@ -74,39 +49,36 @@ function CountryAddZone() {
             errors.shortingNumber = "Shorting Number  is required";
         }
 
-        if (!values.metaTitle) {
-            errors.metaTitle = "Meta Title is required";
+        if (!values.meta_title) {
+            errors.meta_title = "Meta Title is required";
         }
 
-        if (!values.metaDescription) {
-            errors.metaDescription = "Meta Description is required";
+        if (!values.meta_description) {
+            errors.meta_description = "Meta Description is required";
         }
 
-        if (!values.metaKeyWord) {
-            errors.metaKeyWord = "Meta KeyWord is required";
+        if (!values.meta_keyword) {
+            errors.meta_keyword = "Meta KeyWord is required";
         }
 
         if (!values.parentArea) {
             errors.parentArea = "Parent Area is required";
         }
-
-        if (!values.uniqCode) {
-            errors.uniqCode = "Uniq Code is required";
-        } else if (!regexUnicode.test(values.uniqCode)) {
-            errors.uniqCode = "Invalid Uniq Code Number";
+        if (!values.name) {
+            errors.name = "Name is required";
         }
+        if (!values.uni_code) {
+            errors.uni_code = "Uniq Code is required";
+        } 
         if (!values.description) {
             errors.description = "Description is required";
-        } else if (!regexDecription.test(values.description)) {
-            errors.description = "Invalid Description Number";
         }
 
         return errors;
     };
 
-    const submitForm = (values) => {
-        console.log(values);
-    };
+    const [areas, setAreas] = useState()
+
 
     const changeHandle = (selectedData) => {
         // TODO
@@ -114,9 +86,8 @@ function CountryAddZone() {
 
     const addZoneCountry = async () => {
         try {
-            const zoneContData = await zoneCountryAdd()
-            console.log(zoneContData);
-            // setCont(data?.data)
+            const ares = await areaList()
+            setAreas(ares?.data)
 
         } catch (error) {
             alert(error.message)
@@ -128,165 +99,173 @@ function CountryAddZone() {
 
     return (
         <>
-            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
 
-            <div className="row m-4">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive active-projects style-1">
-                                <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD ZONE</h4>
+            <Formik
+                initialValues={item}
+                validate={validate}
+                onSubmit={submitForm}
+                enableReinitialize
+                className="tbl-captionn"
+            >
+                {(formik) => {
+                    const {
+                        values,
+                        handleChange,
+                        handleSubmit,
+                        errors,
+                        touched,
+                        handleBlur,
+                        isValid,
+                        dirty,
+                    } = formik;
+                    return (
+                        <form className="tbl-captionn">
+                            <div className="row">
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Name *"
+                                        value={values.name}
+                                        hasError={errors.name && touched.name}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.name}
+                                        autoFocus={true}
+                                        id="name"
+                                        name='name'
+                                    />
                                 </div>
-                                <Formik
-                                    initialValues={initialValues}
-                                    validate={validate}
-                                    onSubmit={submitForm}
-                                    className="tbl-captionn"
-                                >
-                                    {(formik) => {
-                                        const {
-                                            values,
-                                            handleChange,
-                                            handleSubmit,
-                                            errors,
-                                            touched,
-                                            handleBlur,
-                                            isValid,
-                                            dirty,
-                                        } = formik;
-                                        return (
-                                            <form className="tbl-captionn">
-                                                <div className="row">
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Shorting number *"
-                                                            value={values.shortingNumber}
-                                                            hasError={errors.shortingNumber && touched.shortingNumber}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.shortingNumber}
-                                                            autoFocus={true}
-                                                            id="shortingNumber"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Uniq Code *"
-                                                            value={values.uniqCode}
-                                                            hasError={errors.uniqCode && touched.uniqCode}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.uniqCode}
-                                                            autoFocus={true}
-                                                            id="uniqCode"
-                                                        />
-                                                    </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Shorting number *"
+                                        value={values.sort_no}
+                                        hasError={errors.sort_no && touched.sort_no}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.sort_no}
+                                        autoFocus={true}
+                                        id="sort_no"
+                                        name='sort_no'
+                                    />
+                                </div>
 
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Meta Title *"
-                                                            value={values.metaTitle}
-                                                            hasError={errors.metaTitle && touched.metaTitle}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.metaTitle}
-                                                            autoFocus={true}
-                                                            id="metaTitle"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Meta Description *"
-                                                            value={values.metaDescription}
-                                                            hasError={errors.metaDescription && touched.metaDescription}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.metaDescription}
-                                                            autoFocus={true}
-                                                            id="metaDescription"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Meta Key Word *"
-                                                            value={values.metaKeyWord}
-                                                            hasError={errors.metaKeyWord && touched.metaKeyWord}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.metaKeyWord}
-                                                            autoFocus={true}
-                                                            id="metaKeyWord"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            placeholder="Parent Area *"
-                                                            value={values.parentArea}
-                                                            hasError={errors.parentArea && touched.parentArea}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.parentArea}
-                                                            autoFocus={true}
-                                                            id="parentArea"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <div className="dropdownWrapper">
-                                                            <CustomDropdown
-                                                                itemList={areaType}
-                                                                placeholder="Select Area Type *"
-                                                                isSingleSelect={false}
-                                                                icon={true}
-                                                                onChange={changeHandle}
-                                                            />
-                                                        </div>
-                                                    </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Uniq Code *"
+                                        value={values.uni_code}
+                                        hasError={errors.uni_code && touched.uni_code}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.uni_code}
+                                        autoFocus={true}
+                                        id="uni_code"
+                                        name='uni_code'
+                                    />
+                                </div>
 
-                                                    <div className="col-xl-6 mb-3">
-                                                        <div className="dropdownWrapper">
-                                                            <CustomDropdown
-                                                                itemList={status}
-                                                                placeholder="Select Status *"
-                                                                isSingleSelect={false}
-                                                                icon={true}
-                                                                onChange={changeHandle}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        <CustomTextArea
-                                                            placeholder="Description *"
-                                                            value={values.description}
-                                                            hasError={errors.description && touched.description}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.description}
-                                                            autoFocus={false}
-                                                            rows="6"
-                                                            id="description"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <Link to='/admin/country' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
-                                                </div>
-                                            </form>
-                                        );
-                                    }}
-                                </Formik>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Meta Title *"
+                                        value={values.meta_title}
+                                        hasError={errors.meta_title && touched.meta_title}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.meta_title}
+                                        autoFocus={true}
+                                        id="meta_title"
+                                        name='meta_title'
+                                    />
+                                </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Meta Description *"
+                                        value={values.meta_description}
+                                        hasError={errors.meta_description && touched.meta_description}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.meta_description}
+                                        autoFocus={true}
+                                        id="meta_description"
+                                        name='meta_description'
+                                    />
+                                </div>
+                                <div className="col-xl-4 mb-3">
+                                    <CustomInputField
+                                        type="text"
+                                        placeholder="Meta Key Word *"
+                                        value={values.meta_keyword}
+                                        hasError={errors.meta_keyword && touched.meta_keyword}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.meta_keyword}
+                                        autoFocus={true}
+                                        id="meta_keyword"
+                                        name='meta_keyword'
+                                    />
+                                </div>
+                                {/* <div className="col-xl-4 mb-3">
+
+                                    <CustomDropdown
+                                        itemList={areaType}
+                                        placeholder="Parent Area *"
+                                        value={values.parentArea}
+                                        hasError={errors.parentArea && touched.parentArea}
+                                        errorMsg={errors.parentArea}
+                                        isSingleSelect={false}
+                                        icon={true}
+                                        onChange={changeHandle}
+                                    />
+                                </div> */}
+                                <div className="col-xl-4 mb-3">
+                                    <div className="dropdownWrapper">
+                                        <select className="form-select" aria-label="Default select example" name="area_id" value={item.area_id} onChange={(e) => { handleChangeCus(e, item.language_id) }}>
+                                            <option selected> select Area</option>
+                                            {areas && areas?.map((item) => {
+                                                return <option value={item.id}>{item.name}</option>
+                                            })}
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="col-xl-4 mb-3">
+                                    <div className="dropdownWrapper">
+                                        <select className="form-select" aria-label="Default select example" name="is_active" onChange={(e) => { handleChangeCus(e, item.language_id) }}>
+                                            <option selected> select status</option>
+                                            <option value={'Enabled'}>Enabled</option>
+                                            <option value={'diasabled'}>diasabled</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-xl-6 mb-3">
+                                    <CustomTextArea
+                                        placeholder="Description *"
+                                        value={values.description}
+                                        hasError={errors.description && touched.description}
+                                        onChange={(e) => { handleChangeCus(e, item.language_id) }}
+                                        onBlur={handleBlur}
+                                        errorMsg={errors.description}
+                                        autoFocus={false}
+                                        rows="6"
+                                        id="description"
+                                        name='description'
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <div>
+                                <Link to='/admin/country' className="btn btn-danger light ms-1">Cancel</Link>
+                                {i == language?.length - 1 && <button type="button" onClick={submitForm} className="btn btn-primary me-1">
+                                    Submit
+                                </button>}
+                            </div>
+                        </form>
+                    );
+                }}
+            </Formik>
 
         </>
     )

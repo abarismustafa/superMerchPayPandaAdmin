@@ -97,3 +97,28 @@ export const getarea = (id) => {
 export const areaUpdate = ({id, value}) => {
   return axiosInstance.put(`${baseUrl}area/updatearea/${id}`, value);
 };
+
+
+
+// Zoon master
+export const getZoon = ({id}) => {
+  return axiosInstance.get(`${baseUrl}zone`);
+};
+
+export const zoonById = ({id}) => {
+  return axiosInstance.get(`${baseUrl}zone/${id}`);
+};
+export const zoonPost = ({data}) => {
+  return axiosInstance.post(`${baseUrl}zone/addzone`,data);
+};
+
+// Users
+export const addUsers = (data) => {
+  return axiosInstance.post(`${baseUrl}user/adduser`,data);
+};
+export const usersList = () => {
+  return axiosInstance.get(`${baseUrl}user`);
+};
+export const userDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}user/deleteuser/${id}`);
+};
