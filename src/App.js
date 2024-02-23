@@ -142,6 +142,7 @@ import CountryZoneMudle from "./components/topNavigationComp/ZoneModule/country/
 import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/ZoneCountryAdd";
 import Customer from "./components/topNavigationComp/customer/Customer";
 import AddUsers from "./components/topNavigationComp/customer/users/addUsers/AddUsers";
+import IndexZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/IndexZone";
 
 function App() {
 
@@ -160,7 +161,7 @@ function App() {
           <Route path="add-role-master" element={<AddRoleMaster />} />
           <Route path="edit-role-master" element={<EditRoleMaster />} />
           <Route path="company-staff/welcome" element={<CompanyStaffPages />} />
-          <Route path="add-company-staff/welcome"element={<AddCompanyStaff />}/>
+          <Route path="add-company-staff/welcome" element={<AddCompanyStaff />} />
           <Route path="company-staff-permission" element={<MasterPages />} />
           <Route path="status-master" element={<StatusMasterPage />} />
           <Route path="add-status-master" element={<AddStatusMaster />} />
@@ -209,12 +210,13 @@ function App() {
           />
           <Route
             path="add-country-zone"
-            element={<CountryAddZone />}
+            element={<IndexZone />}
           />
           {/* <Route
             path="add-country-zone/:id"
             element={<CountryAddZone />}
           /> */}
+          
           <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
           <Route
             path="update-agent-onboarding"
@@ -426,6 +428,8 @@ function App() {
           <Route path="add-language" element={<FormLanguage />} />
           <Route path="update_language/:id" element={<FormLanguage />} />
           <Route path="page-not-found" element={<PageNotFound />} />
+       
+
         </Route>
       </Routes>
     </>
