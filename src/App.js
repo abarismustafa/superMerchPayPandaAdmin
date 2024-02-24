@@ -118,7 +118,7 @@ import AddContactEnquiry from "./components/topNavigationComp/masters/contactEnq
 import AddCompanyStaff from "./components/topNavigationComp/companyStaff/addCompanyStaff/AddCompanyStaff";
 import CashfreeGateWayMasterPages from "./pages/topNavigationPages/Master/cashfreeGateWayMasterPages";
 import AddCashFreeGateway from "./components/topNavigationComp/masters/cashfreeGatewayMaster/addCashFreeGateway/AddCashFreeGateway";
-import SendRoleWise from "./pages/topNavigationPages/whatsAppPages";
+import SendRoleWisepage from "./pages/topNavigationPages/whatsAppPages";
 import CompanySettings from "./components/topNavigationComp/settings/companySetting/CompanySettings";
 import LogoUploadPage from "./pages/topNavigationPages/settings/logoUpload";
 import SignatureUploadPage from "./pages/topNavigationPages/settings/signatureUpload";
@@ -143,6 +143,8 @@ import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/zo
 import Customer from "./components/topNavigationComp/customer/Customer";
 import AddUsers from "./components/topNavigationComp/customer/users/addUsers/AddUsers";
 import IndexZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/IndexZone";
+import UsersType from "./pages/topNavigationPages/userType";
+import AddUsertType from "./components/topNavigationComp/customer/addUserType/AddUsertType";
 
 function App() {
 
@@ -289,6 +291,10 @@ function App() {
           <Route path="bank-settings" element={<BankSettingsPage />} />
           <Route path="user" element={<Customer />} />
           <Route path="user/add-user" element={<AddUsers />} />
+          <Route path="update-user/:id" element={<AddUsers />} />
+          <Route path="user-type" element={<UsersType />} />
+          <Route path="add/user-type" element={<AddUsertType />} />
+          <Route path="update/user-type/:id" element={<AddUsertType />} />
           <Route path="add-bank-settings" element={<AddBankSettings />} />
           <Route path="update-bank-settings" element={<UpdateBankSettings />} />
           <Route path="logo-upload" element={<LogoUploadPage />} />
@@ -416,7 +422,7 @@ function App() {
             path="add-cashfree-gateway-master"
             element={<AddCashFreeGateway />}
           />
-          <Route path="whatapp/send-role-wise" element={<SendRoleWise />} />
+          <Route path="whatapp/send-role-wise" element={<SendRoleWisepage />} />
           <Route path="company-setting" element={<CompanySettings />} />
           <Route path="currency" element={<CurrencyPage />} />
           <Route path="add-currency" element={<CurrencyForm />} />
@@ -428,8 +434,6 @@ function App() {
           <Route path="add-language" element={<FormLanguage />} />
           <Route path="update_language/:id" element={<FormLanguage />} />
           <Route path="page-not-found" element={<PageNotFound />} />
-       
-
         </Route>
       </Routes>
     </>

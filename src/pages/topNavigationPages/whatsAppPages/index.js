@@ -1,7 +1,7 @@
 import React from 'react'
 import WhatsappRoleWise from '../../../components/topNavigationComp/whatsappRoleWise/WhatsappRoleWise'
 
-const SendRoleWise = () => {
+const SendRoleWisePage = () => {
   return (
     <>
       <WhatsappRoleWise/>
@@ -9,4 +9,4 @@ const SendRoleWise = () => {
   )
 }
 
-export default SendRoleWise
+export default SendRoleWisePage
