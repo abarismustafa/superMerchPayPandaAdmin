@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { userDelete, usersList } from '../../../../api/login/Login';
 import Loadar from '../../../../common/loader/Loader';
 import { Popconfirm, message } from 'antd';
@@ -11,7 +11,7 @@ function Users() {
         setLoading(true)
         try {
             const data = await usersList()
-            setData(data?.data)
+             setData(data?.data)
 
         } catch (error) {
             alert(error.message)
@@ -79,30 +79,9 @@ function Users() {
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     DOB</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Latitude</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    longitude</th>
-
-
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    email Verified</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Mobile Verified</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    OTP</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    KYC</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     Adhaar Number</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     Pan Number</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Transaction Mode</th>
-
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Bind Device</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Device Id</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     Action</th>
                                             </tr>
@@ -111,32 +90,11 @@ function Users() {
                                             {data && data?.map((item, i) => {
                                                 return <tr role="row" className="odd">
                                                     <td className="sorting_1"><span>{i + 1}</span></td>
-
                                                     <td>{item?.name}</td>
-                                                    <td>{item?.profile}</td>
+                                                    <td><span><img src={item?.profile?.url } alt='profile'/></span></td>
                                                     <td>{item?.dob}</td>
-                                                    <td>{item?.latitude}</td>
-                                                    <td>{item?.longitude}</td>
-
-
-                                                    <td>{item?.emailVerified ? 'Yes' : 'No'} </td>
-                                                    <td>{item?.mobileVerified ? 'Yes' : 'No'} </td>
-
-                                                    <td>{item?.is_otp ? 'Yes' : 'No'} </td>
-                                                    <td>{item?.is_kyc ? 'Yes' : 'No'} </td>
-
-
                                                     <td>{item?.adhaar_number} </td>
                                                     <td>{item?.pan_number} </td>
-                                                    <td>{item?.transaction_mode} </td>
-
-
-                                                    <td>
-                                                        --
-                                                    </td>
-                                                    <td>
-                                                        --
-                                                    </td>
                                                     <td>
                                                         <div className="d-flex">
                                                             <Link to={`#`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>

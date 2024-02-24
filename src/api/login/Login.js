@@ -71,18 +71,6 @@ export const zoneCountryAdd = (data) => {
   return axiosInstance.post(`${baseUrl}zone/addzone`, data);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 export const areaList = () => {
   return axiosInstance.get(`${baseUrl}area`);
 };
@@ -119,6 +107,26 @@ export const addUsers = (data) => {
 export const usersList = () => {
   return axiosInstance.get(`${baseUrl}user`);
 };
+
 export const userDelete = (id) => {
   return axiosInstance.delete(`${baseUrl}user/deleteuser/${id}`);
+};
+
+
+// userType Intrigation 
+
+export const addUserType = (data) => {
+  return axiosInstance.post(`${baseUrl}usertype/adduser`,data);
+};
+export const listUserType = (data) => {
+  return axiosInstance.get(`${baseUrl}usertype`,data);
+};
+export const deleteUserType = (id) => {
+  return axiosInstance.delete(`${baseUrl}usertype/deleteuser/${id}`);
+};
+export const getUserType= (id) => {
+  return axiosInstance.get(`${baseUrl}usertype/${id}`);
+};
+export const UserTypeUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}usertype/updateuser/${id}`, value);
 };

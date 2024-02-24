@@ -20,7 +20,6 @@ const axiosInstance = axios.create({
 // Add request interceptor
 axiosInstance.interceptors.request.use(
     (config) => {
-        console.log(config.data);
         const base64 = btoa(JSON.stringify(config.data));
         const checkSum = hashStringWithSecretKey(
             base64,

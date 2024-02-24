@@ -52,7 +52,7 @@ function ListCurrency() {
     return (
         <>
             {loading && <Loadar />}
-            <div className="row">
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
