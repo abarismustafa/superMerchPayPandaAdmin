@@ -159,11 +159,11 @@ const AddUsertType = () => {
                                                     >
                                                         Cancel
                                                     </Link>
-                                                    {console.log(isValid,`-------`,dirty)}
+                                                    {console.log(isValid, `-------`, dirty)}
                                                     <button
                                                         className="btn btn-primary me-1"
                                                         type="submit"
-                                                       
+
                                                         disabled={!isValid || !dirty}
                                                     // onClick={submitForm}
                                                     >
