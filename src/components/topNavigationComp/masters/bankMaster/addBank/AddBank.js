@@ -1,23 +1,32 @@
 import { Formik } from "formik";
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
+import { useEffect, useState } from "react";
+import { bankMasterAdd, bankMasterUpdate, getBnakMasterId } from "../../../../../api/login/Login";
+import { ToastContainer, toast } from "react-toastify";
 
 function AddBank() {
-    const initialValues = {
-        bankName: '',
-        ifcCode: '',
-        empoloyeeEnail: ''
-    };
-    const breadCrumbsTitle = {
-        id:"1",
-        title_1:"Master",
-        title_2:" Bank Master",
-        path_2:"/admin/bank-master",
-        title_3:"Add Bank Master",
-        path_3:"/admin/add-bank",
-    }
 
+    const breadCrumbsTitle = {
+        id: "1",
+        title_1: "Master",
+        title_2: " Bank Master",
+        path_2: "/admin/bank-master",
+        title_3: "Add Bank Master",
+        path_3: "/admin/add-bank",
+    }
+    const [initialValues, setInitialValues] = useState({
+        bank_name: "",
+        bank_code: "",
+        ifsc_code: '',
+        bank_id: '',
+        eko_bank_code: '',
+        paysprint_bank_id: '',
+        is_active: true
+    });
+    const params = useParams();
+    const navigate = useNavigate()
 
 
 
@@ -29,62 +38,114 @@ function AddBank() {
         const regexGstNumber =
             /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
-        if (!values.bankName) {
-            errors.bankName = "Bank Name  is required";
+        if (!values.bank_name) {
+            errors.bank_name = "Bank Name  is required";
         }
-        if (!values.ifcCode) {
-            errors.ifcCode = "IFSC Code Date is required";
+        if (!values.bank_code) {
+            errors.bank_code = "Bank Code  is required";
+        }
+        if (!values.ifsc_code) {
+            errors.ifsc_code = "IFSC Code is required";
+        }
+        if (!values.bank_id) {
+            errors.bank_id = "Bank ID is required";
+        }
+        if (!values.eko_bank_code) {
+            errors.eko_bank_code = "Eko Bank Code is required";
+        }
+        if (!values.paysprint_bank_id) {
+            errors.paysprint_bank_id = "Paysprint Bank Id is required";
         }
 
-        if (!values.empoloyeeEnail) {
-            errors.empoloyeeEnail = "Email is required";
-        } else if (!regexEmail.test(values.empoloyeeEnail)) {
-            errors.empoloyeeEnail = "Invalid Email";
-        }
-
-        // if (!values.mobileNumber) {
-        //     errors.mobileNumber = "Mobile Number is required";
-        // } else if (!regexMobileNumber.test(values.mobileNumber)) {
-        //     errors.mobileNumber = "Invalid Mobile Number";
-        // }
-
-
-        // if (!values.panNumber) {
-        //     errors.panNumber = "PAN Number is required";
-        // } else if (!regexPanNumber.test(values.panNumber)) {
-        //     errors.panNumber = "Invalid PAN Number";
-        // }
-
-        // if (!values.gstNumber) {
-        //   errors.gstNumber = "GST Number is required";
-        // } else if (!regexGstNumber.test(values.gstNumber)) {
-        //   errors.gstNumber = "Invalid GST Number";
-        // }
         return errors;
     };
 
-    const submitForm = (values) => {
-        console.log(values);
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Bank Master Successfully.`, {
+            position: "top-center",
+        });
     };
 
-    const changeHandle = (selectedData) => {
-        // TODO
+    const submitForm = async (values) => {
+        try {
+            if (!params?.id) {
+                try {
+                    const res = await bankMasterAdd(values);
+                    if (res?.statusCode == "200") {
+                        toastSuccessMessage();
+                        setTimeout(() => {
+                            navigate('/admin/bank-master')
+                        }, [4000])
+                    }
+                } catch (error) {
+
+                }
+
+            } else {
+                try {
+                    const res = await bankMasterUpdate(params.id, values);
+                    if (res?.statusCode == "200") {
+                        toastSuccessMessage();
+                        setTimeout(() => {
+                            navigate('/admin/bank-master')
+                        }, [4000])
+                    }
+                } catch (error) {
+
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
     };
+
+    useEffect(() => {
+        const fetchCurrency = async () => {
+            try {
+                if (params?.id) {
+                    const response = await getBnakMasterId(params.id);
+                    const currencyData = response.data;
+                    setInitialValues(currencyData);
+                } else {
+                    setInitialValues({
+                        bank_name: "",
+                        bank_code: "",
+                        ifsc_code: '',
+                        bank_id: '',
+                        eko_bank_code: '',
+                        paysprint_bank_id: '',
+                        is_active: true
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching currency:", error);
+            }
+        };
+
+        fetchCurrency();
+    }, [params?.id]);
+
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD BANK MASTER</h4>
+                                    <h4 className="heading mb-0">
+                                        {params?.id ? "UPDATE" : "ADD"}  BANK MASTER
+
+                                    </h4>
                                 </div>
                                 <Formik
                                     initialValues={initialValues}
                                     validate={validate}
                                     onSubmit={submitForm}
+                                    enableReinitialize
                                 >
                                     {(formik) => {
                                         const {
@@ -98,57 +159,115 @@ function AddBank() {
                                             dirty,
                                         } = formik;
                                         return (
-                                            <form className="tbl-captionn">
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.bankName}
-                                                            hasError={errors.bankName && touched.bankName}
+                                                            value={values.bank_name}
+                                                            hasError={errors.bank_name && touched.bank_name}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.bankName}
+                                                            errorMsg={errors.bank_name}
                                                             autoFocus={true}
-                                                            id="bankName"
-                                                            name="bankName"
+                                                            id="bank_name"
+                                                            name="bank_name"
                                                             placeholder="Bank Name"
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
-                                                            type="text"
-                                                            value={values.ifcCode}
-                                                            hasError={errors.ifcCode && touched.ifcCode}
+                                                            type="number"
+                                                            value={values.bank_code}
+                                                            hasError={errors.bank_code && touched.bank_code}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.ifcCode}
+                                                            errorMsg={errors.bank_code}
                                                             autoFocus={true}
-                                                            id="ifcCode"
-                                                            name="ifcCode"
+                                                            id="bank_code"
+                                                            name="bank_code"
+                                                            placeholder="Bank Code"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.ifsc_code}
+                                                            hasError={errors.ifsc_code && touched.ifsc_code}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.ifsc_code}
+                                                            autoFocus={true}
+                                                            id="ifsc_code"
+                                                            name="ifsc_code"
                                                             placeholder="IFSC Code"
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
-                                                            type="email"
-                                                            value={values.empoloyeeEnail}
-                                                            hasError={errors.empoloyeeEnail && touched.empoloyeeEnail}
+                                                            type="number"
+                                                            value={values.bank_id}
+                                                            hasError={errors.bank_id && touched.bank_id}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.empoloyeeEnail}
+                                                            errorMsg={errors.bank_id}
                                                             autoFocus={true}
-                                                            id="empoloyeeEnail"
-                                                            name="empoloyeeEnail"
-                                                            placeholder="Empoloyee Email"
+                                                            id="bank_id"
+                                                            name="bank_id"
+                                                            placeholder="Bank ID"
                                                         />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.eko_bank_code}
+                                                            hasError={errors.eko_bank_code && touched.eko_bank_code}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.eko_bank_code}
+                                                            autoFocus={true}
+                                                            id="eko_bank_code"
+                                                            name="eko_bank_code"
+                                                            placeholder="Eko Bank Code"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.paysprint_bank_id}
+                                                            hasError={errors.paysprint_bank_id && touched.paysprint_bank_id}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.paysprint_bank_id}
+                                                            autoFocus={true}
+                                                            id="paysprint_bank_id"
+                                                            name="paysprint_bank_id"
+                                                            placeholder="Paysprint Bank Id"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <select class="form-select" aria-label="Default select example" name="is_active" onChange={handleChange}>
+                                                            <option selected>Open this select menu</option>
+                                                            <option value={true}>Active</option>
+                                                            <option value={false}>DeActive</option>
+
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <Link to='/admin/bank-master' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                    <button
+                                                        className="btn btn-primary me-1"
+                                                        type="submit"
+                                                        disabled={!isValid || !dirty}
+                                                    >
+                                                        {params?.id ? "Update" : "Add"}
+                                                    </button>
                                                 </div>
                                             </form>
                                         );
@@ -159,6 +278,7 @@ function AddBank() {
                         </div>
                     </div>
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

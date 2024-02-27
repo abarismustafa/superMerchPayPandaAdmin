@@ -149,6 +149,8 @@ import AddUsers from "./components/topNavigationComp/customer/users/addUsers/Add
 import IndexZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/IndexZone";
 import UsersType from "./pages/topNavigationPages/userType";
 import AddUsertType from "./components/topNavigationComp/customer/addUserType/AddUsertType";
+import StateMasterPage from "./pages/stateMaster";
+import FormStateMaster from "./components/stateMaster/formStateMaster/FormStateMaster";
 
 function App() {
 
@@ -162,6 +164,7 @@ function App() {
           <Route path="" element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
+          <Route path="update-bank/:id" element={<AddBank />} />
           {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
           <Route path="role-master" element={<RoleMasterPage />} />
           <Route path="add-role-master" element={<AddRoleMaster />} />
@@ -172,7 +175,8 @@ function App() {
           <Route path="company-staff-permission" element={<MasterPages />} />
           <Route path="status-master" element={<StatusMasterPage />} />
           <Route path="add-status-master" element={<AddStatusMaster />} />
-          <Route path="edit-status-master" element={<EditStatusMaster />} />
+          <Route path="update-status-master/:id" element={<AddStatusMaster />} />
+          {/* <Route path="edit-status-master" element={<EditStatusMaster />} /> */}
           <Route path="service-master" element={<ServiceMasterPage />} />
           <Route path="add-service-master" element={<AddServiceMaster />} />
           <Route path="edit-service-master" element={<EditServiceMaster />} />
@@ -191,7 +195,8 @@ function App() {
           <Route path="boardcast" element={<BoardcastPage />} />
           <Route path="payment-method" element={<PaymentMethodMasterPage />} />
           <Route path="add-payment-method" element={<AddPaymentMethod />} />
-          <Route path="update-payment-method" element={<EditPaymentMethod />} />
+          <Route path="update-payment-method/:id" element={<AddPaymentMethod />} />
+          {/* <Route path="update-payment-method" element={<EditPaymentMethod />} /> */}
           <Route
             path="payout-beneficiary-master"
             element={<PayoutBeneficiaryMasterPage />}
@@ -227,7 +232,7 @@ function App() {
             path="add-country-zone/:id"
             element={<CountryAddZone />}
           /> */}
-          
+
           <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
           <Route
             path="update-agent-onboarding"
@@ -448,6 +453,9 @@ function App() {
           <Route path="staff-type-update/:id" element={<StaffTypeAdd />} />
           <Route path="add-language" element={<FormLanguage />} />
           <Route path="update_language/:id" element={<FormLanguage />} />
+          <Route path="state-master" element={<StateMasterPage />} />
+          <Route path="add-state-master" element={<FormStateMaster />} />
+          <Route path="update-state-master/:id" element={<FormStateMaster />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>

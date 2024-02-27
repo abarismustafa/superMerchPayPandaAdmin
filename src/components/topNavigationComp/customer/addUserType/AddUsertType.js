@@ -13,6 +13,7 @@ const AddUsertType = () => {
     const [initialValues, setInitialValues] = useState({
         user_type: "",
         is_active: false,
+        
     });
     const validate = (values) => {
         let errors = {};
@@ -158,11 +159,11 @@ const AddUsertType = () => {
                                                     >
                                                         Cancel
                                                     </Link>
-                                                    
+                                                    {console.log(isValid, `-------`, dirty)}
                                                     <button
                                                         className="btn btn-primary me-1"
                                                         type="submit"
-                                                       
+
                                                         disabled={!isValid || !dirty}
                                                     >
                                                         {params?.id ? "Update" : "Add"}
