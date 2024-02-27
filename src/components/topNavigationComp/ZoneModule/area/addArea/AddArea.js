@@ -61,8 +61,6 @@ function AddArea() {
         SetselectData(data)
     }
 
-
-
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
