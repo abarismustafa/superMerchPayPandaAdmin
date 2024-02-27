@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 
 
-import { areaAdd, getarea } from "../../../../../api/login/Login";
+import { areaAdd, getCountryAdd, getarea } from "../../../../../api/login/Login";
 import { ToastContainer, toast } from "react-toastify";
 function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, item }) {
 
@@ -30,7 +30,6 @@ function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, 
         }
         return errors;
     };
-
 
 
     return (
@@ -85,7 +84,7 @@ function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, 
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
-                                    <select className="form-select" aria-label="Default select example" name="is_active"  onChange={(e) => { handleChangeCus(e, item.language_id) }}>
+                                    <select className="form-select" aria-label="Default select example" name="is_active" onChange={(e) => { handleChangeCus(e, item.language_id) }}>
                                         <option selected> select Status</option>
                                         <option value={'Enabled'}>Enabled</option>
                                         <option value={'diasabled'}>diasabled</option>

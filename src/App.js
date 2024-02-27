@@ -140,6 +140,10 @@ import LanguagePage from "./pages/language";
 import FormLanguage from "./components/language/formLanguage.js/FormLanguage";
 import CountryZoneMudle from "./components/topNavigationComp/ZoneModule/country/Country";
 import CountryAddZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/ZoneCountryAdd";
+import StaffPage from "./pages/staffModule/staff";
+import StaffForm from "./components/staffModule/staffForm/StaffForm";
+import StaffTypePage from "./pages/staffModule/staffType";
+import StaffTypeAdd from "./components/staffModule/staffType/staffTypeAdd/StaffTypeAdd";
 import Customer from "./components/topNavigationComp/customer/Customer";
 import AddUsers from "./components/topNavigationComp/customer/users/addUsers/AddUsers";
 import IndexZone from "./components/topNavigationComp/ZoneModule/country/zoneCountryAdd/IndexZone";
@@ -431,6 +435,12 @@ function App() {
           <Route path="add-country" element={<CountryForm />} />
           <Route path="update-country/:id" element={<CountryForm />} />
           <Route path="language" element={<LanguagePage />} />
+          <Route path="satff" element={<StaffPage />} />
+          <Route path="add-satff" element={<StaffForm />} />
+          <Route path="update-satff/:id" element={<StaffForm />} />
+          <Route path="staff-type" element={<StaffTypePage />} />
+          <Route path="staff-type-add" element={<StaffTypeAdd />} />
+          <Route path="staff-type-update/:id" element={<StaffTypeAdd />} />
           <Route path="add-language" element={<FormLanguage />} />
           <Route path="update_language/:id" element={<FormLanguage />} />
           <Route path="page-not-found" element={<PageNotFound />} />

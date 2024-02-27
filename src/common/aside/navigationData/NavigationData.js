@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
 import { SiQzone } from "react-icons/si";
+import { IoIosPeople } from "react-icons/io";
 import { FcCustomerSupport } from "react-icons/fc";
 
 export const navigationData = {
@@ -524,6 +525,26 @@ export const navigationData = {
           id: "1",
           title: "Send Role Wise ",
           path: "whatapp/send-role-wise",
+        },
+      ],
+    },
+    {
+      uniqueId: "menu_13",
+      id: "13",
+      title: "Staff Module",
+      icon: <IoIosPeople />,
+      subMenus: [
+        {
+          uniqueId: "submenu_13_1",
+          id: "1",
+          title: "Staff",
+          path: "satff",
+        },
+        {
+          uniqueId: "submenu_13_2",
+          id: "2",
+          title: "Staff Typw",
+          path: "staff-type",
         },
       ],
     },

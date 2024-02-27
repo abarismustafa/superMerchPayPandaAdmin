@@ -82,27 +82,66 @@ export const getarea = (id) => {
   return axiosInstance.get(`${baseUrl}area/${id}`);
 };
 
-export const areaUpdate = ({id, value}) => {
+export const areaUpdate = ({ id, value }) => {
   return axiosInstance.put(`${baseUrl}area/updatearea/${id}`, value);
+};
+
+export const staffAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}staff/addstaff`, data);
+};
+export const staffList = () => {
+  return axiosInstance.get(`${baseUrl}staff`);
+};
+export const staffType = () => {
+  return axiosInstance.get(`${baseUrl}stafftype`);
+};
+export const staffDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}staff/deletestaff/${id}`);
+};
+
+export const getstaff = (id) => {
+  return axiosInstance.get(`${baseUrl}staff/${id}`);
+};
+
+export const staffUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}staff/updatestaff/${id}`, value);
+};
+
+export const staffTypeAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}stafftype/addstaff`, data);
+};
+export const staffTypeList = () => {
+  return axiosInstance.get(`${baseUrl}stafftype`);
+};
+export const staffTypeDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}stafftype/deleteStaff/${id}`);
+};
+
+export const getstaffType = (id) => {
+  return axiosInstance.get(`${baseUrl}stafftype/${id}`);
+};
+
+export const staffTypeUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}stafftype/updateStaff/${id}`, value);
 };
 
 
 
 // Zoon master
-export const getZoon = ({id}) => {
+export const getZoon = ({ id }) => {
   return axiosInstance.get(`${baseUrl}zone`);
 };
 
-export const zoonById = ({id}) => {
+export const zoonById = ({ id }) => {
   return axiosInstance.get(`${baseUrl}zone/${id}`);
 };
-export const zoonPost = ({data}) => {
-  return axiosInstance.post(`${baseUrl}zone/addzone`,data);
+export const zoonPost = ({ data }) => {
+  return axiosInstance.post(`${baseUrl}zone/addzone`, data);
 };
 
 // Users
 export const addUsers = (data) => {
-  return axiosInstance.post(`${baseUrl}user/adduser`,data);
+  return axiosInstance.post(`${baseUrl}user/adduser`, data);
 };
 export const usersList = () => {
   return axiosInstance.get(`${baseUrl}user`);
@@ -116,15 +155,15 @@ export const userDelete = (id) => {
 // userType Intrigation 
 
 export const addUserType = (data) => {
-  return axiosInstance.post(`${baseUrl}usertype/adduser`,data);
+  return axiosInstance.post(`${baseUrl}usertype/adduser`, data);
 };
 export const listUserType = (data) => {
-  return axiosInstance.get(`${baseUrl}usertype`,data);
+  return axiosInstance.get(`${baseUrl}usertype`, data);
 };
 export const deleteUserType = (id) => {
   return axiosInstance.delete(`${baseUrl}usertype/deleteuser/${id}`);
 };
-export const getUserType= (id) => {
+export const getUserType = (id) => {
   return axiosInstance.get(`${baseUrl}usertype/${id}`);
 };
 export const UserTypeUpdate = (id, value) => {
