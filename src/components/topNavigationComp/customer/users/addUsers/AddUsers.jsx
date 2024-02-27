@@ -1,62 +1,51 @@
 import { Formik } from 'formik';
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Breadcrumbs from '../../../../../common/breadcrumb/Breadcrumbs';
 import CustomInputField from '../../../../../common/CustomInputField';
+import { addUsers } from '../../../../../api/login/Login';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddUsers = () => {
-    const initialValues = {
-        date: '',
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        profile: '',
-        dob: '',
-        longitude: '',
-        latitude: '',
-        ApiKey: '',
-        password: '',
-        email: '',
-        mobileNumber: '',
-        otp: '',
-    }
+    const navigate = useNavigate()
+    const [initialValues, setinitialValues] = useState({
+        name: "",
+        email: "",
+        profile: "",
+        mobile: "",
+        dob: "",
+        latitude: "",
+        longitude: "",
+        password: "",
+        emailVerified: false,
+        mobileVerified: false,
+        is_otp: false,
+        is_kyc: false,
+        adhaar_number: "",
+        pan_number: "",
+        transaction_mode: "",
+        user_type_id: "",
+    })
 
     const validate = (values) => {
         let errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const regexMobileNumber = /^[0-9]{10}$/;
         const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-        const regexGstNumber =
-            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
-
-        if (!values.date) {
-            errors.date = "Date is required";
+        const regexAdhaar = /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/ 
+       
+        if (!values.name) {
+            errors.name = "Name  is required";
         }
-
-        // if (!values.email) {
-        //     errors.email = "Email is required";
-        // } else if (!regexEmail.test(values.email)) {
-        //     errors.email = "Invalid Email";
-        // }
-
-        // if (!values.mobileNumber) {
-        //     errors.mobileNumber = "Mobile Number is required";
-        // } else if (!regexMobileNumber.test(values.mobileNumber)) {
-        //     errors.mobileNumber = "Invalid Mobile Number";
-        // }
-
-        if (!values.firstName) {
-            errors.firstName = "First Name Date is required";
+        if (!values.email) {
+            errors.email = "E-mail is required";
+        }else if(!regexEmail.test(values.email)){
+            errors.email = "Invalid email Id";
         }
-
-        // if (!values.user) {
-        //     errors.user = "User To  is required";
-        // }
-        if (!values.middleName) {
-            errors.middleName = "Middle Name is required";
-        }
-        if (!values.lastName) {
-            errors.lastName = "Last Name is required";
+        if (!values.mobile) {
+            errors.mobile = "Mobile Number is required";
+        } else if (!regexMobileNumber.test(values.mobile)) {
+            errors.mobile = "Invalid Mobile Number";
         }
         if (!values.profile) {
             errors.profile = "Profile is required";
@@ -76,24 +65,21 @@ const AddUsers = () => {
         if (!values.password) {
             errors.password = "Password is required";
         }
-        if (!values.email) {
-            errors.email = "E-mail is required";
-        }
-        if (!values.mobileNumber) {
-            errors.mobileNumber = "Mobile Number is required";
-          } else if (!regexMobileNumber.test(values.mobileNumber)) {
-            errors.mobileNumber = "Invalid Mobile Number";
-          }
-       
+        
+        
         if (!values.otp) {
             errors.otp = "Otp is required";
         }
-
-        // if (!values.panNumber) {
-        //     errors.panNumber = "PAN Number is required";
-        // } else if (!regexPanNumber.test(values.panNumber)) {
-        //     errors.panNumber = "Invalid PAN Number";
-        // }
+        if (!values.pan_number) {
+            errors.pan_number = "PAN Number is required";
+        } else if (!regexPanNumber.test(values.pan_number)) {
+            errors.pan_number = "Invalid PAN Number";
+        }
+        if (!values.adhaar_number) {
+            errors.adhaar_number = "Adhaar Number is required";
+        } else if (!regexAdhaar.test(values.adhaar_number)) {
+            errors.adhaar_number = "Invalid Adhaar Number";
+        }
 
         // if (!values.gstNumber) {
         //   errors.gstNumber = "GST Number is required";
@@ -104,15 +90,35 @@ const AddUsers = () => {
         return errors;
     };
 
-    const submitForm = (values) => {
-        console.log(values);
+    const handleChange = (e) => {
+        const clone = { ...initialValues }
+        clone[e.target.name] = e.target.value
+        validate(clone)
+        setinitialValues(clone)
+    }
+    const params = useParams()
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Users Successfully.`, {
+            position: "top-center",
+        });
     };
 
-    const changeHandle = (selectedData) => {
-        // TODO
+    const submitForm = async (values) => {
+        console.log(values);
+        try {
+            await addUsers(values);
+            toastSuccessMessage();
+            setTimeout(() => {
+                navigate(`/admin/user`)
+            }, 5000)
+        } catch (error) {
+
+        }
     };
+
     return (
         <>
+            <ToastContainer />
             <Breadcrumbs breadCrumbsTitle={""} />
             <div className="row m-4">
                 <div className="col-xl-12">
@@ -126,7 +132,7 @@ const AddUsers = () => {
                                     initialValues={initialValues}
                                     validate={validate}
                                     onSubmit={submitForm}
-
+                                    enableReinitialize
                                 >
                                     {(formik) => {
                                         const {
@@ -140,151 +146,24 @@ const AddUsers = () => {
                                             dirty,
                                         } = formik;
                                         return (
-                                            <form className="tbl-captionn">
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
 
                                                         <CustomInputField
-                                                            type="date"
-                                                            value={values.date}
-                                                            hasError={errors.date && touched.date}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.date}
-                                                            autoFocus={true}
-                                                            id="date"
-                                                        />
-
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
                                                             type="text"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
+                                                            value={values.name}
+                                                            hasError={errors.name && touched.name}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
+                                                            errorMsg={errors.name}
                                                             autoFocus={true}
-                                                            id="firstName"
-                                                            placeholder="First Name"
+                                                            id="name"
+                                                            placeholder="Name"
+                                                            name='name'
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.middleName}
-                                                            hasError={errors.middleName && touched.middleName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur} s
-                                                            errorMsg={errors.middleName}
-                                                            autoFocus={true}
-                                                            id="middleName"
-                                                            placeholder="Middle Name"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-                                                        {/* <label htmlFor="exampleFormControlInput2" className="form-label">Last Name<span className="text-danger">*</span></label> */}
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.lastName}
-                                                            hasError={errors.lastName && touched.lastName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.lastName}
-                                                            autoFocus={true}
-                                                            id="lastName"
-                                                            placeholder="Last Name"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.profile}
-                                                            hasError={errors.profile && touched.profile}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.profile}
-                                                            autoFocus={true}
-                                                            id="profile"
-                                                            placeholder="Profile"
-                                                        />
-
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.dob}
-                                                            hasError={errors.dob && touched.dob}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.dob}
-                                                            autoFocus={true}
-                                                            id="dob"
-                                                            placeholder="DOB "
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.longitude}
-                                                            hasError={errors.longitude && touched.longitude}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.longitude}
-                                                            autoFocus={true}
-                                                            id="longitude"
-                                                            placeholder="Longitude"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.latitude}
-                                                            hasError={errors.latitude && touched.latitude}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.latitude}
-                                                            autoFocus={true}
-                                                            id="latitude"
-                                                            placeholder="latitude"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.ApiKey}
-                                                            hasError={errors.ApiKey && touched.ApiKey}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.ApiKey}
-                                                            autoFocus={true}
-                                                            id="ApiKey"
-                                                            placeholder="Api Key"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
-                                                        <CustomInputField
-                                                            type="password"
-                                                            value={values.password}
-                                                            hasError={errors.password && touched.password}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.password}
-                                                            autoFocus={true}
-                                                            id="password"
-                                                            placeholder="Password"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-4 mb-3">
-
                                                         <CustomInputField
                                                             type="email"
                                                             value={values.email}
@@ -295,54 +174,178 @@ const AddUsers = () => {
                                                             autoFocus={true}
                                                             id="email"
                                                             placeholder="Email"
+                                                            name='email'
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-
                                                         <CustomInputField
-                                                            type="number"
-                                                            value={values.mobileNumber}
-                                                            hasError={errors.mobileNumber && touched.mobileNumber}
+                                                            type="text"
+                                                            value={values.mobile}
+                                                            hasError={errors.mobile && touched.mobile}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.mobileNumber}
+                                                            errorMsg={errors.mobile}
                                                             autoFocus={true}
                                                             id="mobile"
                                                             placeholder="Mobile"
+                                                            name='mobile'
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="date"
+                                                            value={values.dob}
+                                                            hasError={errors.dob && touched.dob}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.dob}
+                                                            autoFocus={true}
+                                                            id="dob"
+                                                            placeholder="DOB"
+                                                            name='dob'
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.latitude}
+                                                            hasError={errors.latitude && touched.latitude}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.latitude}
+                                                            autoFocus={true}
+                                                            id="latitude"
+                                                            placeholder="Latitude"
+                                                            name='latitude'
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.longitude}
+                                                            hasError={errors.longitude && touched.longitude}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.longitude}
+                                                            autoFocus={true}
+                                                            id="longitude"
+                                                            placeholder="Longitude"
+                                                            name='longitude'
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="password"
+                                                            value={values.password}
+                                                            hasError={errors.password && touched.password}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.password}
+                                                            autoFocus={true}
+                                                            id="password"
+                                                            placeholder="Password"
+                                                            name='password'
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
 
                                                         <CustomInputField
-                                                            type="number"
-                                                            value={values.otp}
-                                                            hasError={errors.otp && touched.otp}
+                                                            type="text"
+                                                            value={values.adhaar_number}
+                                                            hasError={errors.adhaar_number && touched.adhaar_number}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.otp}
+                                                            errorMsg={errors.adhaar_number}
                                                             autoFocus={true}
-                                                            id="otp"
-                                                            placeholder="OTP"
+                                                            id="adhaar_number"
+                                                            placeholder="Adhaar Number"
+                                                            name='adhaar_number'
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values.pan_number}
+                                                            hasError={errors.pan_number && touched.pan_number}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.pan_number}
+                                                            autoFocus={true}
+                                                            id="pan_number"
+                                                            placeholder="Pan Number"
+                                                            name='pan_number'
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
 
-                                                        <CustomInputField
-                                                            type="number"
-                                                            value={values.adhaar}
-                                                            hasError={errors.adhaar && touched.adhaar}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.adhaar}
-                                                            autoFocus={true}
-                                                            id="adhaar"
-                                                            placeholder="Adhaar"
-                                                        />
+                                                        <div className="dropdownWrapper">
+                                                            <select className="form-select" aria-label="Default select example" name="emailVerified: " onChange={handleChange} >
+                                                                <option selected>User Type</option>
+                                                                <option value={'false'}>No</option>
+                                                                <option value={'true'}>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <div className="dropdownWrapper">
+                                                            <select className="form-select" aria-label="Default select example" name="emailVerified: " onChange={handleChange} >
+                                                                <option selected>Email Verification</option>
+                                                                <option value={'false'}>No</option>
+                                                                <option value={'true'}>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <div className="dropdownWrapper">
+                                                            <select className="form-select" aria-label="Default select example" name="mobileVerified: " onChange={handleChange} >
+                                                                <option selected>Mobile Verification</option>
+                                                                <option value={'false'}>No</option>
+                                                                <option value={'true'}>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <div className="dropdownWrapper">
+                                                            <select className="form-select" aria-label="Default select example" name="is_otp: " onChange={handleChange} >
+                                                                <option selected>Is Otp Verification</option>
+                                                                <option value={'false'}>No</option>
+                                                                <option value={'true'}>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <div className="dropdownWrapper">
+                                                            <select className="form-select" aria-label="Default select example" name="mobileVerified: " onChange={handleChange} >
+                                                                <option selected>Is Mobile Verification</option>
+                                                                <option value={'false'}>No</option>
+                                                                <option value={'true'}>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+
+                                                        <div className="dropdownWrapper">
+                                                            <select className="form-select" aria-label="Default select example" name="transaction_mode" onChange={handleChange} >
+                                                                <option selected>transaction_mode</option>
+                                                                <option value={'online'}>Online</option>
+                                                                <option value={'offline'}>Offline</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <Link to='/admin/user' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                    <button
+                                                        className="btn btn-primary me-1"
+                                                        type="submit"
+                                                        disabled={!isValid || !dirty}
+                                                    >
+                                                        {params?.id ? "Update" : "Add"}
+                                                    </button>
                                                 </div>
                                             </form>
                                         );

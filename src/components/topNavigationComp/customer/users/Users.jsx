@@ -1,9 +1,54 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { userDelete, usersList } from '../../../../api/login/Login';
+import Loadar from '../../../../common/loader/Loader';
+import { Popconfirm, message } from 'antd';
 
 function Users() {
+    const [data, setData] = useState()
+    const [loading, setLoading] = useState(false);
+    const getListUsers = async () => {
+        setLoading(true)
+        try {
+            const data = await usersList()
+             setData(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        getListUsers()
+    }, [])
+
+
+    const deleteCurrency = async (id) => {
+        setLoading(true)
+        try {
+            await userDelete(id)
+            getListUsers()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+
+    const confirm = (id) => {
+        deleteCurrency(id)
+        message.success('Delete Successfull!');
+
+    };
+    const cancel = (e) => {
+        // console.log(e);
+        message.error('Cancle Successfull!');
+    };
     return (
+
         <section className="ListDistributer ">
+            {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -26,90 +71,49 @@ function Users() {
                                                 <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
                                                     User ID
                                                 </th>
-                                                <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                Sponsor ID
-                                                </th>
+
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                     Name</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     Profile</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    BOB</th>
+                                                    DOB</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Latitude</th>
+                                                    Adhaar Number</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                longitude</th>
+                                                    Pan Number</th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Apikey</th>
-                                                
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Password</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                email Verified</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Mobile Verified</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                OTP</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                KYC</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Adhaar Number</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Pan Number</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Transaction Mode</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Reg Agent</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Bind Device</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                Device Id</th>
+                                                    Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr role="row" className="odd">
-                                                <td className="sorting_1"><span>1</span></td>
-                                                <td>
+                                            {data && data?.map((item, i) => {
+                                                return <tr role="row" className="odd">
+                                                    <td className="sorting_1"><span>{i + 1}</span></td>
+                                                    <td>{item?.name}</td>
+                                                    <td><span><img src={item?.profile?.url } alt='profile'/></span></td>
+                                                    <td>{item?.dob}</td>
+                                                    <td>{item?.adhaar_number} </td>
+                                                    <td>{item?.pan_number} </td>
+                                                    <td>
+                                                        <div className="d-flex">
+                                                            <Link to={`#`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                            <Popconfirm
+                                                                title="Delete Currency !"
+                                                                description="Are you sure to delete ?"
+                                                                onConfirm={() => confirm(item?._id)}
+                                                                onCancel={cancel}
+                                                                okText="Yes"
+                                                                cancelText="No"
+                                                            >
+                                                                <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                            </Popconfirm>
 
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                </td>
-                                                <td>
+                                                        </div>
+                                                    </td>
 
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-
-                                            </tr>
+                                                </tr>
+                                            })}
                                         </tbody>
                                     </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>

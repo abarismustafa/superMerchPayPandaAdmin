@@ -9,21 +9,6 @@ import { areaAdd, getCountryAdd, getarea } from "../../../../../api/login/Login"
 import { ToastContainer, toast } from "react-toastify";
 function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, item }) {
 
-    const params = useParams()
-    const name = "dropdown";
-    const placeholder = "Course Name";
-    const type = "dropdown";
-    const itemList = [
-        {
-            name: "Enabled",
-            value: "Enabled",
-        },
-        {
-            name: "Disabled",
-            value: "Disabled",
-        },
-    ];
-
 
     const validate = (values) => {
         let errors = {};
@@ -100,7 +85,7 @@ function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, 
                                 </div>
                                 <div className="col-xl-4 mb-3">
                                     <select className="form-select" aria-label="Default select example" name="is_active" onChange={(e) => { handleChangeCus(e, item.language_id) }}>
-                                        <option selected> select Country</option>
+                                        <option selected> select Status</option>
                                         <option value={'Enabled'}>Enabled</option>
                                         <option value={'diasabled'}>diasabled</option>
                                     </select>

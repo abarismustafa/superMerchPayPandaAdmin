@@ -48,7 +48,7 @@ function AddArea() {
     }, [])
 
     const toastSuccessMessage = () => {
-        toast.success(`${params?.id ? "Update" : "Add"} Country Successfully.`, {
+        toast.success(`${params?.id ? "Update" : "Add"} Area Successfully.`, {
             position: "top-center",
         });
     };
@@ -60,6 +60,7 @@ function AddArea() {
         })
         SetselectData(data)
     }
+
 
     useEffect(() => {
         const fetchCurrency = async () => {
@@ -84,26 +85,25 @@ function AddArea() {
 
 
     const submitForm = async (values) => {
-        console.log(selectData);
-        try {
-            if (!params?.id) {
-                try {
-                    const res = await areaAdd({ list: selectData });
-                    if (res?.statusCode == "200") {
-                        toastSuccessMessage();
-                    }
-                } catch (error) {
-                }
-            } else {
-                try {
-                    await areaUpdate({ id: params?.id, value: { list: selectData } });
-                } catch (error) {
+        if (params?.id) {
 
-                }
+            try {
+                await areaUpdate({ id: params?.id, value: { list: selectData } });
+                // if (res?.statusCode == "200") {
+                //     toastSuccessMessage();
+                // }
+
+            } catch (error) {
+
             }
-        } catch (error) {
-            console.error("Error:", error);
+        } else {
+            try {
+                const res = await areaAdd({ list: selectData });
+                toastSuccessMessage();
+            } catch (error) {
+            }
         }
+
     };
 
     const handleChangeCus = (e, id) => {
@@ -133,15 +133,6 @@ function AddArea() {
                                         ADD AREA MASTER
                                     </h4>
                                 </div>
-                                {/* {language && language?.map((item) => {
-
-                                    return <button type="button" className={`heading mb-0 ${tab === item._id ? "btn btn-success" : "btn btn-primary"
-                                        }`} onClick={() => tabChange(item?._id)}
-                                        key={`tab_${item?._id}`}
-                                    >
-                                        {item?.name}
-                                    </button>
-                                })} */}
 
                                 <Tabs
                                     defaultActiveKey={tab}

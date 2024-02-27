@@ -1,32 +1,20 @@
-import { Link } from "react-router-dom"
-import { currencyDelete, currencyList } from "../../../api/login/Login"
-import { useEffect, useState } from "react"
-import Loadar from "../../../common/loader/Loader";
-import DeleteConfirmation from "../../../common/deleteConfirmation/DeleteConfirmation";
-import { Button, Popconfirm, message } from "antd";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { deleteUserType, listUserType } from '../../../../api/login/Login';
+import { Popconfirm, message } from 'antd';
+import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
+import Loadar from '../../../../common/loader/Loader';
 
+const UserType = () => {
+    const [data, setData] = useState()
 
-
-function ListCurrency() {
-    const [curencyData, setCurrencyData] = useState(null)
     const [loading, setLoading] = useState(false);
-    const getCurrencyList = async () => {
+    const getListUserType = async () => {
         setLoading(true)
         try {
-            const data = await currencyList()
-            setCurrencyData(data?.data)
+            const data = await listUserType()
+            setData(data?.data)
 
-        } catch (error) {
-            alert(error.message)
-        }
-        setLoading(false)
-    }
-
-    const deleteCurrency = async (id) => {
-        setLoading(true)
-        try {
-            await currencyDelete(id)
-            getCurrencyList()
         } catch (error) {
             alert(error.message)
         }
@@ -34,23 +22,33 @@ function ListCurrency() {
     }
 
     useEffect(() => {
-        getCurrencyList()
+        getListUserType()
     }, [])
 
 
-    const confirm = (id) => {
-        deleteCurrency(id)
-        message.success('Delete Successfull!');
+    const deleteuserTypeList = async (id) => {
+        setLoading(true)
+        try {
+            await deleteUserType(id)
+            getListUserType()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
 
+
+    const confirm = (id) => {
+        deleteuserTypeList(id)
+        message.success('Delete Successfull!');
     };
     const cancel = (e) => {
         // console.log(e);
         message.error('Cancle Successfull!');
     };
-
-
     return (
         <>
+            <Breadcrumbs breadCrumbsTitle={''} />
             {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
@@ -58,9 +56,9 @@ function ListCurrency() {
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption">
-                                    <h4 className="heading mb-0">ADD CURRENCY</h4>
+                                    <h4 className="heading mb-0">User Type</h4>
                                     <div>
-                                        <Link className="btn btn-primary btn-sm" to="/admin/add-currency" role="button" aria-controls="offcanvasExample">+ ADD CURRENCY</Link>
+                                        <Link className="btn btn-primary btn-sm" to="/admin/add/user-type" role="button" aria-controls="offcanvasExample">+ Add User Type</Link>
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
@@ -69,35 +67,32 @@ function ListCurrency() {
                                 <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Export Report</span></button> </div><table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
                                     <thead>
                                         <tr role="row">
-                                            {/* <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
+                                            <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
                                                 ID
-                                            </th> */}
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
-                                                Currency Name
                                             </th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Currency code</th>
+                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
+                                                User Type
+                                            </th>
+
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
-                                                Currency symbol
+                                                Status
                                             </th>
 
                                             {/* <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                 Status</th> */}
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
+                                            <th className="sorting text-end" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                 Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {curencyData && curencyData?.map((item) => {
-                                            return <tr role="row" className="odd" key={item?._id}>
-                                                <td className="sorting_1"><span>{item?.currency_name}</span></td>
+                                        {data && data?.map((item, i) => {
+                                            return <tr role="row" className="odd" key={i} >
+                                                <td>{i+1}</td>
+                                                <td>{item?.user_type}</td>
+                                                <td>{item?.is_active.toString()}</td>
                                                 <td>
-                                                    {item?.currency_code}
-                                                </td>
-                                                <td><span>{item?.currency_symbol}</span></td>
-                                                <td>
-                                                    <div className="d-flex">
-                                                        <Link to={`/admin/update-currency/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                    <div className="d-flex justify-content-end">
+                                                        <Link to={`/admin/update/user-type/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
                                                         <Popconfirm
                                                             title="Delete Currency !"
                                                             description="Are you sure to delete ?"
@@ -108,9 +103,7 @@ function ListCurrency() {
                                                         >
                                                             <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
                                                         </Popconfirm>
-
                                                     </div>
-
                                                 </td>
 
                                             </tr>
@@ -124,8 +117,8 @@ function ListCurrency() {
                 </div>
 
             </div >
-
         </>
     )
 }
-export default ListCurrency
+
+export default UserType
