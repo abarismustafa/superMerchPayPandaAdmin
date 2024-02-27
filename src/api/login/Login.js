@@ -169,3 +169,84 @@ export const getUserType = (id) => {
 export const UserTypeUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}usertype/updateuser/${id}`, value);
 };
+
+export const stateMasterAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}state/addstate`, data);
+};
+export const getStateMaster = () => {
+  return axiosInstance.get(`${baseUrl}state`);
+};
+// export const countryList = (data) => {
+//   return axiosInstance.get(`${baseUrl}country`);
+// };
+export const stateMasterDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}state/deletestate/${id}`);
+};
+
+export const getstateMaster = (id) => {
+  return axiosInstance.get(`${baseUrl}state/${id}`);
+};
+
+export const stateMasterUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}state/updatestate/${id}`, value);
+};
+
+// bankMaster
+export const bankMasterAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}bank/addbank`, data);
+};
+export const getBankMaster = () => {
+  return axiosInstance.get(`${baseUrl}bank`);
+};
+
+export const BankMasterDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}bank/deletebank/${id}`);
+};
+
+export const getBnakMasterId = (id) => {
+  return axiosInstance.get(`${baseUrl}bank/${id}`);
+};
+
+export const bankMasterUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}bank/updatebank/${id}`, value);
+};
+
+// statusMaster
+export const statusMasterAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}status/addstatus`, data);
+};
+export const getStatusMaster = () => {
+  return axiosInstance.get(`${baseUrl}status`);
+};
+
+export const statusMasterDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}status/deletestatus/${id}`);
+};
+
+export const getStatusMasterId = (id) => {
+  return axiosInstance.get(`${baseUrl}status/${id}`);
+};
+
+export const statusMasterUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}status/updatstatus/${id}`, value);
+};
+
+// paymentMaster
+export const paymentMethodAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}payment-method/addpayment`, data);
+};
+export const getpaymentMethod = () => {
+  return axiosInstance.get(`${baseUrl}payment-method`);
+};
+
+export const paymentMethodDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}payment-method/deletepayment/${id}`);
+};
+
+export const getpaymentMasterId = (id) => {
+  return axiosInstance.get(`${baseUrl}payment-method/${id}`);
+};
+
+export const paymentMasterUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}payment-method/updatpayment/${id}`, value);
+};

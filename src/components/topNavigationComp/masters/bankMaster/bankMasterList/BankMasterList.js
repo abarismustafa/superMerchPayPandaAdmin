@@ -1,10 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { BankMasterDelete, getBankMaster } from '../../../../../api/login/Login'
+import Loadar from '../../../../../common/loader/Loader'
+import { Popconfirm, message } from 'antd'
 
 function BankMasterList() {
+    const [data, setData] = useState()
+    const [loading, setLoading] = useState(false);
+
+    const bankList = async () => {
+        setLoading(true)
+        try {
+            const res = await getBankMaster()
+            setData(res?.data)
+        } catch (error) {
+
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        bankList()
+    }, [])
+
+
+    const deletebank = async (id) => {
+        setLoading(true)
+        try {
+            await BankMasterDelete(id)
+            bankList()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+    const confirm = (id) => {
+        deletebank(id)
+        message.success('Delete Successfull!');
+
+    };
+    const cancel = (e) => {
+        // console.log(e);
+        message.error('Cancle Successfull!');
+    };
     return (
         <>
+            {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -43,54 +86,45 @@ function BankMasterList() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                SBI Bank
-                                            </td>
-                                            <td><span>SBN0454554</span></td>
-                                            <td>1</td>
-                                            <td>
-                                                40
-                                            </td>
+                                        {data && data?.map((item) => {
+                                            console.log(item);
+                                            return <tr role="row" className="odd" key={item?._id}>
+                                                <td className="sorting_1"><span>{item?._id}</span></td>
+                                                <td>
+                                                    {item?.bank_name}
+                                                </td>
+                                                <td><span>{item?.ifsc_code}</span></td>
+                                                <td>{item?.bank_id}</td>
+                                                <td>
+                                                    {item?.paysprint_bank_id}
+                                                </td>
 
 
-                                            <td>
-                                                <span className="badge badge-success light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/edit-add-bank" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
+                                                <td>
+                                                    <span className="badge badge-success light border-0">{item?.is_active.toString()}</span>
+                                                </td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                        <Link to={`/admin/update-bank/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                        <Popconfirm
+                                                            title="Delete Currency !"
+                                                            description="Are you sure to delete ?"
+                                                            onConfirm={() => confirm(item?._id)}
+                                                            onCancel={cancel}
+                                                            okText="Yes"
+                                                            cancelText="No"
+                                                        >
+                                                            <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                        </Popconfirm>
+                                                    </div>
 
-                                            </td>
+                                                </td>
 
-                                        </tr>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>2</span></td>
-                                            <td>
-                                                SBI Bank
-                                            </td>
-                                            <td><span>SBN0872365</span></td>
-                                            <td>1</td>
-                                            <td>
-                                                45
-                                            </td>
+                                            </tr>
+                                        })}
 
 
-                                            <td>
-                                                <span className="badge badge-danger light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/edit-add-bank" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
 
-                                            </td>
-
-                                        </tr>
                                     </tbody>
                                 </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>

@@ -342,6 +342,12 @@ export const navigationData = {
           title: "Currency",
           path: "currency",
         },
+        {
+          uniqueId: "submenu_19_4",
+          id: "4",
+          title: "State Master",
+          path: "state-master",
+        },
       ],
     },
     {
