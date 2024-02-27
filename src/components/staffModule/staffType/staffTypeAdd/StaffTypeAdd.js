@@ -1,32 +1,32 @@
-import { useParams } from "react-router";
-import { countryAdd, countryUpdate, getCountryAdd, getcountry } from "../../../api/login/Login";
-import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Breadcrumbs from "../../../../common/breadcrumb/Breadcrumbs";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getstaffType, staffTypeAdd, staffTypeUpdate } from "../../../../api/login/Login";
 import { Formik } from "formik";
-import CustomInputField from "../../../common/CustomInputField";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import CustomInputField from "../../../../common/CustomInputField";
 
-
-function CountryForm() {
+function StaffTypeAdd() {
     const [conbo, setCombo] = useState(null)
+    const [StffTypeconbo, setStffTypeconbo] = useState(null)
     const [initialValues, setInitialValues] = useState({
-        name: "",
-        code: "",
-        curruncy_id: ''
+        staff_type: "",
+        is_active: ""
     });
     const params = useParams();
     const validate = (values) => {
         let errors = {};
-        if (!values.name) {
-            errors.name = "Country Name is required";
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexMobileNumber = /^[0-9]{10}$/;
+        if (!values.staff_type) {
+            errors.staff_type = " Staff Type is required";
         }
-        if (!values.code) {
-            errors.code = "Country Code is required";
+        if (!values.is_active) {
+            errors.is_active = "Is Active is required";
         }
-        if (!values.curruncy_id) {
-            errors.curruncy_id = "Select Country is required";
-        }
+        // if (!values.staff_type_id) {
+        //     errors.staff_type_id = "Staff Type Id is required";
+        // }
         return errors;
     };
 
@@ -36,22 +36,24 @@ function CountryForm() {
         });
     };
 
-    const curencyidget = async () => {
-        try {
-            const data = await getCountryAdd()
-            setCombo(data?.data)
+    // const curencyidget = async () => {
+    //     try {
+    //         const data = await languageList()
+    //         const dataDtafType = await staffType()
 
-        } catch (error) {
-            alert(error.message)
-        }
-    }
+    //         setCombo(data?.data)
+    //         setStffTypeconbo(dataDtafType?.data)
+
+    //     } catch (error) {
+    //         alert(error.message)
+    //     }
+    // }
 
     const submitForm = async (values) => {
-
         try {
             if (!params?.id) {
                 try {
-                    const res = await countryAdd(values);
+                    const res = await staffTypeAdd(values);
                     if (res?.statusCode == "200") {
                         toastSuccessMessage();
                     }
@@ -61,7 +63,7 @@ function CountryForm() {
 
             } else {
                 try {
-                    await countryUpdate(params.id, values);
+                    await staffTypeUpdate(params.id, values);
                 } catch (error) {
 
                 }
@@ -74,22 +76,22 @@ function CountryForm() {
     };
 
     useEffect(() => {
-        curencyidget()
+        // curencyidget()
     }, [])
 
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
                 if (params?.id) {
-                    const response = await getcountry(params.id);
+                    const response = await getstaffType(params.id);
                     const currencyData = response.data;
                     setInitialValues(currencyData);
                 } else {
-                    setInitialValues({
-                        name: "",
-                        code: "",
-                        curruncy_id: "",
-                    });
+                    // setInitialValues({
+                    //     name: "",
+                    //     code: "",
+                    //     curruncy_id: "",
+                    // });
                 }
             } catch (error) {
                 console.error("Error fetching currency:", error);
@@ -98,19 +100,20 @@ function CountryForm() {
 
         fetchCurrency();
     }, [params?.id]);
-
     return (
         <>
-            <div className="row">
+            <Breadcrumbs breadCrumbsTitle={''} />
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
                                     <h4 className="heading mb-0">
-                                        {params?.id ? "UPDATE" : "ADD"} COUNTRY
+                                        {params?.id ? "UPDATE" : "ADD"}  STAFF
                                     </h4>
                                 </div>
+
                                 <Formik
                                     initialValues={initialValues}
                                     validate={validate}
@@ -134,74 +137,49 @@ function CountryForm() {
                                                     <div className="col-xl-6 mb-3">
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.name}
-                                                            hasError={
-                                                                errors.name && touched.name
-                                                            }
+                                                            value={values.staff_type}
+                                                            hasError={errors.staff_type && touched.staff_type}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={
-                                                                touched.name && errors.name
-                                                            }
+                                                            errorMsg={errors.staff_type}
                                                             autoFocus={true}
-                                                            id="name"
-                                                            name="name"
-                                                            placeholder="Country name"
+                                                            id="staff_type"
+                                                            placeholder="Staff Type"
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.code}
+                                                        <select className="form-select" aria-label="Default select example" id="is_active" name="is_active" value={values.is_active} onChange={handleChange}
                                                             hasError={
-                                                                errors.code && touched.code
-                                                            }
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={
-                                                                touched.code && errors.code
-                                                            }
-                                                            autoFocus={true}
-                                                            id="code"
-                                                            name="code"
-                                                            placeholder="Country Code"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <select className="form-select" aria-label="Default select example" id="curruncy_id" name="curruncy_id" value={values.curruncy_id} onChange={handleChange}
-                                                            hasError={
-                                                                errors.curruncy_id && touched.curruncy_id
+                                                                errors.is_active && touched.is_active
                                                             }
 
                                                             onBlur={handleBlur}
                                                             errorMsg={
-                                                                touched.curruncy_id && errors.curruncy_id
+                                                                touched.is_active && errors.is_active
                                                             }
                                                             autoFocus={true}
                                                         >
-                                                            <option selected> select Country</option>
-                                                            {conbo &&
-                                                                conbo?.map((item) => {
-                                                                    return (
-                                                                        <option value={item?._id}>
-                                                                            {item?.currency_name}
-                                                                        </option>
-                                                                    );
-                                                                })}
+                                                            <option selected> select Type Staff</option>
+
+                                                            <option value={true}>
+                                                                In Active
+                                                            </option>
+                                                            <option value={false}>
+                                                                In Deactive
+                                                            </option>
+
                                                         </select>
 
                                                     </div>
+
+
                                                 </div>
                                                 <div>
-                                                    <Link
-                                                        to="/admin/country"
-                                                        className="btn btn-danger light ms-1"
-                                                    >
-                                                        Cancel
-                                                    </Link>
+                                                    <Link to='/admin/staff-type' className="btn btn-danger light ms-1">Cancel</Link>
                                                     <button
                                                         className="btn btn-primary me-1"
                                                         type="submit"
+
                                                         disabled={!isValid || !dirty}
                                                     >
                                                         {params?.id ? "Update" : "Add"}
@@ -211,6 +189,9 @@ function CountryForm() {
                                         );
                                     }}
                                 </Formik>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -220,4 +201,4 @@ function CountryForm() {
         </>
     )
 }
-export default CountryForm
+export default StaffTypeAdd

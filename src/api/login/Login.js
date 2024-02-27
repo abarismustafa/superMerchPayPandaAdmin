@@ -82,27 +82,66 @@ export const getarea = (id) => {
   return axiosInstance.get(`${baseUrl}area/${id}`);
 };
 
-export const areaUpdate = ({id, value}) => {
+export const areaUpdate = ({ id, value }) => {
   return axiosInstance.put(`${baseUrl}area/updatearea/${id}`, value);
+};
+
+export const staffAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}staff/addstaff`, data);
+};
+export const staffList = () => {
+  return axiosInstance.get(`${baseUrl}staff`);
+};
+export const staffType = () => {
+  return axiosInstance.get(`${baseUrl}stafftype`);
+};
+export const staffDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}staff/deletestaff/${id}`);
+};
+
+export const getstaff = (id) => {
+  return axiosInstance.get(`${baseUrl}staff/${id}`);
+};
+
+export const staffUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}staff/updatestaff/${id}`, value);
+};
+
+export const staffTypeAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}stafftype/addstaff`, data);
+};
+export const staffTypeList = () => {
+  return axiosInstance.get(`${baseUrl}stafftype`);
+};
+export const staffTypeDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}stafftype/deleteStaff/${id}`);
+};
+
+export const getstaffType = (id) => {
+  return axiosInstance.get(`${baseUrl}stafftype/${id}`);
+};
+
+export const staffTypeUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}stafftype/updateStaff/${id}`, value);
 };
 
 
 
 // Zoon master
-export const getZoon = ({id}) => {
+export const getZoon = ({ id }) => {
   return axiosInstance.get(`${baseUrl}zone`);
 };
 
-export const zoonById = ({id}) => {
+export const zoonById = ({ id }) => {
   return axiosInstance.get(`${baseUrl}zone/${id}`);
 };
-export const zoonPost = ({data}) => {
-  return axiosInstance.post(`${baseUrl}zone/addzone`,data);
+export const zoonPost = ({ data }) => {
+  return axiosInstance.post(`${baseUrl}zone/addzone`, data);
 };
 
 // Users
 export const addUsers = (data) => {
-  return axiosInstance.post(`${baseUrl}user/adduser`,data);
+  return axiosInstance.post(`${baseUrl}user/adduser`, data);
 };
 export const usersList = () => {
   return axiosInstance.get(`${baseUrl}user`);
@@ -116,17 +155,56 @@ export const userDelete = (id) => {
 // userType Intrigation 
 
 export const addUserType = (data) => {
-  return axiosInstance.post(`${baseUrl}usertype/adduser`,data);
+  return axiosInstance.post(`${baseUrl}usertype/adduser`, data);
 };
-export const listUserType = (data) => {
-  return axiosInstance.get(`${baseUrl}usertype`,data);
+export const listUserType = () => {
+  return axiosInstance.get(`${baseUrl}usertype`);
 };
 export const deleteUserType = (id) => {
   return axiosInstance.delete(`${baseUrl}usertype/deleteuser/${id}`);
 };
-export const getUserType= (id) => {
+export const getUserType = (id) => {
   return axiosInstance.get(`${baseUrl}usertype/${id}`);
 };
 export const UserTypeUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}usertype/updateuser/${id}`, value);
 };
+
+
+// Role Master 
+
+export const addRole = (data)=>{
+  return axiosInstance.post (`${baseUrl}role/addrole`, data);
+}
+export const getListRole = ()=>{
+  return axiosInstance.get (`${baseUrl}role`);
+}
+export const DeleteRole = (id)=>{
+  return axiosInstance.delete (`${baseUrl}role/deleterole/${id}`,);
+}
+export const getRoleEdit = (id) => {
+  return axiosInstance.get(`${baseUrl}role/${id}`);
+};
+export const updateRole = (id,value) => {
+  return axiosInstance.put(`${baseUrl}role/updatrole/${id}`,value);
+};
+
+//Payout Beneficiary Api Intrigation :-
+
+export const addBeneficiaryData = (data)=>{
+  console.log(data);
+  return axiosInstance.post(`${baseUrl}payout-beneficiary/addpayout`, data);
+}
+export const getBeneficiaryData = ()=>{
+  return axiosInstance.get (`${baseUrl}payout-beneficiary`);
+}
+export const DeleteBeneficiaryData= (id)=>{
+  return axiosInstance.delete (`${baseUrl}payout-beneficiary/deletepayout/${id}`,);
+}
+export const getBeneficiaryDataEdit = (id) => {
+  return axiosInstance.get(`${baseUrl}payout-beneficiary/${id}`);
+};
+export const updateBeneficiaryData = (id,value) => {
+  return axiosInstance.put(`${baseUrl}payout-beneficiary/updatpayout/${id}`,value);
+};
+

@@ -86,13 +86,13 @@ function AddArea() {
 
     const submitForm = async (values) => {
         if (params?.id) {
-        
+
             try {
                 await areaUpdate({ id: params?.id, value: { list: selectData } });
                 // if (res?.statusCode == "200") {
                 //     toastSuccessMessage();
                 // }
-                
+
             } catch (error) {
 
             }
@@ -103,7 +103,7 @@ function AddArea() {
             } catch (error) {
             }
         }
-        
+
     };
 
     const handleChangeCus = (e, id) => {
@@ -122,7 +122,6 @@ function AddArea() {
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">

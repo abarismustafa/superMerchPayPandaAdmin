@@ -12,7 +12,6 @@ const AddUsertType = () => {
     const navigate = useNavigate()
     const [initialValues, setInitialValues] = useState({
         user_type: "",
-        language_id: "65d4443e0298611d3aa96c31",
         is_active: false,
     });
     const validate = (values) => {
@@ -159,13 +158,12 @@ const AddUsertType = () => {
                                                     >
                                                         Cancel
                                                     </Link>
-                                                    {console.log(isValid,`-------`,dirty)}
+                                                    
                                                     <button
                                                         className="btn btn-primary me-1"
                                                         type="submit"
                                                        
                                                         disabled={!isValid || !dirty}
-                                                    // onClick={submitForm}
                                                     >
                                                         {params?.id ? "Update" : "Add"}
                                                     </button>
