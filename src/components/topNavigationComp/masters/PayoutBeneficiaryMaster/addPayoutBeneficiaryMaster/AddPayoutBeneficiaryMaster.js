@@ -1,92 +1,134 @@
 import { Formik } from "formik";
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-
+import { useEffect, useState } from "react";
+import { addBeneficiaryData, getBeneficiaryDataEdit, updateBeneficiaryData } from "../../../../../api/login/Login";
+import { ToastContainer, toast } from "react-toastify";
+import Loadar from "../../../../../common/loader/Loader";
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Payout Beneficiary ",
+    title_3: "Add Payout Beneficiary ",
+}
 function AddPayoutBeneficiaryMaster() {
-    const initialValues = {
-        userName: '',
-        date: '',
-        mobileNumber: '',
-        accountNumber: '',
-        holderName: '',
-        IFSCCode: '',
-    };
-    const breadCrumbsTitle = {
+
+    const [initialValues, setInitialValues] = useState({
+        name: "",
+        mobile: "",
+        account_number: "",
+        holder_name: "",
+        ifsc_code: "",
         id: "1",
-        title_1: "Master",
-        title_2: "Payout Beneficiary ",
-        title_3: "Add Payout Beneficiary ",
-    }
+        is_active: false
+    });
+
+    const params = useParams()
+    const navigate = useNavigate()
+
 
     const validate = (values) => {
         let errors = {};
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const regexMobileNumber = /^[0-9]{10}$/;
-        const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-        const regexGstNumber =
-            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
-
-        if (!values.userName) {
-            errors.userName = "User Name is required";
+        const regexaccount_number = /^([0-9]{11})|([0-9]{2}-[0-9]{3}-[0-9]{6})$/;
+        const regexIFSCcde = /^[A-Za-z]{4}\d{7}$/;
+        if (!values.name) {
+            errors.name = "User Name is required";
         }
-        if (!values.date) {
+        /* if (!values.date) {
             errors.date = "Date is required";
+        } */
+        if (!values.mobile) {
+            errors.mobile = "Mobile Number is required";
+        } else if (!regexMobileNumber.test(values.mobile)) {
+            errors.mobile = "Invalid Mobile Number";
         }
-        if (!values.mobileNumber) {
-            errors.mobileNumber = "Mobile Number is required";
+        if (!values.account_number) {
+            errors.account_number = "Account Number is required";
+        } else if (!regexaccount_number.test(values.account_number)) {
+            errors.account_number = "Invalid Account Number";
         }
-        if (!values.accountNumber) {
-            errors.accountNumber = "Account Number is required";
+        if (!values.ifsc_code) {
+            errors.ifsc_code = "Ifsc Code is required";
+        } else if (!regexIFSCcde.test(values.ifsc_code)) {
+            errors.ifsc_code = "Invalid IFSC code";
         }
-        if (!values.holderName) {
-            errors.holderName = "Holder Name is required";
+        if (!values.holder_name) {
+            errors.holder_name = "Holder Name is required";
         }
-        if (!values.IFSCCode) {
-            errors.IFSCCode = "IFSCCode is required";
-        }
-        // if (!values.email) {
-        //     errors.email = "Email is required";
-        // } else if (!regexEmail.test(values.email)) {
-        //     errors.email = "Invalid Email";
-        // }
-
-        // if (!values.mobileNumber) {
-        //     errors.mobileNumber = "Mobile Number is required";
-        // } else if (!regexMobileNumber.test(values.mobileNumber)) {
-        //     errors.mobileNumber = "Invalid Mobile Number";
-        // }
-
-        // if (!values.panNumber) {
-        //     errors.panNumber = "PAN Number is required";
-        // } else if (!regexPanNumber.test(values.panNumber)) {
-        //     errors.panNumber = "Invalid PAN Number";
-        // }
-
-        // if (!values.gstNumber) {
-        //   errors.gstNumber = "GST Number is required";
-        // } else if (!regexGstNumber.test(values.gstNumber)) {
-        //   errors.gstNumber = "Invalid GST Number";
-        // }
-
-
 
         return errors;
     };
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Payout Beneficiary Successfully.`, {
+            position: "top-center",
+        });
+    };
+    const submitForm = async (values) => {
+        try {
+            if (!params?.id) {
+                try {
+                    await addBeneficiaryData(values);
+                    toastSuccessMessage();
+                    setTimeout(() => {
+                        navigate('/admin/payout-beneficiary-master')
+                    }, 5000);
+                } catch (error) {
+                    alert.error("NOT SUCCESS :", error);
+                }
 
-    const submitForm = (values) => {
-        console.log(values);
+            } else {
+                try {
+                    await updateBeneficiaryData(params.id, values);
+                    toastSuccessMessage();
+                    setTimeout(() => {
+                        navigate('/admin/payout-beneficiary-master')
+                    }, 5000);
+                } catch (error) {
+                    alert.error("Error:", error);
+                }
+
+            }
+
+        } catch (error) {
+            alert.error("Error:", error);
+        }
     };
 
-    const changeHandle = (selectedData) => {
-        // TODO
-    };
+    useEffect(() => {
+        const fetchUserType = async () => {
+            try {
+                if (params?.id) {
+                    const response = await getBeneficiaryDataEdit(params.id);
+                    const roleData = response.data;
+                    console.log(roleData);
+                    setInitialValues(roleData);
+                } else {
+                    setInitialValues({
+                        name: "",
+                        mobile: "",
+                        account_number: "",
+                        holder_name: "",
+                        ifsc_code: "",
+                        is_active: false
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching User type:", error);
+            }
+        };
+        fetchUserType();
+    }, [params?.id]);
+
+
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
+
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
@@ -96,7 +138,7 @@ function AddPayoutBeneficiaryMaster() {
                                     initialValues={initialValues}
                                     validate={validate}
                                     onSubmit={submitForm}
-
+                                    enableReinitialize
                                 >
                                     {(formik) => {
                                         const {
@@ -110,24 +152,24 @@ function AddPayoutBeneficiaryMaster() {
                                             dirty,
                                         } = formik;
                                         return (
-                                            <form className="tbl-captionn">
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.userName}
-                                                            hasError={errors.userName && touched.userName}
+                                                            value={values.name}
+                                                            hasError={errors.name && touched.name}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.userName}
+                                                            errorMsg={errors.name}
                                                             autoFocus={true}
-                                                            id="userName"
-                                                            name="userName"
+                                                            id="name"
+                                                            name="name"
                                                             placeholder="User Name"
                                                         />
                                                     </div>
-                                                    <div className="col-xl-6 mb-3">
+                                                    {<div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
                                                             type="date"
@@ -141,19 +183,19 @@ function AddPayoutBeneficiaryMaster() {
                                                             name="date"
                                                             placeholder="Date"
                                                         />
-                                                    </div>
+                                                    </div>}
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
                                                             type="number"
-                                                            value={values.mobileNumber}
-                                                            hasError={errors.mobileNumber && touched.mobileNumber}
+                                                            value={values.mobile}
+                                                            hasError={errors.mobile && touched.mobile}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.mobileNumber}
+                                                            errorMsg={errors.mobile}
                                                             autoFocus={true}
-                                                            id="mobileNumber"
-                                                            name="mobileNumber"
+                                                            id="mobile"
+                                                            name="mobile"
                                                             placeholder="Mobile Number"
                                                         />
                                                     </div>
@@ -161,14 +203,14 @@ function AddPayoutBeneficiaryMaster() {
 
                                                         <CustomInputField
                                                             type="number"
-                                                            value={values.accountNumber}
-                                                            hasError={errors.accountNumber && touched.accountNumber}
+                                                            value={values.account_number}
+                                                            hasError={errors.account_number && touched.account_number}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.accountNumber}
+                                                            errorMsg={errors.account_number}
                                                             autoFocus={true}
-                                                            id="accountNumber"
-                                                            name="accountNumber"
+                                                            id="account_number"
+                                                            name="account_number"
                                                             placeholder="Account Number"
                                                         />
                                                     </div>
@@ -176,14 +218,14 @@ function AddPayoutBeneficiaryMaster() {
 
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.holderName}
-                                                            hasError={errors.holderName && touched.holderName}
+                                                            value={values.holder_name}
+                                                            hasError={errors.holder_name && touched.holder_name}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.holderName}
+                                                            errorMsg={errors.holder_name}
                                                             autoFocus={true}
-                                                            id="holderName"
-                                                            name="holderName"
+                                                            id="holder_name"
+                                                            name="holder_name"
                                                             placeholder="Holder Name"
                                                         />
                                                     </div>
@@ -191,21 +233,28 @@ function AddPayoutBeneficiaryMaster() {
 
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.IFSCCode}
-                                                            hasError={errors.IFSCCode && touched.IFSCCode}
+                                                            value={values.ifsc_code}
+                                                            hasError={errors.ifsc_code && touched.ifsc_code}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.IFSCCode}
+                                                            errorMsg={errors.ifsc_code}
                                                             autoFocus={true}
-                                                            id="IFSCCode"
-                                                            name="IFSCCode"
+                                                            id="ifsc_code"
+                                                            name="ifsc_code"
                                                             placeholder="IFSC Code"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <Link to='/admin/payout-beneficiary-master' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                    <button
+                                                        className="btn btn-primary me-1"
+                                                        type="submit"
+
+                                                        disabled={!isValid || !dirty}
+                                                    >
+                                                        {params?.id ? "Update" : "Add"}
+                                                    </button>
                                                 </div>
                                             </form>
                                         );
@@ -217,6 +266,7 @@ function AddPayoutBeneficiaryMaster() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     )
 }

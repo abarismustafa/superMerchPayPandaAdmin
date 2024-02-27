@@ -5,8 +5,8 @@ import SendRoleWise from './sendRoleWise/SendRoleWise'
 
 const WhatsappRoleWise = () => {
     return (
-        <div className='row'>
-            <SendRoleWise />
+        <div className='row m-4'>
+            <SendRoleWise/>
             <SendRoleWiseWithImage />
         </div>
     )

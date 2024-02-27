@@ -157,8 +157,8 @@ export const userDelete = (id) => {
 export const addUserType = (data) => {
   return axiosInstance.post(`${baseUrl}usertype/adduser`, data);
 };
-export const listUserType = (data) => {
-  return axiosInstance.get(`${baseUrl}usertype`, data);
+export const listUserType = () => {
+  return axiosInstance.get(`${baseUrl}usertype`);
 };
 export const deleteUserType = (id) => {
   return axiosInstance.delete(`${baseUrl}usertype/deleteuser/${id}`);
@@ -168,6 +168,44 @@ export const getUserType = (id) => {
 };
 export const UserTypeUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}usertype/updateuser/${id}`, value);
+};
+
+
+// Role Master 
+
+export const addRole = (data)=>{
+  return axiosInstance.post (`${baseUrl}role/addrole`, data);
+}
+export const getListRole = ()=>{
+  return axiosInstance.get (`${baseUrl}role`);
+}
+export const DeleteRole = (id)=>{
+  return axiosInstance.delete (`${baseUrl}role/deleterole/${id}`,);
+}
+export const getRoleEdit = (id) => {
+  return axiosInstance.get(`${baseUrl}role/${id}`);
+};
+export const updateRole = (id,value) => {
+  return axiosInstance.put(`${baseUrl}role/updatrole/${id}`,value);
+};
+
+//Payout Beneficiary Api Intrigation :-
+
+export const addBeneficiaryData = (data)=>{
+  console.log(data);
+  return axiosInstance.post(`${baseUrl}payout-beneficiary/addpayout`, data);
+}
+export const getBeneficiaryData = ()=>{
+  return axiosInstance.get (`${baseUrl}payout-beneficiary`);
+}
+export const DeleteBeneficiaryData= (id)=>{
+  return axiosInstance.delete (`${baseUrl}payout-beneficiary/deletepayout/${id}`,);
+}
+export const getBeneficiaryDataEdit = (id) => {
+  return axiosInstance.get(`${baseUrl}payout-beneficiary/${id}`);
+};
+export const updateBeneficiaryData = (id,value) => {
+  return axiosInstance.put(`${baseUrl}payout-beneficiary/updatpayout/${id}`,value);
 };
 
 export const stateMasterAdd = (data) => {
@@ -250,3 +288,5 @@ export const getpaymentMasterId = (id) => {
 export const paymentMasterUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}payment-method/updatpayment/${id}`, value);
 };
+
+// -------------

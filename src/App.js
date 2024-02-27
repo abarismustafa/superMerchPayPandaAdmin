@@ -165,10 +165,11 @@ function App() {
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
           <Route path="update-bank/:id" element={<AddBank />} />
-          <Route path="edit-add-bank" element={<EditAddBank />} />
+          {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
           <Route path="role-master" element={<RoleMasterPage />} />
           <Route path="add-role-master" element={<AddRoleMaster />} />
-          <Route path="edit-role-master" element={<EditRoleMaster />} />
+          <Route path="update-role-master/:id" element={<AddRoleMaster />} />
+          {/* <Route path="edit-role-master" element={<EditRoleMaster />} /> */}
           <Route path="company-staff/welcome" element={<CompanyStaffPages />} />
           <Route path="add-company-staff/welcome" element={<AddCompanyStaff />} />
           <Route path="company-staff-permission" element={<MasterPages />} />
@@ -205,9 +206,13 @@ function App() {
             element={<AddPayoutBeneficiaryMaster />}
           />
           <Route
+            path="update-payout-beneficiary-master/:id"
+            element={<AddPayoutBeneficiaryMaster />}
+          />
+          {/* <Route
             path="update-payout-beneficiary-master"
             element={<EditPayoutBeneficiaryMaster />}
-          />
+          /> */}
           <Route path="area" element={<AreaPage />} />
           <Route path="add-area" element={<AddArea />} />
           <Route path="update-area/:id" element={<AddArea />} />
