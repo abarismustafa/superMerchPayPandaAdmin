@@ -549,7 +549,7 @@ export const navigationData = {
         {
           uniqueId: "submenu_13_2",
           id: "2",
-          title: "Staff Typw",
+          title: "Staff Type",
           path: "staff-type",
         },
       ],

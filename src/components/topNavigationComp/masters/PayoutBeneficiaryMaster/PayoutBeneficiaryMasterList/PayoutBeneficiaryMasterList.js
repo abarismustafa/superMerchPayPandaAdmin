@@ -1,7 +1,46 @@
 import { FaRegEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { DeleteBeneficiaryData, getBeneficiaryData } from "../../../../../api/login/Login";
+import { useEffect, useState } from "react";
+import { Popconfirm, message } from "antd";
 
 function PayoutBeneficiaryMasterList() {
+    const [data, setData] = useState()
+    const [loading, setLoading] = useState(false);
+    const getListUserType = async () => {
+        setLoading(true)
+        try {
+            const data = await getBeneficiaryData()
+            console.log(data);
+            setData(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        getListUserType()
+    }, [])
+
+    const deleteuserTypeList = async (id) => {
+        setLoading(true)
+        try {
+            await DeleteBeneficiaryData(id)
+            getListUserType()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+    const confirm = (id) => {
+        deleteuserTypeList(id)
+        message.success('Delete Successfull!');
+    };
+    const cancel = (e) => {
+        message.error('Cancle Successfull!');
+    };
     return (
         <>
             <div className="row m-4">
@@ -43,54 +82,42 @@ function PayoutBeneficiaryMasterList() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>Gita</span></td>
-                                            <td>
-                                                Date
-                                            </td>
-                                            <td><span>9976744364</span></td>
-                                            <td>
-                                                <span>64569976744364</span>
-                                            </td>
-                                            <td><span>Gita</span></td>
+                                        {data && data?.map((item, i) => {
+                                            console.log(item);
+                                            return <tr role="row" className="odd">
+                                                <td className="sorting_1"><span>{item?.name}</span></td>
+                                                <td>
+                                                    {item?.date}
+                                                </td>
+                                                <td><span>{item?.mobile}</span></td>
+                                                <td>
+                                                    <span>{item?.account_number}</span>
+                                                </td>
+                                                <td><span>{item?.holder_name}</span></td>
 
-                                            <td><span>SBI001234</span></td>
-                                            <td>
-                                                <span className="badge badge-success light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/update-payout-beneficiary-master" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
+                                                <td><span>{item?.ifsc_code}</span></td>
+                                                <td>
+                                                    <span className="badge badge-success light border-0">{item?.is_active?.toString()}</span>
+                                                </td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                        <Link to={`/admin/update-payout-beneficiary-master/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                        <Popconfirm
+                                                            title="Delete Currency !"
+                                                            description="Are you sure to delete ?"
+                                                            onConfirm={() => confirm(item?._id)}
+                                                            onCancel={cancel}
+                                                            okText="Yes"
+                                                            cancelText="No"
+                                                        >
+                                                            <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                        </Popconfirm>
+                                                    </div>
 
-                                            </td>
+                                                </td>
 
-                                        </tr>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>Sita</span></td>
-                                            <td>
-                                                Date
-                                            </td>
-                                            <td><span>9976744364</span></td>
-                                            <td>
-                                                <span>64569976744364</span>
-                                            </td>
-                                            <td><span>Gita</span></td>
-
-                                            <td><span>SBI001234</span></td>
-                                            <td>
-                                                <span className="badge badge-success light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/update-payout-beneficiary-master" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
-
-                                            </td>
-
-                                        </tr>
+                                            </tr>
+                                        })}
                                     </tbody>
                                 </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>

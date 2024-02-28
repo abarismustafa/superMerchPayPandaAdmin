@@ -151,6 +151,7 @@ import UsersType from "./pages/topNavigationPages/userType";
 import AddUsertType from "./components/topNavigationComp/customer/addUserType/AddUsertType";
 import StateMasterPage from "./pages/stateMaster";
 import FormStateMaster from "./components/stateMaster/formStateMaster/FormStateMaster";
+import Profile from "./common/profileUser/Profile";
 
 function App() {
 
@@ -165,10 +166,11 @@ function App() {
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
           <Route path="update-bank/:id" element={<AddBank />} />
-          <Route path="edit-add-bank" element={<EditAddBank />} />
+          {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
           <Route path="role-master" element={<RoleMasterPage />} />
           <Route path="add-role-master" element={<AddRoleMaster />} />
-          <Route path="edit-role-master" element={<EditRoleMaster />} />
+          <Route path="update-role-master/:id" element={<AddRoleMaster />} />
+          {/* <Route path="edit-role-master" element={<EditRoleMaster />} /> */}
           <Route path="company-staff/welcome" element={<CompanyStaffPages />} />
           <Route path="add-company-staff/welcome" element={<AddCompanyStaff />} />
           <Route path="company-staff-permission" element={<MasterPages />} />
@@ -188,9 +190,13 @@ function App() {
             element={<AddServiceCategoryMaster />}
           />
           <Route
+            path="update-service-category/:id"
+            element={<AddServiceCategoryMaster />}
+          />
+          {/* <Route
             path="update-service-category"
             element={<UpdateServiceCategoryMaster />}
-          />
+          /> */}
           <Route path="boardcast" element={<BoardcastPage />} />
           <Route path="payment-method" element={<PaymentMethodMasterPage />} />
           <Route path="add-payment-method" element={<AddPaymentMethod />} />
@@ -205,9 +211,13 @@ function App() {
             element={<AddPayoutBeneficiaryMaster />}
           />
           <Route
+            path="update-payout-beneficiary-master/:id"
+            element={<AddPayoutBeneficiaryMaster />}
+          />
+          {/* <Route
             path="update-payout-beneficiary-master"
             element={<EditPayoutBeneficiaryMaster />}
-          />
+          /> */}
           <Route path="area" element={<AreaPage />} />
           <Route path="add-area" element={<AddArea />} />
           <Route path="update-area/:id" element={<AddArea />} />
@@ -451,6 +461,7 @@ function App() {
           <Route path="state-master" element={<StateMasterPage />} />
           <Route path="add-state-master" element={<FormStateMaster />} />
           <Route path="update-state-master/:id" element={<FormStateMaster />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>
