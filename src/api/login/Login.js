@@ -323,3 +323,25 @@ export const staffUpdateProfile = (value) => {
 export const getUpdateProfile = (value) => {
   return axiosInstance.get(`${baseUrl}staff/profile/view`);
 };
+
+
+// provider
+
+export const providerAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}provider/addprovider`, data);
+};
+export const getprovider = () => {
+  return axiosInstance.get(`${baseUrl}provider`);
+};
+
+// export const ServiceCategoryDelete = (id) => {
+//   return axiosInstance.delete(`${baseUrl}servicecategory/deletecategory/${id}`);
+// };
+
+export const getProviderId = (id) => {
+  return axiosInstance.get(`${baseUrl}provider/${id}`);
+};
+
+export const providerUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}provider/updateprovider/${id}`, value);
+};
