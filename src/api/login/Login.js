@@ -173,39 +173,39 @@ export const UserTypeUpdate = (id, value) => {
 
 // Role Master 
 
-export const addRole = (data)=>{
-  return axiosInstance.post (`${baseUrl}role/addrole`, data);
+export const addRole = (data) => {
+  return axiosInstance.post(`${baseUrl}role/addrole`, data);
 }
-export const getListRole = ()=>{
-  return axiosInstance.get (`${baseUrl}role`);
+export const getListRole = () => {
+  return axiosInstance.get(`${baseUrl}role`);
 }
-export const DeleteRole = (id)=>{
-  return axiosInstance.delete (`${baseUrl}role/deleterole/${id}`,);
+export const DeleteRole = (id) => {
+  return axiosInstance.delete(`${baseUrl}role/deleterole/${id}`,);
 }
 export const getRoleEdit = (id) => {
   return axiosInstance.get(`${baseUrl}role/${id}`);
 };
-export const updateRole = (id,value) => {
-  return axiosInstance.put(`${baseUrl}role/updatrole/${id}`,value);
+export const updateRole = (id, value) => {
+  return axiosInstance.put(`${baseUrl}role/updatrole/${id}`, value);
 };
 
 //Payout Beneficiary Api Intrigation :-
 
-export const addBeneficiaryData = (data)=>{
+export const addBeneficiaryData = (data) => {
   console.log(data);
   return axiosInstance.post(`${baseUrl}payout-beneficiary/addpayout`, data);
 }
-export const getBeneficiaryData = ()=>{
-  return axiosInstance.get (`${baseUrl}payout-beneficiary`);
+export const getBeneficiaryData = () => {
+  return axiosInstance.get(`${baseUrl}payout-beneficiary`);
 }
-export const DeleteBeneficiaryData= (id)=>{
-  return axiosInstance.delete (`${baseUrl}payout-beneficiary/deletepayout/${id}`,);
+export const DeleteBeneficiaryData = (id) => {
+  return axiosInstance.delete(`${baseUrl}payout-beneficiary/deletepayout/${id}`,);
 }
 export const getBeneficiaryDataEdit = (id) => {
   return axiosInstance.get(`${baseUrl}payout-beneficiary/${id}`);
 };
-export const updateBeneficiaryData = (id,value) => {
-  return axiosInstance.put(`${baseUrl}payout-beneficiary/updatpayout/${id}`,value);
+export const updateBeneficiaryData = (id, value) => {
+  return axiosInstance.put(`${baseUrl}payout-beneficiary/updatpayout/${id}`, value);
 };
 
 export const stateMasterAdd = (data) => {
@@ -290,3 +290,36 @@ export const paymentMasterUpdate = (id, value) => {
 };
 
 // -------------
+
+// serviceCategory
+
+export const serviceCategoryAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}servicecategory/addcategory`, data);
+};
+export const getServiceCategory = () => {
+  return axiosInstance.get(`${baseUrl}servicecategory`);
+};
+
+export const ServiceCategoryDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}servicecategory/deletecategory/${id}`);
+};
+
+export const getServiceCategoryId = (id) => {
+  return axiosInstance.get(`${baseUrl}servicecategory/${id}`);
+};
+
+export const ServiceCategoryUpdate = (id, value) => {
+  console.log(id, value);
+  return axiosInstance.put(`${baseUrl}servicecategory/updatecategory/${id}`, value);
+};
+
+// staff------
+
+export const staffUpdateProfile = (value) => {
+  console.log(value);
+  return axiosInstance.put(`${baseUrl}staff/profile/update`, value);
+};
+
+export const getUpdateProfile = (value) => {
+  return axiosInstance.get(`${baseUrl}staff/profile/view`);
+};
