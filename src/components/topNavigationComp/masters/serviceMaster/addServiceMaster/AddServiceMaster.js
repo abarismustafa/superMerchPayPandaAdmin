@@ -1,127 +1,102 @@
-import { Formik } from "formik";
-import { Link } from "react-router-dom"
-import CustomInputField from "../../../../../common/CustomInputField";
-import CustomTextArea from "../../../../../common/CustomTextArea";
-import CustomDropdown from "../../../../../common/CustomDropdown";
+import { Link, useParams } from "react-router-dom"
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
+import { useEffect, useState } from "react";
+import { addServiceMaster, getServiceMaster, languageList, updateServiceMaster } from "../../../../../api/login/Login";
+import { Tab, Tabs } from "react-bootstrap";
+import TabAddServiceMaster from "./tabAddServicemaster/TabAddServiceMaster";
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Service Master",
+    title_3: "Add Service Master",
+}
 
 function AddServiceMaster() {
-    const breadCrumbsTitle = {
-        id: "1",
-        title_1: "Master",
-        title_2: "Service Master",
-        title_3: "Add Service Master",
-    }
-    const itemList = [
-        {
-            name: "Abc",
-            value: "Abc",
-        },
-        {
-            name: "Abcd",
-            value: "Abcd",
-        },
-        {
-            name: "Abce",
-            value: "Abce",
-        },
-        {
-            name: "Abcf",
-            value: "Abcf",
-        },
-    ];
-    const itemList2 = [
-        {
-            name: "Enabled",
-            value: "Enabled",
-        },
-        {
-            name: "Disabled",
-            value: "Disabled",
-        },
-    ];
-
-    const initialValues = {
-        serviceName: '',
-        code: '',
-        shortDescription: '',
-        fullDescrption: '',
-        iconImage: '',
-        bannerImage: '',
-        serviceCategory: '',
-        permitByArea: '',
-        status: '',
+    const params = useParams()
+    const [language, setlanguage] = useState(null)
+    const [tab, setTab] = useState()
+    const [data, SetData] = useState()
+    const [selectData, SetselectData] = useState([])
+    const getLanguageIdTab = async () => {
+        const res = await languageList()
+        // console.log(res);
+        setlanguage(res?.data)
+        setTab(res?.data[0]?._id)
     }
 
-    const validate = (values) => {
-        let errors = {};
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const regexMobileNumber = /^[0-9]{10}$/;
-        const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-        const regexGstNumber =
-            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
-        if (!values.serviceName) {
-            errors.serviceName = "Service Name is required";
+    useEffect(() => {
+        getLanguageIdTab()
+    }, [])
+
+    const setInitialdata = () => {
+        const data = language?.map((item) => {
+            return { name: "", level: "", language_id: item?._id, is_active: false, langName: item?.name }
+        })
+        SetselectData(data)
+    }
+    useEffect(() => {
+        const fetchCurrency = async () => {
+            try {
+                if (params?.id) {
+                    const response = await getServiceMaster(params.id);
+                    const serviceData = response.data;
+                    const data = serviceData?.map((item, i) => {
+                        return { id: item.id, name: item.name, level: item.level, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name }
+                    })
+                    SetselectData(data)
+                } else {
+                    setInitialdata()
+                }
+            } catch (error) {
+                console.error("Error fetching currency:", error);
+            }
+        };
+        fetchCurrency();
+    }, [params?.id, language]);
+
+    
+
+    const submitForm = async (values) => {
+        if (params?.id) {
+
+           /*  try {
+                await updateServiceMaster({ id: params?.id, value: { list: selectData } });
+                if (res?.statusCode == "200") {
+                    toastSuccessMessage();
+                }
+
+            } catch (error) {
+
+            } */
+        } else {
+            try {
+                const res = await addServiceMaster({ list: selectData });
+                console.log(res);
+                // toastSuccessMessage();
+            } catch (error) {
+            }
         }
-        if (!values.code) {
-            errors.code = "Code is required";
-        }
-        if (!values.shortDescription) {
-            errors.shortDescription = "Short Description is required";
-        }
-        if (!values.fullDescrption) {
-            errors.fullDescrption = "Full Description is required";
-        }
-        if (!values.iconImage) {
-            errors.iconImage = "Icon Image is required";
-        }
-        if (!values.bannerImage) {
-            errors.bannerImage = "Banner Image is required";
-        }
-        if (!values.permitByArea) {
-            errors.permitByArea = "Permit By Area is required";
-        }
 
-        // if (!values.email) {
-        //     errors.email = "Email is required";
-        // } else if (!regexEmail.test(values.email)) {
-        //     errors.email = "Invalid Email";
-        // }
-
-        // if (!values.mobileNumber) {
-        //     errors.mobileNumber = "Mobile Number is required";
-        // } else if (!regexMobileNumber.test(values.mobileNumber)) {
-        //     errors.mobileNumber = "Invalid Mobile Number";
-        // }
-
-        // if (!values.panNumber) {
-        //     errors.panNumber = "PAN Number is required";
-        // } else if (!regexPanNumber.test(values.panNumber)) {
-        //     errors.panNumber = "Invalid PAN Number";
-        // }
-
-        // if (!values.gstNumber) {
-        //   errors.gstNumber = "GST Number is required";
-        // } else if (!regexGstNumber.test(values.gstNumber)) {
-        //   errors.gstNumber = "Invalid GST Number";
-        // }
-
-
-
-        return errors;
     };
 
-    const submitForm = (values) => {
-        console.log(values);
-    };
-
-    const changeHandle = (selectedData) => {
-        // TODO
-    };
+    const handleChangeCus = (e, id) => {
+        const maped = selectData.map((item) => {
+            if (item.language_id == id) {
+                const obj = { ...item, [e.target.name]: e.target.value }
+                return obj
+            } else {
+                return item
+            }
+        })
+        SetselectData(maped)
+    }
+    const changeHandle =()=>{
+        // todo
+    }
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -130,161 +105,18 @@ function AddServiceMaster() {
                                 <div className="tbl-caption tbl-caption-2">
                                     <h4 className="heading mb-0">ADD SERVICE MASTER</h4>
                                 </div>
-                                <Formik
-                                    initialValues={initialValues}
-                                    validate={validate}
-                                    onSubmit={submitForm}
-
+                                <Tabs
+                                    defaultActiveKey={tab}
+                                    id="uncontrolled-tab-example"
+                                    className="mb-3"
                                 >
-                                    {(formik) => {
-                                        const {
-                                            values,
-                                            handleChange,
-                                            handleSubmit,
-                                            errors,
-                                            touched,
-                                            handleBlur,
-                                            isValid,
-                                            dirty,
-                                        } = formik;
-                                        return (
-                                            <form className="tbl-captionn">
-                                                <div className="row">
-                                                    <div className="col-xl-6 mb-3">
+                                    {selectData && selectData?.map((item, i) => {
+                                        return <Tab eventKey={item?.language_id} title={item?.langName}>
+                                            <TabAddServiceMaster i={i} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus} handleChange={changeHandle} params={params} />
+                                        </Tab>
+                                    })}
 
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.serviceName}
-                                                            hasError={errors.serviceName && touched.serviceName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.serviceName}
-                                                            autoFocus={true}
-                                                            id="serviceName"
-                                                            name="serviceName"
-                                                            placeholder="Service Name"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="number"
-                                                            value={values.code}
-                                                            hasError={errors.code && touched.code}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.code}
-                                                            autoFocus={true}
-                                                            id="code"
-                                                            name="code"
-                                                            placeholder="Code"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomTextArea
-                                                            placeholder="Short Description *"
-                                                            value={values.shortDescription}
-                                                            hasError={errors.shortDescription && touched.shortDescription}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.shortDescription}
-                                                            autoFocus={false}
-                                                            rows="3"
-                                                            id="reason"
-                                                        />
-
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomTextArea
-                                                            placeholder="Full Description *"
-                                                            value={values.fullDescrption}
-                                                            hasError={errors.fullDescrption && touched.fullDescrption}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.fullDescrption}
-                                                            autoFocus={false}
-                                                            rows="3"
-                                                            id="reason"
-                                                        />
-
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="file"
-                                                            value={values.iconImage}
-                                                            hasError={errors.iconImage && touched.iconImage}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.iconImage}
-                                                            autoFocus={true}
-                                                            id="iconImage"
-                                                            name="iconImage"
-                                                            placeholder="Icon Image"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="file"
-                                                            value={values.bannerImage}
-                                                            hasError={errors.bannerImage && touched.bannerImage}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.bannerImage}
-                                                            autoFocus={true}
-                                                            id="bannerImage"
-                                                            name="bannerImage"
-                                                            placeholder="Banner Image"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6">
-
-
-                                                        <CustomDropdown
-                                                            itemList={itemList}
-                                                            placeholder="Select Service Category *"
-                                                            isSingleSelect={false}
-                                                            icon={true}
-                                                            onChange={changeHandle}
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.permitByArea}
-                                                            hasError={errors.permitByArea && touched.permitByArea}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.permitByArea}
-                                                            autoFocus={true}
-                                                            id="permitByArea"
-                                                            name="permitByArea"
-                                                            placeholder="Permit By Area"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomDropdown
-                                                            itemList={itemList2}
-                                                            placeholder="Select Status *"
-                                                            isSingleSelect={false}
-                                                            icon={true}
-                                                            onChange={changeHandle}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <Link to='/admin/service-master' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
-                                                </div>
-                                            </form>
-                                        );
-                                    }}
-                                </Formik>
+                                </Tabs>
 
                             </div>
                         </div>

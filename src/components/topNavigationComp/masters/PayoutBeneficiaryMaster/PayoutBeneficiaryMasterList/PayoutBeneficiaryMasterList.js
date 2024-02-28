@@ -83,7 +83,6 @@ function PayoutBeneficiaryMasterList() {
                                     </thead>
                                     <tbody>
                                         {data && data?.map((item, i) => {
-                                            console.log(item);
                                             return <tr role="row" className="odd">
                                                 <td className="sorting_1"><span>{item?.name}</span></td>
                                                 <td>
