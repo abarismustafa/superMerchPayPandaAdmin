@@ -1,12 +1,7 @@
 import { FaBookReader, FaUserFriends, FaUsers } from "react-icons/fa";
 import { AiFillSetting } from "react-icons/ai";
 import { IoLogoWhatsapp } from "react-icons/io5";
-import {
-  MdDashboard,
-  MdWeb,
-  MdDiscFull,
-  MdPayment,
-} from "react-icons/md";
+import { MdDashboard, MdWeb, MdDiscFull, MdPayment } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
 import { SiQzone } from "react-icons/si";
 import { IoIosPeople } from "react-icons/io";
@@ -119,7 +114,7 @@ export const navigationData = {
     {
       uniqueId: "menu_4",
       id: "4",
-      title: "Payment:",
+      title: "Payment",
       icon: <MdPayment />,
       subMenus: [
         {
@@ -497,7 +492,7 @@ export const navigationData = {
     {
       uniqueId: "menu_9",
       id: "9",
-      title: "Website Masters:",
+      title: "Website Masters",
       icon: <MdWeb />,
       subMenus: [
         {
