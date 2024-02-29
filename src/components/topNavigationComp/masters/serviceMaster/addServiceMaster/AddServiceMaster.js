@@ -1,10 +1,10 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 import { useEffect, useState } from "react";
 import { addServiceMaster, getServiceCategory, getServiceMaster, getServiceMasterId, languageList, updateServiceMaster } from "../../../../../api/login/Login";
 import { Tab, Tabs } from "react-bootstrap";
 import TabAddServiceMaster from "./tabAddServicemaster/TabAddServiceMaster";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
@@ -19,6 +19,7 @@ function AddServiceMaster() {
     const [tab, setTab] = useState();
     const [selectData, setSelectData] = useState([]);
     const params = useParams()
+    const navigate = useNavigate()
     const initialValues = {
         list: [
             {
@@ -29,19 +30,19 @@ function AddServiceMaster() {
                 bbps: 1,
                 background_color: "",
                 order_by: null,
+                service_category: [],
                 short_description: "",
                 full_description: "",
                 icon: "",
                 banner_img: "",
                 parent_id: [],
-                
                 area_id: "",
                 meta_title: "",
                 meta_description: "",
                 meta_keyword: "",
                 meta_image: "",
                 language_id: "",
-                is_active: true
+                is_active: null
             }
         ]
     }
@@ -79,6 +80,9 @@ function AddServiceMaster() {
         if (!values.meta_keyword) {
             errors.meta_keyword = "Meta Keyword   is required";
         }
+        if (!values.service_category) {
+            errors.service_category = "service category   is required";
+        }
         /* if (!values.meta_image) {
             errors.meta_image = "Meta Image  is required";
         } */
@@ -86,7 +90,7 @@ function AddServiceMaster() {
     };
 
     const toastSuccessMessage = () => {
-        toast.success(`${params?.id ? "Update" : "Add"} Service Category Successfully.`, {
+        toast.success(`${params?.id ? "Update" : "Add"} Add Service  Successfully.`, {
             position: "top-center",
         });
     };
@@ -106,6 +110,9 @@ function AddServiceMaster() {
                     const res = await addServiceMaster({ list: selectData });
                     if (res?.statusCode == "200") {
                         toastSuccessMessage();
+                        setTimeout(()=>{
+                           navigate('/admin/service-master') 
+                        },4000)
                     }
                 } catch (error) {
 
@@ -114,6 +121,10 @@ function AddServiceMaster() {
             } else {
                 try {
                     await updateServiceMaster(params?.id, { list: selectData });
+                    toastSuccessMessage();
+                    setTimeout(()=>{
+                        navigate('/admin/service-master') 
+                     },4000)
                 } catch (error) {
 
                 }
@@ -178,13 +189,14 @@ const getServicesCategory = async()=>{
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <ToastContainer/>
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">ADD SERVICE MASTER</h4>
+                                    <h4 className="heading mb-0">{params.id?"UPDATE": 'ADD'} SERVICE MASTER</h4>
                                 </div>
                                 <Tabs
                                     defaultActiveKey={tab}

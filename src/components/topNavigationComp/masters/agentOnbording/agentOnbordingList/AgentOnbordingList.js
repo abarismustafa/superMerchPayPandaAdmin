@@ -1,17 +1,62 @@
 import { FaRegEdit } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs"
+import { deleteAgentOnboarding, getAgentOnboarding } from "../../../../../api/login/Login"
+import { useEffect, useState } from "react"
+import { Popconfirm, message } from "antd"
+import Loadar from "../../../../../common/loader/Loader"
 
-
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Agent Onboarding ",
+}
 function AgentOnbordingList() {
-    const breadCrumbsTitle = {
-        id: "1",
-        title_1: "Master",
-        title_2: "Agent Onboarding ",
+    const [data, setData] = useState()
+    const [loading, setLoading] = useState(false);
+    const params = useParams()
+    const getListOnboarding = async () => {
+        setLoading(true)
+        try {
+            const data = await getAgentOnboarding()
+            setData(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
     }
+
+    useEffect(() => {
+        getListOnboarding()
+    }, [])
+
+
+    const deleteAgentOnboard = async (id) => {
+        setLoading(true)
+        try {
+            await deleteAgentOnboarding(id)
+            getListOnboarding()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+
+    const confirm = (id) => {
+        deleteAgentOnboard(id)
+        message.success('Delete Successfull!');
+
+    };
+    const cancel = (e) => {
+        // console.log(e);
+        message.error('Cancle Successfull!');
+    };
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -36,8 +81,6 @@ function AgentOnbordingList() {
                                                 Date
                                             </th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                User Name</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 First Name</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Last Name</th>
@@ -46,47 +89,55 @@ function AgentOnbordingList() {
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Email</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Aadhar Number</th>
+                                                Account Number</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Pan Number</th>
 
-                                            {/* <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                Status</th> */}
+                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                Status</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                 Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Date
-                                            </td>
-                                            <td>
-                                                Ashok Kumar
-                                            </td>
-                                            <td><span>Ashok</span></td>
-                                            <td className="sorting_1"><span>Kumar</span></td>
-                                            <td>
-                                                987857565
-                                            </td>
-                                            <td><span>abc123@gmail.com</span></td>
-                                            <td><span>35435345343</span></td>
-                                            <td><span>BICID0VOD</span></td>
+                                        {data && data?.map((item, i) => {
+                                            return <tr role="row" className="odd">
+                                                <td className="sorting_1"><span>{i + 1}</span></td>
+                                                <td>
+                                                    {item?.createdAt}
+                                                </td>
 
+                                                <td><span> {item?.first_name}</span></td>
+                                                <td className="sorting_1"><span> {item?.last_name}</span></td>
+                                                <td>
+                                                    {item?.mobile_number}
+                                                </td>
+                                                <td><span>{item?.email}</span></td>
+                                                <td><span>{item?.bank_account_number}</span></td>
+                                                <td><span>{item?.pan_number}</span></td>
+                                                <td>
+                                                    <span className="badge badge-success text-light  border-0" style={{ backgroundColor: `${item?.is_active === true ? 'blue' : 'red'}`, fontSize: `${item?.is_active === false ? '0.8rem' : ''}` }}>{item?.is_active == true ? 'Active' : 'Inactive'}</span>
+                                                </td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                        <Link to={`/admin/update-agent-onboarding/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                        <Popconfirm
+                                                            title="Delete Currency !"
+                                                            description="Are you sure to delete ?"
+                                                            onConfirm={() => confirm(item?.id)}
+                                                            onCancel={cancel}
+                                                            okText="Yes"
+                                                            cancelText="No"
+                                                        >
+                                                            <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                        </Popconfirm>
+                                                    </div>
 
-                                            {/* <td>
-                                                <span className="badge badge-success light border-0">Inactive</span>
-                                            </td> */}
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/update-agent-onboarding" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
+                                                </td>
 
-                                            </td>
+                                            </tr>
+                                        })}
 
-                                        </tr>
 
                                     </tbody>
                                 </table>

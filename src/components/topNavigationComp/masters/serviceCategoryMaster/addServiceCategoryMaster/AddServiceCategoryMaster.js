@@ -126,7 +126,6 @@ function AddServiceCategoryMaster() {
 
     const initialData = () => {
         const data = language?.map((item) => {
-            console.log(data);
             return { ...initialValues, language_id: item?._id, langName: item?.name };
         });
         setSelectData(data);
@@ -151,6 +150,7 @@ function AddServiceCategoryMaster() {
                     const data = currencyData?.map((item, i) => {
                         return { id: item.id, name: item.name, meta_title: item.meta_title, meta_description: item.meta_description, meta_keyword: item.meta_keyword, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name }
                     })
+                    console.log(data);
                     setSelectData(data)
                 } else {
                     initialData();

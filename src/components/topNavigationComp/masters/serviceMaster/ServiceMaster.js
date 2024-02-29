@@ -5,6 +5,8 @@ import { deleteServiceMasterList, getServiceMaster } from "../../../../api/login
 import Loadar from "../../../../common/loader/Loader"
 import { useEffect, useState } from "react"
 import { Popconfirm, message } from "antd"
+import banner from '../../../../assets/images/logo/merchant.paypanda-logo.png'
+import icon from '../../../../assets/images/logo/profile-pic.png'
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
@@ -78,7 +80,7 @@ function ServiceMaster() {
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
                                                 Service Name
                                             </th>
-                                           {/*  <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
+                                            {/*  <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Code</th> */}
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Short Description</th>
@@ -90,7 +92,7 @@ function ServiceMaster() {
                                                 Banner Image</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Service Category</th>
-                                           {/*  <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
+                                            {/*  <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Permit By Area</th> */}
 
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
@@ -102,19 +104,20 @@ function ServiceMaster() {
                                     <tbody>
                                         {data && data?.map((item, i) => {
                                             return <tr role="row" className="odd">
-                                                <td className="sorting_1"><span>{i+1}</span></td>
+                                                <td className="sorting_1"><span>{i + 1}</span></td>
                                                 <td>
                                                     {item?.service_name}
                                                 </td>
-                                                <td className="sorting_1">{item?.short_description}</td>
+                                                <td className="sorting_1"><span className="elip">{item?.short_description?.slice(0, 35)} &nbsp; ...</span></td>
                                                 <td>
-                                                {item?.full_description}
+                                                    <span className="elip">{item?.full_description?.slice(0, 35)} &nbsp; ...</span>
+
                                                 </td>
-                                                <td className="sorting_1"><span>{item?.icon?'icon':"Icon Not Found"}</span></td>
-                                                <td className="sorting_1"><span>{item?.banner_img?"Banner":'Banner  Not Found'}</span></td>
+                                                <td className="sorting_1"><span>{item?.icon ? <img src={item?.icon} alt="banner" width={'30px'} /> : <img src={icon} alt="banner" width={'30px'} />}</span></td>
+                                                <td className="sorting_1"><span>{item?.banner_img ? <img src={item?.banner_img} alt="banner" width={'80px'} /> : <img src={banner} alt="banner" width={'80px'} />}</span></td>
                                                 <td><span>{item?.service_category}</span></td>
                                                 <td>
-                                                    <span className="badge badge-success light border-0">Inactive</span>
+                                                    <span className="badge badge-success text-light  border-0" style={{ backgroundColor: `${item?.is_active === true ? 'blue' : 'red'}`, fontSize: `${item?.is_active === false ? '0.8rem' : ''}` }}>{item?.is_active == true ? 'Active' : 'Inactive'}</span>
                                                 </td>
                                                 <td>
                                                     <div className="d-flex">
