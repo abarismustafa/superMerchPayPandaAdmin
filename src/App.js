@@ -154,6 +154,7 @@ import FormStateMaster from "./components/stateMaster/formStateMaster/FormStateM
 import Profile from "./common/profileUser/Profile";
 import ServiceAreaPermissionPage from "./pages/servicePermission/serviceAreaPermission/index";
 import FormServicePermission from "./components/servicePermission/formServiceAreaPermission/FormServiceAreaPermission";
+import ApiTransitionMasterPage from "./pages/topNavigationPages/apisMaster/apiTransitionMaster";
 
 function App() {
   return (
@@ -252,7 +253,9 @@ function App() {
           <Route path="update-provider-logo" element={<UpdateProvider />} />
           <Route path="api-master" element={<ApiMasterPage />} />
           <Route path="add-api-master" element={<AddApiMaster />} />
-          <Route path="update-api-master" element={<UpdateApiMaster />} />
+          <Route path="update-api-master/:id" element={<AddApiMaster />} />
+          {/* <Route path="update-api-master" element={<UpdateApiMaster />} /> */}
+          <Route path="api-transaction-master" element={<ApiTransitionMasterPage />} />
           <Route
             path="denomination-wise-api"
             element={<DominationWiseMasterPage />}
@@ -434,7 +437,8 @@ function App() {
           {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
           {/* onClick Profile Route End  */}
           <Route path="contact-enquiry" element={<ContactInquery />} />
-          <Route path="edit-contact-enquiry" element={<AddContactEnquiry />} />
+          <Route path="add-contact-enquiry" element={<AddContactEnquiry />} />
+          <Route path="update-contact-enquiry/:id" element={<AddContactEnquiry />} />
           <Route
             path="cashfree-gateway-master"
             element={<CashfreeGateWayMasterPages />}

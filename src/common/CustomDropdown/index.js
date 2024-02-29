@@ -26,7 +26,7 @@ const CustomDropdown = ({
   });
 
   useEffect(() => {
-    onChange?.(selectedItem);
+    onChange?.(selectedItem || []);
   }, [selectedItem]);
 
   const onClickDropdown = useCallback(() => {

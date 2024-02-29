@@ -292,10 +292,10 @@ export const paymentMasterUpdate = (id, value) => {
 
 // -------------Service Master ---------------!
 export const addServiceMaster = (data) => {
-  console.log(data);
+
   return axiosInstance.post(`${baseUrl}service/addservice`, data);
 };
-export const getServiceMaster = ()=>{
+export const getServiceMaster = () => {
   return axiosInstance.get(`${baseUrl}service`)
 }
 export const getServiceMasterId = (id) => {
@@ -315,7 +315,7 @@ export const deleteServiceMasterList = (id, value) => {
 export const addAgentOnboarding = (data) => {
   return axiosInstance.post(`${baseUrl}agentonboarding/addagent`, data);
 };
-export const getAgentOnboarding = ()=>{
+export const getAgentOnboarding = () => {
   return axiosInstance.get(`${baseUrl}agentonboarding`)
 }
 export const updateAgentOnboarding = (id, value) => {
@@ -384,3 +384,63 @@ export const clodinaryImage = (value) => {
 };
 
 // clodinaryImage
+
+// Zone get filter
+
+export const ZoneGetFilter = (id) => {
+  return axiosInstance.get(`${baseUrl}zone/get/filter`, id);
+};
+
+// Api  Master
+
+export const ApiTransactionAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}apiList/addApi`, data);
+};
+export const getApiTransaction = () => {
+  return axiosInstance.get(`${baseUrl}apiList`);
+};
+
+export const apiMasterDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}apiList/deleteApi/${id}`);
+};
+
+export const getapiMasterId = (id) => {
+  return axiosInstance.get(`${baseUrl}apiList/${id}`);
+};
+
+export const apiMasterUpdate = (id, value) => {
+  return axiosInstance.put(`${baseUrl}apiList/updateApi/${id}`, value);
+};
+
+// Api Transaction Master
+
+export const getApiTransactionMaster = () => {
+  return axiosInstance.get(`${baseUrl}apiTrans`);
+};
+export const getTransactionList = (id) => {
+  return axiosInstance.delete(`${baseUrl}apiTrans/deleteApiTrans/${id}`);
+};
+
+
+// Contact Enquiries Api
+
+export const contactEnquiryAdd = (data) => {
+  return axiosInstance.post(`${baseUrl}contact-enquiries/addContactEnquiries`, data);
+};
+export const getcontactEnquiry = () => {
+  return axiosInstance.get(`${baseUrl}contact-enquiries`);
+};
+
+export const contactEnquiryDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}contact-enquiries/deleteContactEnquiries/${id}`);
+};
+
+export const getcontactEnquiryId = (id) => {
+  return axiosInstance.get(`${baseUrl}contact-enquiries/${id}`);
+};
+
+export const apiContactEnquiry = (id, value) => {
+  return axiosInstance.put(`${baseUrl}contact-enquiries/updateContactEnquiries/${id}`, value);
+};
+
+
