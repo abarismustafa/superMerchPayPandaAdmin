@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import airtel from "../../../../assets/images/logo/airtel.png"
 import { Link } from 'react-router-dom'
 import { Popconfirm, message } from 'antd';
-import { getprovider } from '../../../../api/login/Login';
+import { getprovider, providerDelete } from '../../../../api/login/Login';
 function Provider() {
     const [providerData, setProviderData] = useState(null)
     console.log(providerData);
@@ -23,8 +23,8 @@ function Provider() {
     const deleteCurrency = async (id) => {
         setLoading(true)
         try {
-            // await countryDelete(id)
-            // getCurrencyList()
+            await providerDelete(id)
+            getCurrencyList()
         } catch (error) {
             alert(error.message)
         }
@@ -123,11 +123,11 @@ function Provider() {
                                                 <td>
                                                     <div className="d-flex">
                                                         <Link to={`/admin/update-provider/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                        <Link to="/admin/add-provider-logo" className="btn btn-primary shadow btn-xss sharp me-1"><i className="fa fa-pencil" />Add Logo</Link>
+                                                        {/* <Link to="/admin/add-provider-logo" className="btn btn-primary shadow btn-xss sharp me-1"><i className="fa fa-pencil" />Add Logo</Link> */}
                                                         <Popconfirm
                                                             title="Delete Currency !"
                                                             description="Are you sure to delete ?"
-                                                            // onConfirm={() => confirm(item?._id)}
+                                                            onConfirm={() => confirm(item?._id)}
                                                             onCancel={cancel}
                                                             okText="Yes"
                                                             cancelText="No"

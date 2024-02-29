@@ -152,10 +152,10 @@ import AddUsertType from "./components/topNavigationComp/customer/addUserType/Ad
 import StateMasterPage from "./pages/stateMaster";
 import FormStateMaster from "./components/stateMaster/formStateMaster/FormStateMaster";
 import Profile from "./common/profileUser/Profile";
+import ServiceAreaPermissionPage from "./pages/servicePermission/serviceAreaPermission/index";
+import FormServicePermission from "./components/servicePermission/formServiceAreaPermission/FormServiceAreaPermission";
 
 function App() {
-
-
   return (
     <>
       <Routes>
@@ -462,6 +462,8 @@ function App() {
           <Route path="state-master" element={<StateMasterPage />} />
           <Route path="add-state-master" element={<FormStateMaster />} />
           <Route path="update-state-master/:id" element={<FormStateMaster />} />
+          <Route path="service-area-permision" element={<ServiceAreaPermissionPage />} />
+          <Route path="add-service-area-permision" element={<FormServicePermission />} />
           <Route path="profile" element={<Profile />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import CustomInputField from "../CustomInputField";
-import { currencyList, getUpdateProfile, languageList, staffUpdateProfile } from "../../api/login/Login";
+import { clodinaryImage, currencyList, getUpdateProfile, languageList, staffUpdateProfile } from "../../api/login/Login";
 
 function Profile() {
     const [conbo, setCombo] = useState(null)
@@ -65,8 +65,6 @@ function Profile() {
             alert(error.message)
         }
     }
-
-
     const getUpdateData = async () => {
         try {
             const data = await getUpdateProfile()
@@ -75,6 +73,22 @@ function Profile() {
             alert(error.message)
         }
     }
+
+    // const [dataImage, seDataImage] = useState({
+    //     img: ''
+    // })
+
+    // const imgs = new FormData();
+    // const colodinaryImage = async (e) => {
+
+    //     imgs.append("image", e.target.files[0]);
+    //     try {
+    //         const res = await clodinaryImage(imgs)
+    //         console.log(res);
+    //     } catch (error) {
+
+    //     }
+    // }
 
     const submitForm = async (values) => {
         // console.log(values);
@@ -148,6 +162,8 @@ function Profile() {
                                         UPDATE PROFILE
                                     </h4>
                                 </div>
+
+                                {/* <input type="file" name="image" onChange={colodinaryImage} />s */}
 
                                 <Formik
                                     initialValues={initialValues}

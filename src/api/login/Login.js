@@ -1,5 +1,6 @@
 import { baseUrl } from "../../baseUrl";
 import axiosInstance from "../../axiosServiseFactory/AxiosServiseFactory";
+import axios from "axios";
 export const LoginSubmit = (data) =>
   axiosInstance.post(`${baseUrl}staff/login`, data);
 
@@ -334,9 +335,9 @@ export const getprovider = () => {
   return axiosInstance.get(`${baseUrl}provider`);
 };
 
-// export const ServiceCategoryDelete = (id) => {
-//   return axiosInstance.delete(`${baseUrl}servicecategory/deletecategory/${id}`);
-// };
+export const providerDelete = (id) => {
+  return axiosInstance.delete(`${baseUrl}provider/deleteprovider/${id}`);
+};
 
 export const getProviderId = (id) => {
   return axiosInstance.get(`${baseUrl}provider/${id}`);
@@ -345,3 +346,11 @@ export const getProviderId = (id) => {
 export const providerUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}provider/updateprovider/${id}`, value);
 };
+
+// clodinaryImage
+
+export const clodinaryImage = (value) => {
+  return axios.post(`${baseUrl}cloudinary/addImage`, value);
+};
+
+// clodinaryImage

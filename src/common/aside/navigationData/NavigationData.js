@@ -549,5 +549,25 @@ export const navigationData = {
         },
       ],
     },
+    {
+      uniqueId: "menu_14",
+      id: "14",
+      title: "Service Permission",
+      icon: <IoIosPeople />,
+      subMenus: [
+        {
+          uniqueId: "submenu_14_1",
+          id: "1",
+          title: "Service Area Permision",
+          path: "service-area-permision",
+        },
+        {
+          uniqueId: "submenu_13_2",
+          id: "2",
+          title: "Service User Permission",
+          path: "service-user-permission",
+        },
+      ],
+    },
   ],
 };
