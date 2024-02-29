@@ -1,26 +1,47 @@
 import { Formik } from "formik";
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { addAgentOnboarding } from "../../../../../api/login/Login";
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Agent Onboarding ",
+    title_3: "Add  Agent Onboarding ",
+}
 function AddAgentOnbording() {
-    const initialValues = {
-        userName: '',
-        date: '',
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        mobileNumber: '',
-        email: '',
-        aadharNumber: '',
-        panNumber: ''
-    };
-    const breadCrumbsTitle = {
-        id: "1",
-        title_1: "Master",
-        title_2: "Agent Onboarding ",
-        title_3: "Add  Agent Onboarding ",
-    }
+    const [initialValues, setInitialValues] = useState({
+        id: "123456789",
+        first_name: "John",
+        last_name: "Doe 1",
+        mobile_number: "9876543211",
+        email: "john.doe@example.com",
+        aadhar_number: "123456789012",
+        pan_number: "ABCDE1234F",
+        company: "ABC Insurance",
+        pin_code: 560001,
+        address: "123, Main Street",
+        bank_account_number: "9876543210123456",
+        ifsc: "ABCD0123456",
+        state_id: "65d7223dc940711405e73149",
+        district_id: "65d742595d11a929d0ad84f9",
+        city: "Bangalore",
+        user_id: "user123",
+        status_id: true,
+        apiresponse: "Success",
+        meta_title: "Agent Profile",
+        meta_description: "Agent profile details",
+        meta_keyword: "agent, insurance, profile",
+        meta_image: {
+            "public_id": "image123",
+            "url": "https://example.com/image.jpg"
+        },
+        language_id: "65c23e32777ff4808ef0f1c9"
+    });
+    const params = useParams()
+    const navigate = useNavigate()
 
     const validate = (values) => {
         let errors = {};
@@ -70,25 +91,66 @@ function AddAgentOnbording() {
         } else if (!regexPanNumber.test(values.panNumber)) {
             errors.panNumber = "Invalid PAN Number";
         }
-
-        // if (!values.gstNumber) {
-        //   errors.gstNumber = "GST Number is required";
-        // } else if (!regexGstNumber.test(values.gstNumber)) {
-        //   errors.gstNumber = "Invalid GST Number";
-        // }
-
-
-
         return errors;
     };
-
-    const submitForm = (values) => {
-        console.log(values);
+   
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Role Master
+        Successfully.`, {
+            position: "top-center",
+        });
     };
+    const submitForm = async (values) => {
+        try {
+            if (!params?.id) {
+                try {
+                    await addAgentOnboarding(values);
+                    toastSuccessMessage();
+                    setTimeout(() => {
+                        navigate('/admin/role-master')
+                    }, 5000);
+                } catch (error) {
+                    alert.error("NOT SUCCESS :", error);
+                }
 
-    const changeHandle = (selectedData) => {
-        // TODO
-    };
+            } else {
+                  /* try {
+                      await updateRole(params.id, values);
+                      toastSuccessMessage();
+                      setTimeout(() => {
+                          navigate('/admin/role-master')
+                      }, 5000);
+                  } catch (error) {
+  
+                  } */
+
+            }
+
+        } catch (error) {
+            alert.error("Error:", error);
+        }
+
+    }
+    /* useEffect(() => {
+        const fetchUserType = async () => {
+            try {
+                if (params?.id) {
+                    const response = await getRoleEdit(params.id);  
+                    const roleData = response.data;
+                console.log(roleData);
+                    setInitialValues(roleData);
+                } else {
+                    setInitialValues({
+                       name:""
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching User type:", error);
+            }
+        };
+        fetchUserType();
+    }, [params?.id]); */
+   
     return (
         <>
         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
