@@ -241,10 +241,11 @@ function App() {
           /> */}
 
           <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
-          <Route
+          <Route path="update-agent-onboarding/:id" element={<AddAgentOnbording />} />
+          {/* <Route
             path="update-agent-onboarding"
             element={<UpdateAgentOnbording />}
-          />
+          /> */}
           {/*  Shoib Route start */}
           <Route path="provider" element={<Provider />} />
           <Route path="add-provider" element={<AddProvider />} />

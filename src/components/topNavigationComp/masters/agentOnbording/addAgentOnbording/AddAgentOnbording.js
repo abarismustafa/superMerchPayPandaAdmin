@@ -2,43 +2,46 @@ import { Formik } from "formik";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { addAgentOnboarding } from "../../../../../api/login/Login";
+import { addAgentOnboarding, getAgentOnboardingEdit, updateAgentOnboarding } from "../../../../../api/login/Login";
+import CustomDropdown from "../../../../../common/CustomDropdown";
+import CustomTextArea from "../../../../../common/CustomTextArea";
+import { ToastBody } from "react-bootstrap";
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
     title_2: "Agent Onboarding ",
     title_3: "Add  Agent Onboarding ",
 }
+const itemList = [
+    {
+        name: "abc",
+        value: "abc"
+    },
+    {
+        name: "abc",
+        value: "abc"
+    }
+]
 function AddAgentOnbording() {
     const [initialValues, setInitialValues] = useState({
-        id: "123456789",
-        first_name: "John",
-        last_name: "Doe 1",
-        mobile_number: "9876543211",
-        email: "john.doe@example.com",
-        aadhar_number: "123456789012",
-        pan_number: "ABCDE1234F",
-        company: "ABC Insurance",
+        first_name: "",
+        last_name: "",
+        mobile_number: "",
+        email: "",
+        // aadhar_number: 265385644663,
+        pan_number: "",
+        company: "",
         pin_code: 560001,
-        address: "123, Main Street",
-        bank_account_number: "9876543210123456",
-        ifsc: "ABCD0123456",
-        state_id: "65d7223dc940711405e73149",
-        district_id: "65d742595d11a929d0ad84f9",
-        city: "Bangalore",
-        user_id: "user123",
+        address: "",
+        bank_account_number: "",
+        ifsc: "",
+        user_id: "",
         status_id: true,
-        apiresponse: "Success",
-        meta_title: "Agent Profile",
-        meta_description: "Agent profile details",
-        meta_keyword: "agent, insurance, profile",
-        meta_image: {
-            "public_id": "image123",
-            "url": "https://example.com/image.jpg"
-        },
-        language_id: "65c23e32777ff4808ef0f1c9"
+        meta_title: "",
+        meta_description: "",
+        meta_keyword: "",
     });
     const params = useParams()
     const navigate = useNavigate()
@@ -48,54 +51,69 @@ function AddAgentOnbording() {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const regexMobileNumber = /^[0-9]{10}$/;
         const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-        const regexGstNumber =
-            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
         const regexAdhar = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
-
-
-        if (!values.userName) {
-            errors.userName = "User Name is required";
+        const ifscRegex = /^[A-Za-z]{4}\d{7}$/;
+        const AccountRegex = /^[0-9]{6,}$/;
+        
+        if (!values.first_name) {
+            errors.first_name = "First Name is required";
         }
-        if (!values.date) {
-            errors.date = "Date is required";
+        if (!values.last_name) {
+            errors.last_name = "Last Name is required";
         }
-        if (!values.firstName) {
-            errors.firstName = "First Name is required";
+        if (!values.meta_description) {
+            errors.meta_description = "Meta Description is required";
         }
-        if (!values.middleName) {
-            errors.middleName = "Middle Name is required";
+        if (!values.meta_keyword) {
+            errors.meta_keyword = "Meta Keyword is required";
         }
-        if (!values.lastName) {
-            errors.lastName = "Last Name is required";
+        if (!values.meta_title) {
+            errors.meta_title = "Meta title is required";
         }
-        if (!values.mobileNumber) {
-            errors.mobileNumber = "Mobile Number is required";
-        } else if (!regexMobileNumber.test(values.mobileNumber)) {
-            errors.mobileNumber = "Invalid Mobile Number";
+        if (!values.address) {
+            errors.address = "Address is required";
+        }
+        if (!values.company) {
+            errors.company = "company is required";
+        }
+        if (!values.mobile_number) {
+            errors.mobile_number = "Mobile Number is required";
+        } else if (!regexMobileNumber.test(values.mobile_number)) {
+            errors.mobile_number = "Invalid Mobile Number";
+        }
+        if (!values.ifsc) {
+            errors.ifsc = "IFSC  is required";
+        } else if (!ifscRegex.test(values.ifsc)) {
+            errors.ifsc = "Invalid IFSC Number";
         }
         if (!values.email) {
             errors.email = "Email is required";
         } else if (!regexEmail.test(values.email)) {
             errors.email = "Invalid Email";
         }
-
-        if (!values.aadharNumber) {
-            errors.aadharNumber = "Aadhar Number is required";
-        } else if (!regexAdhar.test(values.aadharNumber)) {
-            errors.aadharNumber = "Invalid Aadhar Number";
+        if (!values.bank_account_number) {
+            errors.bank_account_number = "Bank Account Number is required";
+        } else if (!AccountRegex.test(values.bank_account_number)) {
+            errors.bank_account_number = "Invalid Bank Account Number";
         }
 
+        /* if (!values.aadhar_number) {
+            errors.aadhar_number = "Aadhar Number is required";
+        } else if (!regexAdhar.test(values.aadhar_number)) {
+            errors.aadhar_number = "Invalid Aadhar Number";
+        } */
 
-        if (!values.panNumber) {
-            errors.panNumber = "PAN Number is required";
-        } else if (!regexPanNumber.test(values.panNumber)) {
-            errors.panNumber = "Invalid PAN Number";
+
+        if (!values.pan_number) {
+            errors.pan_number = "PAN Number is required";
+        } else if (!regexPanNumber.test(values.pan_number)) {
+            errors.pan_number = "Invalid PAN Number";
         }
         return errors;
     };
-   
+
     const toastSuccessMessage = () => {
-        toast.success(`${params?.id ? "Update" : "Add"} Role Master
+        toast.success(`${params?.id ? "Update" : "Add"}  Agent Onboarding 
         Successfully.`, {
             position: "top-center",
         });
@@ -107,22 +125,22 @@ function AddAgentOnbording() {
                     await addAgentOnboarding(values);
                     toastSuccessMessage();
                     setTimeout(() => {
-                        navigate('/admin/role-master')
+                        navigate('/admin/agent-onboarding-list')
                     }, 5000);
                 } catch (error) {
                     alert.error("NOT SUCCESS :", error);
                 }
 
             } else {
-                  /* try {
-                      await updateRole(params.id, values);
-                      toastSuccessMessage();
-                      setTimeout(() => {
-                          navigate('/admin/role-master')
-                      }, 5000);
-                  } catch (error) {
-  
-                  } */
+                try {
+                    await updateAgentOnboarding(params.id, values);
+                    toastSuccessMessage();
+                    setTimeout(() => {
+                        navigate('/admin/agent-onboarding-list')
+                    }, 5000);
+                } catch (error) {
+ 
+                }
 
             }
 
@@ -131,17 +149,31 @@ function AddAgentOnbording() {
         }
 
     }
-    /* useEffect(() => {
+    useEffect(() => {
         const fetchUserType = async () => {
             try {
                 if (params?.id) {
-                    const response = await getRoleEdit(params.id);  
+                    const response = await getAgentOnboardingEdit(params.id);  
                     const roleData = response.data;
-                console.log(roleData);
                     setInitialValues(roleData);
                 } else {
                     setInitialValues({
-                       name:""
+                        first_name: "",
+                        last_name: "",
+                        mobile_number: "",
+                        email: "",
+                        // aadhar_number: 265385644663,
+                        pan_number: "",
+                        company: "",
+                        pin_code: 560001,
+                        address: "",
+                        bank_account_number: "",
+                        ifsc: "",
+                        user_id: "",
+                        status_id: true,
+                        meta_title: "",
+                        meta_description: "",
+                        meta_keyword: "",
                     });
                 }
             } catch (error) {
@@ -149,11 +181,12 @@ function AddAgentOnbording() {
             }
         };
         fetchUserType();
-    }, [params?.id]); */
-   
+    }, [params?.id]);
+
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            <ToastBody/>
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -166,7 +199,7 @@ function AddAgentOnbording() {
                                     initialValues={initialValues}
                                     validate={validate}
                                     onSubmit={submitForm}
-
+                                    enableReinitialize
                                 >
                                     {(formik) => {
                                         const {
@@ -180,93 +213,47 @@ function AddAgentOnbording() {
                                             dirty,
                                         } = formik;
                                         return (
-                                            <form className="tbl-captionn">
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-6 mb-3">
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.userName}
-                                                            hasError={errors.userName && touched.userName}
+                                                            value={values?.first_name}
+                                                            hasError={errors?.first_name && touched.first_name}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.userName}
+                                                            errorMsg={errors?.first_name}
                                                             autoFocus={true}
-                                                            id="userName"
-                                                            name="userName"
-                                                            placeholder="User Name"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <CustomInputField
-                                                            type="date"
-                                                            value={values.date}
-                                                            hasError={errors.date && touched.date}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.date}
-                                                            autoFocus={true}
-                                                            id="date"
-                                                            name="date"
-                                                            placeholder="Date"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.firstName}
-                                                            hasError={errors.firstName && touched.firstName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.firstName}
-                                                            autoFocus={true}
-                                                            id="firstName"
-                                                            name="firstName"
+                                                            id="first_name"
+                                                            name="first_name"
                                                             placeholder="First Name"
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.middleName}
-                                                            hasError={errors.middleName && touched.middleName}
+                                                            value={values?.last_name}
+                                                            hasError={errors.last_name && touched.last_name}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.middleName}
+                                                            errorMsg={errors.last_name}
                                                             autoFocus={true}
-                                                            id="middleName"
-                                                            name="middleName"
-                                                            placeholder="Middle Name"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values.lastName}
-                                                            hasError={errors.lastName && touched.lastName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.lastName}
-                                                            autoFocus={true}
-                                                            id="lastName"
-                                                            name="lastName"
+                                                            id="last_name"
+                                                            name="last_name"
                                                             placeholder="Last Name"
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-
                                                         <CustomInputField
                                                             type="number"
-                                                            value={values.mobileNumber}
-                                                            hasError={errors.mobileNumber && touched.mobileNumber}
+                                                            value={values?.mobile_number}
+                                                            hasError={errors.mobile_number && touched.mobile_number}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.mobileNumber}
+                                                            errorMsg={errors.mobile_number}
                                                             autoFocus={true}
-                                                            id="mobileNumber"
-                                                            name="mobileNumber"
+                                                            id="mobile_number"
+                                                            name="mobile_number"
                                                             placeholder="Mobile Number"
                                                         />
                                                     </div>
@@ -274,7 +261,7 @@ function AddAgentOnbording() {
 
                                                         <CustomInputField
                                                             type="email"
-                                                            value={values.email}
+                                                            value={values?.email}
                                                             hasError={errors.email && touched.email}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
@@ -286,39 +273,170 @@ function AddAgentOnbording() {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
+
                                                         <CustomInputField
-                                                            type="number"
-                                                            value={values.aadharNumber}
-                                                            hasError={errors.aadharNumber && touched.aadharNumber}
+                                                            type="text"
+                                                            value={values?.ifsc}
+                                                            hasError={errors.ifsc && touched.ifsc}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.aadharNumber}
+                                                            errorMsg={errors.ifsc}
                                                             autoFocus={true}
-                                                            id="aadharNumber"
-                                                            name="aadharNumber"
-                                                            placeholder="Aadhar Number"
+                                                            id="ifsc"
+                                                            name="ifsc"
+                                                            placeholder="Ifsc"
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
                                                             type="text"
-                                                            value={values.panNumber}
-                                                            hasError={errors.panNumber && touched.panNumber}
+                                                            value={values?.bank_account_number}
+                                                            hasError={errors.bank_account_number && touched.bank_account_number}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.panNumber}
+                                                            errorMsg={errors.bank_account_number}
                                                             autoFocus={true}
-                                                            id="panNumber"
-                                                            name="panNumber"
+                                                            id="bank_account_number"
+                                                            name="bank_account_number"
+                                                            placeholder="Bank Account Number"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                            <CustomInputField
+                                                            type="text"
+                                                            value={values?.company}
+                                                            hasError={errors.company && touched.company}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.company}
+                                                            autoFocus={true}
+                                                            id="company"
+                                                            name="company"
+                                                            placeholder="Company Name"
+                                                        />
+                                                    </div>
+                                                    {/* <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.aadhar_number}
+                                                            hasError={errors.aadhar_number && touched.aadhar_number}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.aadhar_number}
+                                                            autoFocus={true}
+                                                            id="aadhar_number"
+                                                            name="aadhar_number"
+                                                            placeholder="Aadhar Number"
+                                                        />
+                                                    </div> */}
+                                                    <div className="col-xl-6 mb-3">
+                                                        <select className="form-select" aria-label="Default select example" id="user_id" name="user_id"
+                                                            defaultValue={values?.user_id}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option selected> select Mode</option>
+                                                            <option value={'4325'}> user 1</option>
+                                                            <option value={'23546'}> user 2</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values?.pan_number}
+                                                            hasError={errors?.pan_number && touched.pan_number}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors?.pan_number}
+                                                            autoFocus={true}
+                                                            id="pan_number"
+                                                            name="pan_number"
                                                             placeholder="Pan Number"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values?.meta_title}
+                                                            hasError={errors.meta_title && touched.meta_title}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_title}
+                                                            autoFocus={true}
+                                                            id="meta_title"
+                                                            name="meta_title"
+                                                            placeholder="Meta Tittle"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values?.meta_keyword}
+                                                            hasError={errors.meta_keyword && touched.meta_keyword}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_keyword}
+                                                            autoFocus={true}
+                                                            id="meta_keyword"
+                                                            name="meta_keyword"
+                                                            placeholder="Meta Keyword"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <select className="form-select" aria-label="Default select example" id="status_id" name="status_id"
+                                                            defaultValue={values?.status_id}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option selected> select Mode</option>
+                                                            <option value={'true'}> Yes</option>
+                                                            <option value={'false'}> No</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomTextArea
+                                                            type="text"
+                                                            placeholder="Address *"
+                                                            value={values?.address}
+                                                            hasError={errors.address && touched.address}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.address}
+                                                            autoFocus={true}
+                                                            id="address"
+                                                            name="address"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomTextArea
+                                                            type="text"
+                                                            placeholder="Meta Description *"
+                                                            value={values?.meta_description}
+                                                            hasError={errors.meta_description && touched.meta_description}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_description}
+                                                            autoFocus={true}
+                                                            id="meta_description"
+                                                            name="meta_description"
                                                         />
                                                     </div>
 
                                                 </div>
                                                 <div>
-                                                    <Link to='service-master' className="btn btn-danger light ms-1">Cancel</Link>
-                                                    <button className="btn btn-primary me-1">Submit</button>
+                                                    <Link to='/admin/agent-onboarding-list' className="btn btn-danger light ms-1">Cancel</Link>
+                                                    <button
+                                                        className="btn btn-primary me-1"
+                                                        type="submit"
+
+                                                    disabled={!isValid || !dirty}
+                                                    >
+                                                        {params?.id ? "Update" : "Add"}
+                                                    </button>
                                                 </div>
                                             </form>
                                         );

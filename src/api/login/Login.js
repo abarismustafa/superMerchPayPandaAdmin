@@ -310,17 +310,7 @@ export const deleteServiceMasterList = (id, value) => {
 
 
 
-// agent onBoarding -------!
 
-export const addAgentOnboarding = (data) => {
-  return axiosInstance.post(`${baseUrl}agentonboarding/addagent`, data);
-};
-export const getAgentOnboarding = () => {
-  return axiosInstance.get(`${baseUrl}agentonboarding`)
-}
-export const updateAgentOnboarding = (id, value) => {
-  return axiosInstance.put(`${baseUrl}agentonboarding/updateagent/${id}`, value);
-};
 
 // serviceCategory
 
@@ -444,3 +434,26 @@ export const apiContactEnquiry = (id, value) => {
 };
 
 
+
+
+
+
+
+// agent onBoarding -------!
+
+export const addAgentOnboarding = (data) => {
+  return axiosInstance.post(`${baseUrl}agentonboarding/addOnboarding`, data);
+};
+export const getAgentOnboarding = ()=>{
+  return axiosInstance.get(`${baseUrl}agentonboarding`)
+}
+export const getAgentOnboardingEdit = (id)=>{
+  return axiosInstance.get(`${baseUrl}agentonboarding/${id}`)
+}
+export const updateAgentOnboarding = (id, value) => {
+  return axiosInstance.put(`${baseUrl}agentonboarding/updateOnBoarding/${id}`, value);
+};
+export const deleteAgentOnboarding = (id) => {
+  console.log(id);
+  return axiosInstance.delete(`${baseUrl}agentonboarding/deleteOnBoarding/${id}`);
+};

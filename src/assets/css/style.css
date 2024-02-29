@@ -55288,8 +55288,10 @@ input[type=file]::file-selector-button {
   display: none;
 }
 
-.login-content a,
-img {
+.login-content a {
+  width: 200px;
+}
+.login-content a>img {
   width: 200px;
 }
 
@@ -55374,5 +55376,4 @@ img {
   right: 0;
   left: auto;
 }
-
 /*# sourceMappingURL=style-rtl.css.map */
