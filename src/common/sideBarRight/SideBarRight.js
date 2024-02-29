@@ -159,6 +159,14 @@ function SideBarRight({ name, ...props }) {
                 <option value="en">English</option>
                 <option value="hn">Hindi</option>
                 <option value="ar">Arabic</option>
+                <option value="cn">Chinese</option>
+                <option value="pl">Polish</option>
+                <option value="rs">Russian</option>
+                <option value="kn">Kannada</option>
+                <option value="mr">Marathi</option>
+                <option value="pn">Punjabi</option>
+                <option value="ur">Urdu</option>
+                <option value="tl">Tamil</option>
               </select>
             </div>
           </div>
