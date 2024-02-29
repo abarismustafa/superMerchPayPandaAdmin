@@ -152,10 +152,11 @@ import AddUsertType from "./components/topNavigationComp/customer/addUserType/Ad
 import StateMasterPage from "./pages/stateMaster";
 import FormStateMaster from "./components/stateMaster/formStateMaster/FormStateMaster";
 import Profile from "./common/profileUser/Profile";
+import ServiceAreaPermissionPage from "./pages/servicePermission/serviceAreaPermission/index";
+import FormServicePermission from "./components/servicePermission/formServiceAreaPermission/FormServiceAreaPermission";
+import ApiTransitionMasterPage from "./pages/topNavigationPages/apisMaster/apiTransitionMaster";
 
 function App() {
-
-
   return (
     <>
       <Routes>
@@ -253,7 +254,9 @@ function App() {
           <Route path="update-provider-logo" element={<UpdateProvider />} />
           <Route path="api-master" element={<ApiMasterPage />} />
           <Route path="add-api-master" element={<AddApiMaster />} />
-          <Route path="update-api-master" element={<UpdateApiMaster />} />
+          <Route path="update-api-master/:id" element={<AddApiMaster />} />
+          {/* <Route path="update-api-master" element={<UpdateApiMaster />} /> */}
+          <Route path="api-transaction-master" element={<ApiTransitionMasterPage />} />
           <Route
             path="denomination-wise-api"
             element={<DominationWiseMasterPage />}
@@ -435,7 +438,8 @@ function App() {
           {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
           {/* onClick Profile Route End  */}
           <Route path="contact-enquiry" element={<ContactInquery />} />
-          <Route path="edit-contact-enquiry" element={<AddContactEnquiry />} />
+          <Route path="add-contact-enquiry" element={<AddContactEnquiry />} />
+          <Route path="update-contact-enquiry/:id" element={<AddContactEnquiry />} />
           <Route
             path="cashfree-gateway-master"
             element={<CashfreeGateWayMasterPages />}
@@ -464,6 +468,8 @@ function App() {
           <Route path="state-master" element={<StateMasterPage />} />
           <Route path="add-state-master" element={<FormStateMaster />} />
           <Route path="update-state-master/:id" element={<FormStateMaster />} />
+          <Route path="service-area-permision" element={<ServiceAreaPermissionPage />} />
+          <Route path="add-service-area-permision" element={<FormServicePermission />} />
           <Route path="profile" element={<Profile />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
