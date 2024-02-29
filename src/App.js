@@ -247,6 +247,7 @@ function App() {
           {/*  Shoib Route start */}
           <Route path="provider" element={<Provider />} />
           <Route path="add-provider" element={<AddProvider />} />
+          <Route path="update-provider/:id" element={<AddProvider />} />
           <Route path="add-provider-logo" element={<AddproviderLogo />} />
           <Route path="update-provider-logo" element={<UpdateProvider />} />
           <Route path="api-master" element={<ApiMasterPage />} />

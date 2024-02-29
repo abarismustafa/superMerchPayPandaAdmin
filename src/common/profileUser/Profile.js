@@ -50,7 +50,7 @@ function Profile() {
     };
 
     const toastSuccessMessage = () => {
-        toast.success(`${params?.id ? "Update" : "Add"} Country Successfully.`, {
+        toast.success(`Profile Successfully.`, {
             position: "top-center",
         });
     };
@@ -81,6 +81,9 @@ function Profile() {
 
         try {
             const res = await staffUpdateProfile(values)
+            if (res?.statusCode == "200") {
+                toastSuccessMessage();
+            }
         } catch (error) {
 
         }
@@ -108,6 +111,10 @@ function Profile() {
         //     console.error("Error:", error);
         // }
     };
+
+    const profileImage = () => {
+
+    }
 
     useEffect(() => {
         curencyidget()
@@ -339,9 +346,6 @@ function Profile() {
                                         );
                                     }}
                                 </Formik>
-
-
-
                             </div>
                         </div>
                     </div>

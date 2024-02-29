@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
@@ -20,6 +20,7 @@ function AddServiceCategoryMaster() {
     const [tab, setTab] = useState();
     const [selectData, setSelectData] = useState([]);
     const params = useParams()
+    const navigate = useNavigate()
     const itemList = [
         {
             name: "Enabled",
@@ -72,13 +73,16 @@ function AddServiceCategoryMaster() {
     };
 
     const submitForm = async (initialValues) => {
-        console.log(selectData);
+
         try {
             if (!params?.id) {
                 try {
                     const res = await serviceCategoryAdd({ list: selectData });
                     if (res?.statusCode == "200") {
                         toastSuccessMessage();
+                        setTimeout(() => {
+                            navigate('/admin/service-category')
+                        }, [4000])
                     }
                 } catch (error) {
 
@@ -86,7 +90,13 @@ function AddServiceCategoryMaster() {
 
             } else {
                 try {
-                    await ServiceCategoryUpdate(params?.id, { list: selectData });
+                    const res = await ServiceCategoryUpdate(params?.id, { list: selectData });
+                    if (res?.statusCode == "200") {
+                        toastSuccessMessage();
+                        setTimeout(() => {
+                            navigate('/admin/service-category')
+                        }, [4000])
+                    }
                 } catch (error) {
 
                 }
