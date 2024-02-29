@@ -1,16 +1,60 @@
 import { FaRegEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Breadcrumbs from "../../../../common/breadcrumb/Breadcrumbs"
-
+import { deleteServiceMasterList, getServiceMaster } from "../../../../api/login/Login"
+import Loadar from "../../../../common/loader/Loader"
+import { useEffect, useState } from "react"
+import { Popconfirm, message } from "antd"
+const breadCrumbsTitle = {
+    id: "1",
+    title_1: "Master",
+    title_2: "Service Master",
+}
 function ServiceMaster() {
-    const breadCrumbsTitle = {
-        id: "1",
-        title_1: "Master",
-        title_2: "Service Master",
+    const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const getServiceList = async () => {
+        setLoading(true)
+        try {
+            const data = await getServiceMaster()
+            setData(data?.data)
+
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
     }
+
+    const deleteService = async (id) => {
+        setLoading(true)
+        try {
+            await deleteServiceMasterList(id)
+            getServiceList()
+        } catch (error) {
+            alert(error.message)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        getServiceList()
+    }, [])
+
+
+    const confirm = (id) => {
+        deleteService(id)
+        message.success('Delete Successfull!');
+
+    };
+    const cancel = (e) => {
+        // console.log(e);
+        message.error('Cancle Successfull!');
+    };
     return (
         <>
-        <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
+
+            <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
+            {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -34,8 +78,8 @@ function ServiceMaster() {
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
                                                 Service Name
                                             </th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Code</th>
+                                           {/*  <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
+                                                Code</th> */}
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Short Description</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
@@ -46,8 +90,8 @@ function ServiceMaster() {
                                                 Banner Image</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Service Category</th>
-                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                Permit By Area</th>
+                                           {/*  <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
+                                                Permit By Area</th> */}
 
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                 Status</th>
@@ -56,66 +100,41 @@ function ServiceMaster() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
+                                        {data && data?.map((item, i) => {
+                                            return <tr role="row" className="odd">
+                                                <td className="sorting_1"><span>{i+1}</span></td>
+                                                <td>
+                                                    {item?.service_name}
+                                                </td>
+                                                <td className="sorting_1">{item?.short_description}</td>
+                                                <td>
+                                                {item?.full_description}
+                                                </td>
+                                                <td className="sorting_1"><span>{item?.icon?'icon':"Icon Not Found"}</span></td>
+                                                <td className="sorting_1"><span>{item?.banner_img?"Banner":'Banner  Not Found'}</span></td>
+                                                <td><span>{item?.service_category}</span></td>
+                                                <td>
+                                                    <span className="badge badge-success light border-0">Inactive</span>
+                                                </td>
+                                                <td>
+                                                    <div className="d-flex">
+                                                        <Link to={`/admin/update-service-master/${item?.id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                        <Popconfirm
+                                                            title="Delete Currency !"
+                                                            description="Are you sure to delete ?"
+                                                            onConfirm={() => confirm(item?.id)}
+                                                            onCancel={cancel}
+                                                            okText="Yes"
+                                                            cancelText="No"
+                                                        >
+                                                            <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
+                                                        </Popconfirm>
+                                                    </div>
 
+                                                </td>
 
-                                            <td>
-                                                <span className="badge badge-success light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/edit-service-master" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
-
-                                            </td>
-
-                                        </tr>
-                                        <tr role="row" className="odd">
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-                                            <td className="sorting_1"><span>1</span></td>
-                                            <td>
-                                                Activation
-                                            </td>
-                                            <td><span>0</span></td>
-
-
-                                            <td>
-                                                <span className="badge badge-danger light border-0">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <Link to="/admin/edit-service-master" className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                    <a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></a>
-                                                </div>
-
-                                            </td>
-
-                                        </tr>
+                                            </tr>
+                                        })}
                                     </tbody>
                                 </table>
                                     <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>

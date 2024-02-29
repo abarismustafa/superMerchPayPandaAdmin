@@ -180,7 +180,8 @@ function App() {
           {/* <Route path="edit-status-master" element={<EditStatusMaster />} /> */}
           <Route path="service-master" element={<ServiceMasterPage />} />
           <Route path="add-service-master" element={<AddServiceMaster />} />
-          <Route path="edit-service-master" element={<EditServiceMaster />} />
+          <Route path="update-service-master/:id" element={<AddServiceMaster />} />
+          {/* <Route path="edit-service-master" element={<EditServiceMaster />} /> */}
           <Route
             path="service-category"
             element={<ServiceCategoryMasterPage />}

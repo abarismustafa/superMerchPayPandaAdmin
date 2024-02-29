@@ -22,13 +22,7 @@ const AddUsertType = () => {
         }
         return errors;
     };
-    const handleChange = (e) => {
-        const clone = { ...initialValues }
-        clone[e.target.name] = e.target.value
-        validate(clone)
-        setInitialValues(clone)
-
-    }
+   
     const toastSuccessMessage = () => {
         toast.success(`${params?.id ? "Update" : "Add"} Users Type Successfully.`, {
             position: "top-center",

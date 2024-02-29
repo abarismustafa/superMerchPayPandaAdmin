@@ -8,7 +8,6 @@ function Header({ showAsideBar }) {
     const [toggle, setToggle] = useState(false)
 
     const [data, setData] = useState(null)
-    console.log(data);
     const toggleFullscreen = () => {
         const element = document.documentElement;
 

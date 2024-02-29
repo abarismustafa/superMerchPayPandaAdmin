@@ -290,7 +290,37 @@ export const paymentMasterUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}payment-method/updatpayment/${id}`, value);
 };
 
-// -------------
+// -------------Service Master ---------------!
+export const addServiceMaster = (data) => {
+  console.log(data);
+  return axiosInstance.post(`${baseUrl}service/addservice`, data);
+};
+export const getServiceMaster = ()=>{
+  return axiosInstance.get(`${baseUrl}service`)
+}
+export const getServiceMasterId = (id) => {
+  return axiosInstance.get(`${baseUrl}service/${id}`);
+};
+export const updateServiceMaster = (id, value) => {
+  return axiosInstance.put(`${baseUrl}service/updateservice/${id}`, value);
+};
+export const deleteServiceMasterList = (id, value) => {
+  return axiosInstance.delete(`${baseUrl}service/deleteservice/${id}`);
+};
+
+
+
+// agent onBoarding -------!
+
+export const addAgentOnboarding = (data) => {
+  return axiosInstance.post(`${baseUrl}agentonboarding/addagent`, data);
+};
+export const getAgentOnboarding = ()=>{
+  return axiosInstance.get(`${baseUrl}agentonboarding`)
+}
+export const updateAgentOnboarding = (id, value) => {
+  return axiosInstance.put(`${baseUrl}agentonboarding/updateagent/${id}`, value);
+};
 
 // serviceCategory
 
