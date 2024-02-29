@@ -65,9 +65,7 @@ function BankMasterList() {
                                 <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Export Report</span></button> </div><table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
                                     <thead>
                                         <tr role="row">
-                                            <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                ID
-                                            </th>
+
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
                                                 Bank Name
                                             </th>
@@ -89,7 +87,7 @@ function BankMasterList() {
                                         {data && data?.map((item) => {
                                             console.log(item);
                                             return <tr role="row" className="odd" key={item?._id}>
-                                                <td className="sorting_1"><span>{item?._id}</span></td>
+
                                                 <td>
                                                     {item?.bank_name}
                                                 </td>

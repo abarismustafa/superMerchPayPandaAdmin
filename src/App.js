@@ -151,6 +151,7 @@ import UsersType from "./pages/topNavigationPages/userType";
 import AddUsertType from "./components/topNavigationComp/customer/addUserType/AddUsertType";
 import StateMasterPage from "./pages/stateMaster";
 import FormStateMaster from "./components/stateMaster/formStateMaster/FormStateMaster";
+import Profile from "./common/profileUser/Profile";
 
 function App() {
 
@@ -179,7 +180,8 @@ function App() {
           {/* <Route path="edit-status-master" element={<EditStatusMaster />} /> */}
           <Route path="service-master" element={<ServiceMasterPage />} />
           <Route path="add-service-master" element={<AddServiceMaster />} />
-          <Route path="edit-service-master" element={<EditServiceMaster />} />
+          <Route path="update-service-master/:id" element={<AddServiceMaster />} />
+          {/* <Route path="edit-service-master" element={<EditServiceMaster />} /> */}
           <Route
             path="service-category"
             element={<ServiceCategoryMasterPage />}
@@ -189,9 +191,13 @@ function App() {
             element={<AddServiceCategoryMaster />}
           />
           <Route
+            path="update-service-category/:id"
+            element={<AddServiceCategoryMaster />}
+          />
+          {/* <Route
             path="update-service-category"
             element={<UpdateServiceCategoryMaster />}
-          />
+          /> */}
           <Route path="boardcast" element={<BoardcastPage />} />
           <Route path="payment-method" element={<PaymentMethodMasterPage />} />
           <Route path="add-payment-method" element={<AddPaymentMethod />} />
@@ -456,6 +462,7 @@ function App() {
           <Route path="state-master" element={<StateMasterPage />} />
           <Route path="add-state-master" element={<FormStateMaster />} />
           <Route path="update-state-master/:id" element={<FormStateMaster />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
       </Routes>

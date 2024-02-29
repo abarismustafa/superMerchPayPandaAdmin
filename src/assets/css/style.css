@@ -55364,4 +55364,15 @@ img {
   background-color: #2980b9;
 }
 
+.navbar-expand .navbar-nav .dropdown-menu-2 {
+  display: block !important;
+  right: 0px;
+  top: 100% !important;
+}
+
+.dropdown-menu-end[data-bs-popper] {
+  right: 0;
+  left: auto;
+}
+
 /*# sourceMappingURL=style-rtl.css.map */

@@ -88,7 +88,7 @@ const CustomDropdown = ({
             </div>
           )}
         </div>
-        {itemList.length > 0 && showList && (
+        {itemList?.length > 0 && showList && (
           <div className={selectWrapperClass}>
             {itemList.map((item, index) =>
               isSingleSelect ? (

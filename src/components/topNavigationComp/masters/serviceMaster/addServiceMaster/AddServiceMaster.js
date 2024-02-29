@@ -1,9 +1,10 @@
 import { Link, useParams } from "react-router-dom"
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 import { useEffect, useState } from "react";
-import { addServiceMaster, getServiceMaster, languageList, updateServiceMaster } from "../../../../../api/login/Login";
+import { addServiceMaster, getServiceCategory, getServiceMaster, getServiceMasterId, languageList, updateServiceMaster } from "../../../../../api/login/Login";
 import { Tab, Tabs } from "react-bootstrap";
 import TabAddServiceMaster from "./tabAddServicemaster/TabAddServiceMaster";
+import { toast } from "react-toastify";
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
@@ -11,89 +12,169 @@ const breadCrumbsTitle = {
     title_3: "Add Service Master",
 }
 
+
 function AddServiceMaster() {
+    const [language, setLanguage] = useState(null);
+    const [service_category, set_serviceCateg] = useState(null);
+    const [tab, setTab] = useState();
+    const [selectData, setSelectData] = useState([]);
     const params = useParams()
-    const [language, setlanguage] = useState(null)
-    const [tab, setTab] = useState()
-    const [data, SetData] = useState()
-    const [selectData, SetselectData] = useState([])
-    const getLanguageIdTab = async () => {
-        const res = await languageList()
-        // console.log(res);
-        setlanguage(res?.data)
-        setTab(res?.data[0]?._id)
+    const initialValues = {
+        list: [
+            {
+                service_name: '',
+                service_image: "",
+                slug: "",
+                service_charge: 100,
+                bbps: 1,
+                background_color: "",
+                order_by: null,
+                short_description: "",
+                full_description: "",
+                icon: "",
+                banner_img: "",
+                parent_id: [],
+                
+                area_id: "",
+                meta_title: "",
+                meta_description: "",
+                meta_keyword: "",
+                meta_image: "",
+                language_id: "",
+                is_active: true
+            }
+        ]
     }
+
+
+    const validate = (values) => {
+        let errors = {};
+        if (!values.service_name) {
+            errors.service_name = "Service Name is required";
+        }
+        if (!values.order_by) {
+            errors.order_by = "code  is required";
+        }
+        if (!values.short_description) {
+            errors.short_description = "Short Description is required";
+        }
+        if (!values.full_description) {
+            errors.full_description = "Full Description is required";
+        }
+        /*  if (!values.icon) {
+             errors.icon = "Icon Image is required";
+         } */
+        /*  if (!values.banner_img) {
+             errors.banner_img = "Banner Image is required";
+         } */
+        if (!values.permit_by_area) {
+            errors.permit_by_area = "Permit By Area is required";
+        }
+        if (!values.meta_title) {
+            errors.meta_title = "Meta Title  is required";
+        }
+        if (!values.meta_description) {
+            errors.meta_description = "Meta Description  is required";
+        }
+        if (!values.meta_keyword) {
+            errors.meta_keyword = "Meta Keyword   is required";
+        }
+        /* if (!values.meta_image) {
+            errors.meta_image = "Meta Image  is required";
+        } */
+        return errors;
+    };
+
+    const toastSuccessMessage = () => {
+        toast.success(`${params?.id ? "Update" : "Add"} Service Category Successfully.`, {
+            position: "top-center",
+        });
+    };
+
+    const initialData = () => {
+        const data = language?.map((item) => {
+            return { ...initialValues, language_id: item?._id, langName: item?.name };
+        });
+        setSelectData(data);
+    };
+
+    const submitForm = async (initialValues) => {
+        console.log(selectData);
+        try {
+            if (!params?.id) {
+                try {
+                    const res = await addServiceMaster({ list: selectData });
+                    if (res?.statusCode == "200") {
+                        toastSuccessMessage();
+                    }
+                } catch (error) {
+
+                }
+
+            } else {
+                try {
+                    await updateServiceMaster(params?.id, { list: selectData });
+                } catch (error) {
+
+                }
+
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+    const handleChangeCus = (e, id) => {
+        const updatedData = selectData.map((item) => {
+            if (item.language_id === id) {
+                return { ...item, [e.target.name]: e.target.value };
+            }
+            return item;
+        });
+        setSelectData(updatedData);
+    };
+
+    const getLanguageIdTab = async () => {
+        const res = await languageList();
+        setLanguage(res?.data);
+        setTab(res?.data[0]?._id);
+    };
+
+
+const getServicesCategory = async()=>{
+        const _serviceCategoery = await getServiceCategory()
+        set_serviceCateg(_serviceCategoery?.data);
+}
 
 
     useEffect(() => {
-        getLanguageIdTab()
-    }, [])
+        getLanguageIdTab();
+        getServicesCategory()
+    }, []);
 
-    const setInitialdata = () => {
-        const data = language?.map((item) => {
-            return { name: "", level: "", language_id: item?._id, is_active: false, langName: item?.name }
-        })
-        SetselectData(data)
-    }
+
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
                 if (params?.id) {
-                    const response = await getServiceMaster(params.id);
+                    const response = await getServiceMasterId(params.id);
                     const serviceData = response.data;
                     const data = serviceData?.map((item, i) => {
-                        return { id: item.id, name: item.name, level: item.level, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name }
+                        return { id: item.id, service_name: item.service_name, meta_title: item.meta_title, full_description: item.full_description,short_description:item.short_description, meta_keyword: item.meta_keyword, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name }
                     })
-                    SetselectData(data)
+                    console.log(data);
+                    setSelectData(data)
                 } else {
-                    setInitialdata()
+                    initialData();
                 }
             } catch (error) {
                 console.error("Error fetching currency:", error);
             }
         };
+
         fetchCurrency();
     }, [params?.id, language]);
-
-    
-
-    const submitForm = async (values) => {
-        if (params?.id) {
-
-           /*  try {
-                await updateServiceMaster({ id: params?.id, value: { list: selectData } });
-                if (res?.statusCode == "200") {
-                    toastSuccessMessage();
-                }
-
-            } catch (error) {
-
-            } */
-        } else {
-            try {
-                const res = await addServiceMaster({ list: selectData });
-                console.log(res);
-                // toastSuccessMessage();
-            } catch (error) {
-            }
-        }
-
-    };
-
-    const handleChangeCus = (e, id) => {
-        const maped = selectData.map((item) => {
-            if (item.language_id == id) {
-                const obj = { ...item, [e.target.name]: e.target.value }
-                return obj
-            } else {
-                return item
-            }
-        })
-        SetselectData(maped)
-    }
-    const changeHandle =()=>{
-        // todo
-    }
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
@@ -112,7 +193,7 @@ function AddServiceMaster() {
                                 >
                                     {selectData && selectData?.map((item, i) => {
                                         return <Tab eventKey={item?.language_id} title={item?.langName}>
-                                            <TabAddServiceMaster i={i} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus} handleChange={changeHandle} params={params} />
+                                            <TabAddServiceMaster i={i} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus}service_category={service_category} params={params} validate={validate} />
                                         </Tab>
                                     })}
 

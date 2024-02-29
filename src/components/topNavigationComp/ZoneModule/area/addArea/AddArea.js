@@ -24,7 +24,8 @@ function AddArea() {
     const [tab, setTab] = useState()
     const [data, SetData] = useState()
     const [selectData, SetselectData] = useState([])
-    
+
+
     const getLanguageIdTab = async () => {
         const res = await languageList()
         // console.log(res);
