@@ -86,8 +86,8 @@ function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, 
                                 <div className="col-xl-4 mb-3">
                                     <select className="form-select" aria-label="Default select example" name="is_active" onChange={(e) => { handleChangeCus(e, item.language_id) }}>
                                         <option selected> select Status</option>
-                                        <option value={'Enabled'}>Enabled</option>
-                                        <option value={'diasabled'}>diasabled</option>
+                                        <option value={true}>Enabled</option>
+                                        <option value={false}>diasabled</option>
                                     </select>
                                 </div>
 
