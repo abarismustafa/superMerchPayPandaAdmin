@@ -1,10 +1,11 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 import { useEffect, useState } from "react";
-import { addServiceMaster, getServiceCategory, getServiceMaster, getServiceMasterId, languageList, updateServiceMaster } from "../../../../../api/login/Login";
+import { addServiceMaster, clodinaryImage, getServiceCategory, getServiceMaster, getServiceMasterId, languageList, updateServiceMaster } from "../../../../../api/login/Login";
 import { Tab, Tabs } from "react-bootstrap";
 import TabAddServiceMaster from "./tabAddServicemaster/TabAddServiceMaster";
 import { ToastContainer, toast } from "react-toastify";
+import { baseUrl } from "../../../../../baseUrl";
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
@@ -18,6 +19,7 @@ function AddServiceMaster() {
     const [service_category, set_serviceCateg] = useState(null);
     const [tab, setTab] = useState();
     const [selectData, setSelectData] = useState([]);
+    const [profileImage, setProfileImage] = useState()
     const params = useParams()
     const navigate = useNavigate()
     const initialValues = {
@@ -186,6 +188,19 @@ const getServicesCategory = async()=>{
 
         fetchCurrency();
     }, [params?.id, language]);
+
+    const imgs = new FormData();
+    const colodinaryImage = async (e) => {
+        setProfileImage(e.target.files[0])
+        imgs.append("image", e.target.files[0]);
+        try {
+            const res = await clodinaryImage(imgs)
+            // console.log(res?.data?.data?.url);
+            setProfileImage(res?.data?.data?.url)
+        } catch (error) {
+
+        }
+    }
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
@@ -205,7 +220,7 @@ const getServicesCategory = async()=>{
                                 >
                                     {selectData && selectData?.map((item, i) => {
                                         return <Tab eventKey={item?.language_id} title={item?.langName}>
-                                            <TabAddServiceMaster i={i} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus}service_category={service_category} params={params} validate={validate} />
+                                            <TabAddServiceMaster i={i} colodinaryImage={colodinaryImage} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus}service_category={service_category} params={params} validate={validate} />
                                         </Tab>
                                     })}
 

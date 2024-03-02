@@ -33,6 +33,7 @@ function AgentOnbordingList() {
 
 
     const deleteAgentOnboard = async (id) => {
+        console.log(id);
         setLoading(true)
         try {
             await deleteAgentOnboarding(id)
@@ -75,7 +76,7 @@ function AgentOnbordingList() {
                                     <thead>
                                         <tr role="row">
                                             <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                ID
+                                                S.NO
                                             </th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
                                                 Date
@@ -88,6 +89,8 @@ function AgentOnbordingList() {
                                                 Mobile Number</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Email</th>
+                                            <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
+                                                Aadhar Number</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                 Account Number</th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
@@ -113,18 +116,19 @@ function AgentOnbordingList() {
                                                     {item?.mobile_number}
                                                 </td>
                                                 <td><span>{item?.email}</span></td>
+                                                <td><span>{item?.aadhar_number}</span></td>
                                                 <td><span>{item?.bank_account_number}</span></td>
                                                 <td><span>{item?.pan_number}</span></td>
                                                 <td>
-                                                    <span className="badge badge-success text-light  border-0" style={{ backgroundColor: `${item?.is_active === true ? 'blue' : 'red'}`, fontSize: `${item?.is_active === false ? '0.8rem' : ''}` }}>{item?.is_active == true ? 'Active' : 'Inactive'}</span>
+                                                    <span className="badge badge-success text-light  border-0" style={{ backgroundColor: `${item?.status_id === true ? 'blue' : 'red'}`, fontSize: `${item?.status_id === false ? '0.8rem' : ''}` }}>{item?.status_id == true ? 'Active' : 'Inactive'}</span>
                                                 </td>
                                                 <td>
                                                     <div className="d-flex">
                                                         <Link to={`/admin/update-agent-onboarding/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
                                                         <Popconfirm
-                                                            title="Delete Currency !"
+                                                            title="Delete!"
                                                             description="Are you sure to delete ?"
-                                                            onConfirm={() => confirm(item?.id)}
+                                                            onConfirm={() => confirm(item?._id)}
                                                             onCancel={cancel}
                                                             okText="Yes"
                                                             cancelText="No"

@@ -2,6 +2,7 @@ import { Popconfirm, message } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loadar from "../../../common/loader/Loader";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 
 function ServiceAreaPermission() {
@@ -46,8 +47,9 @@ function ServiceAreaPermission() {
     };
     return (
         <>
+        <Breadcrumbs breadCrumbsTitle={''}/>
             {loading && <Loadar />}
-            <div className="row">
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

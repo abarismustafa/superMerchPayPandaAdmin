@@ -3,8 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import CustomInputField from "../../../../../common/CustomInputField";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { addAgentOnboarding, getAgentOnboardingEdit, updateAgentOnboarding } from "../../../../../api/login/Login";
+import { ToastContainer, toast } from "react-toastify";
+import { addAgentOnboarding, getAgentOnboardingEdit, updateAgentOnboarding, usersList } from "../../../../../api/login/Login";
 import CustomDropdown from "../../../../../common/CustomDropdown";
 import CustomTextArea from "../../../../../common/CustomTextArea";
 import { ToastBody } from "react-bootstrap";
@@ -14,23 +14,15 @@ const breadCrumbsTitle = {
     title_2: "Agent Onboarding ",
     title_3: "Add  Agent Onboarding ",
 }
-const itemList = [
-    {
-        name: "abc",
-        value: "abc"
-    },
-    {
-        name: "abc",
-        value: "abc"
-    }
-]
+
 function AddAgentOnbording() {
+
     const [initialValues, setInitialValues] = useState({
         first_name: "",
         last_name: "",
         mobile_number: "",
         email: "",
-        // aadhar_number: 265385644663,
+        aadhar_number: null,
         pan_number: "",
         company: "",
         pin_code: 560001,
@@ -38,12 +30,13 @@ function AddAgentOnbording() {
         bank_account_number: "",
         ifsc: "",
         user_id: "",
-        status_id: true,
+        status_id: null,
         meta_title: "",
         meta_description: "",
         meta_keyword: "",
     });
     const params = useParams()
+    const [userId, setUserId] = useState()
     const navigate = useNavigate()
 
     const validate = (values) => {
@@ -51,10 +44,10 @@ function AddAgentOnbording() {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const regexMobileNumber = /^[0-9]{10}$/;
         const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-        const regexAdhar = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+        const regexAdhaar = /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/
         const ifscRegex = /^[A-Za-z]{4}\d{7}$/;
         const AccountRegex = /^[0-9]{6,}$/;
-        
+
         if (!values.first_name) {
             errors.first_name = "First Name is required";
         }
@@ -97,13 +90,11 @@ function AddAgentOnbording() {
             errors.bank_account_number = "Invalid Bank Account Number";
         }
 
-        /* if (!values.aadhar_number) {
+        if (!values.aadhar_number) {
             errors.aadhar_number = "Aadhar Number is required";
-        } else if (!regexAdhar.test(values.aadhar_number)) {
+        } else if (!regexAdhaar.test(values.aadhar_number)) {
             errors.aadhar_number = "Invalid Aadhar Number";
-        } */
-
-
+        }
         if (!values.pan_number) {
             errors.pan_number = "PAN Number is required";
         } else if (!regexPanNumber.test(values.pan_number)) {
@@ -139,7 +130,7 @@ function AddAgentOnbording() {
                         navigate('/admin/agent-onboarding-list')
                     }, 5000);
                 } catch (error) {
- 
+
                 }
 
             }
@@ -149,11 +140,19 @@ function AddAgentOnbording() {
         }
 
     }
+    const getUserList = async () => {
+        const data = await usersList()
+        setUserId(data?.data)
+    }
+    useEffect(() => {
+        getUserList()
+    }, [])
+
     useEffect(() => {
         const fetchUserType = async () => {
             try {
                 if (params?.id) {
-                    const response = await getAgentOnboardingEdit(params.id);  
+                    const response = await getAgentOnboardingEdit(params.id);
                     const roleData = response.data;
                     setInitialValues(roleData);
                 } else {
@@ -162,7 +161,7 @@ function AddAgentOnbording() {
                         last_name: "",
                         mobile_number: "",
                         email: "",
-                        // aadhar_number: 265385644663,
+                        aadhar_number: "",
                         pan_number: "",
                         company: "",
                         pin_code: 560001,
@@ -170,7 +169,7 @@ function AddAgentOnbording() {
                         bank_account_number: "",
                         ifsc: "",
                         user_id: "",
-                        status_id: true,
+                        status_id: null,
                         meta_title: "",
                         meta_description: "",
                         meta_keyword: "",
@@ -186,7 +185,7 @@ function AddAgentOnbording() {
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-            <ToastBody/>
+            <ToastContainer />
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -303,7 +302,7 @@ function AddAgentOnbording() {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                            <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             value={values?.company}
                                                             hasError={errors.company && touched.company}
@@ -316,9 +315,9 @@ function AddAgentOnbording() {
                                                             placeholder="Company Name"
                                                         />
                                                     </div>
-                                                    {/* <div className="col-xl-6 mb-3">
+                                                    <div className="col-xl-6 mb-3">
                                                         <CustomInputField
-                                                            type="number"
+                                                            type="text"
                                                             value={values.aadhar_number}
                                                             hasError={errors.aadhar_number && touched.aadhar_number}
                                                             onChange={handleChange}
@@ -327,20 +326,24 @@ function AddAgentOnbording() {
                                                             autoFocus={true}
                                                             id="aadhar_number"
                                                             name="aadhar_number"
-                                                            placeholder="Aadhar Number"
+                                                            placeholder="Aadhar Number (Space Must After 4 digit)"
                                                         />
-                                                    </div> */}
-                                                    <div className="col-xl-6 mb-3">
-                                                        <select className="form-select" aria-label="Default select example" id="user_id" name="user_id"
-                                                            defaultValue={values?.user_id}
-                                                            onChange={handleChange}
-                                                        >
-                                                            <option selected> select Mode</option>
-                                                            <option value={'4325'}> user 1</option>
-                                                            <option value={'23546'}> user 2</option>
-                                                        </select>
-
                                                     </div>
+                                                    {userId &&
+                                                        <div className="col-xl-6 mb-3">
+                                                            <select className="form-select" aria-label="Default select example" id="user_id" name="user_id"
+                                                                defaultValue={values?.user_id}
+                                                                onChange={handleChange}
+                                                            >
+                                                                {userId?.map((item,i) => {
+                                                                    return <>
+                                                                        <option value={item?._id}>{item?.name}</option>
+                                                                    </>
+                                                                })}
+                                                            </select>
+
+                                                        </div>
+                                                    }
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
@@ -355,47 +358,6 @@ function AddAgentOnbording() {
                                                             name="pan_number"
                                                             placeholder="Pan Number"
                                                         />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values?.meta_title}
-                                                            hasError={errors.meta_title && touched.meta_title}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.meta_title}
-                                                            autoFocus={true}
-                                                            id="meta_title"
-                                                            name="meta_title"
-                                                            placeholder="Meta Tittle"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-
-                                                        <CustomInputField
-                                                            type="text"
-                                                            value={values?.meta_keyword}
-                                                            hasError={errors.meta_keyword && touched.meta_keyword}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            errorMsg={errors.meta_keyword}
-                                                            autoFocus={true}
-                                                            id="meta_keyword"
-                                                            name="meta_keyword"
-                                                            placeholder="Meta Keyword"
-                                                        />
-                                                    </div>
-                                                    <div className="col-xl-6 mb-3">
-                                                        <select className="form-select" aria-label="Default select example" id="status_id" name="status_id"
-                                                            defaultValue={values?.status_id}
-                                                            onChange={handleChange}
-                                                        >
-                                                            <option selected> select Mode</option>
-                                                            <option value={'true'}> Yes</option>
-                                                            <option value={'false'}> No</option>
-                                                        </select>
-
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
                                                         <CustomTextArea
@@ -425,6 +387,46 @@ function AddAgentOnbording() {
                                                             name="meta_description"
                                                         />
                                                     </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values?.meta_title}
+                                                            hasError={errors.meta_title && touched.meta_title}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_title}
+                                                            autoFocus={true}
+                                                            id="meta_title"
+                                                            name="meta_title"
+                                                            placeholder="Meta Tittle"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            value={values?.meta_keyword}
+                                                            hasError={errors.meta_keyword && touched.meta_keyword}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.meta_keyword}
+                                                            autoFocus={true}
+                                                            id="meta_keyword"
+                                                            name="meta_keyword"
+                                                            placeholder="Meta Keyword"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-6 mb-3">
+                                                        <select className="form-select" aria-label="Default select example" id="status_id" name="status_id"
+                                                            defaultValue={values?.status_id}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option selected disabled> select Mode</option>
+                                                            <option value={true}> Yes</option>
+                                                            <option value={false}> No</option>
+                                                        </select>
+
+                                                    </div>
+
 
                                                 </div>
                                                 <div>
@@ -433,7 +435,7 @@ function AddAgentOnbording() {
                                                         className="btn btn-primary me-1"
                                                         type="submit"
 
-                                                    disabled={!isValid || !dirty}
+                                                        disabled={!isValid || !dirty}
                                                     >
                                                         {params?.id ? "Update" : "Add"}
                                                     </button>

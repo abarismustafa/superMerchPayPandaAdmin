@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { navigationData } from "./navigationData/NavigationData";
 import { useEffect, useState } from "react";
 import { AiFillDashboard } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
+import { Button } from "react-bootstrap";
 const asideMenu = navigationData.menus;
 function Aside({ showAsideBar }) {
   const [parentId, setParentId] = useState(null);
   const [childId, setChildId] = useState(null);
+  const navigate = useNavigate()
   const location = useLocation();
   const { t } = useTranslation();
 
@@ -20,6 +22,16 @@ function Aside({ showAsideBar }) {
     setChildId((prev) => (prev === childId ? null : childId));
     e.stopPropagation();
   };
+
+  const logedout=()=>{
+    const tokenRemove = localStorage.removeItem('userToken')
+    if (!tokenRemove) {
+      navigate('/loginPage')
+    }else{
+      navigate(`/admin`)
+    }
+  }
+  
 
   // useEffect(() => {
   //   const modifiedPath = location.pathname.replace("/admin/", "");
@@ -114,9 +126,9 @@ function Aside({ showAsideBar }) {
           <div className="help-desk ">
             {/* <Link to="#" className="btn btn-primary">Help Desk</Link>
                             &nbsp; */}
-            <Link to="#" className="btn btn-warning">
+            <Button  className="btn btn-warning" type="button" onClick={()=>logedout()}>
               <CgLogOut /> <span>Log out</span>
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

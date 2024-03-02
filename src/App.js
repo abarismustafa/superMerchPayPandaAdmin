@@ -485,8 +485,8 @@ function App() {
           <Route path="service-area-permision" element={<ServiceAreaPermissionPage />} />
           <Route path="add-service-area-permision" element={<FormServicePermission />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
         {/* </>} */}
 
       </Routes >

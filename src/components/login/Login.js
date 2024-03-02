@@ -117,6 +117,7 @@ function Login() {
                                             type="button"
                                             className="btn btn-primary btn-block"
                                             onClick={submitSignIn}
+                                            disabled= {!loginForm.password || !loginForm.email }
                                         >
                                             {loading && <Spinner animation="border" />}Sign In
                                         </button>
@@ -156,7 +157,7 @@ function Login() {
                                             </li>
                                         </ul>
                                     </div>
-                                    <p className="text-center">
+                                    {/* <p className="text-center">
                                         Not registered?
                                         <a
                                             className="btn-link text-primary"
@@ -164,7 +165,7 @@ function Login() {
                                         >
                                             Register
                                         </a>
-                                    </p>
+                                    </p> */}
                                 </form>
                             </div>
                         </div>

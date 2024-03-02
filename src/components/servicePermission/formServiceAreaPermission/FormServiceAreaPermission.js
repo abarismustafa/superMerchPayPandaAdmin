@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import CustomDropdown from "../../../common/CustomDropdown";
 import Select from 'react-select';
 import { ZoneGetFilter, areaList, getServiceMaster } from "../../../api/login/Login";
+import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 
 
@@ -147,7 +148,8 @@ function FormServicePermission() {
     }, [params?.id]);
     return (
         <>
-            <div className="row">
+        <Breadcrumbs breadCrumbsTitle={''}/>
+            <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
@@ -277,7 +279,7 @@ function FormServicePermission() {
                                                 </div>
                                                 <div>
                                                     <Link
-                                                        to="/admin/country"
+                                                        to="/admin/service-area-permision"
                                                         className="btn btn-danger light ms-1"
                                                     >
                                                         Cancel

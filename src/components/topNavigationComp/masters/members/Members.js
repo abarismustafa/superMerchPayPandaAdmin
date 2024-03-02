@@ -44,7 +44,7 @@ function Members() {
 
                     <CustomDropdown
                         itemList={itemList}
-                        placeholder="Select Update Memnber *"
+                        placeholder="Select Update Member *"
                         isSingleSelect={false}
                         icon={true}
                         onChange={changeHandle}
