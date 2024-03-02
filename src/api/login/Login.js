@@ -152,6 +152,14 @@ export const userDelete = (id) => {
   return axiosInstance.delete(`${baseUrl}user/deleteuser/${id}`);
 };
 
+export const getUserId = (id) => {
+  return axiosInstance.get(`${baseUrl}user/${id}`);
+};
+
+export const updateUser = (id, value) => {
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, value);
+};
+
 
 // userType Intrigation 
 
@@ -480,5 +488,7 @@ export const paginationstaffTypeMaster = (page, count) => {
 export const paginationPayoutbeneficiaryMaster = (page, count) => {
   return axiosInstance.get(`${baseUrl}payout-beneficiary/page/${page}&${count}`)
 }
-
+export const paginationCountryMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}country/page/${page}&${count}`)
+}
 // pagination

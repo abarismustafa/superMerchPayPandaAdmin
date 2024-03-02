@@ -1,25 +1,34 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../../../../common/breadcrumb/Breadcrumbs";
 import CustomInputField from "../../../../../common/CustomInputField";
-import { addUsers } from "../../../../../api/login/Login";
+import {
+  addUsers,
+  clodinaryImage,
+  getUserId,
+  listUserType,
+  paginationUserTypeMaster,
+  updateUser,
+} from "../../../../../api/login/Login";
 import { ToastContainer, toast } from "react-toastify";
 
 const AddUsers = () => {
   const navigate = useNavigate();
+  const [userList, setUserList] = useState(null);
+  const [profileImage, setProfileImage] = useState();
   const [initialValues, setinitialValues] = useState({
     name: "",
     email: "",
-    // profile: "",
+    profile: "",
     mobile: "",
     dob: "",
     latitude: "",
     longitude: "",
-    password: "",
+    // password: "",
     emailVerified: false,
     mobileVerified: false,
-    // user_type_id: "",
+    user_type_id: "",
     is_otp: false,
     is_kyc: false,
     adhaar_number: "",
@@ -59,9 +68,9 @@ const AddUsers = () => {
     if (!values.latitude) {
       errors.latitude = "Latitude is required";
     }
-    if (!values.password) {
-      errors.password = "Password is required";
-    }
+    // if (!values.password) {
+    //   errors.password = "Password is required";
+    // }
 
     if (!values.emailVerified) {
       errors.emailVerified = "Email Verified is required";
@@ -70,16 +79,16 @@ const AddUsers = () => {
       errors.mobileVerified = "Mobile Verified is required";
     }
 
-    // if (!values.user_type_id) {
-    //   errors.user_type_id = "User Type Id is required";
-    // }
+    if (!values.user_type_id) {
+      errors.user_type_id = "User Type Id is required";
+    }
 
     if (!values.is_otp) {
       errors.is_otp = "Is Otp is required";
     }
-    // if (!values.is_kyc) {
-    //   errors.is_kyc = "Is Kyc is required";
-    // }
+    if (!values.is_kyc) {
+      errors.is_kyc = "Is Kyc is required";
+    }
     if (!values.pan_number) {
       errors.pan_number = "PAN Number is required";
     } else if (!regexPanNumber.test(values.pan_number)) {
@@ -91,9 +100,9 @@ const AddUsers = () => {
       errors.adhaar_number = "Invalid Adhaar Number";
     }
 
-    // if (!values.transaction_mode) {
-    //   errors.transaction_mode = "Transaction Mode is required";
-    // }
+    if (!values.transaction_mode) {
+      errors.transaction_mode = "Transaction Mode is required";
+    }
 
     // if (!values.gstNumber) {
     //   errors.gstNumber = "GST Number is required";
@@ -102,6 +111,28 @@ const AddUsers = () => {
     // }
 
     return errors;
+  };
+
+  const UserListCombo = async () => {
+    try {
+      const res = await listUserType();
+      setUserList(res?.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    UserListCombo();
+  }, []);
+
+  const imgs = new FormData();
+  const colodinaryImage = async (e) => {
+    setProfileImage(e.target.files[0]);
+    imgs.append("image", e.target.files[0]);
+    try {
+      const res = await clodinaryImage(imgs);
+      // console.log(res?.data?.data?.url);
+      setProfileImage(res?.data?.data?.url);
+    } catch (error) {}
   };
 
   const handleChange = (e) => {
@@ -118,14 +149,63 @@ const AddUsers = () => {
   };
 
   const submitForm = async (values) => {
+    const clone = { ...values, profile: profileImage };
     try {
-      await addUsers(values);
-      toastSuccessMessage();
-      setTimeout(() => {
-        navigate(`/admin/user`);
-      }, 5000);
-    } catch (error) {}
+      if (!params?.id) {
+        try {
+          const res = await addUsers(clone);
+          if (res?.statusCode == "200") {
+            toastSuccessMessage();
+            setTimeout(() => {
+              navigate("/admin/user");
+            }, [4000]);
+          }
+        } catch (error) {}
+      } else {
+        try {
+          const res = await updateUser(params.id, values);
+          if (res?.statusCode == "200") {
+            toastSuccessMessage();
+            setTimeout(() => {
+              navigate("/admin/user");
+            }, [4000]);
+          }
+        } catch (error) {}
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    // try {
+    //   // await addUsers(values);
+    //   toastSuccessMessage();
+    //   // setTimeout(() => {
+    //   //   navigate(`/admin/user`);
+    //   // }, 5000);
+    // } catch (error) {}
   };
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      try {
+        if (params?.id) {
+          const response = await getUserId(params.id);
+          const currencyData = response.data;
+          setinitialValues(currencyData);
+        } else {
+          //  setinitialValues({
+          //    name: "",
+          //    code: "",
+          //    curruncy_id: "",
+          //  });
+        }
+      } catch (error) {
+        console.error("Error fetching currency:", error);
+      }
+    };
+
+    fetchCurrency();
+  }, [params?.id]);
 
   return (
     <>
@@ -137,7 +217,9 @@ const AddUsers = () => {
             <div className="card-body p-0">
               <div className="table-responsive active-projects style-1">
                 <div className="tbl-caption tbl-caption-2">
-                  <h4 className="heading mb-0">ADD Retailer Income</h4>
+                  <h4 className="heading mb-0">
+                    {params?.id ? "UPDATE" : "ADD"} USER ADD
+                  </h4>
                 </div>
                 <Formik
                   initialValues={initialValues}
@@ -173,6 +255,21 @@ const AddUsers = () => {
                               name="name"
                             />
                           </div>
+                          <div className="col-xl-4 mb-3">
+                            <CustomInputField
+                              type="file"
+                              value={values.profile}
+                              hasError={errors.profile && touched.profile}
+                              onChange={colodinaryImage}
+                              onBlur={handleBlur}
+                              errorMsg={errors.profile}
+                              autoFocus={true}
+                              id="profile"
+                              name="profile"
+                              placeholder="Profile Image"
+                            />
+                          </div>
+
                           <div className="col-xl-4 mb-3">
                             <CustomInputField
                               type="email"
@@ -243,7 +340,7 @@ const AddUsers = () => {
                               name="longitude"
                             />
                           </div>
-                          <div className="col-xl-4 mb-3">
+                          {/* <div className="col-xl-4 mb-3">
                             <CustomInputField
                               type="password"
                               value={values.password}
@@ -256,7 +353,7 @@ const AddUsers = () => {
                               placeholder="Password"
                               name="password"
                             />
-                          </div>
+                          </div> */}
 
                           <div className="col-xl-4 mb-3">
                             <select
@@ -316,49 +413,59 @@ const AddUsers = () => {
                             />
                           </div>
                           <div className="col-xl-4 mb-3">
-                            <div className="dropdownWrapper">
-                              <select
-                                className="form-select"
-                                aria-label="Default select example"
-                                name="emailVerified: "
-                                onChange={handleChange}
-                              >
-                                <option selected>User Type</option>
-                                <option value={true}>No</option>
-                                <option value={false}>Yes</option>
-                              </select>
-                            </div>
+                            <select
+                              className="form-select"
+                              aria-label="Default select example"
+                              id="user_type_id"
+                              name="user_type_id"
+                              value={values.user_type_id}
+                              onChange={handleChange}
+                              hasError={
+                                errors.user_type_id && touched.user_type_id
+                              }
+                              onBlur={handleBlur}
+                              errorMsg={
+                                touched.user_type_id && errors.user_type_id
+                              }
+                              autoFocus={true}
+                            >
+                              <option selected> select User Type</option>
+                              {userList &&
+                                userList?.map((item) => {
+                                  return (
+                                    <option value={item?._id}>
+                                      {item?.user_type}
+                                    </option>
+                                  );
+                                })}
+                            </select>
                           </div>
 
                           <div className="col-xl-4 mb-3">
-                            <div className="dropdownWrapper">
-                              <select
-                                className="form-select"
-                                aria-label="Default select example"
-                                name="is_otp: "
-                                onChange={handleChange}
-                                value={values?.is_otp}
-                              >
-                                <option selected>Is Otp Verification</option>
-                                <option value={false}>No</option>
-                                <option value={true}>Yes</option>
-                              </select>
-                            </div>
+                            <select
+                              className="form-select"
+                              aria-label="Default select example"
+                              name="is_otp"
+                              value={values.is_otp}
+                              onChange={handleChange}
+                            >
+                              <option selected>Select Is OTP</option>
+                              <option value={true}>Yes</option>
+                              <option value={false}>No</option>
+                            </select>
                           </div>
-
                           <div className="col-xl-4 mb-3">
-                            <div className="dropdownWrapper">
-                              <select
-                                className="form-select"
-                                aria-label="Default select example"
-                                name="is_kyc: "
-                                onChange={handleChange}
-                              >
-                                <option selected>Is Kyc Verification</option>
-                                <option value={false}>No</option>
-                                <option value={true}>Yes</option>
-                              </select>
-                            </div>
+                            <select
+                              className="form-select"
+                              aria-label="Default select example"
+                              name="is_kyc"
+                              value={values.is_kyc}
+                              onChange={handleChange}
+                            >
+                              <option selected>Select Is KYC</option>
+                              <option value={true}>Yes</option>
+                              <option value={false}>No</option>
+                            </select>
                           </div>
 
                           <div className="col-xl-4 mb-3">

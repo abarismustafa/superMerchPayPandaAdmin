@@ -155,14 +155,28 @@ import Profile from "./common/profileUser/Profile";
 import ServiceAreaPermissionPage from "./pages/servicePermission/serviceAreaPermission/index";
 import FormServicePermission from "./components/servicePermission/formServiceAreaPermission/FormServiceAreaPermission";
 import ApiTransitionMasterPage from "./pages/topNavigationPages/apisMaster/apiTransitionMaster";
-
+import { useEffect, useState } from "react";
+import PrivateRoute from "./privateRote/PrivateRoute";
 function App() {
+  const [auth, setAuth] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      const login = window.localStorage.getItem('userToken')
+      setAuth(login)
+    }, 2000)
+  }, [])
+
+
   return (
     <>
       <Routes>
+        {/* {!auth ? <><Route path="/loginPage" element={<LoginPage />} /> <Route path="*" element={<Navigate to="/loginPage" />} />  </> : <> */}
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/" element={<Navigate to="/loginPage" />} />
-        <Route path="/admin" element={<DasBoardPage />}>
+        {/* <Route path="*" element={<Navigate to="/admin" />} /> */}
+        <Route path="/admin" element={<PrivateRoute />}>
+          {/* <Route path="/admin" element={<DasBoardPage />} /> */}
           <Route path="" element={<DasBoardRight />} />
           <Route path="bank-master" element={<BankMasterP />} />
           <Route path="add-bank" element={<AddBank />} />
@@ -473,7 +487,9 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="page-not-found" element={<PageNotFound />} />
         </Route>
-      </Routes>
+        {/* </>} */}
+
+      </Routes >
     </>
   );
 }
