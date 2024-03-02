@@ -3,7 +3,7 @@ import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import CustomTextArea from "../../../../common/CustomTextArea";
 
-function BasicDetails({ initialValues }) {
+function BasicDetails({ initialValues, validate, submitForm }) {
   const name = "dropdown";
   const placeholder = "Course Name";
   const type = "dropdown";
@@ -26,68 +26,68 @@ function BasicDetails({ initialValues }) {
     },
   ];
 
-  const validate = (values) => {
-    let errors = {};
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const regexMobileNumber = /^[0-9]{10}$/;
-    const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-    const regexGstNumber =
-      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+  // const validate = (values) => {
+  //   let errors = {};
+  //   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  //   const regexMobileNumber = /^[0-9]{10}$/;
+  //   const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+  //   const regexGstNumber =
+  //     /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
-    if (!values.firstName) {
-      errors.firstName = "First Name is required";
-    }
+  //   if (!values.firstName) {
+  //     errors.firstName = "First Name is required";
+  //   }
 
-    if (!values.lastName) {
-      errors.lastName = "Last Name is required";
-    }
+  //   if (!values.lastName) {
+  //     errors.lastName = "Last Name is required";
+  //   }
 
-    if (!values.email) {
-      errors.email = "Email is required";
-    } else if (!regexEmail.test(values.email)) {
-      errors.email = "Invalid Email";
-    }
+  //   if (!values.email) {
+  //     errors.email = "Email is required";
+  //   } else if (!regexEmail.test(values.email)) {
+  //     errors.email = "Invalid Email";
+  //   }
 
-    if (!values.mobileNumber) {
-      errors.mobileNumber = "Mobile Number is required";
-    } else if (!regexMobileNumber.test(values.mobileNumber)) {
-      errors.mobileNumber = "Invalid Mobile Number";
-    }
+  //   if (!values.mobileNumber) {
+  //     errors.mobileNumber = "Mobile Number is required";
+  //   } else if (!regexMobileNumber.test(values.mobileNumber)) {
+  //     errors.mobileNumber = "Invalid Mobile Number";
+  //   }
 
-    if (!values.masterType) {
-      errors.masterType = "Master Type is required";
-    }
+  //   if (!values.masterType) {
+  //     errors.masterType = "Master Type is required";
+  //   }
 
-    if (!values.shopName) {
-      errors.shopName = "Shop Name is required";
-    }
+  //   if (!values.shopName) {
+  //     errors.shopName = "Shop Name is required";
+  //   }
 
-    if (!values.lockAmount) {
-      errors.lockAmount = "Lock Amount is required";
-    }
+  //   if (!values.lockAmount) {
+  //     errors.lockAmount = "Lock Amount is required";
+  //   }
 
-    if (!values.panNumber) {
-      errors.panNumber = "PAN Number is required";
-    } else if (!regexPanNumber.test(values.panNumber)) {
-      errors.panNumber = "Invalid PAN Number";
-    }
+  //   if (!values.panNumber) {
+  //     errors.panNumber = "PAN Number is required";
+  //   } else if (!regexPanNumber.test(values.panNumber)) {
+  //     errors.panNumber = "Invalid PAN Number";
+  //   }
 
-    // if (!values.gstNumber) {
-    //   errors.gstNumber = "GST Number is required";
-    // } else if (!regexGstNumber.test(values.gstNumber)) {
-    //   errors.gstNumber = "Invalid GST Number";
-    // }
+  //   // if (!values.gstNumber) {
+  //   //   errors.gstNumber = "GST Number is required";
+  //   // } else if (!regexGstNumber.test(values.gstNumber)) {
+  //   //   errors.gstNumber = "Invalid GST Number";
+  //   // }
 
-    if (!values.officeAddress) {
-      errors.officeAddress = "Office Address is required";
-    }
+  //   if (!values.officeAddress) {
+  //     errors.officeAddress = "Office Address is required";
+  //   }
 
-    return errors;
-  };
+  //   return errors;
+  // };
 
-  const submitForm = (values) => {
-    console.log(values);
-  };
+  // const submitForm = (values) => {
+  //   console.log(values);
+  // };
 
   const changeHandle = (selectedData) => {
     // TODO
@@ -163,7 +163,7 @@ function BasicDetails({ initialValues }) {
                     errorMsg={errors.mobileNumber}
                     id="mobileNumber"
                   />
-                </div>  
+                </div>
                 <div className="col-xl-4 mb-3">
                   <div className="dropdownWrapper">
                     <CustomDropdown
@@ -231,7 +231,7 @@ function BasicDetails({ initialValues }) {
                     hasError={errors.officeAddress && touched.officeAddress}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    errorMsg={errors.officeAddress} 
+                    errorMsg={errors.officeAddress}
                     autoFocus={false}
                     rows="6"
                     id="officeAddress"

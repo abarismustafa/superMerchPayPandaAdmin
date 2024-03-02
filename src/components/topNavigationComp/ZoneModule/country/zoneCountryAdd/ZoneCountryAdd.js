@@ -69,7 +69,7 @@ function CountryAddZone({ i, language, languageId, submitForm, handleChangeCus, 
         }
         if (!values.uni_code) {
             errors.uni_code = "Uniq Code is required";
-        } 
+        }
         if (!values.description) {
             errors.description = "Description is required";
         }

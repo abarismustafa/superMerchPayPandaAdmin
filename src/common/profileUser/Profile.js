@@ -9,6 +9,7 @@ function Profile() {
     const [conbo, setCombo] = useState(null)
     const [currencu, setCurency] = useState(null)
     const [data, setData] = useState(null)
+    const [profileImage, setProfileImage] = useState()
     const [initialValues, setInitialValues] = useState({
         name: "",
         email: "",
@@ -17,7 +18,8 @@ function Profile() {
         latitude: '',
         longitude: "",
         currency: '',
-        language_id: ''
+        language_id: '',
+        profile: ''
     });
     const params = useParams();
     const validate = (values) => {
@@ -74,27 +76,23 @@ function Profile() {
         }
     }
 
-    // const [dataImage, seDataImage] = useState({
-    //     img: ''
-    // })
+    const imgs = new FormData();
+    const colodinaryImage = async (e) => {
+        setProfileImage(e.target.files[0])
+        imgs.append("image", e.target.files[0]);
+        try {
+            const res = await clodinaryImage(imgs)
+            // console.log(res?.data?.data?.url);
+            setProfileImage(res?.data?.data?.url)
+        } catch (error) {
 
-    // const imgs = new FormData();
-    // const colodinaryImage = async (e) => {
-
-    //     imgs.append("image", e.target.files[0]);
-    //     try {
-    //         const res = await clodinaryImage(imgs)
-    //         console.log(res);
-    //     } catch (error) {
-
-    //     }
-    // }
+        }
+    }
 
     const submitForm = async (values) => {
-        // console.log(values);
-
+        const clone = { ...values, profile: profileImage }
         try {
-            const res = await staffUpdateProfile(values)
+            const res = await staffUpdateProfile(clone)
             if (res?.statusCode == "200") {
                 toastSuccessMessage();
             }
@@ -125,10 +123,6 @@ function Profile() {
         //     console.error("Error:", error);
         // }
     };
-
-    const profileImage = () => {
-
-    }
 
     useEffect(() => {
         curencyidget()
@@ -163,7 +157,6 @@ function Profile() {
                                     </h4>
                                 </div>
 
-                                {/* <input type="file" name="image" onChange={colodinaryImage} />s */}
 
                                 <Formik
                                     initialValues={initialValues}
@@ -199,19 +192,22 @@ function Profile() {
                                                             placeholder="Name"
                                                         />
                                                     </div>
-                                                    {/* <div className="col-xl-6 mb-3">
+                                                    <div className="col-xl-6 mb-3">
                                                         <CustomInputField
-                                                            type="text"
-                                                            value={values.lastName}
-                                                            hasError={errors.lastName && touched.lastName}
-                                                            onChange={handleChange}
+                                                            type="file"
+                                                            value={values.profile}
+                                                            hasError={errors.profile && touched.profile}
+                                                            onChange={colodinaryImage}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.lastName}
+                                                            errorMsg={errors.profile}
                                                             autoFocus={true}
-                                                            id="lastName"
-                                                            placeholder="Last Name"
+                                                            id="profile"
+                                                            name='profile'
+                                                            placeholder="Profile Image"
                                                         />
-                                                    </div> */}
+
+                                                        {/* <input type="file" name="profile" value={values.profile} onChange={colodinaryImage} /> */}
+                                                    </div>
                                                     <div className="col-xl-6 mb-3">
 
                                                         <CustomInputField
