@@ -1,34 +1,44 @@
 import { FaRegEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
-import { DeleteBeneficiaryData, getBeneficiaryData } from "../../../../../api/login/Login";
+import { DeleteBeneficiaryData, getBeneficiaryData, paginationPayoutbeneficiaryMaster } from "../../../../../api/login/Login";
 import { useEffect, useState } from "react";
-import { Popconfirm, message } from "antd";
+import { Pagination, Popconfirm, message } from "antd";
+import Loadar from "../../../../../common/loader/Loader";
 
 function PayoutBeneficiaryMasterList() {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(false);
-    const getListUserType = async () => {
+    const [count, setCount] = useState(10)
+    const [page, setPage] = useState(0)
+    const [totalCount, setTotalCount] = useState()
+
+    const getPaginationApi = async (page) => {
         setLoading(true)
         try {
-            const data = await getBeneficiaryData()
-            console.log(data);
-            setData(data?.data)
-
+            const res = await paginationPayoutbeneficiaryMaster(page, count)
+            // console.log(res?.data?.area);
+            setTotalCount(res?.data?.count)
+            setData(res?.data?.payout)
         } catch (error) {
-            alert(error.message)
+
         }
         setLoading(false)
     }
 
+    const onChangeVal = (e) => {
+        getPaginationApi(e - 1)
+        // setPage(e - 1)
+    };
+
     useEffect(() => {
-        getListUserType()
+        getPaginationApi(page)
     }, [])
 
     const deleteuserTypeList = async (id) => {
         setLoading(true)
         try {
             await DeleteBeneficiaryData(id)
-            getListUserType()
+            getPaginationApi(page)
         } catch (error) {
             alert(error.message)
         }
@@ -43,6 +53,7 @@ function PayoutBeneficiaryMasterList() {
     };
     return (
         <>
+            {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -119,7 +130,20 @@ function PayoutBeneficiaryMasterList() {
                                         })}
                                     </tbody>
                                 </table>
-                                    <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>
+                                    <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">
+                                        Total {totalCount} entries
+                                    </div>
+                                    <div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate">
+                                        <Pagination
+                                            // showSizeChanger
+                                            // onShowSizeChange={''}
+
+                                            defaultCurrent={1}
+                                            onChange={onChangeVal}
+                                            total={totalCount}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

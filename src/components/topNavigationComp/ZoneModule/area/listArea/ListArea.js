@@ -2,41 +2,56 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 
 
-import { Popconfirm, message } from "antd";
+import { Pagination, Popconfirm, message } from "antd";
 import Loadar from "../../../../../common/loader/Loader";
-import { areaDelete, areaList } from "../../../../../api/login/Login";
+import { areaDelete, areaList, paginationApiArea } from "../../../../../api/login/Login";
+import axios from "axios";
 
 function ListArea() {
     const [curencyData, setCurrencyData] = useState(null)
     const [loading, setLoading] = useState(false);
 
 
-    const getCurrencyList = async () => {
+    const [count, setCount] = useState(10)
+    const [page, setPage] = useState(0)
+    const [totalCount, setTotalCount] = useState()
+
+    const getPaginationApi = async (page) => {
         setLoading(true)
         try {
-            const data = await areaList()
-            setCurrencyData(data?.data)
-
+            const res = await paginationApiArea(page, count)
+            // console.log(res?.data?.area);
+            setTotalCount(res?.data?.count)
+            setCurrencyData(res?.data?.area)
         } catch (error) {
-            alert(error.message)
+
         }
         setLoading(false)
     }
+
+    const onChangeVal = (e) => {
+        getPaginationApi(e - 1)
+        // setPage(e - 1)
+    };
+
+    useEffect(() => {
+        getPaginationApi(page)
+    }, [])
 
     const deleteCurrency = async (id) => {
         setLoading(true)
         try {
             await areaDelete(id)
-            getCurrencyList()
+            getPaginationApi(page)
         } catch (error) {
             alert(error.message)
         }
         setLoading(false)
     }
 
-    useEffect(() => {
-        getCurrencyList()
-    }, [])
+    // useEffect(() => {
+    //     getCurrencyList()
+    // }, [])
 
 
     const confirm = (id) => {
@@ -48,6 +63,7 @@ function ListArea() {
         // console.log(e);
         message.error('Cancle Successfull!');
     };
+
 
     return (
         <>
@@ -70,6 +86,9 @@ function ListArea() {
                                     <thead>
                                         <tr role="row">
                                             <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
+                                                S.NO
+                                            </th>
+                                            <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
                                                 Name
                                             </th>
                                             <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
@@ -83,9 +102,10 @@ function ListArea() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {curencyData && curencyData?.map((item) => {
-                                            console.log(item);
+                                        {curencyData && curencyData?.map((item, i) => {
+                                            // console.log(item);
                                             return <tr role="row" className="odd" key={item?._id}>
+                                                <td className="sorting_1"><span>{item?.id}</span></td>
                                                 <td className="sorting_1"><span>{item?.name}</span></td>
                                                 <td>
                                                     {item?.level}
@@ -113,7 +133,30 @@ function ListArea() {
 
                                     </tbody>
                                 </table>
-                                    <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>
+                                    <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">
+                                        Total {totalCount} entries
+                                    </div>
+                                    <div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate">
+
+
+                                        <Pagination
+                                            // showSizeChanger
+                                            // onShowSizeChange={''}
+
+                                            defaultCurrent={1}
+                                            onChange={onChangeVal}
+                                            total={totalCount}
+                                        />
+
+
+                                    </div>
+
+                                    {/* -------- */}
+
+
+
+                                    {/* -------- */}
+                                </div>
                             </div>
                         </div>
                     </div>

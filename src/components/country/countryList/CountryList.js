@@ -1,39 +1,51 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loadar from "../../../common/loader/Loader";
-import { Popconfirm, message } from "antd";
-import { countryDelete, countryList } from "../../../api/login/Login";
+import { Pagination, Popconfirm, message } from "antd";
+import { countryDelete, countryList, paginationCountryMaster } from "../../../api/login/Login";
 
 
 function CountryList() {
     const [curencyData, setCurrencyData] = useState(null)
     const [loading, setLoading] = useState(false);
-    const getCurrencyList = async () => {
+    const [count, setCount] = useState(10)
+    const [page, setPage] = useState(0)
+    const [totalCount, setTotalCount] = useState()
+
+    const getPaginationApi = async (page) => {
         setLoading(true)
         try {
-            const data = await countryList()
-            setCurrencyData(data?.data)
-
+            const res = await paginationCountryMaster(page, count)
+            // console.log(res?.data?.area);
+            setTotalCount(res?.data?.count)
+            setCurrencyData(res?.data?.country)
         } catch (error) {
-            alert(error.message)
+
         }
         setLoading(false)
     }
+
+    const onChangeVal = (e) => {
+        getPaginationApi(e - 1)
+        // setPage(e - 1)
+    };
+
+    useEffect(() => {
+        getPaginationApi(page)
+    }, [])
 
     const deleteCurrency = async (id) => {
         setLoading(true)
         try {
             await countryDelete(id)
-            getCurrencyList()
+            getPaginationApi(page)
         } catch (error) {
             alert(error.message)
         }
         setLoading(false)
     }
 
-    useEffect(() => {
-        getCurrencyList()
-    }, [])
+
 
 
     const confirm = (id) => {
@@ -110,7 +122,24 @@ function CountryList() {
                                         })}
                                     </tbody>
                                 </table>
-                                    <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div><div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate"><a className="paginate_button previous disabled" aria-controls="empoloyees-tblwrapper" data-dt-idx={0} tabIndex={0} id="empoloyees-tblwrapper_previous"><i className="fa-solid fa-angle-left" /></a><span><a className="paginate_button current" aria-controls="empoloyees-tblwrapper" data-dt-idx={1} tabIndex={0}>1</a><a className="paginate_button " aria-controls="empoloyees-tblwrapper" data-dt-idx={2} tabIndex={0}>2</a></span><a className="paginate_button next" aria-controls="empoloyees-tblwrapper" data-dt-idx={3} tabIndex={0} id="empoloyees-tblwrapper_next"><i className="fa-solid fa-angle-right" /></a></div></div>
+                                    <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">
+                                        Total {totalCount} entries
+                                    </div>
+                                    <div className="dataTables_paginate paging_simple_numbers" id="empoloyees-tblwrapper_paginate">
+
+
+                                        <Pagination
+                                            // showSizeChanger
+                                            // onShowSizeChange={''}
+
+                                            defaultCurrent={1}
+                                            onChange={onChangeVal}
+                                            total={totalCount}
+                                        />
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -152,6 +152,14 @@ export const userDelete = (id) => {
   return axiosInstance.delete(`${baseUrl}user/deleteuser/${id}`);
 };
 
+export const getUserId = (id) => {
+  return axiosInstance.get(`${baseUrl}user/${id}`);
+};
+
+export const updateUser = (id, value) => {
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, value);
+};
+
 
 // userType Intrigation 
 
@@ -444,10 +452,10 @@ export const apiContactEnquiry = (id, value) => {
 export const addAgentOnboarding = (data) => {
   return axiosInstance.post(`${baseUrl}agentonboarding/addOnboarding`, data);
 };
-export const getAgentOnboarding = ()=>{
+export const getAgentOnboarding = () => {
   return axiosInstance.get(`${baseUrl}agentonboarding`)
 }
-export const getAgentOnboardingEdit = (id)=>{
+export const getAgentOnboardingEdit = (id) => {
   return axiosInstance.get(`${baseUrl}agentonboarding/${id}`)
 }
 export const updateAgentOnboarding = (id, value) => {
@@ -457,3 +465,30 @@ export const deleteAgentOnboarding = (id) => {
   console.log(id);
   return axiosInstance.delete(`${baseUrl}agentonboarding/deleteOnBoarding/${id}`);
 };
+
+
+// pagination
+
+export const paginationApiArea = (page, count) => {
+  return axiosInstance.get(`${baseUrl}area/page/${page}&${count}`)
+}
+
+export const paginationApiMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}bank/page/${page}&${count}`)
+}
+export const paginationUserTypeMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}usertype/page/${page}&${count}`)
+}
+export const paginationstaffMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}staff/page/${page}&${count}`)
+}
+export const paginationstaffTypeMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}stafftype/page/${page}&${count}`)
+}
+export const paginationPayoutbeneficiaryMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}payout-beneficiary/page/${page}&${count}`)
+}
+export const paginationCountryMaster = (page, count) => {
+  return axiosInstance.get(`${baseUrl}country/page/${page}&${count}`)
+}
+// pagination

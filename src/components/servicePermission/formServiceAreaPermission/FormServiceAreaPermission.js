@@ -3,21 +3,25 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import CustomDropdown from "../../../common/CustomDropdown";
+import Select from 'react-select';
 import { ZoneGetFilter, areaList, getServiceMaster } from "../../../api/login/Login";
 import Breadcrumbs from "../../../common/breadcrumb/Breadcrumbs";
 
 
-const itemList = [
-    {
-        name: "Active",
-        value: "Active",
-    },
-    {
-        name: "De-Active",
-        value: "De-Active",
-    },
-];
+
 function FormServicePermission() {
+    const itemList = [
+        {
+
+            value: 1,
+            lable: "Active",
+        },
+        {
+
+            value: 2,
+            lable: "De-Active",
+        },
+    ];
     const [conbo, setCombo] = useState(null)
     const [area, setArea] = useState(null)
     const [selectedOption, setSelectedOption] = useState();
@@ -237,6 +241,8 @@ function FormServicePermission() {
                                                         />
 
                                                     </div>
+
+
 
                                                     {/* <div className="col-xl-6 mb-3">
                                                         <select className="form-select" aria-label="Default select example" id="area_id" name="area_id" value={values.area_id} onChange={handleChange}

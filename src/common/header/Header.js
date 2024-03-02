@@ -3,11 +3,14 @@ import profile from "../../assets/images/logo/profile.jpg"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getUpdateProfile } from "../../api/login/Login";
+import { baseUrlImage } from "../../baseUrl";
 function Header({ showAsideBar }) {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [toggle, setToggle] = useState(false)
 
     const [data, setData] = useState(null)
+    // console.log(data?.profile);
+
     const toggleFullscreen = () => {
         const element = document.documentElement;
 
@@ -302,7 +305,8 @@ function Header({ showAsideBar }) {
                                         <Link className="nav-link" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={profileOn}>
                                             <div className="header-info2 d-flex align-items-center">
                                                 <div className="header-media">
-                                                    <img src={profile} alt="profile" />
+
+                                                    {data?.profile ? <img src={`${baseUrlImage}${data?.profile}`} alt="profile" /> : <img src={profile} alt="profile" />}
                                                 </div>
                                                 <div className="header-info">
                                                     <h6 className="text-light">{data?.name}</h6>
