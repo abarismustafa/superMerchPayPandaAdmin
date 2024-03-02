@@ -258,7 +258,7 @@ const AddUsers = () => {
                                                             errorMsg={errors.adhaar_number}
                                                             autoFocus={true}
                                                             id="adhaar_number"
-                                                            placeholder="Adhaar Number"
+                                                            placeholder="Aadhar Number (Space Must After 4 digit)"
                                                             name='adhaar_number'
                                                         />
                                                     </div>

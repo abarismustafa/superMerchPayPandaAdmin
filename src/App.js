@@ -155,8 +155,18 @@ import Profile from "./common/profileUser/Profile";
 import ServiceAreaPermissionPage from "./pages/servicePermission/serviceAreaPermission/index";
 import FormServicePermission from "./components/servicePermission/formServiceAreaPermission/FormServiceAreaPermission";
 import ApiTransitionMasterPage from "./pages/topNavigationPages/apisMaster/apiTransitionMaster";
+import { useAuth } from "./common/privateRoute/PrivateRoute";
 
 function App() {
+  const PrivateRoute = ({ element, ...rest }) => {
+    const { isAuthenticated } = useAuth();
+  
+    return isAuthenticated() ? (
+      <Route {...rest} element={element} />
+    ) : (
+      <Navigate to="/loginPage" />
+    );
+  };
   return (
     <>
       <Routes>

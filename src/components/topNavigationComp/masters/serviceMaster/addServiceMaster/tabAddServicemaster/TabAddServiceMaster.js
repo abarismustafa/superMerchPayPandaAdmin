@@ -9,7 +9,7 @@ import BordcastTextEditor from '../../../../../broadcast/bordcastTextEditor/Bord
 import Loadar from '../../../../../../common/loader/Loader';
 
 
-function TabAddServiceMaster({ i, language, service_category, submitForm, handleChangeCus, item, changeHandle, params, validate }) {
+function TabAddServiceMaster({ i,colodinaryImage, language, service_category, submitForm, handleChangeCus, item, changeHandle, params, validate }) {
     return (
         <>
        
@@ -67,7 +67,7 @@ function TabAddServiceMaster({ i, language, service_category, submitForm, handle
                                         type="file"
                                         value={item.icon}
                                         hasError={errors.icon && touched.icon}
-                                        onChange={(e) => handleChangeCus(e, item?.language_id)}
+                                        onChange={colodinaryImage }
                                         onBlur={handleBlur}
                                         errorMsg={errors.icon}
                                         autoFocus={true}
@@ -114,7 +114,7 @@ function TabAddServiceMaster({ i, language, service_category, submitForm, handle
                                         type="file"
                                         value={item.banner_img}
                                         hasError={errors.banner_img && touched.banner_img}
-                                        onChange={(e) => handleChangeCus(e, item?.language_id)}
+                                        onChange={colodinaryImage}
                                         onBlur={handleBlur}
                                         errorMsg={errors.banner_img}
                                         autoFocus={true}
@@ -176,7 +176,7 @@ function TabAddServiceMaster({ i, language, service_category, submitForm, handle
                                         type="file"
                                         value={item.meta_image}
                                         hasError={errors.banner_img && touched.meta_image}
-                                        onChange={(e) => handleChangeCus(e, item?.language_id)}
+                                        onChange={colodinaryImage }
                                         onBlur={handleBlur}
                                         errorMsg={errors.meta_image}
                                         autoFocus={true}
