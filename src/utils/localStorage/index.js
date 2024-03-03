@@ -1,17 +1,14 @@
-
-
 export function SaveUserDeatilsLocalStorage(token) {
-    window.localStorage.setItem("userToken", token);
-    // window.localStorage.setItem("user_id", res?.data._id);
-    // window.localStorage.setItem("isLogin", true);
+  window.localStorage.setItem("userToken", token);
 }
 
 export function getUserDetails() {
-    return window.localStorage.getItem("userDetails")
+  return window.localStorage.getItem("userDetails");
 }
 
 export function getToken() {
-    return window.localStorage.getItem('userToken')
+  return window.localStorage.getItem("userToken");
 }
-
-
+export function removeItemFromLocalStorage(key) {
+  return window.localStorage.removeItem(key);
+}

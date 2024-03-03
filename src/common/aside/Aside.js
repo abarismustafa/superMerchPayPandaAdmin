@@ -6,13 +6,17 @@ import { useLocation } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 import { Button } from "react-bootstrap";
+import { removeItemFromLocalStorage } from "../../utils/localStorage";
+import { useDispatch } from "react-redux";
+import { setIsLogin } from "../../slice/auth";
 const asideMenu = navigationData.menus;
 function Aside({ showAsideBar }) {
   const [parentId, setParentId] = useState(null);
   const [childId, setChildId] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const menuClicked = (parentId) => {
     setParentId((prev) => (prev === parentId ? null : parentId));
@@ -23,15 +27,10 @@ function Aside({ showAsideBar }) {
     e.stopPropagation();
   };
 
-  const logedout=()=>{
-    const tokenRemove = localStorage.removeItem('userToken')
-    if (!tokenRemove) {
-      navigate('/loginPage')
-    }else{
-      navigate(`/admin`)
-    }
-  }
-  
+  const handleLogOut = () => {
+    removeItemFromLocalStorage("userToken");
+    dispatch(setIsLogin({ isLogin: false }));
+  };
 
   // useEffect(() => {
   //   const modifiedPath = location.pathname.replace("/admin/", "");
@@ -126,8 +125,12 @@ function Aside({ showAsideBar }) {
           <div className="help-desk ">
             {/* <Link to="#" className="btn btn-primary">Help Desk</Link>
                             &nbsp; */}
-            <Button  className="btn btn-warning" type="button" onClick={()=>logedout()}>
-              <CgLogOut /> <span>Log out</span>
+            <Button
+              className="btn btn-warning"
+              type="button"
+              onClick={handleLogOut}
+            >
+              <CgLogOut /> <span>Log out dsdsdsd</span>
             </Button>
           </div>
         </div>

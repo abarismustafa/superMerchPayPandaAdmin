@@ -155,341 +155,461 @@ import Profile from "./common/profileUser/Profile";
 import ServiceAreaPermissionPage from "./pages/servicePermission/serviceAreaPermission/index";
 import FormServicePermission from "./components/servicePermission/formServiceAreaPermission/FormServiceAreaPermission";
 import ApiTransitionMasterPage from "./pages/topNavigationPages/apisMaster/apiTransitionMaster";
-import { useEffect, useState } from "react";
 import PrivateRoute from "./privateRote/PrivateRoute";
+import { useSelector } from "react-redux";
+import { getToken } from "./utils/localStorage";
+import { useDispatch } from "react-redux";
+import { setIsLogin } from "./slice/auth";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function App() {
-  const [auth, setAuth] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isLogin } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
-      const login = window.localStorage.getItem('userToken')
-      setAuth(login)
-    }, 2000)
-  }, [])
+    console.log(getToken());
+    if (getToken()) {
+      dispatch(setIsLogin({ isLogin: true }));
+      navigate("/admin");
+    }
+  }, []);
 
+  useEffect(() => {
+    setIsAuthenticated(isLogin);
+  }, [isLogin]);
 
   return (
     <>
       <Routes>
-        {/* {!auth ? <><Route path="/loginPage" element={<LoginPage />} /> <Route path="*" element={<Navigate to="/loginPage" />} />  </> : <> */}
-        <Route path="/loginPage" element={<LoginPage />} />
-        <Route path="/" element={<Navigate to="/loginPage" />} />
+        {!isAuthenticated ? (
+          <>
+            <Route path="/loginPage" element={<LoginPage />} />{" "}
+            <Route path="*" element={<Navigate to="/loginPage" />} />{" "}
+          </>
+        ) : (
+          <>
+            {/* <Route path="/loginPage" element={<LoginPage />} />
+            <Route path="/" element={<Navigate to="/loginPage" />} />
         {/* <Route path="*" element={<Navigate to="/admin" />} /> */}
-        <Route path="/admin" element={<PrivateRoute />}>
-          {/* <Route path="/admin" element={<DasBoardPage />} /> */}
-          <Route path="" element={<DasBoardRight />} />
-          <Route path="bank-master" element={<BankMasterP />} />
-          <Route path="add-bank" element={<AddBank />} />
-          <Route path="update-bank/:id" element={<AddBank />} />
-          {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
-          <Route path="role-master" element={<RoleMasterPage />} />
-          <Route path="add-role-master" element={<AddRoleMaster />} />
-          <Route path="update-role-master/:id" element={<AddRoleMaster />} />
-          {/* <Route path="edit-role-master" element={<EditRoleMaster />} /> */}
-          <Route path="company-staff/welcome" element={<CompanyStaffPages />} />
-          <Route path="add-company-staff/welcome" element={<AddCompanyStaff />} />
-          <Route path="company-staff-permission" element={<MasterPages />} />
-          <Route path="status-master" element={<StatusMasterPage />} />
-          <Route path="add-status-master" element={<AddStatusMaster />} />
-          <Route path="update-status-master/:id" element={<AddStatusMaster />} />
-          {/* <Route path="edit-status-master" element={<EditStatusMaster />} /> */}
-          <Route path="service-master" element={<ServiceMasterPage />} />
-          <Route path="add-service-master" element={<AddServiceMaster />} />
-          <Route path="update-service-master/:id" element={<AddServiceMaster />} />
-          {/* <Route path="edit-service-master" element={<EditServiceMaster />} /> */}
-          <Route
-            path="service-category"
-            element={<ServiceCategoryMasterPage />}
-          />
-          <Route
-            path="add-service-category"
-            element={<AddServiceCategoryMaster />}
-          />
-          <Route
-            path="update-service-category/:id"
-            element={<AddServiceCategoryMaster />}
-          />
-          {/* <Route
+            <Route
+              path="/admin"
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+            >
+              {/* <Route path="/admin" element={<DasBoardPage />} /> */}
+              <Route path="" element={<DasBoardRight />} />
+              <Route path="bank-master" element={<BankMasterP />} />
+              <Route path="add-bank" element={<AddBank />} />
+              <Route path="update-bank/:id" element={<AddBank />} />
+              {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
+              <Route path="role-master" element={<RoleMasterPage />} />
+              <Route path="add-role-master" element={<AddRoleMaster />} />
+              <Route
+                path="update-role-master/:id"
+                element={<AddRoleMaster />}
+              />
+              {/* <Route path="edit-role-master" element={<EditRoleMaster />} /> */}
+              <Route
+                path="company-staff/welcome"
+                element={<CompanyStaffPages />}
+              />
+              <Route
+                path="add-company-staff/welcome"
+                element={<AddCompanyStaff />}
+              />
+              <Route
+                path="company-staff-permission"
+                element={<MasterPages />}
+              />
+              <Route path="status-master" element={<StatusMasterPage />} />
+              <Route path="add-status-master" element={<AddStatusMaster />} />
+              <Route
+                path="update-status-master/:id"
+                element={<AddStatusMaster />}
+              />
+              {/* <Route path="edit-status-master" element={<EditStatusMaster />} /> */}
+              <Route path="service-master" element={<ServiceMasterPage />} />
+              <Route path="add-service-master" element={<AddServiceMaster />} />
+              <Route
+                path="update-service-master/:id"
+                element={<AddServiceMaster />}
+              />
+              {/* <Route path="edit-service-master" element={<EditServiceMaster />} /> */}
+              <Route
+                path="service-category"
+                element={<ServiceCategoryMasterPage />}
+              />
+              <Route
+                path="add-service-category"
+                element={<AddServiceCategoryMaster />}
+              />
+              <Route
+                path="update-service-category/:id"
+                element={<AddServiceCategoryMaster />}
+              />
+              {/* <Route
             path="update-service-category"
             element={<UpdateServiceCategoryMaster />}
           /> */}
-          <Route path="boardcast" element={<BoardcastPage />} />
-          <Route path="payment-method" element={<PaymentMethodMasterPage />} />
-          <Route path="add-payment-method" element={<AddPaymentMethod />} />
-          <Route path="update-payment-method/:id" element={<AddPaymentMethod />} />
-          {/* <Route path="update-payment-method" element={<EditPaymentMethod />} /> */}
-          <Route
-            path="payout-beneficiary-master"
-            element={<PayoutBeneficiaryMasterPage />}
-          />
-          <Route
-            path="add-payout-beneficiary-master"
-            element={<AddPayoutBeneficiaryMaster />}
-          />
-          <Route
-            path="update-payout-beneficiary-master/:id"
-            element={<AddPayoutBeneficiaryMaster />}
-          />
-          {/* <Route
+              <Route path="boardcast" element={<BoardcastPage />} />
+              <Route
+                path="payment-method"
+                element={<PaymentMethodMasterPage />}
+              />
+              <Route path="add-payment-method" element={<AddPaymentMethod />} />
+              <Route
+                path="update-payment-method/:id"
+                element={<AddPaymentMethod />}
+              />
+              {/* <Route path="update-payment-method" element={<EditPaymentMethod />} /> */}
+              <Route
+                path="payout-beneficiary-master"
+                element={<PayoutBeneficiaryMasterPage />}
+              />
+              <Route
+                path="add-payout-beneficiary-master"
+                element={<AddPayoutBeneficiaryMaster />}
+              />
+              <Route
+                path="update-payout-beneficiary-master/:id"
+                element={<AddPayoutBeneficiaryMaster />}
+              />
+              {/* <Route
             path="update-payout-beneficiary-master"
             element={<EditPayoutBeneficiaryMaster />}
           /> */}
-          <Route path="area" element={<AreaPage />} />
-          <Route path="add-area" element={<AddArea />} />
-          <Route path="update-area/:id" element={<AddArea />} />
-          <Route
-            path="agent-onboarding-list"
-            element={<AgentOnbordingPage />}
-          />
-          <Route
-            path="country-zone"
-            element={<CountryZoneMudle />}
-          />
-          <Route
-            path="add-country-zone"
-            element={<IndexZone />}
-          />
-          {/* <Route
+              <Route path="area" element={<AreaPage />} />
+              <Route path="add-area" element={<AddArea />} />
+              <Route path="update-area/:id" element={<AddArea />} />
+              <Route
+                path="agent-onboarding-list"
+                element={<AgentOnbordingPage />}
+              />
+              <Route path="country-zone" element={<CountryZoneMudle />} />
+              <Route path="add-country-zone" element={<IndexZone />} />
+              {/* <Route
             path="add-country-zone/:id"
             element={<CountryAddZone />}
           /> */}
 
-          <Route path="add-agent-onboarding" element={<AddAgentOnbording />} />
-          <Route path="update-agent-onboarding/:id" element={<AddAgentOnbording />} />
-          {/* <Route
+              <Route
+                path="add-agent-onboarding"
+                element={<AddAgentOnbording />}
+              />
+              <Route
+                path="update-agent-onboarding/:id"
+                element={<AddAgentOnbording />}
+              />
+              {/* <Route
             path="update-agent-onboarding"
             element={<UpdateAgentOnbording />}
           /> */}
-          {/*  Shoib Route start */}
-          <Route path="provider" element={<Provider />} />
-          <Route path="add-provider" element={<AddProvider />} />
-          <Route path="update-provider/:id" element={<AddProvider />} />
-          <Route path="add-provider-logo" element={<AddproviderLogo />} />
-          <Route path="update-provider-logo" element={<UpdateProvider />} />
-          <Route path="api-master" element={<ApiMasterPage />} />
-          <Route path="add-api-master" element={<AddApiMaster />} />
-          <Route path="update-api-master/:id" element={<AddApiMaster />} />
-          {/* <Route path="update-api-master" element={<UpdateApiMaster />} /> */}
-          <Route path="api-transaction-master" element={<ApiTransitionMasterPage />} />
-          <Route
-            path="denomination-wise-api"
-            element={<DominationWiseMasterPage />}
-          />
-          <Route
-            path="add-denomination-wise-api"
-            element={<AddDominationWiseMaster />}
-          />
-          <Route
-            path="update-denomination-wise-api"
-            element={<UpdateDonimationWiseMaster />}
-          />
-          <Route
-            path="number-series-master"
-            element={<NumberSeriesMasterPage />}
-          />
-          <Route
-            path="add-number-series-master"
-            element={<AddNumberSeriesMaster />}
-          />
-          <Route
-            path="update-number-series-master"
-            element={<UpdateNumberSeriesMaster />}
-          />
-          <Route path="state-wise-api" element={<StateWiseApiPage />} />
-          <Route
-            path="state-provider-settings"
-            element={<StateWiseProviderSetting />}
-          />
-          <Route path="backup-api-master" element={<BackupApiMasterPage />} />
-          <Route
-            path="add-backup-api-master"
-            element={<AddBackupApiMaster />}
-          />
-          <Route
-            path="update-backup-api-master"
-            element={<UpdateBackupApiMaster />}
-          />
-          <Route path="api-switching" element={<ApiSwitchingPage />} />
-          <Route
-            path="user-operator-limit"
-            element={<UserOperatorLimitPage />}
-          />
-          <Route path="view-operator-limit" element={<ViewOperatorLimit />} />
-          <Route
-            path="vandor/payment/welcome"
-            element={<ApiVandorPaymentPage />}
-          />
-          <Route path="site-setting/welcome" element={<SiteSettingPage />} />
-          <Route path="sms-templete/welcome" element={<SmsSettingsPage />} />
-          <Route path="package-settings" element={<PackageSettingsPage />} />
-          <Route path="commission-setup" element={<CommissionSetup />} />
-          <Route
-            path="set-operator-commission"
-            element={<SetOperatorSettings />}
-          />
-          <Route path="bank-settings" element={<BankSettingsPage />} />
-          <Route path="user" element={<Customer />} />
-          <Route path="user/add-user" element={<AddUsers />} />
-          <Route path="update-user/:id" element={<AddUsers />} />
-          <Route path="user-type" element={<UsersType />} />
-          <Route path="add/user-type" element={<AddUsertType />} />
-          <Route path="update/user-type/:id" element={<AddUsertType />} />
-          <Route path="add-bank-settings" element={<AddBankSettings />} />
-          <Route path="update-bank-settings" element={<UpdateBankSettings />} />
-          <Route path="logo-upload" element={<LogoUploadPage />} />
-          <Route path="signature-upload" element={<SignatureUploadPage />} />
-          <Route path="service-banner" element={<ServiceBannerPage />} />
-          <Route
-            path="notification/welcome"
-            element={<NotificationSettingsPage />}
-          />
-          <Route path="dynemic-page" element={<DynemicPage />} />
-          <Route path="front-banner" element={<FrontBannerPage />} />
-          <Route path="user-pannel-slider" element={<UserPannelSliderPage />} />
-          <Route path="user-pannel-slider" element={<UserPannelSliderPage />} />
+              {/*  Shoib Route start */}
+              <Route path="provider" element={<Provider />} />
+              <Route path="add-provider" element={<AddProvider />} />
+              <Route path="update-provider/:id" element={<AddProvider />} />
+              <Route path="add-provider-logo" element={<AddproviderLogo />} />
+              <Route path="update-provider-logo" element={<UpdateProvider />} />
+              <Route path="api-master" element={<ApiMasterPage />} />
+              <Route path="add-api-master" element={<AddApiMaster />} />
+              <Route path="update-api-master/:id" element={<AddApiMaster />} />
+              {/* <Route path="update-api-master" element={<UpdateApiMaster />} /> */}
+              <Route
+                path="api-transaction-master"
+                element={<ApiTransitionMasterPage />}
+              />
+              <Route
+                path="denomination-wise-api"
+                element={<DominationWiseMasterPage />}
+              />
+              <Route
+                path="add-denomination-wise-api"
+                element={<AddDominationWiseMaster />}
+              />
+              <Route
+                path="update-denomination-wise-api"
+                element={<UpdateDonimationWiseMaster />}
+              />
+              <Route
+                path="number-series-master"
+                element={<NumberSeriesMasterPage />}
+              />
+              <Route
+                path="add-number-series-master"
+                element={<AddNumberSeriesMaster />}
+              />
+              <Route
+                path="update-number-series-master"
+                element={<UpdateNumberSeriesMaster />}
+              />
+              <Route path="state-wise-api" element={<StateWiseApiPage />} />
+              <Route
+                path="state-provider-settings"
+                element={<StateWiseProviderSetting />}
+              />
+              <Route
+                path="backup-api-master"
+                element={<BackupApiMasterPage />}
+              />
+              <Route
+                path="add-backup-api-master"
+                element={<AddBackupApiMaster />}
+              />
+              <Route
+                path="update-backup-api-master"
+                element={<UpdateBackupApiMaster />}
+              />
+              <Route path="api-switching" element={<ApiSwitchingPage />} />
+              <Route
+                path="user-operator-limit"
+                element={<UserOperatorLimitPage />}
+              />
+              <Route
+                path="view-operator-limit"
+                element={<ViewOperatorLimit />}
+              />
+              <Route
+                path="vandor/payment/welcome"
+                element={<ApiVandorPaymentPage />}
+              />
+              <Route
+                path="site-setting/welcome"
+                element={<SiteSettingPage />}
+              />
+              <Route
+                path="sms-templete/welcome"
+                element={<SmsSettingsPage />}
+              />
+              <Route
+                path="package-settings"
+                element={<PackageSettingsPage />}
+              />
+              <Route path="commission-setup" element={<CommissionSetup />} />
+              <Route
+                path="set-operator-commission"
+                element={<SetOperatorSettings />}
+              />
+              <Route path="bank-settings" element={<BankSettingsPage />} />
+              <Route path="user" element={<Customer />} />
+              <Route path="user/add-user" element={<AddUsers />} />
+              <Route path="update-user/:id" element={<AddUsers />} />
+              <Route path="user-type" element={<UsersType />} />
+              <Route path="add/user-type" element={<AddUsertType />} />
+              <Route path="update/user-type/:id" element={<AddUsertType />} />
+              <Route path="add-bank-settings" element={<AddBankSettings />} />
+              <Route
+                path="update-bank-settings"
+                element={<UpdateBankSettings />}
+              />
+              <Route path="logo-upload" element={<LogoUploadPage />} />
+              <Route
+                path="signature-upload"
+                element={<SignatureUploadPage />}
+              />
+              <Route path="service-banner" element={<ServiceBannerPage />} />
+              <Route
+                path="notification/welcome"
+                element={<NotificationSettingsPage />}
+              />
+              <Route path="dynemic-page" element={<DynemicPage />} />
+              <Route path="front-banner" element={<FrontBannerPage />} />
+              <Route
+                path="user-pannel-slider"
+                element={<UserPannelSliderPage />}
+              />
+              <Route
+                path="user-pannel-slider"
+                element={<UserPannelSliderPage />}
+              />
 
-          {/* Top Navigation End */}
-          {/*  Navigation Start */}
-          {/*  Shoib Route */}
-          {/* <Route path="/dashboard" element={<Dashboardpage />} />*/}
-          <Route path="member-list/distributor" element={<DistributerPage />} />
-          <Route
-            path="create-user/distributor"
-            element={<CreateUserDistributerPage />}
-          />
-          <Route path="member-list/retailer" element={<RetailerPage />} />
-          <Route
-            path="create-user/retailer"
-            element={<CreateUserRetailerPage />}
-          />
-          <Route path="suspended-users" element={<SuspendedUserPage />} />
-          <Route path="add-suspended-users" element={<AddSuspendedUser />} />
-          <Route path="not-working-users" element={<NotWorkingUserPage />} />
-          <Route
-            path="add-not-working-user"
-            element={<AddNotWorkingUserList />}
-          />
-          <Route
-            path="all-transactions-report"
-            element={<AlltransportationReportsPage />}
-          />
-          <Route
-            path="add-transaction-report"
-            element={<AddTransactionReport />}
-          />
-          <Route path="pancard-report" element={<PanCardReportPages />} />
-          <Route path="add-pancard-report" element={<AddpanCardReport />} />
-          <Route
-            path="pending-transaction-report"
-            element={<PendingTransactionReport />}
-          />
-          <Route
-            path="add-pending-transaction-report"
-            element={<AddPendingTransactionReport />}
-          />
-          <Route path="operator-wise-sale" element={<OperatorWiseSalePage />} />
-          <Route
-            path="add-operator-wise-sale"
-            element={<AddOperatorWiseReport />}
-          />
-          {/* <Route path="ledger-report" element={<LedgerReportPage />} /> */}
-          <Route path="balance-trasnfer" element={<BalanceTransferPage />} />
-          <Route path="add-balance-trasnfer" element={<BalanceTransferAdd />} />
-          <Route
-            path="update-balance-trasnfer"
-            element={<UpdateBlanceTransfer />}
-          />
-          <Route
-            path="balance-return-request"
-            element={<BalanceReturnRequestPage />}
-          />
-          <Route
-            path="add-balance-return-request"
-            element={<AddBlanceReturnRequest />}
-          />
-          <Route
-            path="update-balance-return-request"
-            element={<UpdateBlanceReturnRequest />}
-          />
-          <Route
-            path="payment-request-view"
-            element={<PaymentRequestViewPage />}
-          />
-          <Route
-            path="add-payment-request-view"
-            element={<AddPaymentRequestView />}
-          />
-          <Route
-            path="update-payment-request-view"
-            element={<UpdatePaymentRequestView />}
-          />
-          <Route path="payment-request" element={<PaymentRequestPage />} />
-          <Route path="pending-dispute" element={<PendingDisputPage />} />
-          <Route path="add-pending-dispute" element={<AddPendingDispute />} />
-          <Route
-            path="update-pending-dispute"
-            element={<UpdatePendingDisput />}
-          />
-          <Route path="solve-dispute" element={<SolveDisputePage />} />
-          <Route path="add-solve-dispute" element={<AddSolveDispute />} />
-          <Route path="update-solve-dispute" element={<UpdateSolveDispute />} />
-          <Route
-            path="user-income/distributor"
-            element={<DistributerIncomePage />}
-          />
-          <Route
-            path="add/distributor/income"
-            element={<AddDistributerInc />}
-          />
-          <Route path="user-income/retailer" element={<RetailerIncomePage />} />
-          <Route path="add/retailer/income" element={<AddRetailerInc />} />
-          <Route path="income/my-income" element={<MyIncomePage />} />
-          <Route path="debit-report" element={<DebitReportPage />} />
-          <Route path="add-debit-report" element={<AddDebitReport />} />
-          <Route path="credit-report" element={<CreditReportPage />} />
-          <Route path="add-credit-report" element={<AddCreditReport />} />
-          {/* onClick Profile Route start  */}
-          {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
-          {/* onClick Profile Route End  */}
-          <Route path="contact-enquiry" element={<ContactInquery />} />
-          <Route path="add-contact-enquiry" element={<AddContactEnquiry />} />
-          <Route path="update-contact-enquiry/:id" element={<AddContactEnquiry />} />
-          <Route
-            path="cashfree-gateway-master"
-            element={<CashfreeGateWayMasterPages />}
-          />
-          <Route
-            path="add-cashfree-gateway-master"
-            element={<AddCashFreeGateway />}
-          />
-          <Route path="whatapp/send-role-wise" element={<SendRoleWisepage />} />
-          <Route path="company-setting" element={<CompanySettings />} />
-          <Route path="currency" element={<CurrencyPage />} />
-          <Route path="add-currency" element={<CurrencyForm />} />
-          <Route path="update-currency/:id" element={<CurrencyForm />} />
-          <Route path="country" element={<CountryPage />} />
-          <Route path="add-country" element={<CountryForm />} />
-          <Route path="update-country/:id" element={<CountryForm />} />
-          <Route path="language" element={<LanguagePage />} />
-          <Route path="satff" element={<StaffPage />} />
-          <Route path="add-satff" element={<StaffForm />} />
-          <Route path="update-satff/:id" element={<StaffForm />} />
-          <Route path="staff-type" element={<StaffTypePage />} />
-          <Route path="staff-type-add" element={<StaffTypeAdd />} />
-          <Route path="staff-type-update/:id" element={<StaffTypeAdd />} />
-          <Route path="add-language" element={<FormLanguage />} />
-          <Route path="update_language/:id" element={<FormLanguage />} />
-          <Route path="state-master" element={<StateMasterPage />} />
-          <Route path="add-state-master" element={<FormStateMaster />} />
-          <Route path="update-state-master/:id" element={<FormStateMaster />} />
-          <Route path="service-area-permision" element={<ServiceAreaPermissionPage />} />
-          <Route path="add-service-area-permision" element={<FormServicePermission />} />
-          <Route path="profile" element={<Profile />} />
-        </Route>
-        <Route path="*" element={<PageNotFound />} />
-        {/* </>} */}
-
-      </Routes >
+              {/* Top Navigation End */}
+              {/*  Navigation Start */}
+              {/*  Shoib Route */}
+              {/* <Route path="/dashboard" element={<Dashboardpage />} />*/}
+              <Route
+                path="member-list/distributor"
+                element={<DistributerPage />}
+              />
+              <Route
+                path="create-user/distributor"
+                element={<CreateUserDistributerPage />}
+              />
+              <Route path="member-list/retailer" element={<RetailerPage />} />
+              <Route
+                path="create-user/retailer"
+                element={<CreateUserRetailerPage />}
+              />
+              <Route path="suspended-users" element={<SuspendedUserPage />} />
+              <Route
+                path="add-suspended-users"
+                element={<AddSuspendedUser />}
+              />
+              <Route
+                path="not-working-users"
+                element={<NotWorkingUserPage />}
+              />
+              <Route
+                path="add-not-working-user"
+                element={<AddNotWorkingUserList />}
+              />
+              <Route
+                path="all-transactions-report"
+                element={<AlltransportationReportsPage />}
+              />
+              <Route
+                path="add-transaction-report"
+                element={<AddTransactionReport />}
+              />
+              <Route path="pancard-report" element={<PanCardReportPages />} />
+              <Route path="add-pancard-report" element={<AddpanCardReport />} />
+              <Route
+                path="pending-transaction-report"
+                element={<PendingTransactionReport />}
+              />
+              <Route
+                path="add-pending-transaction-report"
+                element={<AddPendingTransactionReport />}
+              />
+              <Route
+                path="operator-wise-sale"
+                element={<OperatorWiseSalePage />}
+              />
+              <Route
+                path="add-operator-wise-sale"
+                element={<AddOperatorWiseReport />}
+              />
+              {/* <Route path="ledger-report" element={<LedgerReportPage />} /> */}
+              <Route
+                path="balance-trasnfer"
+                element={<BalanceTransferPage />}
+              />
+              <Route
+                path="add-balance-trasnfer"
+                element={<BalanceTransferAdd />}
+              />
+              <Route
+                path="update-balance-trasnfer"
+                element={<UpdateBlanceTransfer />}
+              />
+              <Route
+                path="balance-return-request"
+                element={<BalanceReturnRequestPage />}
+              />
+              <Route
+                path="add-balance-return-request"
+                element={<AddBlanceReturnRequest />}
+              />
+              <Route
+                path="update-balance-return-request"
+                element={<UpdateBlanceReturnRequest />}
+              />
+              <Route
+                path="payment-request-view"
+                element={<PaymentRequestViewPage />}
+              />
+              <Route
+                path="add-payment-request-view"
+                element={<AddPaymentRequestView />}
+              />
+              <Route
+                path="update-payment-request-view"
+                element={<UpdatePaymentRequestView />}
+              />
+              <Route path="payment-request" element={<PaymentRequestPage />} />
+              <Route path="pending-dispute" element={<PendingDisputPage />} />
+              <Route
+                path="add-pending-dispute"
+                element={<AddPendingDispute />}
+              />
+              <Route
+                path="update-pending-dispute"
+                element={<UpdatePendingDisput />}
+              />
+              <Route path="solve-dispute" element={<SolveDisputePage />} />
+              <Route path="add-solve-dispute" element={<AddSolveDispute />} />
+              <Route
+                path="update-solve-dispute"
+                element={<UpdateSolveDispute />}
+              />
+              <Route
+                path="user-income/distributor"
+                element={<DistributerIncomePage />}
+              />
+              <Route
+                path="add/distributor/income"
+                element={<AddDistributerInc />}
+              />
+              <Route
+                path="user-income/retailer"
+                element={<RetailerIncomePage />}
+              />
+              <Route path="add/retailer/income" element={<AddRetailerInc />} />
+              <Route path="income/my-income" element={<MyIncomePage />} />
+              <Route path="debit-report" element={<DebitReportPage />} />
+              <Route path="add-debit-report" element={<AddDebitReport />} />
+              <Route path="credit-report" element={<CreditReportPage />} />
+              <Route path="add-credit-report" element={<AddCreditReport />} />
+              {/* onClick Profile Route start  */}
+              {/* <Route path="agent" element={<MyCommissionRechargePage />} />  */}
+              {/* onClick Profile Route End  */}
+              <Route path="contact-enquiry" element={<ContactInquery />} />
+              <Route
+                path="add-contact-enquiry"
+                element={<AddContactEnquiry />}
+              />
+              <Route
+                path="update-contact-enquiry/:id"
+                element={<AddContactEnquiry />}
+              />
+              <Route
+                path="cashfree-gateway-master"
+                element={<CashfreeGateWayMasterPages />}
+              />
+              <Route
+                path="add-cashfree-gateway-master"
+                element={<AddCashFreeGateway />}
+              />
+              <Route
+                path="whatapp/send-role-wise"
+                element={<SendRoleWisepage />}
+              />
+              <Route path="company-setting" element={<CompanySettings />} />
+              <Route path="currency" element={<CurrencyPage />} />
+              <Route path="add-currency" element={<CurrencyForm />} />
+              <Route path="update-currency/:id" element={<CurrencyForm />} />
+              <Route path="country" element={<CountryPage />} />
+              <Route path="add-country" element={<CountryForm />} />
+              <Route path="update-country/:id" element={<CountryForm />} />
+              <Route path="language" element={<LanguagePage />} />
+              <Route path="satff" element={<StaffPage />} />
+              <Route path="add-satff" element={<StaffForm />} />
+              <Route path="update-satff/:id" element={<StaffForm />} />
+              <Route path="staff-type" element={<StaffTypePage />} />
+              <Route path="staff-type-add" element={<StaffTypeAdd />} />
+              <Route path="staff-type-update/:id" element={<StaffTypeAdd />} />
+              <Route path="add-language" element={<FormLanguage />} />
+              <Route path="update_language/:id" element={<FormLanguage />} />
+              <Route path="state-master" element={<StateMasterPage />} />
+              <Route path="add-state-master" element={<FormStateMaster />} />
+              <Route
+                path="update-state-master/:id"
+                element={<FormStateMaster />}
+              />
+              <Route
+                path="service-area-permision"
+                element={<ServiceAreaPermissionPage />}
+              />
+              <Route
+                path="add-service-area-permision"
+                element={<FormServicePermission />}
+              />
+              <Route path="profile" element={<Profile />} />
+            </Route>
+            <Route path="*" element={<PageNotFound />} />
+          </>
+        )}
+      </Routes>
     </>
   );
 }
