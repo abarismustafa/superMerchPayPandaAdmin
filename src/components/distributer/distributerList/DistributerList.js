@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
-function DistributerList() {
+function DistributerList({params}) {
+console.log(params);
     return (
         <>
             <section className="ListDistributer m-4">
@@ -10,9 +11,9 @@ function DistributerList() {
                             <div className="card-body p-0">
                                 <div className="table-responsive active-projects style-1">
                                     <div className="tbl-caption">
-                                        <h4 className="heading mb-0"><b>DISTRIBUTOR LIST</b></h4>
+                                        <h4 className="heading mb-0"><b>{params?.name} LIST</b></h4>
                                         <div>
-                                            <Link className="btn btn-primary btn-sm" to="/admin/create-user/distributor" role="button" aria-controls="offcanvasExample">+  Create Distributor</Link>
+                                            <Link className="btn btn-primary btn-sm" to={`/admin/create-user/${params?.id}/${params?.name}`} role="button" aria-controls="offcanvasExample">+  Create {params?.name}</Link>
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
@@ -59,14 +60,14 @@ function DistributerList() {
                                             <tr role="row" className="odd">
                                                 <td className="sorting_1"><span>1</span></td>
                                                 <td>
-                                                    
+
                                                 </td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                  
+
                                                 </td>
-                                                
+
                                                 <td>
                                                 </td>
                                                 <td>

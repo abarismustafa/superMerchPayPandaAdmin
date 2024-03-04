@@ -229,7 +229,7 @@ function CreateUserDistributer() {
                   <div className="tbl-caption tbl-caption-2" >
                     <h4 className="heading mb-0">
                       {/* {params?.id ? "UPDATE" : "ADD"} COUNTRY */}
-                      ADD USER DISTIBUTER
+                      ADD USER {params?.name}
                     </h4>
                   </div>
                   <Tabs
