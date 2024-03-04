@@ -15,11 +15,11 @@ function FormServicePermission() {
   const itemList = [
     {
       value: 1,
-      lable: "Active",
+      name: "Active",
     },
     {
       value: 2,
-      lable: "De-Active",
+      name: "De-Active",
     },
   ];
   const [conbo, setCombo] = useState(null);
@@ -115,6 +115,9 @@ function FormServicePermission() {
     areaidget();
   }, []);
 
+  console.log("area", area);
+  console.log("area", areaId);
+
   useEffect(() => {
     const fetchCurrency = async () => {
       try {
@@ -194,7 +197,16 @@ function FormServicePermission() {
                             </select>
                           </div>
                           <div className="col-xl-6 mb-3">
-                            <select
+                            <CustomDropdown
+                              itemList={area}
+                              placeholder="Select Zone"
+                              isSingleSelect={true}
+                              icon={true}
+                              // defaultSelectedItem={["india"]}
+                              // name="zone_id"
+                              // onChange={handleChange}
+                            />
+                            {/* <select
                               className="form-select"
                               aria-label="Default select example"
                               id="area_id"
@@ -215,7 +227,7 @@ function FormServicePermission() {
                                     </option>
                                   );
                                 })}
-                            </select>
+                            </select> */}
                           </div>
                           <div className="col-xl-6 mb-3">
                             <CustomDropdown

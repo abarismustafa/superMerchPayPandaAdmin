@@ -161,18 +161,19 @@ import { getToken } from "./utils/localStorage";
 import { useDispatch } from "react-redux";
 import { setIsLogin } from "./slice/auth";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     console.log(getToken());
     if (getToken()) {
       dispatch(setIsLogin({ isLogin: true }));
-      navigate("/admin");
+      navigate(location?.pathname);
     }
   }, []);
 
@@ -194,7 +195,7 @@ function App() {
             <Route path="/" element={<Navigate to="/loginPage" />} />
         {/* <Route path="*" element={<Navigate to="/admin" />} /> */}
             <Route
-              path="/admin"
+              path="admin"
               element={<PrivateRoute isAuthenticated={isAuthenticated} />}
             >
               {/* <Route path="/admin" element={<DasBoardPage />} /> */}

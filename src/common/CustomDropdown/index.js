@@ -34,10 +34,11 @@ const CustomDropdown = ({
   }, [showList]);
 
   const onSelectItem = (selectedItem, isChecked) => {
+    debugger;
     itemList.forEach((item) => {
-      if (item.value === selectedItem.value) {
-        setSelectedItem(item.value);
-        setSelectedList([item.value]);
+      if (item._id === selectedItem.value) {
+        setSelectedItem(item);
+        setSelectedList([item]);
         setShowList(false);
       }
     });
@@ -46,24 +47,29 @@ const CustomDropdown = ({
   const onMultiSelectItem = (item, isChecked) => {
     setSelectedList((prevSelectList) => {
       const newSelectList = isChecked
-        ? [...prevSelectList, item.label]
-        : prevSelectList.filter((name) => name !== item.label);
+        ? [...prevSelectList, item]
+        : prevSelectList.filter((name) => name !== item.value);
 
       setSelectedItem(newSelectList.join(","));
       return newSelectList;
     });
   };
 
-  const parentContainerClass = `w-full relative rounded-xl  ${showList ? "rounded-xl" : "rounded-xl"
-    } ${classes ? classes.parentContainer : ""}`;
-  const placeholderClass = `text-bodySmall ${classes ? classes.placeholder : ""
-    }`;
-  const dropdownIcon = `pr-3 d-flex items-center ${classes ? classes.dropdownIcon : ""
-    }`;
-  const placeholderIconWrapperClass = `items-center cursor-pointer d-flex justify-between p-spacing16 border-greyscale-5 py-spacing12 rounded-xl   ${classes ? classes.placeholderIconWrapper : ""
-    }`;
-  const selectWrapperClass = `p-spacing20 absolute  mt-spacing8 d-flex gap-spacing16 flex-col w-full rounded-2xl z-10 bg-white border-greyscale-5 border-t shadow-sm dropdown-scrollbar ${classes ? classes.selectWrapper : ""
-    }`;
+  const parentContainerClass = `w-full relative rounded-xl  ${
+    showList ? "rounded-xl" : "rounded-xl"
+  } ${classes ? classes.parentContainer : ""}`;
+  const placeholderClass = `text-bodySmall ${
+    classes ? classes.placeholder : ""
+  }`;
+  const dropdownIcon = `pr-3 d-flex items-center ${
+    classes ? classes.dropdownIcon : ""
+  }`;
+  const placeholderIconWrapperClass = `items-center cursor-pointer d-flex justify-between p-spacing16 border-greyscale-5 py-spacing12 rounded-xl   ${
+    classes ? classes.placeholderIconWrapper : ""
+  }`;
+  const selectWrapperClass = `p-spacing20 absolute  mt-spacing8 d-flex gap-spacing16 flex-col w-full rounded-2xl z-10 bg-white border-greyscale-5 border-t shadow-sm dropdown-scrollbar ${
+    classes ? classes.selectWrapper : ""
+  }`;
 
   return (
     <div className={parentContainerClass} ref={elementRef}>
@@ -73,8 +79,8 @@ const CustomDropdown = ({
             {!selectedItem
               ? placeholder
               : customSelectedView
-                ? customSelectedView(selectedItem)
-                : selectedItem}
+              ? customSelectedView(selectedItem)
+              : selectedItem}
           </div>
           {icon && (
             <div className={dropdownIcon}>
@@ -88,18 +94,19 @@ const CustomDropdown = ({
             {itemList.map((item, index) =>
               isSingleSelect ? (
                 <CustomRadioButton
-                  isSelected={item.name === selectedItem?.label}
+                  isSelected={item._id === selectedItem}
                   onRadioButtonClicked={onSelectItem}
                   label={item.name}
+                  value={item._id}
                   classes={"text-bodySmall gap-spacing6"}
                   key={index}
                 />
               ) : (
                 <CustomCheckBox
-                  isSelected={selectList.includes(item.name)}
+                  isSelected={selectList.includes(item._id)}
                   onCheckBoxClicked={onMultiSelectItem}
                   label={item.name}
-                  value={item.name}
+                  value={item._id}
                   key={index}
                 />
               )
