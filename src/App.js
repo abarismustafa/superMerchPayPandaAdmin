@@ -161,22 +161,19 @@ import { getToken } from "./utils/localStorage";
 import { useDispatch } from "react-redux";
 import { setIsLogin } from "./slice/auth";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SalesReportsPage from "./pages/salesRep";
-import PerformanceReports from "./components/salesReports/performanceReports/PerformanceReports";
-import AddpadateSummary from "./components/salesReports/summaryReports/addUpdateSummary/AddpadateSummary";
-import AddUpdatePerformanceReports from "./components/salesReports/performanceReports/addupdatePerformanceReport/AddUpdatePerformanceReports";
+import { useNavigate, useLocation } from "react-router-dom";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     console.log(getToken());
     if (getToken()) {
       dispatch(setIsLogin({ isLogin: true }));
-      navigate("/admin");
+      navigate(location?.pathname);
     }
   }, []);
 
@@ -198,7 +195,7 @@ function App() {
             <Route path="/" element={<Navigate to="/loginPage" />} />
         {/* <Route path="*" element={<Navigate to="/admin" />} /> */}
             <Route
-              path="/admin"
+              path="admin"
               element={<PrivateRoute isAuthenticated={isAuthenticated} />}
             >
               {/* <Route path="/admin" element={<DasBoardPage />} /> */}
@@ -432,7 +429,7 @@ function App() {
               {/*  Shoib Route */}
               {/* <Route path="/dashboard" element={<Dashboardpage />} />*/}
               <Route
-                path="member-list/:id/:name"  
+                path="member-list/:id/:name"
                 element={<DistributerPage />}
               />
               <Route
@@ -440,8 +437,8 @@ function App() {
                 element={<CreateUserDistributerPage />}
               />
               <Route path="member-list/:id/:name" element={<RetailerPage />} />
-              
-             {/*  <Route
+
+              {/*  <Route
                 path="create-user/retailer"
                 element={<CreateUserRetailerPage />}
               /> */}
@@ -476,14 +473,8 @@ function App() {
                 path="add-pending-transaction-report"
                 element={<AddPendingTransactionReport />}
               />
-              <Route
-                path="summary-report"
-                element={<SalesReportsPage />}
-              />
-              <Route
-                path="add-summary-report"
-                element={<AddpadateSummary />}
-              />
+              <Route path="summary-report" element={<SalesReportsPage />} />
+              <Route path="add-summary-report" element={<AddpadateSummary />} />
               <Route
                 path="performance-report"
                 element={<PerformanceReports />}

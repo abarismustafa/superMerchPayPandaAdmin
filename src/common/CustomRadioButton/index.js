@@ -1,4 +1,6 @@
 import React from "react";
+import { MdOutlineRadioButtonChecked } from "react-icons/md";
+import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 const CustomRadioButton = (props) => {
   const {
     onRadioButtonClicked,
@@ -21,19 +23,20 @@ const CustomRadioButton = (props) => {
   } ${classes}`;
 
   return (
-    <div onClick={radioButtonClicked} className={classVal}>
-      <div className="items-center flex">
+    <div
+      onClick={radioButtonClicked}
+      className={`custom-checkbox-wrapper ${classVal}`}
+    >
+      <div>
         {isSelected ? (
-          <i
-            className={`icon-checkmark-circle-filled text-lg text-primary-main ${selectedIconClass}`}
-          ></i>
+          <MdOutlineRadioButtonChecked color="#ee2c3c" fontSize={24} />
         ) : (
           deSelectedCustomIcon ?? (
-            <i className="icon-circle text-greyscale-4 text-lg"></i>
+            <MdOutlineRadioButtonUnchecked fontSize={24} />
           )
         )}
       </div>
-      <div className="">
+      <div className="custom-checkbox-label text-bodySmall text-greyscale-1">
         <span className={`text-bodySmall ${labelClassName}`}>{label}</span>
         {value !== "all" && totalCount !== undefined && (
           <span

@@ -55277,6 +55277,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   z-index: 111;
   width: 100%;
 }
+.dropdown-scrollbar {
+  max-height: 300px;
+  overflow: auto;
+}
 
 #justify-none_Tab1 {
   justify-content: flex-start;
