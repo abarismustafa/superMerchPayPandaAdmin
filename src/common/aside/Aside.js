@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { navigationData } from "./navigationData/NavigationData";
+import { getN, navigationData } from "./navigationData/NavigationData";
 import { useEffect, useState } from "react";
 import { AiFillDashboard } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
@@ -9,10 +9,12 @@ import { Button } from "react-bootstrap";
 import { removeItemFromLocalStorage } from "../../utils/localStorage";
 import { useDispatch } from "react-redux";
 import { setIsLogin } from "../../slice/auth";
-const asideMenu = navigationData.menus;
+import { getLength } from "../../api/login/Login";
+let asideMenu = [];
 function Aside({ showAsideBar }) {
   const [parentId, setParentId] = useState(null);
   const [childId, setChildId] = useState(null);
+  const [countLaenData, setCountLenData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
@@ -43,8 +45,20 @@ function Aside({ showAsideBar }) {
   //     });
   //   });
   // }, []);
+  const getCountData = async()=>{
+    try {
+      const response = await getLength()
+      setCountLenData(response?.data)
+    } catch (error) {
+      error("err  or",error)
+    }
+  }
+
+
+ asideMenu =  navigationData(countLaenData)
 
   useEffect(() => {
+    getCountData()
     const modifiedPath = location.pathname.replace("/admin/", "");
 
     const foundSubMenu = asideMenu

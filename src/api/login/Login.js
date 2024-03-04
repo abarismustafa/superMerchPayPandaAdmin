@@ -1,6 +1,14 @@
 import { baseUrl } from "../../baseUrl";
 import axiosInstance from "../../axiosServiseFactory/AxiosServiseFactory";
 import axios from "axios";
+
+//count Length RetDist ----------------------!
+
+export const getLength = ()=>{
+ return axiosInstance.get(`${baseUrl}user/memberType/count`);
+}
+
+
 export const LoginSubmit = (data) =>
   axiosInstance.post(`${baseUrl}staff/login`, data);
 

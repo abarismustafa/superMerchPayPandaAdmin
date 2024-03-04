@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React from 'react'
 import CustomInputField from '../../../../common/CustomInputField';
 import CustomDropdown from '../../../../common/CustomDropdown';
-const initialValues = { from:"", to: ""}
+const initialValues = { from: "", to: "" }
 function AllTransactionReportsForm() {
     const name = "dropdown";
     const placeholder = "Course Name";
@@ -27,7 +27,7 @@ function AllTransactionReportsForm() {
     ];
     const validate = (values) => {
         let errors = {};
-        
+
         if (!values.from) {
             errors.from = "First Name is required";
         }
@@ -47,32 +47,33 @@ function AllTransactionReportsForm() {
 
     return (
         <>
-            <Formik
-                initialValues={initialValues}
-                validate={validate}
-                onSubmit={submitForm}
-                className="tbl-captionn"
-            >
-                {(formik) => {
-                    const {
-                        values,
-                        handleChange,
-                        handleSubmit,
-                        errors,
-                        touched,
-                        handleBlur,
-                        isValid,
-                        dirty,
-                    } = formik;
-                    return (
-                        <div className="row m-4">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0"><b>All Transaction Report - </b></h4>
-                                            </div>
+
+            <div className="row m-4">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0"><b>All Transaction Report - </b></h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
+                                    className="tbl-captionn"
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
                                             <form className="tbl-captionn" onSubmit={submitForm}>
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
@@ -100,7 +101,7 @@ function AllTransactionReportsForm() {
                                                             autoFocus={true}
                                                             id="to"
                                                         />
-                                                        
+
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
                                                         <div className="dropdownWrapper">
@@ -112,7 +113,7 @@ function AllTransactionReportsForm() {
                                                                 onChange={changeHandle}
                                                             />
                                                         </div>
-                                                        
+
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
                                                         <div className="dropdownWrapper">
@@ -124,10 +125,10 @@ function AllTransactionReportsForm() {
                                                                 onChange={changeHandle}
                                                             />
                                                         </div>
-                                                        
+
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                    <div className="dropdownWrapper">
+                                                        <div className="dropdownWrapper">
                                                             <CustomDropdown
                                                                 itemList={itemList}
                                                                 placeholder="Select Provider *"
@@ -138,7 +139,7 @@ function AllTransactionReportsForm() {
                                                         </div>
                                                         {/* <label htmlFor="exampleFormControlInput2" className="form-label">Select Provider<span className="text-danger">*</span></label> */}
                                                         {/* <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="IFSC Code" /> */}
-                                                       {/*  <select id="disabledSelect" class="form-select">
+                                                        {/*  <select id="disabledSelect" class="form-select">
                                                             <option value="0" selected="" data-select2-id="6"> All Provider</option>
                                                             <option value="1"> AIRTEL</option>
                                                             <option value="2"> VI</option>
@@ -486,15 +487,15 @@ function AllTransactionReportsForm() {
 
                                                 </div>
                                             </form>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                        );
+                                    }}
+                                </Formik>
                             </div>
                         </div>
-                    );
-                }}
-            </Formik>
+                    </div>
+                </div>
+            </div>
+
         </>
 
     )

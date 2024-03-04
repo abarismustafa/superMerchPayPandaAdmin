@@ -1,9 +1,11 @@
 
+import { useParams } from 'react-router-dom'
 import Breadcrumbs from '../../common/breadcrumb/Breadcrumbs'
 import '../../components/distributer/distributer.css'
 import DistributerKycStatus from './distributerKycStatus/DistributerKycStatus'
 import DistributerList from './distributerList/DistributerList'
 function Distributer() {
+    const params = useParams()
     const breadCrumbsTitle = {
         id:"1",
         title_1:"Members",
@@ -13,7 +15,7 @@ function Distributer() {
         <>
         <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle}/>
             <DistributerKycStatus />
-            <DistributerList />
+            <DistributerList params={params} />
         </>
     )
 }

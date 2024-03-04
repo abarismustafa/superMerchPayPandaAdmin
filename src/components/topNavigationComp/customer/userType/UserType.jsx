@@ -103,7 +103,7 @@ const UserType = () => {
                                                 <td>
                                                     <div className="d-flex justify-content-end">
                                                         <Link to={`/admin/update/user-type/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                        <Popconfirm
+                                                        {/* <Popconfirm
                                                             title="Delete Currency !"
                                                             description="Are you sure to delete ?"
                                                             onConfirm={() => confirm(item?._id)}
@@ -112,7 +112,7 @@ const UserType = () => {
                                                             cancelText="No"
                                                         >
                                                             <Link to="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
-                                                        </Popconfirm>
+                                                        </Popconfirm> */}
                                                     </div>
                                                 </td>
 

@@ -1,4 +1,4 @@
-import { FaBookReader, FaUserFriends, FaUsers } from "react-icons/fa";
+import { FaBookReader, FaFileContract, FaUserFriends, FaUsers } from "react-icons/fa";
 import { AiFillSetting } from "react-icons/ai";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { MdDashboard, MdWeb, MdDiscFull, MdPayment } from "react-icons/md";
@@ -6,40 +6,46 @@ import { BiSolidReport } from "react-icons/bi";
 import { SiQzone } from "react-icons/si";
 import { IoIosPeople } from "react-icons/io";
 import { FcCustomerSupport } from "react-icons/fc";
+import { useEffect } from "react";
+import { getLength } from "../../../api/login/Login";
 
-export const navigationData = {
-  menus: [
+
+/* export const getN = (count)=>{
+  count?.user.find((cItm)=>{
+    ret_Data(cItm);
+  })
+} */
+
+export const navigationData = (count) => {
+  const membersTypes = [
+    {
+      uniqueId: "submenu_2_3",
+      id: "3",
+      title: "Suspended User",
+      path: "suspended-users",
+    },
+    {
+      uniqueId: "submenu_2_4",
+      id: "4",
+      title: "Not Working User",
+      path: "not-working-users",
+    },
+  ]
+  count?.user?.forEach(element => {
+    membersTypes.push({
+      uniqueId: element._id,
+      id: element._id,
+      title: element?.memeberType + `(${element?.count})`,
+      path: `member-list/${element._id}/${element.memeberType}`,
+    },)
+  });
+  return [
     {
       uniqueId: "menu_2",
       id: "2",
       title: "Members",
       icon: <FaUserFriends />,
-      subMenus: [
-        {
-          uniqueId: "submenu_2_1",
-          id: "1",
-          title: "Distributor (0)",
-          path: "member-list/distributor",
-        },
-        {
-          uniqueId: "submenu_2_2",
-          id: "2",
-          title: "Retailer (0)",
-          path: "member-list/retailer",
-        },
-        {
-          uniqueId: "submenu_2_3",
-          id: "3",
-          title: "Suspended User",
-          path: "suspended-users",
-        },
-        {
-          uniqueId: "submenu_2_4",
-          id: "4",
-          title: "Not Working User",
-          path: "not-working-users",
-        },
-      ],
+      subMenus: membersTypes,
     },
     {
       uniqueId: "menu_3",
@@ -109,6 +115,26 @@ export const navigationData = {
             },
           ],
         }, */
+      ],
+    },
+    {
+      uniqueId: "menu_15",
+      id: "3",
+      title: "Sales Reports",
+      icon: <FaFileContract />,
+      subMenus: [
+        {
+          uniqueId: "submenu_15_1",
+          id: "1",
+          title: "Summary Report",
+          path: "summary-report",
+        },
+        {
+          uniqueId: "submenu_15_2",
+          id: "2",
+          title: "Performance Report",
+          path: "performance-report",
+        },
       ],
     },
     {
@@ -575,5 +601,6 @@ export const navigationData = {
         },
       ],
     },
-  ],
-};
+  ]
+}
+

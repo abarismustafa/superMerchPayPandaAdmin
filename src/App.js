@@ -162,6 +162,10 @@ import { useDispatch } from "react-redux";
 import { setIsLogin } from "./slice/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SalesReportsPage from "./pages/salesRep";
+import PerformanceReports from "./components/salesReports/performanceReports/PerformanceReports";
+import AddpadateSummary from "./components/salesReports/summaryReports/addUpdateSummary/AddpadateSummary";
+import AddUpdatePerformanceReports from "./components/salesReports/performanceReports/addupdatePerformanceReport/AddUpdatePerformanceReports";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -428,18 +432,19 @@ function App() {
               {/*  Shoib Route */}
               {/* <Route path="/dashboard" element={<Dashboardpage />} />*/}
               <Route
-                path="member-list/distributor"
+                path="member-list/:id/:name"  
                 element={<DistributerPage />}
               />
               <Route
-                path="create-user/distributor"
+                path="create-user/:id/:name"
                 element={<CreateUserDistributerPage />}
               />
-              <Route path="member-list/retailer" element={<RetailerPage />} />
-              <Route
+              <Route path="member-list/:id/:name" element={<RetailerPage />} />
+              
+             {/*  <Route
                 path="create-user/retailer"
                 element={<CreateUserRetailerPage />}
-              />
+              /> */}
               <Route path="suspended-users" element={<SuspendedUserPage />} />
               <Route
                 path="add-suspended-users"
@@ -470,6 +475,22 @@ function App() {
               <Route
                 path="add-pending-transaction-report"
                 element={<AddPendingTransactionReport />}
+              />
+              <Route
+                path="summary-report"
+                element={<SalesReportsPage />}
+              />
+              <Route
+                path="add-summary-report"
+                element={<AddpadateSummary />}
+              />
+              <Route
+                path="performance-report"
+                element={<PerformanceReports />}
+              />
+              <Route
+                path="add-performance-reports"
+                element={<AddUpdatePerformanceReports />}
               />
               <Route
                 path="operator-wise-sale"
