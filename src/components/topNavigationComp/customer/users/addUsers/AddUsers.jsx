@@ -173,7 +173,6 @@ const AddUsers = () => {
         } catch (error) {}
       }
     } catch (error) {
-      console.error("Error:", error);
     }
 
     // try {
