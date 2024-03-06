@@ -1,8 +1,10 @@
 import { Formik } from "formik";
 import CustomInputField from "../../../../common/CustomInputField";
 import CustomDropdown from "../../../../common/CustomDropdown";
+import { useEffect, useState } from "react";
 
-function Presnoaldetails({initialValues}) {
+function Presnoaldetails({ value, submitForm ,handleInput_B}) {
+    const [data, setData] = useState()
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -27,7 +29,7 @@ function Presnoaldetails({initialValues}) {
 
     const validate = (values) => {
         let errors = {};
-      
+
         if (!values.address) {
             errors.address = "Address is required";
         }
@@ -36,7 +38,7 @@ function Presnoaldetails({initialValues}) {
             errors.city = "City Name is required";
         }
 
-        
+
 
         if (!values.pincode) {
             errors.pincode = "Pincode is required";
@@ -57,9 +59,12 @@ function Presnoaldetails({initialValues}) {
         return errors;
     };
 
-    const submitForm = (values) => {
-        console.log(values);
-    };
+    // useEffect(() => {
+    //     const values = {
+    //         ...value
+    //     }
+    //     setData(values);
+    // }, [value])
 
     const changeHandle = (selectedData) => {
         // TODO
@@ -68,10 +73,11 @@ function Presnoaldetails({initialValues}) {
         <>
 
             <Formik
-                initialValues={initialValues}
+                initialValues={value}
                 validate={validate}
-                onSubmit={submitForm}
+                // onSubmit={submitForm}
                 className="tbl-captionn"
+                enableReinitialize
             >
                 {(formik) => {
                     const {
@@ -91,60 +97,63 @@ function Presnoaldetails({initialValues}) {
                                     <CustomInputField
                                         type="text"
                                         placeholder="Address * "
-                                        value={values.address}
-                                        hasError={errors.address && touched.address}
-                                        onChange={handleChange}
+                                        value={value?.presentAddr}
+                                        hasError={errors.presentAddr && touched.presentAddr}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
-                                        errorMsg={errors.address}
-                                        id="address"
+                                        errorMsg={errors.presentAddr}
+                                        id="presentAddr"
+                                        name='presentAddr'
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
                                     <CustomInputField
                                         type="text"
                                         placeholder="City"
-                                        value={values.city}
+                                        value={data?.city}
                                         hasError={errors.city && touched.city}
-                                        onChange={handleChange}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
                                         errorMsg={errors.city}
                                         id="city"
+                                        name="city"
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
                                     <CustomInputField
                                         type="text"
                                         placeholder="Pincode"
-                                        value={values.pincode}
+                                        value={data?.pincode}
                                         hasError={errors.pincode && touched.pincode}
-                                        onChange={handleChange}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
                                         errorMsg={errors.pincode}
                                         id="pincode"
+                                        name="pinCode"
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
                                     <CustomInputField
                                         type="text"
                                         placeholder="State"
-                                        value={values.state}
+                                        value={data?.state}
                                         hasError={errors.state && touched.state}
-                                        onChange={handleChange}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
                                         errorMsg={errors.state}
                                         id="state"
+                                        name="state"
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
-                                    <div className="dropdownWrapper">
-                                        <CustomDropdown
-                                            itemList={itemList}
-                                            placeholder="Select State *"
-                                            isSingleSelect={false}
-                                            icon={true}
-                                            onChange={changeHandle}
-                                        />
-                                    </div>
+                                    <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
+                                        defaultValue={data?.is_active}
+                                        onChange={handleInput_B}
+                                    >
+                                        <option selected> Select State Id</option>
+                                        <option value={data?.state}> Select State By Id</option>
+                                    </select>
+
                                 </div>
                             </div>
                         </form>

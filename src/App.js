@@ -436,7 +436,7 @@ function App() {
                 element={<DistributerPage />}
               />
               <Route
-                path="create-user/:id/:name"
+                path="create-user/:id"
                 element={<CreateUserDistributerPage />}
               />
               <Route path="member-list/:id/:name" element={<RetailerPage />} />

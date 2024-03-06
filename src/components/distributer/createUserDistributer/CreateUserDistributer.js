@@ -3,79 +3,55 @@ import BasicDetails from "./basicDetails/BasicDetails";
 import Presnoaldetails from "./presnolDetails/PresnoalDetails";
 import Services from "./services/Services";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Tab, Tabs } from "react-bootstrap";
+import { getDistIdAgainst, updateDistIdAgainst } from "../../../api/login/Login";
+import { use } from "i18next";
 
 const TAB = ["Basic Details", "Permanent Details", "Service"];
 
 function CreateUserDistributer() {
+  const [state, setState] = useState()
   const params = useParams()
+  const navigate = useNavigate()
   const [selectedTabPosition, setSelectedTabPosition] = useState(0);
-  const [initialValues, setInitialValues] = useState({
-    basicDetails: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      mobileNumber: "",
-      masterType: "",
-      shopName: "",
-      lockAmount: "",
-      panNumber: "",
-      gstNumber: "",
-      officeAddress: "",
-    },
-    permanentDetails: {
-      address: "",
-      city: "",
-      pinCode: "",
+  const [basicDetails, setbasicDetails] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    masterType: "",
+    shopName: "",
+    lockAmount: "",
+    pan_number: "",
+    adhaar_number: "",
+    office_address: "",
+  })
+  const [permanentDetails, setpermanentDetails] = useState({
+    p_address: "",
+    city: "",
+    pinCode: "",
+    state: "",
+    district: "",
+    
+  })
+  const [service, setservice] = useState({
+      H_service_socity: "",
+      cable_tv_service: "",
+      lpg_service: "",
       state: "",
-      district: "",
-    },
-    service: {
-      societyService: "",
-      tvService: "",
-      gasService: "",
-      pancardService: "",
-      cableTvService: "",
-    },
+      pancard_service: "",
   })
 
-  // const initialValues = {
-  //   basicDetails: {
-  //     firstName: "",
-  //     lastName: "",
-  //     email: "",
-  //     mobileNumber: "",
-  //     masterType: "",
-  //     shopName: "",
-  //     lockAmount: "",
-  //     panNumber: "",
-  //     gstNumber: "",
-  //     officeAddress: "",
-  //   },
-  //   permanentDetails: {
-  //     address: "",
-  //     city: "",
-  //     pinCode: "",
-  //     state: "",
-  //     district: "",
-  //   },
-  //   service: {
-  //     societyService: "",
-  //     tvService: "",
-  //     gasService: "",
-  //     pancardService: "",
-  //     cableTvService: "",
-  //   },
-  // };
+
+
 
   const validate = (values) => {
     let errors = {};
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const regexMobileNumber = /^[0-9]{10}$/;
+    const regexmobile = /^[0-9]{10}$/;
     const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-    const regexGstNumber =
-      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+    const regexAadhar =
+      /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
 
     if (!values.firstName) {
       errors.firstName = "First Name is required";
@@ -91,10 +67,10 @@ function CreateUserDistributer() {
       errors.email = "Invalid Email";
     }
 
-    if (!values.mobileNumber) {
-      errors.mobileNumber = "Mobile Number is required";
-    } else if (!regexMobileNumber.test(values.mobileNumber)) {
-      errors.mobileNumber = "Invalid Mobile Number";
+    if (!values.mobile) {
+      errors.mobile = "Mobile Number is required";
+    } else if (!regexmobile.test(values.mobile)) {
+      errors.mobile = "Invalid Mobile Number";
     }
 
     if (!values.masterType) {
@@ -114,13 +90,11 @@ function CreateUserDistributer() {
     } else if (!regexPanNumber.test(values.panNumber)) {
       errors.panNumber = "Invalid PAN Number";
     }
-
-    // if (!values.gstNumber) {
-    //   errors.gstNumber = "GST Number is required";
-    // } else if (!regexGstNumber.test(values.gstNumber)) {
-    //   errors.gstNumber = "Invalid GST Number";
-    // }
-
+    if (!values.adhaar_number) {
+      errors.adhaar_number = "Aadhar Number is required";
+    } else if (!regexAadhar.test(values.adhaar_number)) {
+      errors.adhaar_number = "Invalid Aadhar Number";
+    }
     if (!values.officeAddress) {
       errors.officeAddress = "Office Address is required";
     }
@@ -129,67 +103,95 @@ function CreateUserDistributer() {
   };
 
   const toastSuccessMessage = () => {
-    toast.success(`${params?.id ? "Update" : "Add"} Country Successfully.`, {
+    toast.success(`${params?.id ? "Update" : "Add"} Service Category Successfully.`, {
       position: "top-center",
     });
   };
 
-  const submitForm = async (values) => {
-
+  const submitForm = async (e, data) => {
+    e.preventDefault()
+    const cloneMerg = { basicDetails: basicDetails,permanentDetails:permanentDetails ,service:service}
+    const clone = { ...cloneMerg }
     try {
-      if (!params?.id) {
-        try {
-          // const res = await countryAdd(values);
-          // if (res?.statusCode == "200") {
-          //   toastSuccessMessage();
-          // }
-        } catch (error) {
-
-        }
-
-      } else {
-        try {
-          // await countryUpdate(params.id, values);
-        } catch (error) {
-
-        }
-
+      const res = await updateDistIdAgainst(params?.id,clone);
+      if (res?.statusCode == "200") {
+        toastSuccessMessage();
+        
+        /* setTimeout(() => {
+          navigate(`/admin/member-list/${params.id}/${params.name}`)
+        }, [4000]) */
       }
-
     } catch (error) {
-      console.error("Error:", error);
+      alert(error)
     }
-  };
 
-  // useEffect(() => {
-  //   curencyidget()
-  // }, [])
+  }
 
-  // useEffect(() => {
-  //   const fetchCurrency = async () => {
-  //     try {
-  //       if (params?.id) {
-  //         const response = await getcountry(params.id);
-  //         const currencyData = response.data;
-  //         setInitialValues(currencyData);
-  //       } else {
-  //         setInitialValues({
-  //           name: "",
-  //           code: "",
-  //           curruncy_id: "",
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching currency:", error);
-  //     }
-  //   };
 
-  //   fetchCurrency();
-  // }, [params?.id]);
+  const handleInput_A = (e) => {
+    const clone = {...basicDetails}
+    clone[e.target.name]= e.target.value
+    setbasicDetails(clone)
+    
+  }
+  const handleInput_B = (e) => {
+    console.log(e.target.value);
+    const clone = {...permanentDetails}
+    clone[e.target.name]= e.target.value
+    setpermanentDetails(clone)
+
+  }
+
+  const handleInput_C = (e) => {
+    /* console.log(e.target?.value);
+    const clone = {...service}
+    clone[e.target.name]= e.target.value
+    setservice(clone) */
+
+  }
+
+
+
+
 
   const tabChange = (position) => {
     setSelectedTabPosition(position);
   };
+  useEffect(() => {
+    const fetchCurrency = async (id) => {
+      try {
+        const response = await getDistIdAgainst(id);
+        setState(response.data)
+
+        setbasicDetails({
+          name: response.data?.name,
+          email: response.data?.email,
+          mobile: response.data?.mobile,
+          selectMemberType: response.data?.selectMemberType,
+          adhaar_number: response.data?.adhaar_number,
+          office_address: "officeAddress",
+        })
+        setpermanentDetails({
+          presentAddr: response.data?.presentAddr,
+          city: response.data?.city,
+          pinCode: response.data?.pinCode,
+          state: response.data?.state,
+          district: response.data?.district,
+        })
+        setservice({
+          H_service_socity: response.data?.H_service_socity,
+          cable_tv_service:response.data?.cable_tv_service,
+          lpg_service: response.data?.lpg_service,
+          state: response.data?.state,
+          pancard_service: response.data?.pancard_service,
+        })
+      } catch (error) {
+        console.error("Error fetching currency:", error);
+      }
+    };
+
+    fetchCurrency(params?.id);
+  }, [params?.id]);
   return (
     <>
       <section className="CreateUserDistributer m-4 ">
@@ -238,15 +240,17 @@ function CreateUserDistributer() {
                     className="mb-3"
                   >
                     <Tab eventKey="Basic Details" title="Basic Details">
-                      <BasicDetails initialValues={initialValues.basicDetails} validate={validate} submitForm={submitForm} />
+                      <BasicDetails initialValues={basicDetails} validate={validate} value={basicDetails} handleInput_A={handleInput_A} />
                     </Tab>
                     <Tab eventKey="Permanent Details" title="Permanent Details">
                       <Presnoaldetails
-                        initialValues={initialValues.permanentDetails}
+                        initialValues={permanentDetails}
+                        value={permanentDetails}
+                        handleInput_B={handleInput_B}
                       />
                     </Tab>
                     <Tab eventKey="Service" title="Service">
-                      <Services initialValues={initialValues.service} />
+                      <Services initialValues={service} validate={validate} value={state} submitForm={submitForm} handleInput_C={handleInput_C} />
                     </Tab>
                   </Tabs>
 

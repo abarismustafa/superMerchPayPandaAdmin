@@ -2,8 +2,10 @@ import CustomInputField from "../../../../common/CustomInputField";
 import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import CustomTextArea from "../../../../common/CustomTextArea";
+import { useEffect, useState } from "react";
 
-function BasicDetails({ initialValues, validate, submitForm }) {
+function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A }) {
+  const [data, setData] = useState()
   const name = "dropdown";
   const placeholder = "Course Name";
   const type = "dropdown";
@@ -34,8 +36,8 @@ function BasicDetails({ initialValues, validate, submitForm }) {
   //   const regexGstNumber =
   //     /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
-  //   if (!values.firstName) {
-  //     errors.firstName = "First Name is required";
+  //   if (!values.name) {
+  //     errors.name = "First Name is required";
   //   }
 
   //   if (!values.lastName) {
@@ -92,14 +94,20 @@ function BasicDetails({ initialValues, validate, submitForm }) {
   const changeHandle = (selectedData) => {
     // TODO
   };
-
+  // useEffect(() => {
+  //   const values = {
+  //     ...value
+  //   }
+  //   setData(values);
+  // }, [value])
   return (
     <>
       <Formik
-        initialValues={initialValues}
+        initialValues={value}
         validate={validate}
-        onSubmit={submitForm}
+        // onSubmit={submitForm}
         className="tbl-captionn"
+        enableReinitialize
       >
         {(formik) => {
           const {
@@ -118,50 +126,41 @@ function BasicDetails({ initialValues, validate, submitForm }) {
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
-                    placeholder="First Name *"
-                    value={values.firstName}
-                    hasError={errors.firstName && touched.firstName}
-                    onChange={handleChange}
+                    placeholder="Name *"
+                    value={values?.name}
+                    hasError={errors.name && touched.name}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
-                    errorMsg={errors.firstName}
+                    errorMsg={errors.name}
                     autoFocus={true}
-                    id="firstName"
-                  />
-                </div>
-                <div className="col-xl-4 mb-3">
-                  <CustomInputField
-                    type="text"
-                    placeholder="Last Name *"
-                    value={values.lastName}
-                    hasError={errors.lastName && touched.lastName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    errorMsg={errors.lastName}
-                    id="lastName"
+                    id="name"
+                    name="name"
                   />
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="email"
                     placeholder="Email *"
-                    value={values.email}
+                    value={values?.email}
                     hasError={errors.email && touched.email}
-                    onChange={handleChange}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
                     errorMsg={errors.email}
                     id="email"
+                    name="email"
                   />
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
-                    type="number"
+                    type="text"
                     placeholder="Mobile Number *"
-                    value={values.mobileNumber}
-                    hasError={errors.mobileNumber && touched.mobileNumber}
-                    onChange={handleChange}
+                    value={values?.mobile}
+                    hasError={errors.mobile && touched.mobile}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
-                    errorMsg={errors.mobileNumber}
-                    id="mobileNumber"
+                    errorMsg={errors.mobile}
+                    id="mobile"
+                    name="mobile"
                   />
                 </div>
                 <div className="col-xl-4 mb-3">
@@ -172,6 +171,7 @@ function BasicDetails({ initialValues, validate, submitForm }) {
                       isSingleSelect={false}
                       icon={true}
                       onChange={changeHandle}
+                      
                     />
                   </div>
                 </div>
@@ -179,12 +179,13 @@ function BasicDetails({ initialValues, validate, submitForm }) {
                   <CustomInputField
                     type="text"
                     placeholder="Shop Name *"
-                    value={values.shopName}
+                    value={values?.shopName}
                     hasError={errors.shopName && touched.shopName}
-                    onChange={handleChange}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
                     errorMsg={errors.shopName}
                     id="shopName"
+                    name="shopNamename"
                   />
                 </div>
 
@@ -192,49 +193,53 @@ function BasicDetails({ initialValues, validate, submitForm }) {
                   <CustomInputField
                     type="text"
                     placeholder="Lock Amount *"
-                    value={values.lockAmount}
+                    value={values?.lockAmount}
                     hasError={errors.lockAmount && touched.lockAmount}
-                    onChange={handleChange}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
                     errorMsg={errors.lockAmount}
                     id="lockAmount"
+                    name="lockAmount"
                   />
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
                     placeholder="Pan Number *"
-                    value={values.panNumber}
-                    hasError={errors.panNumber && touched.panNumber}
-                    onChange={handleChange}
+                    value={values?.pan_number}
+                    hasError={errors.pan_number && touched.pan_number}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
-                    errorMsg={errors.panNumber}
-                    id="panNumber"
+                    errorMsg={errors.pan_number}
+                    id="pan_number"
+                    name="pan_number"
                   />
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
-                    placeholder="GST Number "
-                    value={values.gstNumber}
-                    hasError={errors.gstNumber && touched.gstNumber}
-                    onChange={handleChange}
+                    placeholder="Aadhar Number space must after 4 digit "
+                    value={values?.adhaar_number}
+                    hasError={errors.adhaar_number && touched.adhaar_number}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
-                    errorMsg={errors.gstNumber}
-                    id="gstNumber"
+                    errorMsg={errors.adhaar_number}
+                    id="adhaar_number"
+                    name="adhaar_number"
                   />
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomTextArea
                     placeholder="Office Address *"
-                    value={values.officeAddress}
+                    value={values?.officeAddress}
                     hasError={errors.officeAddress && touched.officeAddress}
-                    onChange={handleChange}
+                    onChange={handleInput_A}
                     onBlur={handleBlur}
                     errorMsg={errors.officeAddress}
                     autoFocus={false}
                     rows="6"
                     id="officeAddress"
+                    name="officeAddress"
                   />
                 </div>
               </div>
