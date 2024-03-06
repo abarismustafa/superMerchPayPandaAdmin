@@ -499,4 +499,22 @@ export const paginationPayoutbeneficiaryMaster = (page, count) => {
 export const paginationCountryMaster = (page, count) => {
   return axiosInstance.get(`${baseUrl}country/page/${page}&${count}`)
 }
+ 
+
+
 // pagination
+
+// Distributor Retailer
+
+export const reailerDistIdAgainst = (page, count,id) => {
+  return axiosInstance.get(`${baseUrl}user/member/filter?id=${id}&page=${page}&count=${count}`)
+}
+
+// Distributor Retailer upDate
+
+export const getDistIdAgainst = (id) => {
+  return axiosInstance.get(`${baseUrl}user/${id}`)
+}
+export const updateDistIdAgainst = (id,value) => {
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`,{ ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
+}
