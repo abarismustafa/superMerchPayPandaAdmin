@@ -516,6 +516,5 @@ export const getDistIdAgainst = (id) => {
   return axiosInstance.get(`${baseUrl}user/${id}`)
 }
 export const updateDistIdAgainst = (id,value) => {
-  console.log(value,id);
   return axiosInstance.put(`${baseUrl}user/updateuser/${id}`,{ ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
 }

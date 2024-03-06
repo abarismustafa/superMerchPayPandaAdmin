@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BasicDetails from "./basicDetails/BasicDetails";
 import Presnoaldetails from "./presnolDetails/PresnoalDetails";
 import Services from "./services/Services";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { Tab, Tabs } from "react-bootstrap";
 import { getDistIdAgainst, updateDistIdAgainst } from "../../../api/login/Login";
@@ -103,7 +103,7 @@ function CreateUserDistributer() {
   };
 
   const toastSuccessMessage = () => {
-    toast.success(`${params?.id ? "Update" : "Add"} Service Category Successfully.`, {
+    toast.success(`${params?.id ? "Update" : "Add"} User Successfully.`, {
       position: "top-center",
     });
   };
@@ -116,8 +116,7 @@ function CreateUserDistributer() {
       const res = await updateDistIdAgainst(params?.id,clone);
       if (res?.statusCode == "200") {
         toastSuccessMessage();
-        
-        /* setTimeout(() => {
+        /* āsetTimeout(() => {
           navigate(`/admin/member-list/${params.id}/${params.name}`)
         }, [4000]) */
       }
@@ -230,8 +229,8 @@ function CreateUserDistributer() {
                 <div className="table-responsive active-projects style-1 " >
                   <div className="tbl-caption tbl-caption-2" >
                     <h4 className="heading mb-0">
-                      {/* {params?.id ? "UPDATE" : "ADD"} COUNTRY */}
-                      ADD USER {params?.name}
+                      {params?.id ? "UPDATE" : "ADD"} USER
+                     
                     </h4>
                   </div>
                   <Tabs
@@ -260,6 +259,7 @@ function CreateUserDistributer() {
           </div>
         </div>
       </section>
+      <ToastContainer/>
     </>
   );
 }

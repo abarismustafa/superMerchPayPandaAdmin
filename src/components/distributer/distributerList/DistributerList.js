@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import { reailerDistIdAgainst } from "../../../api/login/Login"
 import { useEffect, useState } from "react"
 import { Pagination } from "react-bootstrap";
+import Loadar from "../../../common/loader/Loader";
 
 function DistributerList({ params }) {
     const [state, setState] = useState()
@@ -34,6 +35,7 @@ function DistributerList({ params }) {
      
     return (
         <>
+        {loading && <Loadar/>}
             <section className="ListDistributer m-4">
                 <div className="row">
                     <div className="col-xl-12">
