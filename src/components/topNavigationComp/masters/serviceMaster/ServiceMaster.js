@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { Popconfirm, message } from "antd"
 import banner from '../../../../assets/images/logo/merchant.paypanda-logo.png'
 import icon from '../../../../assets/images/logo/profile-pic.png'
+import { baseUrlImage } from "../../../../baseUrl"
 const breadCrumbsTitle = {
     id: "1",
     title_1: "Master",
@@ -113,8 +114,8 @@ function ServiceMaster() {
                                                     <span className="elip">{item?.full_description?.slice(0, 35)} &nbsp; ...</span>
 
                                                 </td>
-                                                <td className="sorting_1"><span>{item?.icon ? <img src={item?.icon} alt="banner" width={'30px'} /> : <img src={icon} alt="banner" width={'30px'} />}</span></td>
-                                                <td className="sorting_1"><span>{item?.banner_img ? <img src={item?.banner_img} alt="banner" width={'80px'} /> : <img src={banner} alt="banner" width={'80px'} />}</span></td>
+                                                <td className="sorting_1"><span>{item?.icon ? <img src={`${baseUrlImage}${item?.icon}`} alt="banner" width={'30px'} /> : <img src={icon} alt="banner" width={'30px'} />}</span></td>
+                                                <td className="sorting_1"><span>{item?.banner_img ? <img src={`${baseUrlImage}${item?.banner_img}`} alt="banner" width={'80px'} /> : <img src={banner} alt="banner" width={'80px'} />}</span></td>
                                                 <td><span>{item?.service_category}</span></td>
                                                 <td>
                                                     <span className="badge badge-success text-light  border-0" style={{ backgroundColor: `${item?.is_active === true ? 'blue' : 'red'}`, fontSize: `${item?.is_active === false ? '0.8rem' : ''}` }}>{item?.is_active == true ? 'Active' : 'Inactive'}</span>

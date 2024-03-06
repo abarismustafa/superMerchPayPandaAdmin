@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import BordcastTextEditor from '../../../../../broadcast/bordcastTextEditor/BordcastTextEditor';
 import Loadar from '../../../../../../common/loader/Loader';
+import { baseUrlImage } from '../../../../../../baseUrl';
 
 
-function TabAddServiceMaster({ i,colodinaryImage, language, service_category, submitForm, handleChangeCus, item, changeHandle, params, validate }) {
+function TabAddServiceMaster({ i, colodinaryImage, language, service_category, submitForm, handleChangeCus, item, changeHandle, params, validate }) {
+    console.log(item);
     return (
         <>
-       
+
             <Formik
                 initialValues={item}
                 validate={validate}
@@ -62,19 +64,46 @@ function TabAddServiceMaster({ i,colodinaryImage, language, service_category, su
                                 />
                             </div> */}
                                 <div className="col-xl-6 mb-3">
+                                    {params?.id ? <div className="d-flex">
+                                        <img
+                                            src={`${baseUrlImage}${item?.icon}`}
+                                            alt="profile"
+                                            width={50}
+                                            height={60}
+                                        />
+                                        <CustomInputField
+                                            type="file"
+                                            hasError={errors.icon && touched.icon}
+                                            onChange={(e) => colodinaryImage(e, item?.language_id)}
+                                            onBlur={handleBlur}
+                                            errorMsg={errors.icon}
+                                            autoFocus={true}
+                                            id="icon"
+                                            name="icon"
+                                            placeholder="Icon Image"
+                                        />
+                                    </div> : <div className='d-flex'>
+                                        {item?.icon && <img
+                                            src={`${baseUrlImage}${item?.icon}`}
+                                            alt="profile"
+                                            width={50}
+                                            height={60}
+                                        />}
 
-                                    <CustomInputField
-                                        type="file"
-                                        value={item.icon}
-                                        hasError={errors.icon && touched.icon}
-                                        onChange={colodinaryImage }
-                                        onBlur={handleBlur}
-                                        errorMsg={errors.icon}
-                                        autoFocus={true}
-                                        id="icon"
-                                        name="icon"
-                                        placeholder="Icon Image"
-                                    />
+                                        <CustomInputField
+                                            type="file"
+                                            // value={item.icon}
+                                            hasError={errors.icon && touched.icon}
+                                            onChange={(e) => colodinaryImage(e, item?.language_id)}
+                                            onBlur={handleBlur}
+                                            errorMsg={errors.icon}
+                                            autoFocus={true}
+                                            id="icon"
+                                            name="icon"
+                                            placeholder="Icon Image"
+                                        />
+                                    </div>}
+
                                 </div>
                                 <div className="col-xl-6 mb-3">
                                     <CustomTextArea
@@ -110,29 +139,59 @@ function TabAddServiceMaster({ i,colodinaryImage, language, service_category, su
 
                                 <div className="col-xl-6 mb-3">
 
-                                    <CustomInputField
-                                        type="file"
-                                        value={item.banner_img}
-                                        hasError={errors.banner_img && touched.banner_img}
-                                        onChange={colodinaryImage}
-                                        onBlur={handleBlur}
-                                        errorMsg={errors.banner_img}
-                                        autoFocus={true}
-                                        id="banner_img"
-                                        name="banner_img"
-                                        placeholder="Banner Image"
-                                    />
+                                    {params?.id ? <div className="d-flex">
+                                        <img
+                                            src={`${baseUrlImage}${item?.banner_img}`}
+                                            alt="profile"
+                                            width={50}
+                                            height={60}
+                                        />
+
+                                        <CustomInputField
+                                            type="file"
+                                            hasError={errors.banner_img && touched.banner_img}
+                                            onChange={(e) => colodinaryImage(e, item?.language_id)}
+                                            onBlur={handleBlur}
+                                            errorMsg={errors.banner_img}
+                                            autoFocus={true}
+                                            id="banner_img"
+                                            name="banner_img"
+                                            placeholder="Banner Image"
+                                        />
+                                    </div> : <div className='d-flex'>
+                                        {item?.banner_img && <img
+                                            src={`${baseUrlImage}${item?.banner_img}`}
+                                            alt="profile"
+                                            width={50}
+                                            height={60}
+                                        />}
+
+                                        <CustomInputField
+                                            type="file"
+                                            hasError={errors.banner_img && touched.banner_img}
+                                            onChange={(e) => colodinaryImage(e, item?.language_id)}
+                                            onBlur={handleBlur}
+                                            errorMsg={errors.banner_img}
+                                            autoFocus={true}
+                                            id="banner_img"
+                                            name="banner_img"
+                                            placeholder="Banner Image"
+                                        />
+                                    </div>}
+
+
+
+
                                 </div>
                                 <div className="col-xl-6">
-                                    <CustomDropdown
-                                        itemList={service_category}
-                                        placeholder="Select Service Category *"
-                                        isSingleSelect={false}
-                                        icon={true}
-                                        onChange={changeHandle}
-                                        name="service_category"
-                                        id='service_category'
-                                    />
+
+                                    <select class="form-select" aria-label="Default select example" name="service_category" value={item?.service_category} onChange={(e) => handleChangeCus(e, item?.language_id)}>
+                                        <option selected>Open this select service category</option>
+                                        {service_category && service_category?.map((item) => {
+                                            return <option value={item.id}>{item.name}</option>
+                                        })}
+
+                                    </select>
                                 </div>
                                 {/*  <div className="col-xl-6 mb-3">
 
@@ -150,8 +209,8 @@ function TabAddServiceMaster({ i,colodinaryImage, language, service_category, su
                                 />
                             </div> */}
                                 <div className="col-xl-6 mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="is_active" onChange={(e) => handleChangeCus(e, item?.language_id)}>
-                                        <option selected>Open this select menu</option>
+                                    <select class="form-select" aria-label="Default select example" name="is_active" value={item?.is_active} onChange={(e) => handleChangeCus(e, item?.language_id)}>
+                                        <option selected>Open this select is_active</option>
                                         <option value={true}>Yes</option>
                                         <option value={false}>No</option>
 
@@ -176,7 +235,7 @@ function TabAddServiceMaster({ i,colodinaryImage, language, service_category, su
                                         type="file"
                                         value={item.meta_image}
                                         hasError={errors.banner_img && touched.meta_image}
-                                        onChange={colodinaryImage }
+                                        onChange={colodinaryImage}
                                         onBlur={handleBlur}
                                         errorMsg={errors.meta_image}
                                         autoFocus={true}
