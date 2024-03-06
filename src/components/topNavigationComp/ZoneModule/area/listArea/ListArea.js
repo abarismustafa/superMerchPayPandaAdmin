@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 
 
@@ -10,17 +10,16 @@ import axios from "axios";
 function ListArea() {
     const [curencyData, setCurrencyData] = useState(null)
     const [loading, setLoading] = useState(false);
-
-
     const [count, setCount] = useState(10)
     const [page, setPage] = useState(0)
     const [totalCount, setTotalCount] = useState()
+    
 
     const getPaginationApi = async (page) => {
         setLoading(true)
         try {
             const res = await paginationApiArea(page, count)
-            // console.log(res?.data?.area);
+            console.log(res?.data?.area);
             setTotalCount(res?.data?.count)
             setCurrencyData(res?.data?.area)
         } catch (error) {
