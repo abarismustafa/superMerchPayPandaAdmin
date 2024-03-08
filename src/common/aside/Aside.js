@@ -144,7 +144,7 @@ function Aside({ showAsideBar }) {
               type="button"
               onClick={handleLogOut}
             >
-              <CgLogOut /> <span>Log out dsdsdsd</span>
+              <CgLogOut /> <span>Log out </span>
             </Button>
           </div>
         </div>

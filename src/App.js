@@ -214,6 +214,7 @@ function App() {
                 path="update-role-master/:id"
                 element={<AddRoleMaster />}
               />
+              
               {/* <Route path="edit-role-master" element={<EditRoleMaster />} /> */}
               <Route
                 path="company-staff/welcome"
@@ -437,7 +438,7 @@ function App() {
                 element={<DistributerPage />}
               />
               <Route
-                path="create-user/:id/:name"
+                path="create-user/:id"
                 element={<CreateUserDistributerPage />}
               />
               <Route path="member-list/:id/:name" element={<RetailerPage />} />

@@ -1,42 +1,39 @@
 import { Formik } from "formik";
 import CustomInputField from "../../../../common/CustomInputField";
 import CustomDropdown from "../../../../common/CustomDropdown";
+import { useEffect, useState } from "react";
+import { countryList, getStateMaster } from "../../../../api/login/Login";
 
-function Presnoaldetails({initialValues}) {
+function Presnoaldetails({ value, submitForm, handleInput_B }) {
+    const [country, setcountry] = useState()
+    const [state, setstate] = useState()
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
-    const itemList = [
-        {
-            name: "Maharashtra",
-            value: "Maharashtra",
-        },
-        {
-            name: "Delhi",
-            value: "Delhi",
-        },
-        {
-            name: "Tamil Nadu",
-            value: "Tamil Nadu",
-        },
-        {
-            name: "Gujarat",
-            value: "Gujarat",
-        },
-    ];
+
+    const getCountry= async()=>{
+        const res = await countryList()
+        setcountry(res?.data)
+        const response = await getStateMaster()
+        setstate(response?.data)
+
+    }
+    useEffect(()=>{
+        getCountry()
+    },[])
 
     const validate = (values) => {
         let errors = {};
-      
+
         if (!values.address) {
             errors.address = "Address is required";
         }
 
-        if (!values.city) {
-            errors.city = "City Name is required";
+        if (!values.state) {
+            errors.state = "State Name is required";
         }
 
-        
+
 
         if (!values.pincode) {
             errors.pincode = "Pincode is required";
@@ -57,9 +54,12 @@ function Presnoaldetails({initialValues}) {
         return errors;
     };
 
-    const submitForm = (values) => {
-        console.log(values);
-    };
+    // useEffect(() => {
+    //     const values = {
+    //         ...value
+    //     }
+    //     setData(values);
+    // }, [value])
 
     const changeHandle = (selectedData) => {
         // TODO
@@ -68,10 +68,11 @@ function Presnoaldetails({initialValues}) {
         <>
 
             <Formik
-                initialValues={initialValues}
+                initialValues={value}
                 validate={validate}
-                onSubmit={submitForm}
+                // onSubmit={submitForm}
                 className="tbl-captionn"
+                enableReinitialize
             >
                 {(formik) => {
                     const {
@@ -91,61 +92,92 @@ function Presnoaldetails({initialValues}) {
                                     <CustomInputField
                                         type="text"
                                         placeholder="Address * "
-                                        value={values.address}
-                                        hasError={errors.address && touched.address}
-                                        onChange={handleChange}
+                                        value={values?.presentAddr}
+                                        hasError={errors.presentAddr && touched.presentAddr}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
-                                        errorMsg={errors.address}
-                                        id="address"
+                                        errorMsg={errors.presentAddr}
+                                        id="presentAddr"
+                                        name='presentAddr'
                                     />
                                 </div>
+                                {country && 
                                 <div className="col-xl-4 mb-3">
-                                    <CustomInputField
-                                        type="text"
-                                        placeholder="City"
-                                        value={values.city}
-                                        hasError={errors.city && touched.city}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        errorMsg={errors.city}
-                                        id="city"
-                                    />
-                                </div>
+                                    <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
+                                        defaultValue={values?.country?.name}
+                                        onChange={handleInput_B}
+                                    >
+                                        {country.map((item,i)=>{
+                                            console.log(item);
+                                            return  <option value={item?._id}> {item?.name}</option>
+                                        })}
+                                       
+                                    </select>
+                                </div>}
+                                {state && 
+                                <div className="col-xl-4 mb-3">
+                                    <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
+                                        defaultValue={values?.state?.name}
+                                        onChange={handleInput_B}
+                                    >
+                                        {state.map((item,i)=>{
+                                            console.log(item);
+                                            return  <option value={item?._id}> {item?.name}</option>
+                                        })}
+                                       
+                                    </select>
+                                </div>}
+
                                 <div className="col-xl-4 mb-3">
                                     <CustomInputField
                                         type="text"
                                         placeholder="Pincode"
-                                        value={values.pincode}
+                                        value={values?.pincode}
                                         hasError={errors.pincode && touched.pincode}
-                                        onChange={handleChange}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
                                         errorMsg={errors.pincode}
                                         id="pincode"
+                                        name="pinCode"
                                     />
                                 </div>
                                 <div className="col-xl-4 mb-3">
                                     <CustomInputField
                                         type="text"
-                                        placeholder="State"
-                                        value={values.state}
-                                        hasError={errors.state && touched.state}
-                                        onChange={handleChange}
+                                        placeholder="Main Wallet"
+                                        value={values?.main_wallet}
+                                        hasError={errors.main_wallet && touched.main_wallet}
+                                        onChange={handleInput_B}
                                         onBlur={handleBlur}
-                                        errorMsg={errors.state}
-                                        id="state"
+                                        errorMsg={errors.main_wallet}
+                                        id="main_wallet"
+                                        name="main_wallet"
+                                        disable
                                     />
                                 </div>
-                                <div className="col-xl-4 mb-3">
-                                    <div className="dropdownWrapper">
-                                        <CustomDropdown
-                                            itemList={itemList}
-                                            placeholder="Select State *"
-                                            isSingleSelect={false}
-                                            icon={true}
-                                            onChange={changeHandle}
+                                {/*  <div className="col-xl-4 mb-3">
+                                        <CustomInputField
+                                            type="text"
+                                            placeholder="Distic"
+                                            value={values?.distic}
+                                            hasError={errors.distic && touched.distic}
+                                            onChange={handleInput_B}
+                                            onBlur={handleBlur}
+                                            errorMsg={errors.distic}
+                                            id="distic"
+                                            name="distic"
                                         />
-                                    </div>
-                                </div>
+                                    </div> */}
+                                {/* <div className="col-xl-4 mb-3">
+                                    <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
+                                        defaultValue={values?.is_active}
+                                        onChange={handleInput_B}
+                                    >
+                                        <option selected> Select State Id</option>
+                                        <option value={values?.state}> Select State By Id</option>
+                                    </select>
+
+                                </div> */}
                             </div>
                         </form>
                     );
