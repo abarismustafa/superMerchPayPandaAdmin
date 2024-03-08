@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Tab, Tabs } from "react-bootstrap";
 import { getDistIdAgainst, updateDistIdAgainst } from "../../../api/login/Login";
 import { use } from "i18next";
+import KycDetails from "./kycDetails/KycDetails";
+import Wallet from "./wallet/Wallet";
 
 const TAB = ["Basic Details", "Permanent Details", "Service"];
 
@@ -21,25 +23,31 @@ function CreateUserDistributer() {
     mobile: "",
     masterType: "",
     shopName: "",
-    lockAmount: "",
+    gst: "",
     pan_number: "",
     adhaar_number: "",
     office_address: "",
+    is_pan_verified: null,
+    is_adhaar_verified: null,
+    is_gst: null,
+    emailVerified: null,
+    mobileVerified: null,
   })
   const [permanentDetails, setpermanentDetails] = useState({
     p_address: "",
-    city: "",
-    pinCode: "",
     state: "",
+    pinCode: "",
     district: "",
-    
+    country:"",
+    main_wallet:null,
+
   })
   const [service, setservice] = useState({
-      H_service_socity: "",
-      cable_tv_service: "",
-      lpg_service: "",
-      state: "",
-      pancard_service: "",
+    H_service_socity: "",
+    cable_tv_service: "",
+    lpg_service: "",
+    pancard_service: "",
+
   })
 
 
@@ -50,8 +58,8 @@ function CreateUserDistributer() {
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const regexmobile = /^[0-9]{10}$/;
     const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-    const regexAadhar =
-      /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+    const regexAadhar = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+    // const regexGstNumber = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
     if (!values.firstName) {
       errors.firstName = "First Name is required";
@@ -81,9 +89,9 @@ function CreateUserDistributer() {
       errors.shopName = "Shop Name is required";
     }
 
-    if (!values.lockAmount) {
-      errors.lockAmount = "Lock Amount is required";
-    }
+    /* if (!values.gst) {
+      errors.gst = "Lock Amount is required";
+    } */
 
     if (!values.panNumber) {
       errors.panNumber = "PAN Number is required";
@@ -95,6 +103,11 @@ function CreateUserDistributer() {
     } else if (!regexAadhar.test(values.adhaar_number)) {
       errors.adhaar_number = "Invalid Aadhar Number";
     }
+    // if (!values.gst) {
+    //   errors.gst = "GST Number is required";
+    // } else if (!regexGstNumber.test(values.gst)) {
+    //   errors.gst = "Invalid GST Number";
+    // }
     if (!values.officeAddress) {
       errors.officeAddress = "Office Address is required";
     }
@@ -110,10 +123,10 @@ function CreateUserDistributer() {
 
   const submitForm = async (e, data) => {
     e.preventDefault()
-    const cloneMerg = { basicDetails: basicDetails,permanentDetails:permanentDetails ,service:service}
+    const cloneMerg = { basicDetails: basicDetails, permanentDetails: permanentDetails, service: service }
     const clone = { ...cloneMerg }
     try {
-      const res = await updateDistIdAgainst(params?.id,clone);
+      const res = await updateDistIdAgainst(params?.id, clone);
       if (res?.statusCode == "200") {
         toastSuccessMessage();
         /* āsetTimeout(() => {
@@ -128,15 +141,15 @@ function CreateUserDistributer() {
 
 
   const handleInput_A = (e) => {
-    const clone = {...basicDetails}
-    clone[e.target.name]= e.target.value
+    const clone = { ...basicDetails }
+    clone[e.target.name] = e.target.value
     setbasicDetails(clone)
-    
+
   }
   const handleInput_B = (e) => {
     console.log(e.target.value);
-    const clone = {...permanentDetails}
-    clone[e.target.name]= e.target.value
+    const clone = { ...permanentDetails }
+    clone[e.target.name] = e.target.value
     setpermanentDetails(clone)
 
   }
@@ -169,17 +182,28 @@ function CreateUserDistributer() {
           selectMemberType: response.data?.selectMemberType,
           adhaar_number: response.data?.adhaar_number,
           office_address: "officeAddress",
+          is_pan_verified: response.data?.is_pan_verified,
+          is_adhaar_verified: response.data?.is_adhaar_verified,
+          pan_number: response.data?.pan_number,
+          gst: response.data?.gst,
+          is_gst: response.data?.is_gst,
+          mobileVerified: response.data?.mobileVerified,
+          emailVerified: response.data?.emailVerified,
+          user_type: response.data?.user_type_id,
+          
         })
         setpermanentDetails({
           presentAddr: response.data?.presentAddr,
-          city: response.data?.city,
+          state: response.data?.state,
           pinCode: response.data?.pinCode,
           state: response.data?.state,
           district: response.data?.district,
+          country: response.data?.country,
+          main_wallet: response.data?.main_wallet,
         })
         setservice({
           H_service_socity: response.data?.H_service_socity,
-          cable_tv_service:response.data?.cable_tv_service,
+          cable_tv_service: response.data?.cable_tv_service,
           lpg_service: response.data?.lpg_service,
           state: response.data?.state,
           pancard_service: response.data?.pancard_service,
@@ -230,7 +254,7 @@ function CreateUserDistributer() {
                   <div className="tbl-caption tbl-caption-2" >
                     <h4 className="heading mb-0">
                       {params?.id ? "UPDATE" : "ADD"} USER
-                     
+
                     </h4>
                   </div>
                   <Tabs
@@ -251,6 +275,12 @@ function CreateUserDistributer() {
                     <Tab eventKey="Service" title="Service">
                       <Services initialValues={service} validate={validate} value={state} submitForm={submitForm} handleInput_C={handleInput_C} />
                     </Tab>
+                    <Tab eventKey="KYC Details" title="KYC Details">
+                      <KycDetails/>
+                    </Tab>
+                    <Tab eventKey="Wallet" title="Wallet">
+                      <Wallet  />
+                    </Tab>
                   </Tabs>
 
                 </div>
@@ -259,7 +289,7 @@ function CreateUserDistributer() {
           </div>
         </div>
       </section>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }

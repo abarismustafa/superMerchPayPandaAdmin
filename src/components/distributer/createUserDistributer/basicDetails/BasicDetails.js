@@ -3,93 +3,25 @@ import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import CustomTextArea from "../../../../common/CustomTextArea";
 import { useEffect, useState } from "react";
+import { listUserType } from "../../../../api/login/Login";
+import Item from "antd/es/list/Item";
 
-function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A }) {
+function BasicDetails({ initialValues, validate, submitForm, value, handleInput_A }) {
   const [data, setData] = useState()
+  const [userData, setuserData] = useState()
   const name = "dropdown";
   const placeholder = "Course Name";
   const type = "dropdown";
-  const itemList = [
-    {
-      name: "Abc",
-      value: "Abc",
-    },
-    {
-      name: "Abcd",
-      value: "Abcd",
-    },
-    {
-      name: "Abce",
-      value: "Abce",
-    },
-    {
-      name: "Abcf",
-      value: "Abcf",
-    },
-  ];
 
-  // const validate = (values) => {
-  //   let errors = {};
-  //   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-  //   const regexMobileNumber = /^[0-9]{10}$/;
-  //   const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-  //   const regexGstNumber =
-  //     /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+  const getUserType = async () => {
+    const res = await listUserType()
+    setuserData(res?.data);
+  }
+  useEffect(() => {
+    getUserType()
+  }, [])
+  console.log(value);
 
-  //   if (!values.name) {
-  //     errors.name = "First Name is required";
-  //   }
-
-  //   if (!values.lastName) {
-  //     errors.lastName = "Last Name is required";
-  //   }
-
-  //   if (!values.email) {
-  //     errors.email = "Email is required";
-  //   } else if (!regexEmail.test(values.email)) {
-  //     errors.email = "Invalid Email";
-  //   }
-
-  //   if (!values.mobileNumber) {
-  //     errors.mobileNumber = "Mobile Number is required";
-  //   } else if (!regexMobileNumber.test(values.mobileNumber)) {
-  //     errors.mobileNumber = "Invalid Mobile Number";
-  //   }
-
-  //   if (!values.masterType) {
-  //     errors.masterType = "Master Type is required";
-  //   }
-
-  //   if (!values.shopName) {
-  //     errors.shopName = "Shop Name is required";
-  //   }
-
-  //   if (!values.lockAmount) {
-  //     errors.lockAmount = "Lock Amount is required";
-  //   }
-
-  //   if (!values.panNumber) {
-  //     errors.panNumber = "PAN Number is required";
-  //   } else if (!regexPanNumber.test(values.panNumber)) {
-  //     errors.panNumber = "Invalid PAN Number";
-  //   }
-
-  //   // if (!values.gstNumber) {
-  //   //   errors.gstNumber = "GST Number is required";
-  //   // } else if (!regexGstNumber.test(values.gstNumber)) {
-  //   //   errors.gstNumber = "Invalid GST Number";
-  //   // }
-
-  //   if (!values.officeAddress) {
-  //     errors.officeAddress = "Office Address is required";
-  //   }
-
-  //   return errors;
-  // };
-
-  // const submitForm = (values) => {
-  //   console.log(values);
-  // };
 
   const changeHandle = (selectedData) => {
     // TODO
@@ -149,6 +81,7 @@ function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A
                     id="email"
                     name="email"
                   />
+                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.is_gst === true ? 'green' : 'red'}` }}>{values?.is_gst === true ? 'Verify ✅' : 'Not Verify ❎'}</span>
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
@@ -162,20 +95,21 @@ function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A
                     id="mobile"
                     name="mobile"
                   />
+                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.mobileVerified === true ? 'green' : 'red'}` }}>{values?.mobileVerified === true ? 'Verify ✅' : 'Not Verify ❎'}</span>
                 </div>
-                <div className="col-xl-4 mb-3">
-                  <div className="dropdownWrapper">
-                    <CustomDropdown
-                      itemList={itemList}
-                      placeholder="Select Member Type *"
-                      isSingleSelect={false}
-                      icon={true}
-                      onChange={changeHandle}
-                      
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-4 mb-3">
+                {userData &&
+                    <div className="col-xl-4 mb-3">
+                      <select class="form-select" value={value?.user_type === "65e2f1a585bfd78f9866c09b"? "65e2f1a585bfd78f9866c09b":"65e2f15785bfd78f9866c090"} aria-label="Default select example" name="is_active" onChange={handleChange}>
+                        
+                        {userData.map((itm, i) => {
+                          return <option value={itm?._id} key={i} disabled>{itm?.user_type}</option>
+                        })}
+
+
+                      </select>
+                    </div>
+                 }
+                {/* <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
                     placeholder="Shop Name *"
@@ -187,20 +121,21 @@ function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A
                     id="shopName"
                     name="shopNamename"
                   />
-                </div>
+                </div> */}
 
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
-                    placeholder="Lock Amount *"
-                    value={values?.lockAmount}
-                    hasError={errors.lockAmount && touched.lockAmount}
+                    placeholder="Gst Number (optional)"
+                    value={values?.gst?.GSTIN}
+                    hasError={errors.gst && touched.gst}
                     onChange={handleInput_A}
                     onBlur={handleBlur}
-                    errorMsg={errors.lockAmount}
-                    id="lockAmount"
-                    name="lockAmount"
+                    errorMsg={errors.gst}
+                    id="gst"
+                    name="gst"
                   />
+                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.is_gst === true ? 'green' : 'red'}` }}>{values?.is_gst === true ? 'Verify ✅' : 'Not Verify ❎'}</span>
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
@@ -213,7 +148,9 @@ function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A
                     errorMsg={errors.pan_number}
                     id="pan_number"
                     name="pan_number"
+                    
                   />
+                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.is_pan_verified === true ? 'green' : 'red'}` }}>{values?.is_pan_verified == true ? 'Verify ✅ ' : 'Not Verify ❎ '}</span>
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
@@ -227,8 +164,9 @@ function BasicDetails({ initialValues, validate, submitForm, value,handleInput_A
                     id="adhaar_number"
                     name="adhaar_number"
                   />
+                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${value?.is_adhaar_verified === true ? 'green' : 'red'}` }}>{value?.is_adhaar_verified == true ? 'Verify ✅' : 'Not Verify ❎'}</span>
                 </div>
-                <div className="col-xl-4 mb-3">
+                <div className="col-xl-8 mb-3">
                   <CustomTextArea
                     placeholder="Office Address *"
                     value={values?.officeAddress}
