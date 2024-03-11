@@ -3,7 +3,7 @@ import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import CustomTextArea from "../../../../common/CustomTextArea";
 import { useEffect, useState } from "react";
-import { listUserType } from "../../../../api/login/Login";
+import { getZoon, listUserType } from "../../../../api/login/Login";
 import Item from "antd/es/list/Item";
 
 function BasicDetails({ initialValues, validate, submitForm, value, handleInput_A }) {
@@ -15,12 +15,14 @@ function BasicDetails({ initialValues, validate, submitForm, value, handleInput_
 
   const getUserType = async () => {
     const res = await listUserType()
+    const resZone = await getZoon()
+    setData(resZone?.data)
     setuserData(res?.data);
   }
   useEffect(() => {
     getUserType()
   }, [])
-  console.log(value);
+  // console.log(value);
 
 
   const changeHandle = (selectedData) => {
@@ -98,17 +100,17 @@ function BasicDetails({ initialValues, validate, submitForm, value, handleInput_
                   <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.mobileVerified === true ? 'green' : 'red'}` }}>{values?.mobileVerified === true ? 'Verify ✅' : 'Not Verify ❎'}</span>
                 </div>
                 {userData &&
-                    <div className="col-xl-4 mb-3">
-                      <select class="form-select" value={value?.user_type === "65e2f1a585bfd78f9866c09b"? "65e2f1a585bfd78f9866c09b":"65e2f15785bfd78f9866c090"} aria-label="Default select example" name="is_active" onChange={handleChange}>
-                        
-                        {userData.map((itm, i) => {
-                          return <option value={itm?._id} key={i} disabled>{itm?.user_type}</option>
-                        })}
+                  <div className="col-xl-4 mb-3">
+                    <select class="form-select" value={value?.user_type === "65e2f1a585bfd78f9866c09b" ? "65e2f1a585bfd78f9866c09b" : "65e2f15785bfd78f9866c090"} aria-label="Default select example" name="is_active" onChange={handleChange}>
+
+                      {userData.map((itm, i) => {
+                        return <option value={itm?._id} key={i} disabled>{itm?.user_type}</option>
+                      })}
 
 
-                      </select>
-                    </div>
-                 }
+                    </select>
+                  </div>
+                }
                 {/* <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
@@ -148,10 +150,22 @@ function BasicDetails({ initialValues, validate, submitForm, value, handleInput_
                     errorMsg={errors.pan_number}
                     id="pan_number"
                     name="pan_number"
-                    
+
                   />
                   <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.is_pan_verified === true ? 'green' : 'red'}` }}>{values?.is_pan_verified == true ? 'Verify ✅ ' : 'Not Verify ❎ '}</span>
                 </div>
+
+                {data &&
+                  <div className="col-xl-4 mb-3">
+                    <select class="form-select" aria-label="Default select example" onChange={handleChange}>
+                      <option selected> select Zone</option>
+                      {data && data?.map((item) => {
+                        return <option value="1">{item?.name}</option>
+                      })}
+                    </select>
+                  </div>
+                }
+
                 <div className="col-xl-4 mb-3">
                   <CustomInputField
                     type="text"
@@ -193,6 +207,8 @@ function BasicDetails({ initialValues, validate, submitForm, value, handleInput_
           );
         }}
       </Formik>
+
+
     </>
   );
 }
