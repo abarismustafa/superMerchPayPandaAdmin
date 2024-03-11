@@ -108,7 +108,6 @@ function Presnoaldetails({ value, submitForm, handleInput_B }) {
                                         onChange={handleInput_B}
                                     >
                                         {country.map((item,i)=>{
-                                            console.log(item);
                                             return  <option value={item?._id}> {item?.name}</option>
                                         })}
                                        
@@ -121,7 +120,6 @@ function Presnoaldetails({ value, submitForm, handleInput_B }) {
                                         onChange={handleInput_B}
                                     >
                                         {state.map((item,i)=>{
-                                            console.log(item);
                                             return  <option value={item?._id}> {item?.name}</option>
                                         })}
                                        
