@@ -9,6 +9,8 @@ import { getDistIdAgainst, updateDistIdAgainst } from "../../../api/login/Login"
 import { use } from "i18next";
 import KycDetails from "./kycDetails/KycDetails";
 import Wallet from "./wallet/Wallet";
+import BillingAddress from "./billingAddress/BillingAddress";
+import ShipingAddress from "./shippingAddress/ShipingAddress";
 
 const TAB = ["Basic Details", "Permanent Details", "Service"];
 
@@ -48,6 +50,13 @@ function CreateUserDistributer() {
     lpg_service: "",
     pancard_service: "",
 
+  })
+  const [wallet, setWallet] = useState({
+    main_wallet: "",
+    commision_wallet: "",
+  })
+  const [kycDetails, setKycDetails] = useState({
+    docs: "",
   })
 
 
@@ -208,8 +217,16 @@ function CreateUserDistributer() {
           state: response.data?.state,
           pancard_service: response.data?.pancard_service,
         })
+        setWallet({
+          main_wallet: response.data?.main_wallet,
+          commision_wallet: response.data?.commision_wallet,
+          aeps_wallet: response.data?.aeps_wallet,
+        })
+        setKycDetails({
+          docs: response.data?.docs,
+        })
       } catch (error) {
-        console.error("Error fetching currency:", error);
+        console.error("Error fetching User Details:", error);
       }
     };
 
@@ -276,10 +293,16 @@ function CreateUserDistributer() {
                       <Services initialValues={service} validate={validate} value={state} submitForm={submitForm} handleInput_C={handleInput_C} />
                     </Tab>
                     <Tab eventKey="KYC Details" title="KYC Details">
-                      <KycDetails/>
+                      <KycDetails initialValues={kycDetails}/>
                     </Tab>
                     <Tab eventKey="Wallet" title="Wallet">
-                      <Wallet  />
+                      <Wallet initialValues={wallet} />
+                    </Tab>
+                    <Tab eventKey="billingAddress" title="Billing Address">
+                      <BillingAddress  />
+                    </Tab>
+                    <Tab eventKey="shippingAddress" title="Shipping Address">
+                    <ShipingAddress  />
                     </Tab>
                   </Tabs>
 

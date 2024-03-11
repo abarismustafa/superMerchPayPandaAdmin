@@ -399,7 +399,7 @@ function App() {
               <Route path="bank-settings" element={<BankSettingsPage />} />
               <Route path="user" element={<Customer />} />
               <Route path="user/add-user" element={<AddUsers />} />
-              <Route path="update-user/:id" element={<AddUsers />} />
+              <Route path="update-user/:id" element={ <AddUsers />} />
               <Route path="user-type" element={<UsersType />} />
               <Route path="add/user-type" element={<AddUsertType />} />
               <Route path="update/user-type/:id" element={<AddUsertType />} />
