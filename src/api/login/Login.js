@@ -4,8 +4,8 @@ import axios from "axios";
 
 //count Length RetDist ----------------------!
 
-export const getLength = ()=>{
- return axiosInstance.get(`${baseUrl}user/memberType/count`);
+export const getLength = () => {
+  return axiosInstance.get(`${baseUrl}user/memberType/count`);
 }
 
 
@@ -137,7 +137,7 @@ export const staffTypeUpdate = (id, value) => {
 
 
 // Zoon master
-export const getZoon = ({ id }) => {
+export const getZoon = () => {
   return axiosInstance.get(`${baseUrl}zone`);
 };
 
@@ -325,9 +325,6 @@ export const deleteServiceMasterList = (id, value) => {
 };
 
 
-
-
-
 // serviceCategory
 
 export const serviceCategoryAdd = (data) => {
@@ -346,7 +343,6 @@ export const getServiceCategoryId = (id) => {
 };
 
 export const ServiceCategoryUpdate = (id, value) => {
-  console.log(id, value);
   return axiosInstance.put(`${baseUrl}servicecategory/updatecategory/${id}`, value);
 };
 
@@ -499,14 +495,14 @@ export const paginationPayoutbeneficiaryMaster = (page, count) => {
 export const paginationCountryMaster = (page, count) => {
   return axiosInstance.get(`${baseUrl}country/page/${page}&${count}`)
 }
- 
+
 
 
 // pagination
 
 // Distributor Retailer
 
-export const reailerDistIdAgainst = (page, count,id) => {
+export const reailerDistIdAgainst = (page, count, id) => {
   return axiosInstance.get(`${baseUrl}user/member/filter?id=${id}&page=${page}&count=${count}`)
 }
 
@@ -515,6 +511,7 @@ export const reailerDistIdAgainst = (page, count,id) => {
 export const getDistIdAgainst = (id) => {
   return axiosInstance.get(`${baseUrl}user/${id}`)
 }
-export const updateDistIdAgainst = (id,value) => {
-  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`,{ ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
+export const updateDistIdAgainst = (id, value) => {
+  console.log(value);
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, { ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails, is_approved: value.is_approved.is_approved, permissiom: value.permission })
 }

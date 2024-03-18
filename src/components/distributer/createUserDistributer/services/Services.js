@@ -1,8 +1,14 @@
 import { Button } from "react-bootstrap";
 import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik } from "formik";
+import { getDistIdAgainst, getServiceMaster } from "../../../../api/login/Login";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function Services({submitForm,validate,handleInput_C}) {
+function Services({ submitForm, validate, handleInput_C, handlePermission, permission, data }) {
+  console.log(data)
+
+  const params = useParams()
   const itemList = [
     {
       name: "Enable",
@@ -16,6 +22,10 @@ function Services({submitForm,validate,handleInput_C}) {
   const changeHandle = (selectedData) => {
     // TODO
   };
+
+
+
+
   return (
     <>
       <Formik
@@ -39,65 +49,25 @@ function Services({submitForm,validate,handleInput_C}) {
           return (
             <form className="tbl-captionn" onSubmit={submitForm}>
               <div className="row">
-                <div className="col-xl-4 mb-3">
-                  <div className="dropdownWrapper">
-                    <CustomDropdown
-                      itemList={itemList}
-                      placeholder="Housing Society Services *"
-                      isSingleSelect={false}
-                      icon={true}
-                      onChange={handleInput_C}
-                    />
+                {data && data?.map((item) => {
+                  return <div className="col-xl-4 mb-3" key={item._id}>
+                    <div>
+                      <h5>{item?.name}</h5> <span>
+                        <select className="form-select" aria-label="Default select example" defaultValue={item.permit.isBuy} value={item.permit.isBuy} onChange={(e) => handlePermission(item._id, "is_Buy", e)} >
+                          <option selected> select Is Buy</option>
+                          <option value={true}>True</option>
+                          <option value={false}>False</option>
+                        </select>
+
+                        <select className="form-select  mt-2" aria-label="Default select example" defaultValue={item.permit.is_activate} value={item.permit.is_activate} onChange={(e) => handlePermission(item._id, "is_activate", e)}>
+                          <option selected> select Is Active</option>
+                          <option value={true}>True</option>
+                          <option value={false}>False</option>
+                        </select>
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="col-xl-4 mb-3">
-                  <div className="dropdownWrapper">
-                    <CustomDropdown
-                      itemList={itemList}
-                      placeholder="Cable TV Services *"
-                      isSingleSelect={false}
-                      icon={true}
-                      onChange={handleInput_C}
-                      name="H_service_socity"
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-4 mb-3">
-                  <div className="dropdownWrapper">
-                    <CustomDropdown
-                      itemList={itemList}
-                      placeholder="LPG Gas Services *"
-                      isSingleSelect={false}
-                      icon={true}
-                      onChange={handleInput_C}
-                      name="lpg_service"
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-4 mb-3">
-                  <div className="dropdownWrapper">
-                    <CustomDropdown
-                      itemList={itemList}
-                      placeholder="Pancard Services *"
-                      isSingleSelect={false}
-                      icon={true}
-                      onChange={handleInput_C}
-                      name="pancard_service"
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-4 mb-3">
-                  <div className="dropdownWrapper">
-                    <CustomDropdown
-                      itemList={itemList}
-                      placeholder="Cable TV Services *"
-                      isSingleSelect={false}
-                      icon={true}
-                      onChange={handleInput_C}
-                      name='cable_tv_service'
-                    />
-                  </div>
-                </div>
+                })}
               </div>
               <button className="bg-danger p-2 border-0 text-white rounded">update</button>
             </form>
