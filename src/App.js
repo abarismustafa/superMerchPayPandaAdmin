@@ -166,6 +166,10 @@ import SalesReportsPage from "./pages/salesRep";
 import PerformanceReports from "./components/salesReports/performanceReports/PerformanceReports";
 import AddpadateSummary from "./components/salesReports/summaryReports/addUpdateSummary/AddpadateSummary";
 import AddUpdatePerformanceReports from "./components/salesReports/performanceReports/addupdatePerformanceReport/AddUpdatePerformanceReports";
+import DmtCommisionp from "./pages/dmt/dmtCommision";
+import DmtCommiosionSche from "./pages/dmt/dmtCommisionSche";
+import DmtCommisionForm from "./components/dmtModule/dmtCommision/dmtCommisionForm/DmtCommisionForm";
+import DmtcommschForm from "./components/dmtModule/dmtCommSche/dmtcommschForm/DmtcommschForm";
 import ZoonArea from "./pages/zoonArea";
 import Statement from "./pages/statement/page";
 import StatementWallet from "./pages/walletstatement/page";
@@ -625,6 +629,30 @@ function App() {
               <Route
                 path="add-service-area-permision"
                 element={<FormServicePermission />}
+              />
+              <Route
+                path="dmt-commision"
+                element={<DmtCommisionp />}
+              />
+              <Route
+                path="add-dmt-commision"
+                element={<DmtCommisionForm />}
+              />
+              <Route
+                path="update-dmt-commision/:id"
+                element={<DmtCommisionForm />}
+              />
+              <Route
+                path="dmt-commision-scheme"
+                element={<DmtCommiosionSche />}
+              />
+              <Route
+                path="add-dmt-commision-scheme"
+                element={<DmtcommschForm />}
+              />
+              <Route
+                path="update-dmt-commision-scheme/:id"
+                element={<DmtcommschForm />}
               />
               <Route path="profile" element={<Profile />} />
               <Route

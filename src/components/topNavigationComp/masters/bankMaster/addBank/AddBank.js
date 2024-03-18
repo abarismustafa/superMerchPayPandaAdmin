@@ -162,7 +162,6 @@ function AddBank() {
                                             <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-6 mb-3">
-
                                                         <CustomInputField
                                                             type="text"
                                                             value={values.bank_name}
