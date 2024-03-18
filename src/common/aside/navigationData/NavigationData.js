@@ -3,7 +3,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { MdDashboard, MdWeb, MdDiscFull, MdPayment } from "react-icons/md";
 import { BiSolidReport } from "react-icons/bi";
-import { SiQzone } from "react-icons/si";
+import { SiConvertio, SiQzone } from "react-icons/si";
 import { IoIosPeople } from "react-icons/io";
 import { FcCustomerSupport } from "react-icons/fc";
 import { useEffect } from "react";
@@ -598,6 +598,26 @@ export const navigationData = (count) => {
           id: "2",
           title: "Service User Permission",
           path: "service-user-permission",
+        },
+      ],
+    },
+    {
+      uniqueId: "menu_15",
+      id: "15",
+      title: "DMT",
+      icon: <SiConvertio />,
+      subMenus: [
+        {
+          uniqueId: "submenu_15_1",
+          id: "1",
+          title: "DMT Commision",
+          path: "dmt-commision",
+        },
+        {
+          uniqueId: "submenu_15_2",
+          id: "2",
+          title: "DMT Commsion Scheme",
+          path: "dmt-commision-scheme",
         },
       ],
     },
