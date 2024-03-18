@@ -314,6 +314,12 @@ export const navigationData = (count) => {
       icon: <SiQzone />,
       subMenus: [
         {
+          uniqueId: "submenu_16_22",
+          id: "6",
+          title: "Zoon & Ares",
+          path: "zoon_area",
+        },
+        {
           uniqueId: "submenu_16_1",
           id: "1",
           title: "Area",
@@ -337,6 +343,7 @@ export const navigationData = (count) => {
           title: "District",
           path: "page-not-found",
         },
+       
       ],
     },
     {
