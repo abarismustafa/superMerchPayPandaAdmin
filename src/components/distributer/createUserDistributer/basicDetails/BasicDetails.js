@@ -20,9 +20,6 @@ function BasicDetails({ initialValues, validate, submitForm, value, handleInput_
   useEffect(() => {
     getUserType()
   }, [])
-  console.log(value);
-
-
   const changeHandle = (selectedData) => {
     // TODO
   };

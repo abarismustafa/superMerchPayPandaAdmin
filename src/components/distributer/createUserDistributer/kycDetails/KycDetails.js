@@ -2,7 +2,6 @@ import React from 'react'
 import { baseUrlImage } from '../../../../baseUrl';
 
 function KycDetails({ initialValues }) {
-    console.log(initialValues);
     return (
         <section className="ListDistributer m-4">
             <div className="row">
