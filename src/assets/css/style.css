@@ -55377,8 +55377,23 @@ input[type=file]::file-selector-button {
   right: 0;
   left: auto;
 }
+/*# sourceMappingURL=style-rtl.css.map */
+.maincs > div{
+  margin: 20px 0;
+}
 
 
 
 /*# sourceMappingURL=style-rtl.css.map */
 
+
+
+
+.topstatementinner{
+display: flex; 
+justify-content: space-between;
+}
+.topstatement{
+  border:"1px solid black";
+  margin:"15px 0"
+}
