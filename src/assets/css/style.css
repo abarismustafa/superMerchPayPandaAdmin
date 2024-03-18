@@ -6496,6 +6496,7 @@ fieldset:disabled .btn {
   display: flex;
   align-items: center;
   min-height: calc(100% - var(--bs-modal-margin) * 2);
+  width: 700px !important;
 }
 
 .modal-content {
@@ -6584,7 +6585,7 @@ fieldset:disabled .btn {
   }
 
   .modal-dialog {
-    max-width: var(--bs-modal-width);
+    /* max-width: var(--bs-modal-width); */
     margin-right: auto;
     margin-left: auto;
   }
@@ -55378,7 +55379,41 @@ input[type=file]::file-selector-button {
   left: auto;
 }
 
-
-
 /*# sourceMappingURL=style-rtl.css.map */
+.maincs>div {
+  margin: 20px 0;
+}
 
+.dilog-box .modal-dialog {
+  width: 700px !important;
+  height: 700px !important;
+  margin: auto !important;
+}
+
+.dilog-box2 .modal-dialog {
+  width: 1100px !important;
+  margin: auto !important;
+}
+
+.md-checkbox {
+  margin: 5px 0px;
+}
+
+.md-checkbox {
+  font: unset !important;
+  display: inline-block;
+  position: relative;
+  margin: 0px 10px;
+}
+
+
+
+.topstatementinner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topstatement {
+  border: "1px solid black";
+  margin: "15px 0"
+}

@@ -474,6 +474,9 @@ export const deleteAgentOnboarding = (id) => {
   return axiosInstance.delete(`${baseUrl}agentonboarding/deleteOnBoarding/${id}`);
 };
 
+export const getAreaZoon = () => {
+  return axiosInstance.get(`${baseUrl}area`)
+}
 
 // pagination
 
@@ -515,8 +518,15 @@ export const reailerDistIdAgainst = (page, count, id) => {
 export const getDistIdAgainst = (id) => {
   return axiosInstance.get(`${baseUrl}user/${id}`)
 }
-export const updateDistIdAgainst = (id, value) => {
-  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, { ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
+export const updateDistIdAgainst = (id,value) => {
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`,{ ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
+}
+
+export const ZoonFilter = ({areaid ,level }) => {
+  return axiosInstance.get(`${baseUrl}/zone/get/filter?area=${areaid}&level=${level}`);
+};
+export const ZoonFilterSec = ({zone ,area }) => {
+  return axiosInstance.get(`${baseUrl}/zone/get/filter?zone=${zone}&area=${area}`);
 }
 // ------------- billing Address Api---------------
 

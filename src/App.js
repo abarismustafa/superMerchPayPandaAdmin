@@ -170,6 +170,9 @@ import DmtCommisionp from "./pages/dmt/dmtCommision";
 import DmtCommiosionSche from "./pages/dmt/dmtCommisionSche";
 import DmtCommisionForm from "./components/dmtModule/dmtCommision/dmtCommisionForm/DmtCommisionForm";
 import DmtcommschForm from "./components/dmtModule/dmtCommSche/dmtcommschForm/DmtcommschForm";
+import ZoonArea from "./pages/zoonArea";
+import Statement from "./pages/statement/page";
+import StatementWallet from "./pages/walletstatement/page";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -209,6 +212,7 @@ function App() {
               {/* <Route path="/admin" element={<DasBoardPage />} /> */}
               <Route path="" element={<DasBoardRight />} />
               <Route path="bank-master" element={<BankMasterP />} />
+              <Route path="zoon_area" element={<ZoonArea />} />
               <Route path="add-bank" element={<AddBank />} />
               <Route path="update-bank/:id" element={<AddBank />} />
               {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}
@@ -441,6 +445,7 @@ function App() {
                 path="member-list/:id/:name"
                 element={<DistributerPage />}
               />
+            
               <Route
                 path="create-user/:id"
                 element={<CreateUserDistributerPage />}
@@ -650,6 +655,14 @@ function App() {
                 element={<DmtcommschForm />}
               />
               <Route path="profile" element={<Profile />} />
+              <Route
+                path="/admin/statement/report/:id"
+                element={<Statement/>}
+              />
+              <Route
+                path="/admin/statementwallet/report/:id"
+                element={<StatementWallet/>}
+              />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </>
