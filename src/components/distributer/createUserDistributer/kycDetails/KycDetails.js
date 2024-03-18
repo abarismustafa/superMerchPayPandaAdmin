@@ -1,6 +1,8 @@
 import React from 'react'
+import { baseUrlImage } from '../../../../baseUrl';
 
-function KycDetails() {
+function KycDetails({ initialValues }) {
+    // console.log(initialValues);
     return (
         <section className="ListDistributer m-4">
             <div className="row">
@@ -12,13 +14,10 @@ function KycDetails() {
                                     <h4 className="heading mb-0"><b>KYC DETAILS LIST</b></h4>
 
                                 </div>
-                                <div id="empoloyees-tblwrapper_wrapper" className=" no-footer"><div className="dt-buttons"></div>
+                                <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"></div>
                                     <table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
                                         <thead>
                                             <tr role="row" >
-                                                <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                    S.NO
-                                                </th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
                                                     Upload Aadhar Front
                                                 </th>
@@ -39,13 +38,63 @@ function KycDetails() {
                                         <tbody>
 
                                             <tr role="row" className="odd">
-                                                <td className="sorting_1"><span></span></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`} alt='Aadhar Back' style={{ width: "100%", overflow: "hidden" }} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.pan_card}`} alt='Pancard Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.gst}`} alt='adharr Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document'>
+
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.bank_proof}`} alt='adharr Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='adharr Front' width={100 + "%"} height={70 + "%"} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
 
                                         </tbody>

@@ -2,26 +2,27 @@ import CustomInputField from "../../../../common/CustomInputField";
 import CustomDropdown from "../../../../common/CustomDropdown";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import CustomTextArea from "../../../../common/CustomTextArea";
-const initialValues = {
-    CompanySettings: {
-        companyName: "",
-        companyEmail: "",
-        companyWebsite: "",
-        supportNo: "",
-        whattsappNo: "",
-        news: "",
-        smsSender: "",
-        maintanenceMessage: "",
-        pincode: "",
-        pancardNumber: "",
-        gstNumber: "",
-        companyAddress_1: "",
-        companyAddress_2: "",
-        authorisedName:"",
-        designation:"",
-    }
-}
+
 const CompanySettings = () => {
+    const initialValues = {
+        CompanySettings: {
+            companyName: "",
+            companyEmail: "",
+            companyWebsite: "",
+            supportNo: "",
+            whattsappNo: "",
+            news: "",
+            smsSender: "",
+            maintanenceMessage: "",
+            pincode: "",
+            pancardNumber: "",
+            gstNumber: "",
+            companyAddress_1: "",
+            companyAddress_2: "",
+            authorisedName: "",
+            designation: "",
+        }
+    }
     const name = "dropdown";
     const placeholder = "Course Name";
     const type = "dropdown";
@@ -126,32 +127,32 @@ const CompanySettings = () => {
 
     return (
         <>
-            <Formik
-                initialValues={initialValues}
-                validate={validate}
-                onSubmit={submitForm}
-                className="tbl-captionn"
-            >
-                {(formik) => {
-                    const {
-                        values,
-                        handleChange,
-                        handleSubmit,
-                        errors,
-                        touched,
-                        handleBlur,
-                        isValid,
-                        dirty,
-                    } = formik;
-                    return (
-                        <div className="row">
-                            <div className="col-xl-12">
-                                <div className="card">
-                                    <div className="card-body p-0">
-                                        <div className="table-responsive active-projects style-1">
-                                            <div className="tbl-caption tbl-caption-2">
-                                                <h4 className="heading mb-0"><b>Company Settings - </b></h4>
-                                            </div>
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="card">
+                        <div className="card-body p-0">
+                            <div className="table-responsive active-projects style-1">
+                                <div className="tbl-caption tbl-caption-2">
+                                    <h4 className="heading mb-0"><b>Company Settings - </b></h4>
+                                </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validate={validate}
+                                    onSubmit={submitForm}
+                                    className="tbl-captionn"
+                                >
+                                    {(formik) => {
+                                        const {
+                                            values,
+                                            handleChange,
+                                            handleSubmit,
+                                            errors,
+                                            touched,
+                                            handleBlur,
+                                            isValid,
+                                            dirty,
+                                        } = formik;
+                                        return (
                                             <form className="tbl-captionn">
                                                 <div className="row">
                                                     <div className="col-xl-4 mb-3">
@@ -294,7 +295,7 @@ const CompanySettings = () => {
                                                         </div>
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="number"
                                                             placeholder="Pin Code * "
                                                             value={values.pincode}
@@ -306,7 +307,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Pancard  Number * "
                                                             value={values.pancardNumber}
@@ -318,7 +319,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-4 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Gst Number  (Optional)"
                                                             value={values.gstNumber}
@@ -367,7 +368,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="color"
                                                             placeholder="Header Color Start	"
                                                             value={values.gstNumber}
@@ -379,7 +380,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="color"
                                                             placeholder="Header Color End	*"
                                                             value={values.gstNumber}
@@ -389,10 +390,10 @@ const CompanySettings = () => {
                                                             errorMsg={errors.gstNumber}
                                                             id="gstNumber"
                                                         />
-                                                       
+
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Facebook Link (Optional)	"
                                                             value={values.gstNumber}
@@ -402,10 +403,10 @@ const CompanySettings = () => {
                                                             errorMsg={errors.gstNumber}
                                                             id="gstNumber"
                                                         />
-                                                       
+
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Instagram Link	(Optional)"
                                                             value={values.gstNumber}
@@ -417,7 +418,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Twitter Link (Optional)"
                                                             value={values.gstNumber}
@@ -429,7 +430,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="YouTube Link	(Optional)"
                                                             value={values.gstNumber}
@@ -474,7 +475,7 @@ const CompanySettings = () => {
                                                         </div>
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Authoriesed Name *	"
                                                             value={values.authorisedName}
@@ -486,7 +487,7 @@ const CompanySettings = () => {
                                                         />
                                                     </div>
                                                     <div className="col-xl-6 mb-3">
-                                                    <CustomInputField
+                                                        <CustomInputField
                                                             type="text"
                                                             placeholder="Designation	*"
                                                             value={values.designation}
@@ -504,15 +505,16 @@ const CompanySettings = () => {
 
                                                 </div>
                                             </form>
+                                        );
+                                    }}
+                                </Formik>
 
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    );
-                }}
-            </Formik>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
 }

@@ -325,9 +325,6 @@ export const deleteServiceMasterList = (id, value) => {
 };
 
 
-
-
-
 // serviceCategory
 
 export const serviceCategoryAdd = (data) => {
@@ -346,7 +343,6 @@ export const getServiceCategoryId = (id) => {
 };
 
 export const ServiceCategoryUpdate = (id, value) => {
-  console.log(id, value);
   return axiosInstance.put(`${baseUrl}servicecategory/updatecategory/${id}`, value);
 };
 

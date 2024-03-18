@@ -83,7 +83,7 @@ function BasicDetails({ initialValues, validate, submitForm, value, handleInput_
                     id="email"
                     name="email"
                   />
-                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.is_gst === true ? 'green' : 'red'}` }}>{values?.is_gst === true ? 'Verify ✅' : 'Not Verify ❎'}</span>
+                  <span className="text-white position-relative rounded" style={{ bottom: "34px", left: '280px', padding: "2px  8px", display: "inline-block", backgroundColor: `${values?.emailVerified === true ? 'green' : 'red'}` }}>{values?.emailVerified === true ? 'Verify ✅' : 'Not Verify ❎'}</span>
                 </div>
                 <div className="col-xl-4 mb-3">
                   <CustomInputField

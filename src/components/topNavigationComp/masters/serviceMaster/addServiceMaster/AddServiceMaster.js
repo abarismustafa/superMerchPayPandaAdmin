@@ -19,34 +19,29 @@ function AddServiceMaster() {
     const [service_category, set_serviceCateg] = useState(null);
     const [tab, setTab] = useState();
     const [selectData, setSelectData] = useState([]);
-    const [profileImage, setProfileImage] = useState()
+    const [profileImage, setProfileImage] = useState();
     const params = useParams()
     const navigate = useNavigate()
     const initialValues = {
-        list: [
-            {
-                service_name: '',
-                service_image: "",
-                slug: "",
-                service_charge: 100,
-                bbps: 1,
-                background_color: "",
-                order_by: null,
-                service_category: [],
-                short_description: "",
-                full_description: "",
-                icon: "",
-                banner_img: "",
-                parent_id: [],
-                area_id: "",
-                meta_title: "",
-                meta_description: "",
-                meta_keyword: "",
-                meta_image: "",
-                language_id: "",
-                is_active: null
-            }
-        ]
+        service_name: '',
+        service_image: "",
+        slug: "",
+        service_charge: 100,
+        bbps: 1,
+        background_color: "",
+        order_by: null,
+        service_category: '',
+        short_description: "",
+        full_description: "",
+        icon: "",
+        banner_img: "",
+        area_id: "",
+        meta_title: "",
+        meta_description: "",
+        meta_keyword: "",
+        meta_image: "",
+        language_id: "",
+        is_active: null
     }
 
 
@@ -105,16 +100,15 @@ function AddServiceMaster() {
     };
 
     const submitForm = async (initialValues) => {
-        console.log(selectData);
         try {
             if (!params?.id) {
                 try {
                     const res = await addServiceMaster({ list: selectData });
                     if (res?.statusCode == "200") {
                         toastSuccessMessage();
-                        setTimeout(()=>{
-                           navigate('/admin/service-master') 
-                        },4000)
+                        setTimeout(() => {
+                            navigate('/admin/service-master')
+                        }, 4000)
                     }
                 } catch (error) {
 
@@ -124,9 +118,9 @@ function AddServiceMaster() {
                 try {
                     await updateServiceMaster(params?.id, { list: selectData });
                     toastSuccessMessage();
-                    setTimeout(()=>{
-                        navigate('/admin/service-master') 
-                     },4000)
+                    setTimeout(() => {
+                        navigate('/admin/service-master')
+                    }, 4000)
                 } catch (error) {
 
                 }
@@ -155,10 +149,10 @@ function AddServiceMaster() {
     };
 
 
-const getServicesCategory = async()=>{
+    const getServicesCategory = async () => {
         const _serviceCategoery = await getServiceCategory()
         set_serviceCateg(_serviceCategoery?.data);
-}
+    }
 
 
     useEffect(() => {
@@ -174,9 +168,8 @@ const getServicesCategory = async()=>{
                     const response = await getServiceMasterId(params.id);
                     const serviceData = response.data;
                     const data = serviceData?.map((item, i) => {
-                        return { id: item.id, service_name: item.service_name, meta_title: item.meta_title, full_description: item.full_description,short_description:item.short_description, meta_keyword: item.meta_keyword, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name }
+                        return { id: item.id, service_name: item.service_name, meta_title: item.meta_title, full_description: item.full_description, short_description: item.short_description, meta_keyword: item.meta_keyword, language_id: item?.language_id, is_active: item.is_active ? item.is_active : false, langName: language[i].name,...item }
                     })
-                    console.log(data);
                     setSelectData(data)
                 } else {
                     initialData();
@@ -190,28 +183,51 @@ const getServicesCategory = async()=>{
     }, [params?.id, language]);
 
     const imgs = new FormData();
-    const colodinaryImage = async (e) => {
-        setProfileImage(e.target.files[0])
+    const colodinaryImage = async (e, id) => {
         imgs.append("image", e.target.files[0]);
-        try {
-            const res = await clodinaryImage(imgs)
-            // console.log(res?.data?.data?.url);
-            setProfileImage(res?.data?.data?.url)
-        } catch (error) {
+        if (e.target.name == 'icon') {
+            try {
+                const res = await clodinaryImage(imgs)
+                setProfileImage(res?.data?.data?.url)
+                const updatedData = selectData.map((item) => {
+                    if (item.language_id === id) {
+                        return { ...item, icon: res?.data?.data?.url };
+                    }
+                    return item;
+                });
+                setSelectData(updatedData);
+            } catch (error) {
 
+            }
+
+        } else {
+            try {
+                const res = await clodinaryImage(imgs)
+                setProfileImage(res?.data?.data?.url)
+                const updatedData = selectData.map((item) => {
+                    if (item.language_id === id) {
+                        return { ...item, banner_img: res?.data?.data?.url };
+                    }
+                    return item;
+                });
+                setSelectData(updatedData);
+            } catch (error) {
+
+            }
         }
+
     }
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-            <ToastContainer/>
+            <ToastContainer />
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">
                             <div className="table-responsive active-projects style-1">
                                 <div className="tbl-caption tbl-caption-2">
-                                    <h4 className="heading mb-0">{params.id?"UPDATE": 'ADD'} SERVICE MASTER</h4>
+                                    <h4 className="heading mb-0">{params.id ? "UPDATE" : 'ADD'} SERVICE MASTER</h4>
                                 </div>
                                 <Tabs
                                     defaultActiveKey={tab}
@@ -220,7 +236,7 @@ const getServicesCategory = async()=>{
                                 >
                                     {selectData && selectData?.map((item, i) => {
                                         return <Tab eventKey={item?.language_id} title={item?.langName}>
-                                            <TabAddServiceMaster i={i} colodinaryImage={colodinaryImage} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus}service_category={service_category} params={params} validate={validate} />
+                                            <TabAddServiceMaster i={i} colodinaryImage={colodinaryImage} language={language} item={item} languageId={item?.language_id} submitForm={submitForm} handleChangeCus={handleChangeCus} service_category={service_category} params={params} validate={validate} />
                                         </Tab>
                                     })}
 
