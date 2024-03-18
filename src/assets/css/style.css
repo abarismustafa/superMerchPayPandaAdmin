@@ -6584,7 +6584,7 @@ fieldset:disabled .btn {
   }
 
   .modal-dialog {
-    max-width: var(--bs-modal-width);
+    /* max-width: var(--bs-modal-width); */
     margin-right: auto;
     margin-left: auto;
   }
@@ -55376,6 +55376,12 @@ input[type=file]::file-selector-button {
 .dropdown-menu-end[data-bs-popper] {
   right: 0;
   left: auto;
+}
+
+.dilog-box .modal-dialog {
+  width: 700px !important;
+  height: 700px !important;
+  margin: auto !important;
 }
 
 
