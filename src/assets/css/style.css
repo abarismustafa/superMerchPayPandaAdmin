@@ -4613,14 +4613,14 @@ fieldset:disabled .btn {
 .nav-tabs .nav-link {
   margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
   border: var(--bs-nav-tabs-border-width) solid transparent;
-  
+
 }
 
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
   isolation: isolate;
   border-color: var(--bs-nav-tabs-link-hover-border-color);
-  
+
 }
 
 .nav-tabs .nav-link.disabled,
@@ -55291,6 +55291,7 @@ input[type=file]::file-selector-button {
 .login-content a {
   width: 200px;
 }
+
 .login-content a>img {
   width: 200px;
 }
@@ -55380,3 +55381,7 @@ input[type=file]::file-selector-button {
 .maincs > div{
   margin: 20px 0;
 }
+
+
+
+/*# sourceMappingURL=style-rtl.css.map */

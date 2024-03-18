@@ -11,16 +11,16 @@ function Presnoaldetails({ value, submitForm, handleInput_B }) {
     const placeholder = "Course Name";
     const type = "dropdown";
 
-    const getCountry= async()=>{
+    const getCountry = async () => {
         const res = await countryList()
         setcountry(res?.data)
         const response = await getStateMaster()
         setstate(response?.data)
 
     }
-    useEffect(()=>{
+    useEffect(() => {
         getCountry()
-    },[])
+    }, [])
 
     const validate = (values) => {
         let errors = {};
@@ -101,30 +101,32 @@ function Presnoaldetails({ value, submitForm, handleInput_B }) {
                                         name='presentAddr'
                                     />
                                 </div>
-                                {country && 
-                                <div className="col-xl-4 mb-3">
-                                    <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
-                                        defaultValue={values?.country?.name}
-                                        onChange={handleInput_B}
-                                    >
-                                        {country.map((item,i)=>{
-                                            return  <option value={item?._id}> {item?.name}</option>
-                                        })}
-                                       
-                                    </select>
-                                </div>}
-                                {state && 
-                                <div className="col-xl-4 mb-3">
-                                    <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
-                                        defaultValue={values?.state?.name}
-                                        onChange={handleInput_B}
-                                    >
-                                        {state.map((item,i)=>{
-                                            return  <option value={item?._id}> {item?.name}</option>
-                                        })}
-                                       
-                                    </select>
-                                </div>}
+                                {country &&
+                                    <div className="col-xl-4 mb-3">
+                                        <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
+                                            defaultValue={values?.country?.name}
+                                            onChange={handleInput_B}
+                                        >
+                                            {country.map((item, i) => {
+                                                // console.log(item);
+                                                return <option value={item?._id}> {item?.name}</option>
+                                            })}
+
+                                        </select>
+                                    </div>}
+                                {state &&
+                                    <div className="col-xl-4 mb-3">
+                                        <select className="form-select" aria-label="Default select example" id="is_active" name="is_active"
+                                            defaultValue={values?.state?.name}
+                                            onChange={handleInput_B}
+                                        >
+                                            {state.map((item, i) => {
+                                                // console.log(item);
+                                                return <option value={item?._id}> {item?.name}</option>
+                                            })}
+
+                                        </select>
+                                    </div>}
 
                                 <div className="col-xl-4 mb-3">
                                     <CustomInputField
