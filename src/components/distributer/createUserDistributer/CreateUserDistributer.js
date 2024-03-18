@@ -9,6 +9,7 @@ import { getDistIdAgainst, updateDistIdAgainst } from "../../../api/login/Login"
 import { use } from "i18next";
 import KycDetails from "./kycDetails/KycDetails";
 import Wallet from "./wallet/Wallet";
+import ApprovedArea from "./approved/Approved";
 import BillingAddress from "./billingAddress/BillingAddress";
 import ShipingAddress from "./shippingAddress/ShipingAddress";
 
@@ -16,6 +17,8 @@ const TAB = ["Basic Details", "Permanent Details", "Service"];
 
 function CreateUserDistributer() {
   const [state, setState] = useState()
+  const [data, setData] = useState(null)
+
   const params = useParams()
   const navigate = useNavigate()
   const [selectedTabPosition, setSelectedTabPosition] = useState(0);
@@ -40,8 +43,8 @@ function CreateUserDistributer() {
     state: "",
     pinCode: "",
     district: "",
-    country:"",
-    main_wallet:null,
+    country: "",
+    main_wallet: null,
 
   })
   const [service, setservice] = useState({
@@ -59,7 +62,54 @@ function CreateUserDistributer() {
     docs: "",
   })
 
+  const [initialValues, setInitialValue] = useState({
+    is_approved: false
+  })
 
+  const handleChange = (e) => {
+    setInitialValue(e.target.value)
+  }
+
+
+  const submitApproved = () => {
+    const clone = { ...state, is_approved: initialValues }
+    setState(clone)
+    // console.log(clone);
+  }
+  const servicesData = async () => {
+    try {
+      const res = await getDistIdAgainst(params?.id)
+      setData(res?.data?.permission)
+    } catch (error) {
+
+    }
+  }
+  useEffect(() => {
+    servicesData()
+  }, [])
+
+  const [permission, setPermission] = useState()
+  const handlePermission = (category, field, event) => {
+    // console.log(state.permission);
+    console.log(data);
+    const filter = JSON.parse(JSON.stringify(data))
+    filter?.forEach(element => {
+      if (element?._id == category) {
+        console.log(element);
+        if (field == 'is_Buy') {
+          element.permit.isBuy = event.target.value
+        } else {
+          element.permit.is_activate = event.target.value
+        }
+
+      }
+    });
+    // setPermission(filter);
+    // console.log(filter);
+
+    setData(filter)
+    setPermission(filter)
+  }
 
 
   const validate = (values) => {
@@ -132,10 +182,12 @@ function CreateUserDistributer() {
 
   const submitForm = async (e, data) => {
     e.preventDefault()
-    const cloneMerg = { basicDetails: basicDetails, permanentDetails: permanentDetails, service: service }
+    const cloneMerg = { basicDetails: basicDetails, permanentDetails: permanentDetails, service: service, is_approved: initialValues, permission: permission }
     const clone = { ...cloneMerg }
+    console.log(cloneMerg);
     try {
       const res = await updateDistIdAgainst(params?.id, clone);
+      console.log(res);
       if (res?.statusCode == "200") {
         toastSuccessMessage();
         /* āsetTimeout(() => {
@@ -156,7 +208,6 @@ function CreateUserDistributer() {
 
   }
   const handleInput_B = (e) => {
-    console.log(e.target.value);
     const clone = { ...permanentDetails }
     clone[e.target.name] = e.target.value
     setpermanentDetails(clone)
@@ -175,6 +226,8 @@ function CreateUserDistributer() {
 
 
 
+
+
   const tabChange = (position) => {
     setSelectedTabPosition(position);
   };
@@ -182,6 +235,7 @@ function CreateUserDistributer() {
     const fetchCurrency = async (id) => {
       try {
         const response = await getDistIdAgainst(id);
+        console.log(response?.data);
         setState(response.data)
 
         setbasicDetails({
@@ -199,7 +253,7 @@ function CreateUserDistributer() {
           mobileVerified: response.data?.mobileVerified,
           emailVerified: response.data?.emailVerified,
           user_type: response.data?.user_type_id,
-          
+
         })
         setpermanentDetails({
           presentAddr: response.data?.presentAddr,
@@ -217,6 +271,14 @@ function CreateUserDistributer() {
           state: response.data?.state,
           pancard_service: response.data?.pancard_service,
         })
+
+        // setPermission({
+        //   isBuy: response.data?.H_service_socity
+        // })
+        setInitialValue({
+          is_approved: response.data?.is_approved
+        })
+
         setWallet({
           main_wallet: response.data?.main_wallet,
           commision_wallet: response.data?.commision_wallet,
@@ -290,19 +352,19 @@ function CreateUserDistributer() {
                       />
                     </Tab>
                     <Tab eventKey="Service" title="Service">
-                      <Services initialValues={service} validate={validate} value={state} submitForm={submitForm} handleInput_C={handleInput_C} />
+                      <Services initialValues={service} validate={validate} value={state} data={data} submitForm={submitForm} handlePermission={handlePermission} />
                     </Tab>
                     <Tab eventKey="KYC Details" title="KYC Details">
-                      <KycDetails initialValues={kycDetails}/>
+                      <KycDetails initialValues={kycDetails} />
                     </Tab>
                     <Tab eventKey="Wallet" title="Wallet">
                       <Wallet initialValues={wallet} />
                     </Tab>
                     <Tab eventKey="billingAddress" title="Billing Address">
-                      <BillingAddress  />
+                      <BillingAddress />
                     </Tab>
                     <Tab eventKey="shippingAddress" title="Shipping Address">
-                    <ShipingAddress  />
+                      <ShipingAddress />
                     </Tab>
                   </Tabs>
 

@@ -137,7 +137,7 @@ export const staffTypeUpdate = (id, value) => {
 
 
 // Zoon master
-export const getZoon = ({ id }) => {
+export const getZoon = () => {
   return axiosInstance.get(`${baseUrl}zone`);
 };
 
