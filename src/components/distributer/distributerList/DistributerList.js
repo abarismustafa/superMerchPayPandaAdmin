@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { Pagination } from "react-bootstrap";
 import Loadar from "../../../common/loader/Loader";
 
+import Dropdown from 'react-bootstrap/Dropdown';
+
 function DistributerList({ params }) {
     const [state, setState] = useState()
     const [loading, setLoading] = useState(false);
@@ -14,7 +16,7 @@ function DistributerList({ params }) {
     const getReailerDistIdAgainst = async (page) => {
         setLoading(true)
         try {
-            const res = await reailerDistIdAgainst(page, count,userId)
+            const res = await reailerDistIdAgainst(page, count, userId)
             // console.log(res?.data?.area);
             setTotalCount(res?.data?.count)
             setState(res?.data)
@@ -32,10 +34,16 @@ function DistributerList({ params }) {
     useEffect(() => {
         getReailerDistIdAgainst(page)
     }, [params?.id])
-     
+
+    const [dowm, setDown] = useState(false)
+
+    const dropdownOpen = () => {
+        setDown(!dowm)
+    }
+
     return (
         <>
-        {loading && <Loadar/>}
+            {loading && <Loadar />}
             <section className="ListDistributer m-4">
                 <div className="row">
                     <div className="col-xl-12">
@@ -52,58 +60,89 @@ function DistributerList({ params }) {
                                         </div>
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Download Distributer</span></button> </div>
-                                    <table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
-                                        <thead>
-                                            <tr role="row">
-                                                <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
-                                                    S.NO
-                                                </th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
-                                                    Joining Date
-                                                </th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
-                                                    Name</th>
-                                                
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                    Mobile</th>
+                                        <table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
+                                                        S.NO
+                                                    </th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
+                                                        Joining Date
+                                                    </th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
+                                                        Name</th>
 
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                    Email</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
+                                                        Mobile</th>
 
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                    Normal Balance</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                  Pan Card  Status</th>
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                    KYC Status</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        Email</th>
 
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                    Action
-                                                </th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        Normal Balance</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
+                                                        Pan Card  Status</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        KYC Status</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {state && state.map((item, i) => {
-                                                return <tr role="row" className="odd">
-                                                <td className="sorting_1"><span>{i+1}</span></td>
-                                                <td className="sorting_1"></td>
-                                                
-                                                <td>{item?.name}</td>
-                                                <td>{item?.mobile}</td>
-                                                <td>{item?.email}</td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                <span className="badge badge-success text-light border-0" style={{backgroundColor: `${item?.is_pan_verified === true ? 'blue' : '#bc3922ab'}`, fontSize: `${item?.is_pan_verified === false ? '0.8rem' : ''}`}}>{item?.is_pan_verified == true ? 'varified' : 'un varified'}</span>
-                                                </td>
-                                                <td>
-                                                    <span className="badge badge-success light border-0">Inactive</span>
-                                                </td>
-                                                
-                                                <td>
-                                                        <Link to={`/admin/create-user/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
-                                                        {/* <Popconfirm
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        Action
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {state && state.map((item, i) => {
+                                                    return <tr role="row" className="odd">
+                                                        <td className="sorting_1"><span>{i + 1}</span></td>
+                                                        <td className="sorting_1"></td>
+
+                                                        <td>{item?.name}</td>
+                                                        <td>{item?.mobile}</td>
+                                                        <td>{item?.email}</td>
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            <span className="badge badge-success text-light border-0" style={{ backgroundColor: `${item?.is_pan_verified === true ? 'blue' : '#bc3922ab'}`, fontSize: `${item?.is_pan_verified === false ? '0.8rem' : ''}` }}>{item?.is_pan_verified == true ? 'varified' : 'un varified'}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span className="badge badge-success light border-0">Inactive</span>
+                                                        </td>
+
+                                                        <td style={{ position: 'relative' }}>
+
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                                                    Action
+                                                                </Dropdown.Toggle>
+
+                                                                <Dropdown.Menu>
+                                                                    <Dropdown.Item href="#/action-1">Fund Transfer / Return</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-2">Scheme</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Add Id Stock</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Permission</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                                                    Reports
+                                                                </Dropdown.Toggle>
+
+                                                                <Dropdown.Menu>
+                                                                    <Dropdown.Item href="#/action-1">Fund Transfer / Return</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-2">Scheme</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Add Id Stock</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Permission</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+
+                                                            <Link to={`/admin/create-user/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                            {/* <Popconfirm
                                                             title="Delete Currency !"
                                                             description="Are you sure to delete ?"
                                                             onConfirm={() => confirm(item?.id)}
@@ -113,13 +152,13 @@ function DistributerList({ params }) {
                                                         >
                                                             <Link to="#" disable className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash" /></Link>
                                                         </Popconfirm> */}
-                                                    </td>
+                                                        </td>
 
-                                            </tr>
-                                            })}
-                                            
-                                        </tbody>
-                                    </table>
+                                                    </tr>
+                                                })}
+
+                                            </tbody>
+                                        </table>
                                         <div className="dataTables_info" id="empoloyees-tblwrapper_info" role="status" aria-live="polite">
                                             Total {totalCount} entries
                                         </div>
