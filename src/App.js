@@ -166,6 +166,7 @@ import SalesReportsPage from "./pages/salesRep";
 import PerformanceReports from "./components/salesReports/performanceReports/PerformanceReports";
 import AddpadateSummary from "./components/salesReports/summaryReports/addUpdateSummary/AddpadateSummary";
 import AddUpdatePerformanceReports from "./components/salesReports/performanceReports/addupdatePerformanceReport/AddUpdatePerformanceReports";
+import ZoonArea from "./pages/zoonArea";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -205,6 +206,7 @@ function App() {
               {/* <Route path="/admin" element={<DasBoardPage />} /> */}
               <Route path="" element={<DasBoardRight />} />
               <Route path="bank-master" element={<BankMasterP />} />
+              <Route path="zoon_area" element={<ZoonArea />} />
               <Route path="add-bank" element={<AddBank />} />
               <Route path="update-bank/:id" element={<AddBank />} />
               {/* <Route path="edit-add-bank" element={<EditAddBank />} /> */}

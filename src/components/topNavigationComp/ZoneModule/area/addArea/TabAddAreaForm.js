@@ -7,8 +7,6 @@ import { areaAdd, getCountryAdd, getarea } from "../../../../../api/login/Login"
 import { ToastContainer, toast } from "react-toastify";
 
 function TabAddAreaForm({ i, language, languageId, submitForm, handleChangeCus, item }) {
-    console.log(language);
-
 
     const validate = (values) => {
         let errors = {};
