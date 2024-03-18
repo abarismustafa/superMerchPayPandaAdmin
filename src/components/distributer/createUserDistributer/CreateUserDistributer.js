@@ -89,9 +89,6 @@ function CreateUserDistributer() {
   }, [])
 
   const [permission, setPermission] = useState()
-  console.log(permission);
-
-
   const handlePermission = (category, field, event) => {
     // console.log(state.permission);
     console.log(data);
