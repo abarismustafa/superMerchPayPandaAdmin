@@ -5,8 +5,29 @@ import { Pagination } from "react-bootstrap";
 import Loadar from "../../../common/loader/Loader";
 
 import Dropdown from 'react-bootstrap/Dropdown';
+import FundTransfer from "../createUserDistributer/fundTrnsfer/FundTrnasfer";
+import SchemeManager from "../createUserDistributer/schemeManager/SchemeManager";
+import IdStocks from "../createUserDistributer/IdsStoks/IdStoks";
+import MemberPermission from "../createUserDistributer/memberPermission/MemberPermission";
 
 function DistributerList({ params }) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [show2, setShow2] = useState(false);
+
+    const handleClose2 = () => setShow2(false);
+    const handleShow2 = () => setShow2(true);
+    const [show3, setShow3] = useState(false);
+
+    const handleClose3 = () => setShow3(false);
+    const handleShow3 = () => setShow3(true)
+    const [show4, setShow4] = useState(false);
+
+    const handleClose4 = () => setShow4(false);
+    const handleShow4 = () => setShow4(true)
+
     const [state, setState] = useState()
     const [loading, setLoading] = useState(false);
     const [count, setCount] = useState(10)
@@ -117,10 +138,10 @@ function DistributerList({ params }) {
                                                                 </Dropdown.Toggle>
 
                                                                 <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">Fund Transfer / Return</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Scheme</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Add Id Stock</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Permission</Dropdown.Item>
+                                                                    <Dropdown.Item Link="#" onClick={handleShow}>Fund Transfer / Return</Dropdown.Item>
+                                                                    <Dropdown.Item href="#" onClick={handleShow2}>Scheme</Dropdown.Item>
+                                                                    <Dropdown.Item href="#" onClick={handleShow3}>Add Id Stock</Dropdown.Item>
+                                                                    <Dropdown.Item href="#" onClick={handleShow4}>Permission</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
                                                                 </Dropdown.Menu>
@@ -183,6 +204,10 @@ function DistributerList({ params }) {
                 </div >
 
             </section>
+            <FundTransfer show={show} handleClose={handleClose} />
+            <SchemeManager show2={show2} handleClose2={handleClose2} />
+            <IdStocks show3={show3} handleClose3={handleClose3} />
+            <MemberPermission show4={show4} handleClose4={handleClose4} />
         </>
     )
 }
