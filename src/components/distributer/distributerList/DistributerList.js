@@ -85,7 +85,7 @@ function DistributerList({ params }) {
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         KYC Status</th>
 
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                    <th className="sorting text-center" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Action
                                                     </th>
 
@@ -109,7 +109,7 @@ function DistributerList({ params }) {
                                                             <span className="badge badge-success light border-0">Inactive</span>
                                                         </td>
 
-                                                        <td style={{ position: 'relative' }}>
+                                                        <td style={{ position: 'relative' }} className="d-flex align-item-center">
 
                                                             <Dropdown>
                                                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -132,12 +132,13 @@ function DistributerList({ params }) {
                                                                 </Dropdown.Toggle>
 
                                                                 <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">Fund Transfer / Return</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Scheme</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Add Id Stock</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Permission</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-1">AEPS</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-2">Billpayment</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Recharge</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Mone Transfer</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">UtiPancard</Dropdown.Item>
+                                                                    <Dropdown.Item href="/admin/statement/report/2">Account Stat...</Dropdown.Item>
+                                                                    <Dropdown.Item href="/admin/statementwallet/report/2">Aeps Stat...</Dropdown.Item>
                                                                 </Dropdown.Menu>
                                                             </Dropdown>
 

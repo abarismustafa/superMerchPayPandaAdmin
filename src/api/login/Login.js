@@ -325,6 +325,9 @@ export const deleteServiceMasterList = (id, value) => {
 };
 
 
+
+
+
 // serviceCategory
 
 export const serviceCategoryAdd = (data) => {
@@ -343,6 +346,7 @@ export const getServiceCategoryId = (id) => {
 };
 
 export const ServiceCategoryUpdate = (id, value) => {
+  console.log(id, value);
   return axiosInstance.put(`${baseUrl}servicecategory/updatecategory/${id}`, value);
 };
 
@@ -523,4 +527,38 @@ export const ZoonFilter = ({areaid ,level }) => {
 };
 export const ZoonFilterSec = ({zone ,area }) => {
   return axiosInstance.get(`${baseUrl}/zone/get/filter?zone=${zone}&area=${area}`);
+}
+// ------------- billing Address Api---------------
+
+export const addBillingAddress = (data) => {
+  return axiosInstance.post(`${baseUrl}deliveryaddress/addDeliveryAddress`, data);
+};
+export const getBillingAddress = (id) => {
+  return axiosInstance.get(`${baseUrl}deliveryaddress/user/billing/${id}`)
+}
+export const getBillingAddressDetails = (id) => {
+  return axiosInstance.get(`${baseUrl}deliveryaddress/${id}`)
+}
+export const updateBillingAddress = (id, value) => {
+  return axiosInstance.put(`${baseUrl}deliveryaddress/updatDeliveryAddress/${id}`, value);
+};
+export const deletBillingAddress = (id) => {
+  return axiosInstance.delete(`${baseUrl}deliveryaddress/deleteDeliveryAddress/${id}`);
+};
+// ------------- shipping Address Api---------------
+
+export const addshippingAddress = (data) => {
+  return axiosInstance.post(`${baseUrl}deliveryaddress/addDeliveryAddress`, data);
+};
+export const getshippingAddress = (id) => {
+  return axiosInstance.get(`${baseUrl}deliveryaddress/user/shipping/${id}`)
+}
+export const getshippingAddressDetails = (id) => {
+  return axiosInstance.get(`${baseUrl}deliveryaddress/${id}`)
+}
+export const updateshippingAddress = (id, value) => {
+  return axiosInstance.put(`${baseUrl}deliveryaddress/updatDeliveryAddress/${id}`, value);
+};
+export const deletshippingAddress = (id) => {
+  return axiosInstance.delete(`${baseUrl}deliveryaddress/deleteDeliveryAddress/${id}`);
 };
