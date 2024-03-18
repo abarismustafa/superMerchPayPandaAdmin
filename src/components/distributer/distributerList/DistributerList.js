@@ -7,6 +7,8 @@ import Loadar from "../../../common/loader/Loader";
 import Dropdown from 'react-bootstrap/Dropdown';
 import FundTransfer from "../createUserDistributer/fundTrnsfer/FundTrnasfer";
 import SchemeManager from "../createUserDistributer/schemeManager/SchemeManager";
+import IdStocks from "../createUserDistributer/IdsStoks/IdStoks";
+import MemberPermission from "../createUserDistributer/memberPermission/MemberPermission";
 
 function DistributerList({ params }) {
     const [show, setShow] = useState(false);
@@ -21,6 +23,10 @@ function DistributerList({ params }) {
 
     const handleClose3 = () => setShow3(false);
     const handleShow3 = () => setShow3(true)
+    const [show4, setShow4] = useState(false);
+
+    const handleClose4 = () => setShow4(false);
+    const handleShow4 = () => setShow4(true)
 
     const [state, setState] = useState()
     const [loading, setLoading] = useState(false);
@@ -100,7 +106,7 @@ function DistributerList({ params }) {
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         KYC Status</th>
 
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                    <th className="sorting text-center" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Action
                                                     </th>
 
@@ -124,7 +130,8 @@ function DistributerList({ params }) {
                                                             <span className="badge badge-success light border-0">Inactive</span>
                                                         </td>
 
-                                                        <td style={{ position: 'relative' }}>
+                                                        <td style={{ position: 'relative' }} className="d-flex align-item-center">
+
                                                             <Dropdown>
                                                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                                                     Action
@@ -134,7 +141,7 @@ function DistributerList({ params }) {
                                                                     <Dropdown.Item Link="#" onClick={handleShow}>Fund Transfer / Return</Dropdown.Item>
                                                                     <Dropdown.Item href="#" onClick={handleShow2}>Scheme</Dropdown.Item>
                                                                     <Dropdown.Item href="#" onClick={handleShow3}>Add Id Stock</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Permission</Dropdown.Item>
+                                                                    <Dropdown.Item href="#" onClick={handleShow4}>Permission</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
                                                                 </Dropdown.Menu>
@@ -146,12 +153,13 @@ function DistributerList({ params }) {
                                                                 </Dropdown.Toggle>
 
                                                                 <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">Fund Transfer / Return</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Scheme</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Add Id Stock</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Permission</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-1">AEPS</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-2">Billpayment</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Recharge</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Mone Transfer</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">UtiPancard</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Account Stat...</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Aeps Stat...</Dropdown.Item>
                                                                 </Dropdown.Menu>
                                                             </Dropdown>
 
@@ -198,7 +206,8 @@ function DistributerList({ params }) {
             </section>
             <FundTransfer show={show} handleClose={handleClose} />
             <SchemeManager show2={show2} handleClose2={handleClose2} />
-            <IdStocks show3={show3} handleClose2={handleClose3} />
+            <IdStocks show3={show3} handleClose3={handleClose3} />
+            <MemberPermission show4={show4} handleClose4={handleClose4} />
         </>
     )
 }

@@ -6496,6 +6496,7 @@ fieldset:disabled .btn {
   display: flex;
   align-items: center;
   min-height: calc(100% - var(--bs-modal-margin) * 2);
+  width: 700px !important;
 }
 
 .modal-content {
@@ -55382,6 +55383,22 @@ input[type=file]::file-selector-button {
   width: 700px !important;
   height: 700px !important;
   margin: auto !important;
+}
+
+.dilog-box2 .modal-dialog {
+  width: 1100px !important;
+  margin: auto !important;
+}
+
+.md-checkbox {
+  margin: 5px 0px;
+}
+
+.md-checkbox {
+  font: unset !important;
+  display: inline-block;
+  position: relative;
+  margin: 0px 10px;
 }
 
 
