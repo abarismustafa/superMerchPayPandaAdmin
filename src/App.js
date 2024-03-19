@@ -169,6 +169,8 @@ import AddUpdatePerformanceReports from "./components/salesReports/performanceRe
 import ZoonArea from "./pages/zoonArea";
 import Statement from "./pages/statement/page";
 import StatementWallet from "./pages/walletstatement/page";
+import ViewProfileMemberPage from "./pages/viewProfileMember";
+import UtiPancardPage from "./pages/utiPandcard";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -441,7 +443,7 @@ function App() {
                 path="member-list/:id/:name"
                 element={<DistributerPage />}
               />
-            
+
               <Route
                 path="create-user/:id"
                 element={<CreateUserDistributerPage />}
@@ -452,6 +454,8 @@ function App() {
                 path="create-user/retailer"
                 element={<CreateUserRetailerPage />}
               /> */}
+              <Route path="member/profile/view/:id" element={<ViewProfileMemberPage />} />
+              <Route path="report/pancard/:id" element={<UtiPancardPage />} />
               <Route path="suspended-users" element={<SuspendedUserPage />} />
               <Route
                 path="add-suspended-users"
@@ -629,11 +633,11 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route
                 path="/admin/statement/report/:id"
-                element={<Statement/>}
+                element={<Statement />}
               />
               <Route
                 path="/admin/statementwallet/report/:id"
-                element={<StatementWallet/>}
+                element={<StatementWallet />}
               />
             </Route>
             <Route path="*" element={<PageNotFound />} />
