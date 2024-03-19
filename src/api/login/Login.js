@@ -518,14 +518,15 @@ export const reailerDistIdAgainst = (page, count, id) => {
 export const getDistIdAgainst = (id) => {
   return axiosInstance.get(`${baseUrl}user/${id}`)
 }
-export const updateDistIdAgainst = (id,value) => {
-  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`,{ ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
+export const updateDistIdAgainst = (id, value) => {
+  // console.log(value);
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, { ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
 }
 
-export const ZoonFilter = ({areaid ,level }) => {
+export const ZoonFilter = ({ areaid, level }) => {
   return axiosInstance.get(`${baseUrl}/zone/get/filter?area=${areaid}&level=${level}`);
 };
-export const ZoonFilterSec = ({zone ,area }) => {
+export const ZoonFilterSec = ({ zone, area }) => {
   return axiosInstance.get(`${baseUrl}/zone/get/filter?zone=${zone}&area=${area}`);
 }
 // ------------- billing Address Api---------------
@@ -566,7 +567,7 @@ export const deletshippingAddress = (id) => {
 
 //  DMT Apis
 
-export const adddmtcommscheme = ( data ) => {
+export const adddmtcommscheme = (data) => {
   console.log(data);
   return axiosInstance.post(`${baseUrl}dmtCommisionSchema/add`, data)
 }
@@ -576,8 +577,8 @@ export const getdmtcommscheme = () => {
 export const getdmtcommschemeagId = (id) => {
   return axiosInstance.get(`${baseUrl}dmtCommisionSchema/${id}`)
 }
-export const updatedmtcommschemeagId = (id,value) => {
-  return axiosInstance.put(`${baseUrl}dmtCommisionSchema/update/${id}`,value)
+export const updatedmtcommschemeagId = (id, value) => {
+  return axiosInstance.put(`${baseUrl}dmtCommisionSchema/update/${id}`, value)
 }
 export const deletedmtcommschemeagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommisionSchema/delete/${id}`,)
@@ -593,8 +594,8 @@ export const getdmtcomm = () => {
 export const getdmtcommagId = (id) => {
   return axiosInstance.get(`${baseUrl}dmtCommision/${id}`)
 }
-export const updatedmtcommagId = (id,value) => {
-  return axiosInstance.put(`${baseUrl}dmtCommision/update/${id}`,value)
+export const updatedmtcommagId = (id, value) => {
+  return axiosInstance.put(`${baseUrl}dmtCommision/update/${id}`, value)
 }
 export const deletedmtcommagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommision/delete/${id}`,)

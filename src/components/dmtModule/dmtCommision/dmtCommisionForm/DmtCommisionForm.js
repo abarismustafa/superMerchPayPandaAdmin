@@ -42,8 +42,7 @@ function DmtCommisionForm() {
         });
     };
     const submitForm = async (values) => {
-        const clone = {...values}
-        console.log(clone);
+        const clone = { ...values }
         try {
             if (!params?.id) {
                 try {
@@ -225,7 +224,7 @@ function DmtCommisionForm() {
                                                                 })}
                                                         </select>
 
-                                                    </div>
+                                                    </div>
                                                     <div className='col-xl-4 mb-3'>
                                                         <select class="form-select" aria-label="Default select example"><option disabled> select Status</option><option value={true}>Active</option><option value={false}>Inactive</option></select>
                                                     </div>

@@ -69,7 +69,7 @@ function Services({ submitForm, validate, handleInput_C, handlePermission, permi
                   </div>
                 })}
               </div>
-              <button className="bg-danger p-2 border-0 text-white rounded">update</button>
+              <button type="submit" className="bg-danger p-2 border-0 text-white rounded">update</button>
             </form>
           );
         }}

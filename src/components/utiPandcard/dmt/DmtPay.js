@@ -2,7 +2,7 @@ import AadharPaysatement from "./addharPayStatement/AddharPaySatement"
 import SearchAadhar from "./search/SerachAdhar"
 
 
-function AdharPay() {
+function DtmPay() {
     return (
         <>
             <SearchAadhar />
@@ -10,4 +10,4 @@ function AdharPay() {
         </>
     )
 }
-export default AdharPay
+export default DtmPay
