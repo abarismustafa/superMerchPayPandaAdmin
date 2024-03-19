@@ -19,7 +19,7 @@ function StatementWallet() {
             <Tabs
                 defaultActiveKey={1}
                 id="uncontrolled-tab-example"
-                className="mb-3"
+                className="mb-2"
             >
                 <Tab eventKey={1} title={'Aeps Wallet'}>
                     <StatementTop />

@@ -1,13 +1,14 @@
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import CustomInputField from '../../../../common/CustomInputField';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
 import { adddmtcommscheme, getdmtcommschemeagId, updatedmtcommschemeagId } from '../../../../api/login/Login';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 function DmtcommschForm() {
     const params = useParams()
+    const navigate = useNavigate()
     const [initialValues, setInitialValues] = useState({
         name: "",
         isActive: false,
@@ -31,12 +32,11 @@ function DmtcommschForm() {
         try {
             if (!params?.id) {
                 try {
-                  const d =   await adddmtcommscheme(values);
-                //   console.log(d);
+                  await adddmtcommscheme(values);
                     toastSuccessMessage();
-                   /*  setTimeout(() => {
-                        navigate('/admin/add-commision-scheme')
-                    }, 5000); */
+                    setTimeout(() => {
+                        navigate('/admin/dmt-commision-scheme')
+                    }, 5000);
                 } catch (error) {
 
                 }
@@ -45,9 +45,9 @@ function DmtcommschForm() {
                 try {
                     await updatedmtcommschemeagId(params.id, values);
                     toastSuccessMessage();
-                    /* setTimeout(() => {
-                        navigate('/admin/user-type')
-                    }, 5000); */
+                    setTimeout(() => {
+                        navigate('/admin/dmt-commision-scheme')
+                    }, 5000);
                 } catch (error) {
 
                 }
@@ -81,7 +81,7 @@ function DmtcommschForm() {
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={""} />
-
+<ToastContainer/>
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">

@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik } from 'formik';
 import CustomInputField from '../../../../../common/CustomInputField';
 
-function BillingAddressForm({submitForm,initialValues,validate}) {
+function BillingAddressForm({submitForm,initialValues,validate,selecAddressId}) {
     return (
         <div className="row m-4">
             <div className="col-xl-12">
@@ -204,9 +204,13 @@ function BillingAddressForm({submitForm,initialValues,validate}) {
                                                 </div>
 
                                                 <div className=''>
-                                                    <button className="btn btn-danger pd-x-20 rounded-2 mt-4 " type="submit" disabled={!isValid || !dirty}
+                                                <button
+                                                        className="btn btn-primary me-1"
+                                                        type="submit"
+                                                        disabled={!isValid || !dirty}
                                                     >
-                                                        Add Billing </button>
+                                                        {selecAddressId ? "Update" : "Add"}
+                                                    </button>
                                                 </div>
 
                                             </div>
