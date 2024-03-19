@@ -562,3 +562,40 @@ export const updateshippingAddress = (id, value) => {
 export const deletshippingAddress = (id) => {
   return axiosInstance.delete(`${baseUrl}deliveryaddress/deleteDeliveryAddress/${id}`);
 };
+
+
+//  DMT Apis
+
+export const adddmtcommscheme = ( data ) => {
+  console.log(data);
+  return axiosInstance.post(`${baseUrl}dmtCommisionSchema/add`, data)
+}
+export const getdmtcommscheme = () => {
+  return axiosInstance.get(`${baseUrl}dmtCommisionSchema`)
+}
+export const getdmtcommschemeagId = (id) => {
+  return axiosInstance.get(`${baseUrl}dmtCommisionSchema/${id}`)
+}
+export const updatedmtcommschemeagId = (id,value) => {
+  return axiosInstance.put(`${baseUrl}dmtCommisionSchema/update/${id}`,value)
+}
+export const deletedmtcommschemeagId = (id) => {
+  return axiosInstance.delete(`${baseUrl}dmtCommisionSchema/delete/${id}`,)
+}
+// ----------------------
+export const adddmtcomm = (data) => {
+  console.log(data);
+  return axiosInstance.post(`${baseUrl}dmtCommision/add`, data)
+}
+export const getdmtcomm = () => {
+  return axiosInstance.get(`${baseUrl}dmtCommision`)
+}
+export const getdmtcommagId = (id) => {
+  return axiosInstance.get(`${baseUrl}dmtCommision/${id}`)
+}
+export const updatedmtcommagId = (id,value) => {
+  return axiosInstance.put(`${baseUrl}dmtCommision/update/${id}`,value)
+}
+export const deletedmtcommagId = (id) => {
+  return axiosInstance.delete(`${baseUrl}dmtCommision/delete/${id}`,)
+}
