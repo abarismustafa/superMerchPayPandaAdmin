@@ -4,13 +4,14 @@ import CustomInputField from '../../../../common/CustomInputField';
 import { addBillingAddress, deletBillingAddress, getBillingAddress, getBillingAddressDetails, updateBillingAddress } from '../../../../api/login/Login';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Popconfirm, message } from 'antd';
+import {message } from 'antd';
 import BillingAddressForm from './bilingAddressForm/BillingAddressForm';
 import BillingAddressList from './billingAddressList/BillingAddressList';
 
 function BillingAddress() {
     const params = useParams()
     const [data, setData] = useState()
+    const [selecAddressId, setSelecAddressId] = useState(null)
     const [loading, setLoading] = useState()
     const [initialValues, setInitialValues] = useState(
         {
@@ -101,6 +102,10 @@ function BillingAddress() {
         return errors;
     };
 
+    function editBillingAddress(id) {
+        fetchUserType(id);
+    }
+
     const getBillingData = async (id) => {
         try {
             if (id) {
@@ -127,7 +132,7 @@ function BillingAddress() {
     };
     const submitForm = async (values) => {
         try {
-            if (params?.id) {
+            if (!selecAddressId) {
                 try {
                     await addBillingAddress(values);
                     toastSuccessMessage();
@@ -138,7 +143,8 @@ function BillingAddress() {
 
             } else {
                 try {
-                    await updateBillingAddress(params.id, values);
+                    await updateBillingAddress(selecAddressId, values);
+                    getBillingData(params.id)
                     toastSuccessMessage();
                     /* setTimeout(() => {
                         navigate('/admin/role-master')
@@ -154,39 +160,38 @@ function BillingAddress() {
         }
 
     }
-    useEffect(() => {
-        const fetchUserType = async () => {
-            try {
-                if (params?.id) {
-                    const response = await getBillingAddressDetails(params.id);
-                    const roleData = response.data;
-                    setInitialValues(roleData);
+   
+    const fetchUserType = async (id) => {
+        setSelecAddressId(id)
+        try {
+            if (id) {
+                const response = await getBillingAddressDetails(id);
+                const roleData = response.data;
+                setInitialValues(roleData);
 
-                } else {
-                    setInitialValues({
-                        country: "",
-                        state: "",
-                        city: "",
-                        pin_code: "",
-                        addressLine1: "",
-                        addressLine2: "",
-                        province: "",
-                        mobile_number: "",
-                        email: "",
-                        firstname: "",
-                        lastname: "",
-                        company: "",
-                        status_id: false,
-                        type: "Billing",
-                        user_id: params.id,
-                    });
-                }
-            } catch (error) {
-                console.error("Error fetching User type:", error);
+            } else {
+                setInitialValues({
+                    country: "",
+                    state: "",
+                    city: "",
+                    pin_code: "",
+                    addressLine1: "",
+                    addressLine2: "",
+                    province: "",
+                    mobile_number: "",
+                    email: "",
+                    firstname: "",
+                    lastname: "",
+                    company: "",
+                    status_id: false,
+                    type: "Billing",
+                    user_id: params.id,
+                });
             }
-        };
-        fetchUserType();
-    }, [params?.id]);
+        } catch (error) {
+            console.error("Error fetching User type:", error);
+        }
+    };
 
     const deleteBillingAddress = async (id) => {
         setLoading(true)
@@ -207,8 +212,8 @@ function BillingAddress() {
     };
     return (
         <>
-           <BillingAddressForm submitForm={submitForm} initialValues={initialValues} validate={validate}/>
-           <BillingAddressList data={data} confirm={confirm} cancel={cancel}/>
+            <BillingAddressForm submitForm={submitForm} initialValues={initialValues} validate={validate} selecAddressId={selecAddressId} />
+            <BillingAddressList data={data} confirm={confirm} cancel={cancel} editBillingAddress={editBillingAddress} />
         </>
     )
 }

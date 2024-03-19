@@ -173,8 +173,10 @@ import DmtcommschForm from "./components/dmtModule/dmtCommSche/dmtcommschForm/Dm
 import ZoonArea from "./pages/zoonArea";
 import Statement from "./pages/statement/page";
 import StatementWallet from "./pages/walletstatement/page";
+import Transactions from "./pages/transactions";
 import ViewProfileMemberPage from "./pages/viewProfileMember";
 import UtiPancardPage from "./pages/utiPandcard";
+import BillPayment from "./pages/billpayment";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -666,6 +668,18 @@ function App() {
               <Route
                 path="/admin/statementwallet/report/:id"
                 element={<StatementWallet />}
+              />
+              <Route
+                path="/admin/statement/apes/report/:id"
+                element={<Transactions/>}
+              />
+              <Route
+                path="/admin/statement/billpayment/report/:id"
+                element={<BillPayment/>}
+              />
+              <Route
+                path="/admin/statement/recharge/report/:id"
+                element={<BillPayment/>}
               />
             </Route>
             <Route path="*" element={<PageNotFound />} />

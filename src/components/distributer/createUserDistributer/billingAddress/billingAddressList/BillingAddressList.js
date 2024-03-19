@@ -2,7 +2,8 @@ import { Popconfirm } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function BillingAddressList({data,confirm,cancel}) {
+function BillingAddressList({data,confirm,cancel,editBillingAddress}) {
+   
     return (
         <> {data &&
             <div className="row m-4">
@@ -75,7 +76,8 @@ function BillingAddressList({data,confirm,cancel}) {
                                                     <span className="badge badge-success text-light  border-0" style={{ backgroundColor: `${item?.status_id === true ? 'blue' : 'red'}`, fontSize: `${item?.status_id === false ? '0.8rem' : ''}` }}>{item?.status_id == true ? 'Active' : 'Inactive'}</span>
                                                 </td>
                                                 <td>
-                                                    <Link to={`/admin/create-user/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                    <Link to={`#`} onClick={()=>editBillingAddress(item._id)} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>
+                                                   
                                                     <Popconfirm
                                                         title="Delete Currency !"
                                                         description="Are you sure to delete ?"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { deletedmtcommagId, getdmtcomm, getdmtcommscheme } from '../../../../api/login/Login';
 import { Popconfirm, message } from 'antd';
+import Loadar from '../../../../common/loader/Loader';
 
 function DmtCommisionlist() {
     const [dmtData, setDmtData] = useState(null)
@@ -45,6 +46,7 @@ function DmtCommisionlist() {
     };
     return (
         <section className="ListDistributer ">
+            {loading && <Loadar/>}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -81,7 +83,7 @@ function DmtCommisionlist() {
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     Status</th>
 
-                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                <th className="sorting text-center" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                     Action</th>
 
                                             </tr>
@@ -103,7 +105,7 @@ function DmtCommisionlist() {
                                                         {item?.commision_type}
                                                     </td>
                                                     <td>
-                                                        <span className="badge badge-success light border-0">Inactive</span>
+                                                    <span className="badge badge-success text-light border-0" style={{ backgroundColor: `${item?.isActive === true ? 'blue' : '#bc3922ab'}`, fontSize: `${item?.isActive === false ? '0.8rem' : ''}` }}>{item?.isActive == true ? 'active' : 'Inactive'}</span>
                                                     </td>
                                                     <td>
                                                         <Link to={`/admin/update-dmt-commision/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>

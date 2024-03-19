@@ -1,14 +1,14 @@
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import CustomInputField from '../../../../common/CustomInputField';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
 import { adddmtcomm, getdmtcommagId, getdmtcommscheme, updatedmtcommagId } from '../../../../api/login/Login';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 function DmtCommisionForm() {
     const [comboData, setcomboData] = useState(null)
     const params = useParams()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const [initialValues, setInitialValues] = useState({
         dmt_comm_id: "",
         start_amt: "",
@@ -37,7 +37,7 @@ function DmtCommisionForm() {
     };
 
     const toastSuccessMessage = () => {
-        toast.success(`${params?.id ? "Update" : "Add"} Users Type Successfully.`, {
+        toast.success(`${params?.id ? "Update" : "Add"} DMT Commision Successfully.`, {
             position: "top-center",
         });
     };
@@ -48,20 +48,21 @@ function DmtCommisionForm() {
                 try {
                     await adddmtcomm(clone);
                     toastSuccessMessage();
-                    /* setTimeout(() => {
-                        navigate('/admin/user-type')
-                    }, 5000); */
+                    setTimeout(() => {
+                        navigate('/admin/dmt-commision')
+                    }, 5000);
                 } catch (error) {
 
                 }
 
             } else {
                 try {
-                    await updatedmtcommagId(params.id, values);
+                   const d =  await updatedmtcommagId(params.id, values);
+                   console.log(d.data);
                     toastSuccessMessage();
-                    /*  setTimeout(() => {
-                         navigate('/admin/user-type')
-                     }, 5000); */
+                     setTimeout(() => {
+                         navigate('/admin/dmt-commision')
+                     }, 5000);
                 } catch (error) {
 
                 }
@@ -108,7 +109,7 @@ function DmtCommisionForm() {
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={""} />
-
+<ToastContainer/>
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -226,7 +227,7 @@ function DmtCommisionForm() {
 
                                                     </div>
                                                     <div className='col-xl-4 mb-3'>
-                                                        <select class="form-select" aria-label="Default select example"><option disabled> select Status</option><option value={true}>Active</option><option value={false}>Inactive</option></select>
+                                                        <select class="form-select" aria-label="Default select example" id="isActive" name="isActive" onChange={handleChange}><option disabled> select Status</option><option value={true}>Active</option><option value={false}>Inactive</option></select>
                                                     </div>
                                                     <div><Link class="btn btn-danger light ms-1" to="/admin/dmt-commision">Cancel</Link><button
                                                         className="btn btn-primary me-1"
