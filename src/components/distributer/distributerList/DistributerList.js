@@ -153,7 +153,7 @@ function DistributerList({ params }) {
                                                                 </Dropdown.Toggle>
 
                                                                 <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">AEPS</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/statement/apes/report/${item?._id}`}>AEPS</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-2">Billpayment</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">Recharge</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">Mone Transfer</Dropdown.Item>
