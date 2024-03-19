@@ -1,6 +1,6 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
-function Dmt() {
+function AepsStatement() {
     return (
         <>
             <section className="ListDistributer ">
@@ -10,7 +10,8 @@ function Dmt() {
                             <div className="card-body p-0">
                                 <div className="table-responsive active-projects style-1">
                                     <div className="tbl-caption">
-                                        <h4 className="heading mb-0"><b>DMT Statement</b></h4>
+                                        <h4 className="heading mb-0"><b>AEPS Statement</b></h4>
+
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer">
                                         {/* <div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Download Retailer</span></button> </div> */}
@@ -26,27 +27,19 @@ function Dmt() {
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                         Transaction Details</th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
-                                                        Reference
+                                                        Reference Details
                                                     </th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                        Details</th>
-
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                        Amount </th>
+                                                        Amount</th>
 
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <div className='text-center w-100'>
-                                                    No Data Found
-                                                </div>
-                                                {/*  <tr role="row" className="odd text-center w-100">
-                        <td className='w-100'>
-                          
-                        </td>
-                      </tr> */}
+                                                <tr role="row" className="odd text-align-center">
+                                                    No Data
+                                                </tr>
 
                                             </tbody>
                                         </table>
@@ -61,5 +54,4 @@ function Dmt() {
         </>
     )
 }
-
-export default Dmt
+export default AepsStatement

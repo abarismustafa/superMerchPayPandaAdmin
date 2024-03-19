@@ -9,6 +9,7 @@ import FundTransfer from "../createUserDistributer/fundTrnsfer/FundTrnasfer";
 import SchemeManager from "../createUserDistributer/schemeManager/SchemeManager";
 import IdStocks from "../createUserDistributer/IdsStoks/IdStoks";
 import MemberPermission from "../createUserDistributer/memberPermission/MemberPermission";
+import LockAmount from "../createUserDistributer/lockAmount/LockAmount";
 
 function DistributerList({ params }) {
     const [show, setShow] = useState(false);
@@ -27,6 +28,10 @@ function DistributerList({ params }) {
 
     const handleClose4 = () => setShow4(false);
     const handleShow4 = () => setShow4(true)
+    const [show5, setShow5] = useState(false);
+
+    const handleClose5 = () => setShow5(false);
+    const handleShow5 = () => setShow5(true)
 
     const [state, setState] = useState()
     const [loading, setLoading] = useState(false);
@@ -142,8 +147,8 @@ function DistributerList({ params }) {
                                                                     <Dropdown.Item href="#" onClick={handleShow2}>Scheme</Dropdown.Item>
                                                                     <Dropdown.Item href="#" onClick={handleShow3}>Add Id Stock</Dropdown.Item>
                                                                     <Dropdown.Item href="#" onClick={handleShow4}>Permission</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Locked Amount</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">View Profile</Dropdown.Item>
+                                                                    <Dropdown.Item href="#" onClick={handleShow5}>Locked Amount</Dropdown.Item>
+                                                                    <Dropdown.Item href="/admin/member/profile/view/3">View Profile</Dropdown.Item>
                                                                 </Dropdown.Menu>
                                                             </Dropdown>
 
@@ -153,11 +158,11 @@ function DistributerList({ params }) {
                                                                 </Dropdown.Toggle>
 
                                                                 <Dropdown.Menu>
-                                                                    <Dropdown.Item href={`/admin/statement/apes/report/${item?._id}`}>AEPS</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Billpayment</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Recharge</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/statement/apes/report/${item?._id}`} target="blank">AEPS</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/statement/billpayment/report/${item?._id}`} target="blank">Billpayment</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/statement/recharge/report/${item?._id}`} target="blank">Recharge</Dropdown.Item>
                                                                     <Dropdown.Item href="#/action-3">Mone Transfer</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">UtiPancard</Dropdown.Item>
+                                                                    <Dropdown.Item href="/admin/report/pancard/3">UtiPancard</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statement/report/2">Account Stat...</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statementwallet/report/2">Aeps Stat...</Dropdown.Item>
                                                                 </Dropdown.Menu>
@@ -208,6 +213,7 @@ function DistributerList({ params }) {
             <SchemeManager show2={show2} handleClose2={handleClose2} />
             <IdStocks show3={show3} handleClose3={handleClose3} />
             <MemberPermission show4={show4} handleClose4={handleClose4} />
+            <LockAmount show5={show5} handleClose4={handleClose5} />
         </>
     )
 }

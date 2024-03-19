@@ -119,18 +119,17 @@ function FundTransfer({ show, handleClose }) {
                                         <div className="col-xl-6 mb-3">
                                             <select className="form-select" aria-label="Default select example">
                                                 <option selected>Select Wallet</option>
-                                                <option value={1}>One</option>
-                                                <option value={2}>Two</option>
-                                                <option value={3}>Three</option>
+                                                <option value={1}>Main Wallet</option>
+                                                <option value={2}>Aeps Wallet</option>
+
                                             </select>
 
                                         </div>
                                         <div className="col-xl-6 mb-3">
                                             <select className="form-select" aria-label="Default select example">
                                                 <option selected>Select Fund Action</option>
-                                                <option value={1}>One</option>
-                                                <option value={2}>Two</option>
-                                                <option value={3}>Three</option>
+                                                <option value={1}>Transfer</option>
+                                                <option value={2}>Return</option>
                                             </select>
 
                                         </div>
@@ -163,6 +162,38 @@ function FundTransfer({ show, handleClose }) {
                                                 placeholder="Refno"
                                             />
                                         </div>
+                                        <div className="col-xl-6 mb-3">
+
+                                            <CustomInputField
+                                                type="file"
+                                                value={values.profile}
+                                                hasError={errors.profile && touched.profile}
+                                                // onChange={colodinaryImage}
+                                                onBlur={handleBlur}
+                                                errorMsg={errors.profile}
+                                                autoFocus={true}
+                                                id="profile"
+                                                name='profile'
+                                                placeholder="Image"
+                                            />
+                                        </div>
+
+
+
+                                        <div className="col-xl-6 mb-3">
+                                            <CustomInputField
+                                                type="password"
+                                                value={values.SecurityPin}
+                                                hasError={errors.SecurityPin && touched.SecurityPin}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                errorMsg={errors.SecurityPin}
+                                                autoFocus={true}
+                                                id="SecurityPin"
+                                                placeholder="SecurityPin"
+                                                name="SecurityPin"
+                                            />
+                                        </div>
                                         <div className="col-xl-12 mb-3">
 
                                             <CustomTextArea
@@ -176,20 +207,6 @@ function FundTransfer({ show, handleClose }) {
                                                 id="provider"
                                                 placeholder="Remark"
                                                 name="Remark"
-                                            />
-                                        </div>
-                                        <div className="col-xl-6 mb-3">
-                                            <CustomInputField
-                                                type="text"
-                                                value={values.SecurityPin}
-                                                hasError={errors.SecurityPin && touched.SecurityPin}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                errorMsg={errors.SecurityPin}
-                                                autoFocus={true}
-                                                id="SecurityPin"
-                                                placeholder="SecurityPin"
-                                                name="SecurityPin"
                                             />
                                         </div>
                                         <div className='border-top'>
