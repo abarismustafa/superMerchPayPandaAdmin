@@ -46,7 +46,7 @@ function DmtCommisionlist() {
     };
     return (
         <section className="ListDistributer ">
-            {loading && <Loadar/>}
+            {loading && <Loadar />}
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -80,6 +80,18 @@ function DmtCommisionlist() {
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
                                                     Commision Type
                                                 </th>
+                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
+                                                    Dist Commision
+                                                </th>
+                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
+                                                    Dist  Commision Type
+                                                </th>
+                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
+                                                    Master   Dist Commision
+                                                </th>
+                                                <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Email Address: activate to sort column ascending" style={{ width: '141.087px' }}>
+                                                    Master Dist  Commision Type
+                                                </th>
                                                 <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                     Status</th>
 
@@ -105,7 +117,19 @@ function DmtCommisionlist() {
                                                         {item?.commision_type}
                                                     </td>
                                                     <td>
-                                                    <span className="badge badge-success text-light border-0" style={{ backgroundColor: `${item?.isActive === true ? 'blue' : '#bc3922ab'}`, fontSize: `${item?.isActive === false ? '0.8rem' : ''}` }}>{item?.isActive == true ? 'active' : 'Inactive'}</span>
+                                                        {item?.distributor_comm}
+                                                    </td>
+                                                    <td>
+                                                        {item?.distributor_comm_type}
+                                                    </td>
+                                                    <td>
+                                                        {item?.master_distributer_com}
+                                                    </td>
+                                                    <td>
+                                                        {item?.master_distributer_com_type}
+                                                    </td>
+                                                    <td>
+                                                        <span className="badge badge-success text-light border-0" style={{ backgroundColor: `${item?.isActive === true ? 'blue' : '#bc3922ab'}`, fontSize: `${item?.isActive === false ? '0.8rem' : ''}` }}>{item?.isActive == true ? 'active' : 'Inactive'}</span>
                                                     </td>
                                                     <td>
                                                         <Link to={`/admin/update-dmt-commision/${item?._id}`} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fa fa-pencil" /></Link>

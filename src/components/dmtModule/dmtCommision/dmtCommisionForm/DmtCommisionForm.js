@@ -15,6 +15,10 @@ function DmtCommisionForm() {
         end_amt: "",
         commision: "",
         commision_type: "",
+        distributor_comm: "",
+        distributor_comm_type: "",
+        master_distributer_com: "",
+        master_distributer_com_type: "",
         isActive: false
 
     });
@@ -42,7 +46,9 @@ function DmtCommisionForm() {
         });
     };
     const submitForm = async (values) => {
-        const clone = {...values}
+
+        const clone = { ...values }
+        console.log(clone);
         console.log(clone);
         try {
             if (!params?.id) {
@@ -58,12 +64,12 @@ function DmtCommisionForm() {
 
             } else {
                 try {
-                   const d =  await updatedmtcommagId(params.id, values);
-                   console.log(d.data);
+                    const d = await updatedmtcommagId(params.id, values);
+                    console.log(d.data);
                     toastSuccessMessage();
-                     setTimeout(() => {
-                         navigate('/admin/dmt-commision')
-                     }, 5000);
+                    setTimeout(() => {
+                        navigate('/admin/dmt-commision')
+                    }, 5000);
                 } catch (error) {
 
                 }
@@ -97,6 +103,10 @@ function DmtCommisionForm() {
                         end_amt: "",
                         commision: "",
                         commision_type: "",
+                        distributor_comm: "",
+                        distributor_comm_type: "",
+                        master_distributer_com: "",
+                        master_distributer_com_type: "",
                         isActive: false
                     });
                 }
@@ -110,7 +120,7 @@ function DmtCommisionForm() {
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={""} />
-<ToastContainer/>
+            <ToastContainer />
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -173,6 +183,7 @@ function DmtCommisionForm() {
 
                                                         />
                                                     </div>
+                                                    
                                                     <div className="col-xl-4 mb-3">
                                                         <CustomInputField
                                                             type="number"
@@ -189,7 +200,51 @@ function DmtCommisionForm() {
                                                         />
                                                     </div>
                                                     <div className='col-xl-4 mb-3'>
-                                                        <select class="form-select" aria-label="Default select example" id="commision_type" name="commision_type" onChange={handleChange}><option disabled> select Commision Type</option>
+                                                        <select class="form-select" aria-label="Default select example" id="commision_type" name="commision_type" onChange={handleChange}><option disabled selected defaultValue={values?.commision_type}> Select Commision Type</option>
+                                                            <option value={"Percent"}>{"Percent"}</option>
+                                                            <option value={"Flat"}>{"Flat"}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.distributor_comm}
+                                                            hasError={errors.distributor_comm && touched.distributor_comm}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.distributor_comm}
+                                                            autoFocus={true}
+                                                            id="distributor_comm"
+                                                            placeholder="Distributor Commision"
+                                                            name="distributor_comm"
+
+                                                        />
+                                                    </div>
+
+                                                    <div className='col-xl-4 mb-3'>
+                                                        <select class="form-select" aria-label="Default select example" id="distributor_comm_type" name="distributor_comm_type" onChange={handleChange}><option disabled selected defaultValue={values?.distributor_comm_type}> Select  Distributer Commision Type</option>
+                                                            <option value={"Percent"}>{"Percent"}</option>
+                                                            <option value={"Flat"}>{"Flat"}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-xl-4 mb-3">
+                                                        <CustomInputField
+                                                            type="number"
+                                                            value={values.master_distributer_com}
+                                                            hasError={errors.master_distributer_com && touched.master_distributer_com}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.master_distributer_com}
+                                                            autoFocus={true}
+                                                            id="master_distributer_com"
+                                                            placeholder="Master Dist Commision"
+                                                            name="master_distributer_com"
+
+                                                        />
+                                                    </div>
+
+                                                    <div className='col-xl-4 mb-3'>
+                                                        <select class="form-select" aria-label="Default select example" id="master_distributer_com_type" name="master_distributer_com_type" onChange={handleChange}><option disabled selected defaultValue={values?.master_distributer_com_type}> select Master Dist Commision Type</option>
                                                             <option value={"Percent"}>{"Percent"}</option>
                                                             <option value={"Flat"}>{"Flat"}</option>
                                                         </select>
@@ -226,7 +281,7 @@ function DmtCommisionForm() {
                                                                 })}
                                                         </select>
 
-                                                    </div>
+                                                    </div>
                                                     <div className='col-xl-4 mb-3'>
                                                         <select class="form-select" aria-label="Default select example" id="isActive" name="isActive" onChange={handleChange}><option disabled> select Status</option><option value={true}>Active</option><option value={false}>Inactive</option></select>
                                                     </div>
