@@ -49,7 +49,6 @@ function DmtCommisionForm() {
 
         const clone = { ...values }
         console.log(clone);
-        console.log(clone);
         try {
             if (!params?.id) {
                 try {
