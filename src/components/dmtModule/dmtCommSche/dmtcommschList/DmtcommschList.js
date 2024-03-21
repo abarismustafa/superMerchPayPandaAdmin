@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { deletedmtcommschemeagId, getdmtcommscheme } from '../../../../api/login/Login';
 import { Popconfirm, message } from 'antd';
 import Loadar from '../../../../common/loader/Loader';
+import ExportPdf from '../../../../common/exportPdf/ExportPdf';
 
 function DmtcommschList() {
     const [dmtscheData, setDmtscheData] = useState(null)
@@ -46,7 +47,7 @@ function DmtcommschList() {
     };
     return (
         <>
-        {loading && <Loadar/>}
+            {loading && <Loadar />}
             <section className="ListDistributer ">
                 <div className="row m-4">
                     <div className="col-xl-12">
@@ -57,6 +58,7 @@ function DmtcommschList() {
                                         <h4 className="heading mb-0"><b>DMT COMMISION SCHEME LIST</b></h4>
                                         <div>
                                             <Link className="btn btn-primary btn-sm" to="/admin/add-dmt-commision-scheme" role="button" aria-controls="offcanvasExample">+  DMT COMMISION SCHEME </Link>
+                                            <ExportPdf/>
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                 + Invite Employee
                             </button> */}
