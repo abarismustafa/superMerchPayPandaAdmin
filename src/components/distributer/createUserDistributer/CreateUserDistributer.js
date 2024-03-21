@@ -184,7 +184,7 @@ function CreateUserDistributer() {
     e.preventDefault()
     const cloneMerg = { basicDetails: basicDetails, permanentDetails: permanentDetails, service: service, is_approved: initialValues, permission: permission }
     const clone = { ...cloneMerg }
-    console.log(cloneMerg);
+    console.log(clone);
     try {
       const res = await updateDistIdAgainst(params?.id, clone);
       console.log(res);
