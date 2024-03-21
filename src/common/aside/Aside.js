@@ -48,6 +48,7 @@ function Aside({ showAsideBar }) {
   const getCountData = async()=>{
     try {
       const response = await getLength()
+      console.log(response)
       setCountLenData(response?.data)
     } catch (error) {
       error("err  or",error)

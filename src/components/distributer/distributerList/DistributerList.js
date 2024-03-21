@@ -10,6 +10,7 @@ import SchemeManager from "../createUserDistributer/schemeManager/SchemeManager"
 import IdStocks from "../createUserDistributer/IdsStoks/IdStoks";
 import MemberPermission from "../createUserDistributer/memberPermission/MemberPermission";
 import LockAmount from "../createUserDistributer/lockAmount/LockAmount";
+import ExportPdf from "../../../common/exportPdf/ExportPdf";
 
 function DistributerList({ params }) {
     const [show, setShow] = useState(false);
@@ -83,6 +84,7 @@ function DistributerList({ params }) {
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
+                                            <ExportPdf />
                                         </div>
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Download Distributer</span></button> </div>
@@ -95,17 +97,35 @@ function DistributerList({ params }) {
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
                                                         Joining Date
                                                     </th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
+                                                        Joining time
+                                                    </th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Employee Name: activate to sort column ascending" style={{ width: '203.45px' }}>
+                                                        Member type
+
+                                                    </th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Department: activate to sort column ascending" style={{ width: '156.475px' }}>
                                                         Name</th>
 
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
+                                                        Distributor ID
+                                                    </th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                         Mobile</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
+                                                        DBA: Doing Business As</th>
 
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        Parent name</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        Main Parent</th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Email</th>
 
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Normal Balance</th>
+                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
+                                                        Package</th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                         Pan Card  Status</th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
@@ -122,10 +142,18 @@ function DistributerList({ params }) {
                                                     return <tr role="row" className="odd">
                                                         <td className="sorting_1"><span>{i + 1}</span></td>
                                                         <td className="sorting_1"></td>
+                                                        <td className="sorting_1"></td>
+                                                        <td className="sorting_1"></td>
 
                                                         <td>{item?.name}</td>
+                                                        <td className="sorting_1"></td>
                                                         <td>{item?.mobile}</td>
+                                                        <td className="sorting_1"></td>
+                                                        <td className="sorting_1"></td>
+                                                        <td className="sorting_1"></td>
                                                         <td>{item?.email}</td>
+                                                        <td className="sorting_1"></td>
+
                                                         <td>
                                                         </td>
                                                         <td>
@@ -161,7 +189,7 @@ function DistributerList({ params }) {
                                                                     <Dropdown.Item href={`/admin/statement/apes/report/${item?._id}`} target="blank">AEPS</Dropdown.Item>
                                                                     <Dropdown.Item href={`/admin/statement/billpayment/report/${item?._id}`} target="blank">Billpayment</Dropdown.Item>
                                                                     <Dropdown.Item href={`/admin/statement/recharge/report/${item?._id}`} target="blank">Recharge</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Money Transfer</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/statement/moneyTransfer/report/${item?._id}`} target="blank">Money Transfer</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/report/pancard/3">UtiPancard</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statement/report/2">Account Stat...</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statementwallet/report/2">Aeps Stat...</Dropdown.Item>

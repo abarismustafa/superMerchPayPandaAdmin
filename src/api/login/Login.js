@@ -324,10 +324,6 @@ export const deleteServiceMasterList = (id, value) => {
   return axiosInstance.delete(`${baseUrl}service/deleteservice/${id}`);
 };
 
-
-
-
-
 // serviceCategory
 
 export const serviceCategoryAdd = (data) => {
@@ -350,7 +346,7 @@ export const ServiceCategoryUpdate = (id, value) => {
   return axiosInstance.put(`${baseUrl}servicecategory/updatecategory/${id}`, value);
 };
 
-// staff------
+// staff------//
 
 export const staffUpdateProfile = (value) => {
   console.log(value);
@@ -449,12 +445,6 @@ export const apiContactEnquiry = (id, value) => {
   return axiosInstance.put(`${baseUrl}contact-enquiries/updateContactEnquiries/${id}`, value);
 };
 
-
-
-
-
-
-
 // agent onBoarding -------!
 
 export const addAgentOnboarding = (data) => {
@@ -502,7 +492,6 @@ export const paginationPayoutbeneficiaryMaster = (page, count) => {
 export const paginationCountryMaster = (page, count) => {
   return axiosInstance.get(`${baseUrl}country/page/${page}&${count}`)
 }
-
 
 
 // pagination

@@ -18,18 +18,6 @@ import { getLength } from "../../../api/login/Login";
 
 export const navigationData = (count) => {
   const membersTypes = [
-    {
-      uniqueId: "submenu_2_3",
-      id: "3",
-      title: "Suspended User",
-      path: "suspended-users",
-    },
-    {
-      uniqueId: "submenu_2_4",
-      id: "4",
-      title: "Not Working User",
-      path: "not-working-users",
-    },
   ]
   count?.user?.forEach(element => {
     membersTypes.push({
@@ -39,6 +27,27 @@ export const navigationData = (count) => {
       path: `member-list/${element._id}/${element.memeberType}`,
     },)
   });
+  membersTypes.push({
+    uniqueId: "submenu_2_3",
+    id: "3",
+    title: "Suspended User",
+    path: "suspended-users",
+  },
+  )
+  membersTypes.push({
+    uniqueId: "submenu_2_4",
+    id: "4",
+    title: "White List User",
+    path: "suspended-users",
+  },
+  )
+  membersTypes.push({
+    uniqueId: "submenu_2_4",
+    id: "4",
+    title: "Not Working User",
+    path: "not-working-users",
+  },
+  )
   return [
     {
       uniqueId: "menu_2",

@@ -4,6 +4,7 @@ import { userDelete, usersList } from "../../../../api/login/Login";
 import Loadar from "../../../../common/loader/Loader";
 import { Popconfirm, message } from "antd";
 import { baseUrlImage } from "../../../../baseUrl";
+import ExportPdf from "../../../../common/exportPdf/ExportPdf";
 
 function Users() {
   const [data, setData] = useState();
@@ -66,6 +67,7 @@ function Users() {
                     {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
+                                    <ExportPdf/>
                   </div>
                 </div>
                 <div
@@ -176,7 +178,8 @@ function Users() {
                                   src={`${baseUrlImage}${item?.profile}`}
                                   alt="profile"
                                   width={50}
-                                  height={60}
+                                  height={50}
+                                  className="rounded"
                                 />
                               </td>
 

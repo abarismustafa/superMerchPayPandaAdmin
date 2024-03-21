@@ -179,6 +179,8 @@ import UtiPancardPage from "./pages/utiPandcard";
 import BillPayment from "./pages/billpayment";
 import WalletsReportsPage from "./pages/walletsReport";
 import AddWalletsReports from "./components/walletsReport/AddWalletsReports/AddWalletsReports";
+import Recharge from "./pages/recharge";
+import MoneyTransfer from "./pages/moneyTransfer";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -689,7 +691,11 @@ function App() {
               />
               <Route
                 path="/admin/statement/recharge/report/:id"
-                element={<BillPayment />}
+                element={<Recharge />}
+              />
+              <Route
+                path="/admin/statement/moneyTransfer/report/:id"
+                element={<MoneyTransfer />}
               />
             </Route>
             <Route path="*" element={<PageNotFound />} />
