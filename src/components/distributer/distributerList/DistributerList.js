@@ -10,6 +10,7 @@ import SchemeManager from "../createUserDistributer/schemeManager/SchemeManager"
 import IdStocks from "../createUserDistributer/IdsStoks/IdStoks";
 import MemberPermission from "../createUserDistributer/memberPermission/MemberPermission";
 import LockAmount from "../createUserDistributer/lockAmount/LockAmount";
+import ExportPdf from "../../../common/exportPdf/ExportPdf";
 
 function DistributerList({ params }) {
     const [show, setShow] = useState(false);
@@ -83,6 +84,7 @@ function DistributerList({ params }) {
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
+                                            <ExportPdf />
                                         </div>
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Download Distributer</span></button> </div>

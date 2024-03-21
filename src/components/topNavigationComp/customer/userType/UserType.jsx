@@ -4,6 +4,7 @@ import { deleteUserType, listUserType, paginationUserTypeMaster } from '../../..
 import { Pagination, Popconfirm, message } from 'antd';
 import Breadcrumbs from '../../../../common/breadcrumb/Breadcrumbs';
 import Loadar from '../../../../common/loader/Loader';
+import ExportPdf from '../../../../common/exportPdf/ExportPdf';
 
 const UserType = () => {
     const [data, setData] = useState()
@@ -72,6 +73,7 @@ const UserType = () => {
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
+                                     <ExportPdf/>
                                     </div>
                                 </div>
                                 <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Export Report</span></button> </div><table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
