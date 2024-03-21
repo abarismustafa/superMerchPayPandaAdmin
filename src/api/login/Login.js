@@ -600,3 +600,12 @@ export const updatedmtcommagId = (id, value) => {
 export const deletedmtcommagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommision/delete/${id}`,)
 }
+
+export const walletsReport = (data) => {
+  return axiosInstance.post(`${baseUrl}mainwallet/create`, data)
+}
+
+export const walletsReportFilter = (page, count, data) => {
+  // return axiosInstance.post(`${baseUrl}mainwallet/filter`, { page, ...data, count })
+  return axiosInstance.post(`${baseUrl}mainwallet/filter`, { page, ...data, count })
+}

@@ -343,7 +343,7 @@ export const navigationData = (count) => {
           title: "District",
           path: "page-not-found",
         },
-       
+
       ],
     },
     {

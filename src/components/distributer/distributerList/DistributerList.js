@@ -161,10 +161,11 @@ function DistributerList({ params }) {
                                                                     <Dropdown.Item href={`/admin/statement/apes/report/${item?._id}`} target="blank">AEPS</Dropdown.Item>
                                                                     <Dropdown.Item href={`/admin/statement/billpayment/report/${item?._id}`} target="blank">Billpayment</Dropdown.Item>
                                                                     <Dropdown.Item href={`/admin/statement/recharge/report/${item?._id}`} target="blank">Recharge</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Mone Transfer</Dropdown.Item>
+                                                                    <Dropdown.Item href="#/action-3">Money Transfer</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/report/pancard/3">UtiPancard</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statement/report/2">Account Stat...</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statementwallet/report/2">Aeps Stat...</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/wallets/report/${item?._id}`}>Wallets Reports</Dropdown.Item>
                                                                 </Dropdown.Menu>
                                                             </Dropdown>
 

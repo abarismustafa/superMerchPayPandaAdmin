@@ -177,6 +177,8 @@ import Transactions from "./pages/transactions";
 import ViewProfileMemberPage from "./pages/viewProfileMember";
 import UtiPancardPage from "./pages/utiPandcard";
 import BillPayment from "./pages/billpayment";
+import WalletsReportsPage from "./pages/walletsReport";
+import AddWalletsReports from "./components/walletsReport/AddWalletsReports/AddWalletsReports";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -671,15 +673,23 @@ function App() {
               />
               <Route
                 path="/admin/statement/apes/report/:id"
-                element={<Transactions/>}
+                element={<Transactions />}
+              />
+              <Route
+                path="/admin/wallets/report/:id"
+                element={<WalletsReportsPage />}
+              />
+              <Route
+                path="/admin/add-wallets/report"
+                element={<AddWalletsReports />}
               />
               <Route
                 path="/admin/statement/billpayment/report/:id"
-                element={<BillPayment/>}
+                element={<BillPayment />}
               />
               <Route
                 path="/admin/statement/recharge/report/:id"
-                element={<BillPayment/>}
+                element={<BillPayment />}
               />
             </Route>
             <Route path="*" element={<PageNotFound />} />
