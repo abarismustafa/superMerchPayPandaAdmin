@@ -179,6 +179,29 @@ import UtiPancardPage from "./pages/utiPandcard";
 import BillPayment from "./pages/billpayment";
 import Recharge from "./pages/recharge";
 import MoneyTransfer from "./pages/moneyTransfer";
+import RechargeReportsPage from "./pages/additionalReportsPages/rechargeReports";
+import SearchReTarnsactionPage from "./pages/additionalReportsPages/searchReTransactions";
+import IndoNepalMoneyPage from "./pages/additionalReportsPages/indoNepalMoney";
+import FastTagReportsPage from "./pages/additionalReportsPages/fastTagReports";
+import DmtReportsPages from "./pages/additionalReportsPages/dmtReport";
+import DmtReportSearch from "./components/additionalReports/dmtReportSearch/DmtReportSearch";
+import DmtKycReportPage from "./pages/additionalReportsPages/dmtKycReport";
+import CcbilPayPage from "./pages/additionalReportsPages/ccbillPaymentRep";
+import AepsXpressPage from "./pages/additionalReportsPages/aepsXpress";
+import AepsTezRepPage from "./pages/additionalReportsPages/aepsTezRep";
+import AepsIcici from "./pages/additionalReportsPages/aepsIcici";
+import AadharRepPage from "./pages/additionalReportsPages/aadharPayReport";
+import InsurenceDekhoPage from "./pages/additionalReportsPages/insurenceDekho";
+import BillPaymentHistoryPage from "./pages/additionalReportsPages/billPaymentHistory";
+import AccountReportPage from "./pages/additionalReportsPages/accountReport";
+import BalanceTopUpHisPage from "./pages/additionalReportsPages/balanceTopupHistory";
+import BankListPage from "./pages/additionalReportsPages/bankListPage";
+import PayMentWithDrawlReportpage from "./pages/additionalReportsPages/paymentWithDrawalRep";
+import CmsBillReportsPage from "./pages/additionalReportsPages/cmsBillReport";
+import PostPaidBillPage from "./pages/additionalReportsPages/postPaidBill";
+import TurboElinePage from "./pages/additionalReportsPages/turboEline";
+import PaymentGatewayPage from "./pages/additionalReportsPages/paymentGatway";
+import RupayGiftCardPage from "./pages/additionalReportsPages/rupayGiftCard";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -687,8 +710,101 @@ function App() {
                 path="/admin/statement/moneyTransfer/report/:id"
                 element={<MoneyTransfer/>}
               />
+              <Route
+                path="/admin/additional-reports/recharge-reports"
+                element={<RechargeReportsPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/search-trans-reports"
+                element={<SearchReTarnsactionPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/indo-nepal-money-transfer"
+                element={<IndoNepalMoneyPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/fast-tag-reports"
+                element={<FastTagReportsPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/dmt-reports"
+                element={<DmtReportsPages/>}
+              />
+              <Route
+                path="/admin/additional-reports/dmt-reports-search"
+                element={<DmtReportSearch/>}
+              />
+              <Route
+                path="/admin/additional-reports/dmt-kyc-reports"
+                element={<DmtKycReportPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/credit-card-bill-payment-report"
+                element={<CcbilPayPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/aeps-Xpress-report"
+                element={<AepsXpressPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/aeps-tez-report"
+                element={<AepsTezRepPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/aeps-icici-report"
+                element={<AepsIcici/>}
+              />
+              <Route
+                path="/admin/additional-reports/aadhaarpay_pay_report"
+                element={<AadharRepPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/insurancedekho_report"
+                element={<InsurenceDekhoPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/bill_report_history"
+                element={<BillPaymentHistoryPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/accountreport"
+                element={<AccountReportPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/topuphistory"
+                element={<BalanceTopUpHisPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/list_bank"
+                element={<BankListPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/aeps_payout_report"
+                element={<PayMentWithDrawlReportpage/>}
+              />
+              <Route
+                path="/admin/additional-reports/cms_bill_report"
+                element={<CmsBillReportsPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/postpaid_bill_transaction"
+                element={<PostPaidBillPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/Turbo_payment_request"
+                element={<TurboElinePage/>}
+              />
+              <Route
+                path="/admin/additional-reports/Pg_report_rz"
+                element={<PaymentGatewayPage/>}
+              />
+              <Route
+                path="/admin/additional-reports/ruapay_gift_cards_report"
+                element={<RupayGiftCardPage/>}
+              />
             </Route>
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="*" element={<LoginPage />} />
+            {/* <Route path="*" element={<Navigate to="/loginPage" />}/> */}
           </>
         )}
       </Routes>

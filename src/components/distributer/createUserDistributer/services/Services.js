@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function Services({ submitForm, validate, handleInput_C, handlePermission, permission, data }) {
-  console.log(data)
 
   const params = useParams()
   const itemList = [

@@ -36,7 +36,7 @@ function BillingAddress() {
     const validate = (values) => {
         let errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const regexmobile_numberNumber = /^[0-9]{10}$/;
+        const regexmobile_numberNumber = /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/;
         const rezexzip = /^[0-9]+$/;
 
         if (!values.firstname) {

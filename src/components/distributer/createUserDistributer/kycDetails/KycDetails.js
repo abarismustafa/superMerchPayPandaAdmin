@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { baseUrlImage } from '../../../../baseUrl';
+import KycModal from './kycModal/KycModal';
 
 function KycDetails({ initialValues }) {
+    console.log(initialValues);
+    const [clickImage, setClickImage] = useState(null)
+    const handleClick = (img) => {
+        setClickImage(img)
+    }
     return (
         <section className="ListDistributer m-4">
             <div className="row">
@@ -40,8 +46,8 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" }} onClick={() => handleClick(initialValues?.docs?.adhaar_front_card)} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -50,8 +56,8 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`} alt='Aadhar Back' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`} alt='Aadhar Back' style={{ width: "100%", overflow: "hidden" }} onClick={() => handleClick(initialValues?.docs?.adhaar_back_card)} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -60,8 +66,8 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.pan_card}`} alt='Pancard Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.pan_card}`} alt='pan_card' style={{ width: "100%", overflow: "hidden" }} onClick={() => handleClick(initialValues?.docs?.pan_card)} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -69,8 +75,8 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.gst}`} alt='adharr Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.bank_proof}`} alt='bank_proof' style={{ width: "100%", overflow: "hidden" }} onClick={() => handleClick(initialValues?.docs?.bank_proof)} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -78,9 +84,9 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
+                                                            <div className='document cursor-pointer	'>
 
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.bank_proof}`} alt='adharr Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.gst}`} alt='Gst Cirtificate' style={{ width: "100%", overflow: "hidden" }} onClick={() => handleClick(initialValues?.docs?.gst)} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,8 +94,8 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='adharr Front' width={100 + "%"} height={70 + "%"} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='adharr Front' width={100 + "%"} height={70 + "%"} onClick={() => handleClick(initialValues?.docs?.adhaar_front_card)} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,7 +123,7 @@ function KycDetails({ initialValues }) {
                     </div>
                 </div>
             </div >
-
+            {/* {clickImage && <KycModal clickImage={clickImage} setClickImage={setClickImage} />} */}
         </section>
     )
 }

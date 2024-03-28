@@ -30,20 +30,20 @@ const Wallet = ({ initialValues }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='col-md-12 col-xl-4'>
+                                        {/* <div className='col-md-12 col-xl-4'>
                                             <div className='card'>
                                                 <div className='d-flex align-items-center justify-content-between'>
                                                     <div className='icon border-right'>
                                                         <span id='wallet_icon1'><IoWallet /></span>
                                                     </div>
                                                     <div className='amount px-4'>
-                                                        {/* {initialValues?.commision_wallet  ? <h2>{initialValues?.commision_wallet}</h2>: <h6>Balance Not Found</h6>} */}
+                                                        {initialValues?.commision_wallet  ? <h2>{initialValues?.commision_wallet}</h2>: <h6>Balance Not Found</h6>}
                                                         <h2 className='text-center'>{initialValues?.commision_wallet}</h2>
                                                         <h3>Commision Wallet</h3>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className='col-md-12 col-xl-4'>
                                             <div className='card'>
                                                 <div className='d-flex align-items-center justify-content-between'>

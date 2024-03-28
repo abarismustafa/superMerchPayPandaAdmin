@@ -108,14 +108,15 @@ function CreateUserDistributer() {
     // console.log(filter);
 
     setData(filter)
-    setPermission(filter)
+    setPermission(filter) 
   }
 
+  // /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/
 
   const validate = (values) => {
     let errors = {};
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const regexmobile = /^[0-9]{10}$/;
+    const regexmobile = /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/;
     const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
     const regexAadhar = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
     // const regexGstNumber = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;

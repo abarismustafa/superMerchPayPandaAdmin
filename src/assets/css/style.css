@@ -20459,7 +20459,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .deznav .metismenu ul.mm-show {
   transition: all 0.3s ease;
-  max-height: 1000px;
+  max-height: 1045px;
   padding: 0.5rem 0;
 }
 
@@ -45833,7 +45833,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .active-projects tbody tr td:last-child {
-  text-align: right;
+  text-align: start;
 }
 
 .active-projects tbody tr td:first-child {

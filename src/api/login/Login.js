@@ -571,9 +571,8 @@ export const updatedmtcommschemeagId = (id,value) => {
 export const deletedmtcommschemeagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommisionSchema/delete/${id}`,)
 }
-// ----------------------
+// -------------DMT API ---------
 export const adddmtcomm = (data) => {
-  console.log(data);
   return axiosInstance.post(`${baseUrl}dmtCommision/add`, data)
 }
 export const getdmtcomm = () => {
@@ -587,4 +586,11 @@ export const updatedmtcommagId = (id,value) => {
 }
 export const deletedmtcommagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommision/delete/${id}`,)
+}
+
+
+// ---------------DMT Txn Fillter --------------- 
+
+export const fillterDmtTxnReport = (data) => {
+  return axiosInstance.post(`${baseUrl}dmt_txn/st/report`, data)
 }

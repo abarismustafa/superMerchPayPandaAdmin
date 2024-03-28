@@ -17,7 +17,7 @@ function StaffTypeAdd() {
     const validate = (values) => {
         let errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexMobileNumber = /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/;
         if (!values.staff_type) {
             errors.staff_type = " Staff Type is required";
         }

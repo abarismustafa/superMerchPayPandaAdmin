@@ -61,7 +61,7 @@ const UserType = () => {
         <>
             <Breadcrumbs breadCrumbsTitle={''} />
             {loading && <Loadar />}
-            <div className="row m-4">
+            <div className="row m-4 exppdf">
                 <div className="col-xl-12">
                     <div className="card">
                         <div className="card-body p-0">

@@ -100,7 +100,7 @@ function Header({ showAsideBar }) {
                       </button>
                     </span>
                     <input
-                      type="text"
+                      type="search"
                       className="form-control "
                       id="search-inp"
                       placeholder="Search"
@@ -572,14 +572,17 @@ function Header({ showAsideBar }) {
                         <div className="card border-0 mb-0">
                           <div className="card-header py-2">
                             <div className="products">
-                              <img
-                                src="images/tab/1.jpg"
-                                className="avatar avatar-md"
-                                alt
-                              />
+                              {data?.profile ? (
+                                <img
+                                  src={`${baseUrlImage}${data?.profile}`}
+                                  alt="profile"
+                                />
+                              ) : (
+                                <img src={profile} alt="profile" />
+                              )}
                               <div>
-                                <h6>Thomas Fleming</h6>
-                                <span>Web Designer</span>
+                                <h6 className="">{data?.name}</h6>
+                                <p>{data?.email}</p>
                               </div>
                             </div>
                           </div>
