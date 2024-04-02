@@ -509,7 +509,7 @@ export const getDistIdAgainst = (id) => {
 }
 export const updateDistIdAgainst = (id, value) => {
   // console.log(value);
-  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, { ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails })
+  return axiosInstance.put(`${baseUrl}user/updateuser/${id}`, { ...value.basicDetails, ...value.permanentDetails, ...value.serviceDetails,permission:value.permission })
 }
 
 export const ZoonFilter = ({ areaid, level }) => {
@@ -572,9 +572,8 @@ export const updatedmtcommschemeagId = (id, value) => {
 export const deletedmtcommschemeagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommisionSchema/delete/${id}`,)
 }
-// ----------------------
+// -------------DMT API ---------
 export const adddmtcomm = (data) => {
-  console.log(data);
   return axiosInstance.post(`${baseUrl}dmtCommision/add`, data)
 }
 export const getdmtcomm = () => {
@@ -590,11 +589,24 @@ export const deletedmtcommagId = (id) => {
   return axiosInstance.delete(`${baseUrl}dmtCommision/delete/${id}`,)
 }
 
+
+// ---------------DMT Txn Fillter --------------- 
+
+export const fillterDmtTxnReport = (data) => {
+  return axiosInstance.post(`${baseUrl}dmt_txn/st/report`, data)
+}
+
 export const walletsReport = (data) => {
   return axiosInstance.post(`${baseUrl}mainwallet/create`, data)
 }
 
 export const walletsReportFilter = (page, count, data) => {
-  // return axiosInstance.post(`${baseUrl}mainwallet/filter`, { page, ...data, count })
   return axiosInstance.post(`${baseUrl}mainwallet/filter`, { page, ...data, count })
 }
+// --------------------paymentRequest-------------------
+export const fillterRequestPayment = (data) => {
+  console.log(data);
+  return axiosInstance.post(`${baseUrl}paymentRequest/admin`, data)
+}
+
+

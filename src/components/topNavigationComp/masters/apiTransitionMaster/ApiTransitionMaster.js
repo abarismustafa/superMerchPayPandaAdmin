@@ -103,9 +103,7 @@ function ApiTransitionMaster() {
                                                 <td>
                                                     {item?.api_response}
                                                 </td>
-                                                <td>
-                                                    {item?.createdAt}
-                                                </td>
+                                                <td> { new Date(item?.createdAt).getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear()}</td>
                                                 <td>
                                                     {item?.req_body}
                                                 </td>

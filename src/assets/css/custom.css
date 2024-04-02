@@ -90,4 +90,24 @@ body {
 /* ---------------------------------- */
 
 
+/* for Tabel Header  */
+.expth {
+    position: relative;
+    padding: 8px;
+    text-align: left; /* Adjust alignment as needed */
+}
+
+.expth .expdiv {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Handles text overflow */
+}
+.ant-pagination-options{
+    display: none !important;
+}
+:where(.css-dev-only-do-not-override-1xg9z9n).ant-pagination .ant-pagination-options{
+    display: none !important;
+}
+
 

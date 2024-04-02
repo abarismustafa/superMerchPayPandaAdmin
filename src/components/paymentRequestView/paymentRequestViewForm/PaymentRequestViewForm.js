@@ -4,55 +4,42 @@ import { FaDownload, FaSearch } from "react-icons/fa";
 import CustomDropdown from "../../../common/CustomDropdown";
 import CustomInputField from "../../../common/CustomInputField";
 import { Formik } from "formik";
+import Loadar from "../../../common/loader/Loader";
 const initialValues = {
     from: '',
     to: '',
 }
-function PaymentRequestViewForm() {
+function PaymentRequestViewForm({ submitForm, loading, page, count, token, userData }) {
     const [modalShow, setModalShow] = useState(false);
-    const name = "dropdown";
-    const placeholder = "Course Name";
-    const type = "dropdown";
-    const itemList = [
+    const [initialValues, setInitialValues] = useState(
         {
-            name: "Abc",
-            value: "Abc",
-        },
-        {
-            name: "Abcd",
-            value: "Abcd",
-        },
-        {
-            name: "Abce",
-            value: "Abce",
-        },
-        {
-            name: "Abcf",
-            value: "Abcf",
-        },
-    ];
+            user: '',
+            user_id: token,
+            count: count,
+            page: page,
+            min_amt:  null,
+            max_amt:  null,
+            end_date: '',
+            start_date: '',
+            bank: "",
+            method: "",
+            status: "",
+        }
+    )
 
     const validate = (values) => {
         let errors = {};
-        if (!values.from) {
+        /* if (!values.from) {
             errors.from = "From Date is required";
         }
         if (!values.to) {
             errors.to = "To Date is required";
-        }
-
-
-
+        } */
         return errors;
     };
 
 
-    const submitForm = (selectedData) => {
-        // TODO
-    };
-    const changeHandle = (selectedData) => {
-        // TODO
-    };
+
 
     return (
         <>
@@ -81,49 +68,138 @@ function PaymentRequestViewForm() {
                                             <div className="tbl-caption tbl-caption-2">
                                                 <h4 className="heading mb-0">PAYMENT REQUEST VIEW</h4>
                                             </div>
-                                            <form className="tbl-captionn">
+                                            <form className="tbl-captionn" onSubmit={handleSubmit}>
                                                 <div className="row">
                                                     <div className="col-xl-3 mb-3">
                                                         <CustomInputField
                                                             type="date"
-                                                            placeholder="From *"
-                                                            value={values.from}
-                                                            hasError={errors.from && touched.from}
+                                                            placeholder="Start Date *"
+                                                            value={values.start_date}
+                                                            hasError={errors.start_date && touched.start_date}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.from}
+                                                            errorMsg={errors.start_date}
                                                             autoFocus={true}
-                                                            id="from"
+                                                            id="start_date"
                                                         />
                                                     </div>
                                                     <div className="col-xl-3 mb-3">
                                                         <CustomInputField
                                                             type="date"
-                                                            placeholder="To *"
-                                                            value={values.to}
-                                                            hasError={errors.to && touched.to}
+                                                            placeholder="End Date *"
+                                                            value={values.end_date}
+                                                            hasError={errors.end_date && touched.end_date}
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
-                                                            errorMsg={errors.to}
+                                                            errorMsg={errors.end_date}
                                                             autoFocus={true}
-                                                            id="to"
+                                                            id="end_date"
                                                         />
                                                     </div>
                                                     <div className="col-xl-3 mb-3">
-                                                        <div className="dropdownWrapper">
-                                                            <CustomDropdown
-                                                                itemList={itemList}
-                                                                placeholder="Select KYC Status *"
-                                                                isSingleSelect={false}
-                                                                icon={true}
-                                                                onChange={changeHandle}
-                                                            />
-                                                        </div>
+                                                        <CustomInputField
+                                                            type="number"
+                                                            placeholder="Min Amount*"
+                                                            value={values.min_amt}
+                                                            hasError={errors.min_amt && touched.min_amt}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.min_amt}
+                                                            autoFocus={true}
+                                                            id="min_amt"
+                                                        />
                                                     </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <CustomInputField
+                                                            type="number"
+                                                            placeholder="Max Amount *"
+                                                            value={values.max_amt}
+                                                            hasError={errors.max_amt && touched.max}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.max_amt}
+                                                            autoFocus={true}
+                                                            id="max_amt"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <CustomInputField
+                                                            type="text"
+                                                            placeholder="Bank Name *"
+                                                            value={values.bank}
+                                                            hasError={errors.bank && touched.bank}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            errorMsg={errors.bank}
+                                                            autoFocus={true}
+                                                            id="bank"
+                                                        />
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <select className="form-select" aria-label="Default select example" id="user" name="user" value={values.user} onChange={handleChange}
+                                                            hasError={
+                                                                errors.user && touched.user
+                                                            }
+
+                                                            onBlur={handleBlur}
+                                                            errorMsg={
+                                                                touched.user && errors.user
+                                                            }
+                                                            autoFocus={true}
+                                                        >
+                                                            <option selected> Select User</option>
+                                                            {loading && <Loadar />}
+                                                            {userData &&
+                                                                userData?.map((item,i) => {
+                                                                    return (
+                                                                            
+                                                                            <option value={item?._id} key={i}> {item?.name}</option>
+                                                                    );
+                                                                })}
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <select className="form-select" aria-label="Default select example" id="method" name="method" value={values.method} onChange={handleChange}
+                                                            hasError={
+                                                                errors.method && touched.method
+                                                            }
+
+                                                            onBlur={handleBlur}
+                                                            errorMsg={
+                                                                touched.method && errors.method
+                                                            }
+                                                            autoFocus={true}
+                                                        >
+                                                            <option selected disabled> Select Method</option>
+                                                            <option value={"NEFT"}>NEFT</option>
+                                                            <option value={"RTGS"}>RTGS</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-xl-3 mb-3">
+                                                        <select className="form-select" aria-label="Default select example" id="status" name="status" value={values.status} onChange={handleChange}
+                                                            hasError={
+                                                                errors.status && touched.status
+                                                            }
+
+                                                            onBlur={handleBlur}
+                                                            errorMsg={
+                                                                touched.status && errors.status
+                                                            }
+                                                            autoFocus={true}
+                                                        >
+                                                            <option selected disabled>select Status</option>
+                                                            <option value={"Approved"}>Approved</option>
+                                                            <option value={"Pending"}>Pendig</option>
+                                                            <option value={"Reject"}>Reject</option>
+
+                                                        </select>
+                                                    </div>
+                                                   
+
                                                     <div className="col-sm-3 mg-sm-t-25">
                                                         <div className="form-group">
-                                                            <button className="btn btn-primary pd-x-20 me-2  me-2-2" type="button" fdprocessedid="4y92n"><i className="fas fa-search" /> Search</button>
-                                                            <button className="btn btn-danger pd-x-20 me-2-2" type="button" onClick={() => setModalShow(true)}> <i className="fas fa-download" /> Download</button>
+                                                            <button className="btn btn-primary pd-x-20  " type="submit"><i className="fas fa-search"></i> Search</button>
                                                         </div>
                                                     </div>
                                                 </div>

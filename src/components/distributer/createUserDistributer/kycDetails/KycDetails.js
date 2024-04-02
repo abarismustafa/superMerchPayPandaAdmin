@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { baseUrlImage } from '../../../../baseUrl';
+import KycModal from './kycModal/KycModal';
 
 function KycDetails({ initialValues }) {
+    console.log(initialValues);
+    const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
+    const [currentImage, setCurrentImage] = useState(false);
+    const openLightBox = (img) => {
+        setCurrentImage(img)
+        setIsLightBoxOpen(true);
+    };
+
+    const closeLightBox = () => {
+        setIsLightBoxOpen(false);
+    };
     return (
         <section className="ListDistributer m-4">
             <div className="row">
@@ -40,8 +52,15 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`)} />
+                                                                {isLightBoxOpen && (
+                                                                    <KycModal
+                                                                        imageUrl={currentImage}
+                                                                        alt={"alt"}
+                                                                        onClose={closeLightBox}
+                                                                    />
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -50,8 +69,15 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`} alt='Aadhar Back' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`)} />
+                                                                {isLightBoxOpen && (
+                                                                    <KycModal
+                                                                        imageUrl={currentImage}
+                                                                        alt={"alt"}
+                                                                        onClose={closeLightBox}
+                                                                    />
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -60,40 +86,56 @@ function KycDetails({ initialValues }) {
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.pan_card}`} alt='Pancard Front' style={{ width: "100%", overflow: "hidden" }} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.pan_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.pan_card}`)} />
+                                                                {isLightBoxOpen && (
+                                                                    <KycModal
+                                                                        imageUrl={currentImage}
+                                                                        alt={"alt"}
+                                                                        onClose={closeLightBox}
+                                                                    />
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <div className='col-md-12 col-xl-12'>
-                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.gst}`} alt='adharr Front' style={{ width: "100%", overflow: "hidden" }} />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className='col-md-12 col-xl-12'>
-                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
 
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.bank_proof}`} alt='adharr Front' style={{ width: "100%", overflow: "hidden" }} />
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
-                                                            <div className='document'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='adharr Front' width={100 + "%"} height={70 + "%"} />
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.bank_proof}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.bank_proof}`)} />
+                                                                {isLightBoxOpen && (
+                                                                    <KycModal
+                                                                        imageUrl={currentImage}
+                                                                        alt={"alt"}
+                                                                        onClose={closeLightBox}
+                                                                    />
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </td>
+                                                <td>
+                                                    <div className='col-md-12 col-xl-12'>
+                                                        <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
+                                                            <div className='document cursor-pointer	'>
+                                                                <img src={`${baseUrlImage}${initialValues?.docs?.gst}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.gst}`)} />
+                                                                {isLightBoxOpen && (
+                                                                    <KycModal
+                                                                        imageUrl={currentImage}
+                                                                        alt={"alt"}
+                                                                        onClose={closeLightBox}
+                                                                    />
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                               
+                                               
                                             </tr>
 
                                         </tbody>
@@ -117,7 +159,7 @@ function KycDetails({ initialValues }) {
                     </div>
                 </div>
             </div >
-
+            {/* {clickImage && <KycModal clickImage={clickImage} setClickImage={setClickImage} />} */}
         </section>
     )
 }

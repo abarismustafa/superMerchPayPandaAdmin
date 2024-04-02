@@ -28,7 +28,7 @@ function TopSiteSetting() {
 
     const validate = (values) => {
         let errors = {};
-        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexMobileNumber = /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/;
         
         if (!values.brandName) {
             errors.brandName = "Brand Name is required";

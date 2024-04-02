@@ -5,6 +5,7 @@ import Loadar from "../../../../common/loader/Loader";
 import { Popconfirm, message } from "antd";
 import { baseUrlImage } from "../../../../baseUrl";
 import ExportPdf from "../../../../common/exportPdf/ExportPdf";
+import { getUserData } from "../../../additionalReports/dmtReportSearch/dmtReportSearchFill/DmtReportSearchFill";
 
 function Users() {
   const [data, setData] = useState();
@@ -12,8 +13,8 @@ function Users() {
   const getListUsers = async () => {
     setLoading(true);
     try {
-      const data = await usersList();
-      setData(data?.data);
+      const res = await usersList();
+      setData(res?.data);
     } catch (error) {
       alert(error.message);
     }
@@ -44,7 +45,7 @@ function Users() {
     message.error("Cancle Successfull!");
   };
   return (
-    <section className="ListDistributer ">
+    <section className="ListDistributer exppdf">
       {loading && <Loadar />}
       <div className="row m-4">
         <div className="col-xl-12">

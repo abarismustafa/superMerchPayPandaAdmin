@@ -30,7 +30,7 @@ function AddPayoutBeneficiaryMaster() {
 
     const validate = (values) => {
         let errors = {};
-        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexMobileNumber = /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/;
         const regexaccount_number = /^([0-9]{11})|([0-9]{2}-[0-9]{3}-[0-9]{6})$/;
         const regexIFSCcde = /^[A-Za-z]{4}\d{7}$/;
         if (!values.name) {

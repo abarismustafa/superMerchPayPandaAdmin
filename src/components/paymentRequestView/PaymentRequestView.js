@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react"
 import Breadcrumbs from "../../common/breadcrumb/Breadcrumbs"
 import PaymentRequestViewForm from "./paymentRequestViewForm/PaymentRequestViewForm"
 import PaymentRequestViewList from "./paymentRequestViewList/PaymentRequestViewList"
+import { fillterRequestPayment, usersList } from "../../api/login/Login"
 
 const breadCrumbsTitle = {
     id: "1",
@@ -8,11 +10,58 @@ const breadCrumbsTitle = {
     title_2: "Payment Request View",
 }
 function PaymentRequestView() {
+    const [state, setState] = useState()
+    const [count, setCount] = useState(10)
+    const [userData, setUserData] = useState([])
+    const [page, setPage] = useState(0)
+    const [loading, setLoading] = useState(0)
+    const token = window.localStorage.getItem("userToken")
+
+    const submitForm = async (values) => {
+        setLoading(true)
+        try {
+            const res = await fillterRequestPayment(values);
+            setState(res?.data);
+            setLoading(false)
+        } catch (error) {
+
+        }
+
+    }
+    const getPaymentRequest = async () => {
+        setLoading(true)
+        try {
+            const res = await fillterRequestPayment({ page, count, token });
+            console.log(res);
+            setState(res?.data);
+            setLoading(false)
+        } catch (error) {
+
+        }
+    }
+    const onChangeVal = (e) => {
+        setPage(e - 1)
+        getPaymentRequest()
+    };
+    useEffect(() => {
+        getPaymentRequest()
+        const fetchUserType = async () => {
+            setLoading(true)
+            try {
+                const response = await usersList();
+                setUserData(response?.data);
+                setLoading(false)
+            } catch (error) {
+                alert("Error fetching User type:", error);
+            }
+        };
+        fetchUserType();
+    }, [])
     return (
         <>
             <Breadcrumbs breadCrumbsTitle={breadCrumbsTitle} />
-            <PaymentRequestViewForm />
-            <PaymentRequestViewList />
+            <PaymentRequestViewForm submitForm={submitForm} loading={loading} page={page} count={count} token={token} userData={userData} />
+            <PaymentRequestViewList onChangeVal={onChangeVal}  state={state} loading={loading} />
         </>
     )
 }

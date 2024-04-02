@@ -82,9 +82,7 @@ function PaymentMethodMasterList() {
                                         {data && data?.map((item) => {
                                             return <tr role="row" className="odd" key={item?._id}>
                                                 <td><span>{item?.type}</span></td>
-                                                <td>
-                                                    {item?.createdAt}
-                                                </td>
+                                                <td> { new Date(item?.createdAt).getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear()}</td>
                                                 <td>
                                                     <span className="badge badge-success light border-0">{item?.is_active?.toString()}</span>
                                                 </td>

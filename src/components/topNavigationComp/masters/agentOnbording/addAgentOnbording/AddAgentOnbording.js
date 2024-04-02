@@ -42,7 +42,7 @@ function AddAgentOnbording() {
     const validate = (values) => {
         let errors = {};
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const regexMobileNumber = /^[0-9]{10}$/;
+        const regexMobileNumber = /^(\+\d{1,3}\s?\d{1,14}|\d{5,15})$/;
         const regexPanNumber = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
         const regexAdhaar = /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/
         const ifscRegex = /^[A-Za-z]{4}\d{7}$/;

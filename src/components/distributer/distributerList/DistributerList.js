@@ -11,6 +11,8 @@ import IdStocks from "../createUserDistributer/IdsStoks/IdStoks";
 import MemberPermission from "../createUserDistributer/memberPermission/MemberPermission";
 import LockAmount from "../createUserDistributer/lockAmount/LockAmount";
 import ExportPdf from "../../../common/exportPdf/ExportPdf";
+import "../distributer.css"
+import { CSVLink } from "react-csv";
 
 function DistributerList({ params }) {
     const [show, setShow] = useState(false);
@@ -71,7 +73,8 @@ function DistributerList({ params }) {
     return (
         <>
             {loading && <Loadar />}
-            <section className="ListDistributer m-4">
+
+            <section className="ListDistributer m-4 ">
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="card">
@@ -85,11 +88,24 @@ function DistributerList({ params }) {
                                         + Invite Employee
                                     </button> */}
                                             <ExportPdf />
+                                            {/* <CSVLink  className="btn btn-succes" data={state}>Export Excel</CSVLink>*/}
                                         </div>
                                     </div>
-                                    <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer"><div className="dt-buttons"><button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button"><span><i className="fa-solid fa-file-excel" /> Download Distributer</span></button> </div>
-                                        <table id="empoloyees-tblwrapper" className="table dataTable no-footer" role="grid" aria-describedby="empoloyees-tblwrapper_info">
+                                    <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer ">
+                                        <div className="dt-buttons">
+                                            <button className="dt-button buttons-excel buttons-html5 btn btn-sm border-0" tabIndex={0} aria-controls="empoloyees-tblwrapper" type="button">
+                                                <span><i className="fa-solid fa-file-excel" /> Download Distributer</span>
+                                            </button>
+                                        </div>
+                                        <table id="empoloyees-tblwrapper" className="table dataTable no-footer exppdf" role="grid" aria-describedby="empoloyees-tblwrapper_info">
                                             <thead>
+                                                
+                                                        {/* <tr className="">
+                                                            <th className="expth"><div className="tbl-caption pe-3 expdiv">
+                                                                <h4 className="heading mb-0"><b>{params?.name} LIST</b></h4>
+                                                            </div></th>
+
+                                                        </tr> */}
                                                 <tr role="row">
                                                     <th className="sorting_asc" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="Employee ID: activate to sort column descending" style={{ width: '122.312px' }}>
                                                         S.NO
@@ -108,28 +124,21 @@ function DistributerList({ params }) {
                                                         Name</th>
 
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                        Distributor ID
+                                                        Refrence  ID
                                                     </th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                         Mobile</th>
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
-                                                        DBA: Doing Business As</th>
-
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                        Parent name</th>
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                        Main Parent</th>
+                                                   
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Email</th>
 
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                        Normal Balance</th>
-                                                    <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                        Package</th>
+                                                        Main Balance</th>
+                                                    
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Contact Number: activate to sort column ascending" style={{ width: '161.675px' }}>
                                                         Pan Card  Status</th>
                                                     <th className="sorting" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
-                                                        KYC Status</th>
+                                                       Approval</th>
 
                                                     <th className="sorting text-center" tabIndex={0} aria-controls="empoloyees-tblwrapper" rowSpan={1} colSpan={1} aria-label="Status: activate to sort column ascending" style={{ width: '96.125px' }}>
                                                         Action
@@ -138,24 +147,20 @@ function DistributerList({ params }) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {state && state.map((item, i) => {
+                                                {state && state?.map((item, i) => {
                                                     return <tr role="row" className="odd">
                                                         <td className="sorting_1"><span>{i + 1}</span></td>
                                                         <td className="sorting_1"></td>
                                                         <td className="sorting_1"></td>
-                                                        <td className="sorting_1"></td>
-
+                                                        <td className="sorting_1">{item?.member_type}</td>
                                                         <td>{item?.name}</td>
-                                                        <td className="sorting_1"></td>
+                                                        <td className="sorting_1">{item?._id}</td>
                                                         <td>{item?.mobile}</td>
-                                                        <td className="sorting_1"></td>
-                                                        <td className="sorting_1"></td>
-                                                        <td className="sorting_1"></td>
+                                                        
                                                         <td>{item?.email}</td>
-                                                        <td className="sorting_1"></td>
+                                                        <td className="sorting_1">{item?.main_wallet}</td>
 
-                                                        <td>
-                                                        </td>
+                                                        
                                                         <td>
                                                             <span className="badge badge-success text-light border-0" style={{ backgroundColor: `${item?.is_pan_verified === true ? 'blue' : '#bc3922ab'}`, fontSize: `${item?.is_pan_verified === false ? '0.8rem' : ''}` }}>{item?.is_pan_verified == true ? 'varified' : 'un varified'}</span>
                                                         </td>

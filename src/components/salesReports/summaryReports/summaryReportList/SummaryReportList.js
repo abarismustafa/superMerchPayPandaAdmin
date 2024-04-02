@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ExportPdf from '../../../../common/exportPdf/ExportPdf'
 function SummaryReportList() {
     return (
-        <section className="ListDistributer ">
+        <section className="ListDistributer exppdf">
             <div className="row m-4">
                 <div className="col-xl-12">
                     <div className="card">
@@ -15,6 +16,7 @@ function SummaryReportList() {
                                         {/* <button type="button" className="btn btn-secondary btn-sm" >
                             + Invite Employee
                         </button> */}
+                        <ExportPdf/>
                                     </div>
                                 </div>
                                 <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer">

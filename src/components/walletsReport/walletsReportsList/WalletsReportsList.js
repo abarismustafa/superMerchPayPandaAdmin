@@ -1,12 +1,14 @@
 import { Pagination } from "antd";
 import { Link } from "react-router-dom"
 import Loadar from "../../../common/loader/Loader";
+import ExportPdf from "../../../common/exportPdf/ExportPdf";
+import { CSVLink } from "react-csv";
 
 function WalletsReportsList({ data, onChangeVal, totalCount, loading }) {
     return (
         <>
             {loading && <Loadar />}
-            <section className="ListDistributer ">
+            <section className="ListDistributer exppdf">
                 <div className="row m-4">
                     <div className="col-xl-12">
                         <div className="card">
@@ -15,10 +17,12 @@ function WalletsReportsList({ data, onChangeVal, totalCount, loading }) {
                                     <div className="tbl-caption">
                                         <h4 className="heading mb-0"><b>All Wallets Reports List</b></h4>
                                         <div>
-                                            <Link className="btn btn-primary btn-sm" to="/admin/add-wallets/report" role="button" aria-controls="offcanvasExample">+  ADD Wallets REPORT </Link>
+                                            <Link className="btn btn-primary btn-sm" to="/admin/wallet/add/virtual-wallet" role="button" aria-controls="offcanvasExample">+  ADD Virtual Wallets  </Link>
                                             {/* <button type="button" className="btn btn-secondary btn-sm" >
                                         + Invite Employee
                                     </button> */}
+                                            <ExportPdf />
+                                            {/* <CSVLink  className="btn btn-succes" data={data}>Export Excel</CSVLink> */}
                                         </div>
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer">

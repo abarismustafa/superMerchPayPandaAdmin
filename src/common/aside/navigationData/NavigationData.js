@@ -1,4 +1,4 @@
-import { FaBookReader, FaFileContract, FaUserFriends, FaUsers } from "react-icons/fa";
+import { FaBookReader, FaFileContract, FaFileMedical, FaUserFriends, FaUsers } from "react-icons/fa";
 import { AiFillSetting } from "react-icons/ai";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { MdDashboard, MdWeb, MdDiscFull, MdPayment } from "react-icons/md";
@@ -41,13 +41,13 @@ export const navigationData = (count) => {
     path: "suspended-users",
   },
   )
-  membersTypes.push({
+ /*  membersTypes.push({
     uniqueId: "submenu_2_4",
     id: "4",
     title: "Not Working User",
     path: "not-working-users",
   },
-  )
+  ) */
   return [
     {
       uniqueId: "menu_2",
@@ -147,6 +147,152 @@ export const navigationData = (count) => {
       ],
     },
     {
+      uniqueId: "menu_15_1_1",
+      id: "3_1",
+      title: "Additional Reports",
+      icon: <FaFileMedical />,
+      subMenus: [
+        {
+          uniqueId: "submenu_15_1_2",
+          id: "1",
+          title: "Recharge Report",
+          path: "additional-reports/recharge-reports",
+        },
+        {
+          uniqueId: "submenu_15_2_3",
+          id: "2",
+          title: "Search Recharge Transactions",
+          path: "additional-reports/search-trans-reports",
+        },
+        {
+          uniqueId: "submenu_15_2_4",
+          id: "3",
+          title: "Indo Nepal Money Transfer",
+          path: "additional-reports/indo-nepal-money-transfer",
+        },
+        {
+          uniqueId: "submenu_15_2_5",
+          id: "4",
+          title: "Fast Tag Reports",
+          path: "additional-reports/fast-tag-reports",
+        },
+        {
+          uniqueId: "submenu_15_2_6",
+          id: "5",
+          title: "DMT Report",
+          path: "additional-reports/dmt-reports",
+        },
+        {
+          uniqueId: "submenu_15_2_7",
+          id: "6",
+          title: "DMT [TXN] Reports Search",
+          path: "additional-reports/dmt-reports-search",
+        },
+        {
+          uniqueId: "submenu_15_2_8",
+          id: "7",
+          title: "DMT KYC Report ",
+          path: "additional-reports/dmt-kyc-reports",
+        },
+        {
+          uniqueId: "submenu_15_2_9",
+          id: "8",
+          title: "C C Bill Payment Report ",
+          path: "additional-reports/credit-card-bill-payment-report",
+        },
+        {
+          uniqueId: "submenu_15_2_10",
+          id: "9",
+          title: "AEPS (Xpress) Reports ",
+          path: "additional-reports/aeps-Xpress-report",
+        },
+        {
+          uniqueId: "submenu_15_2_11",
+          id: "10",
+          title: "AEPS (TEZ) Report ",
+          path: "additional-reports/aeps-tez-report",
+        },
+        {
+          uniqueId: "submenu_15_2_12",
+          id: "11",
+          title: "AEPS (ICICI) Report ",
+          path: "additional-reports/aeps-icici-report",
+        },
+        {
+          uniqueId: "submenu_15_2_13",
+          id: "12",
+          title: "Aadhar Pay Reports ",
+          path: "additional-reports/aadhaarpay_pay_report",
+        },
+        {
+          uniqueId: "submenu_15_2_14",
+          id: "13",
+          title: "Insurence Dekho Report ",
+          path: "additional-reports/insurancedekho_report",
+        },
+        {
+          uniqueId: "submenu_15_2_15",
+          id: "14",
+          title: "Bill Payment History ",
+          path: "additional-reports/bill_report_history",
+        },
+        {
+          uniqueId: "submenu_15_2_16",
+          id: "15",
+          title: "Account Reports ",
+          path: "additional-reports/accountreport",
+        },
+        {
+          uniqueId: "submenu_15_2_17",
+          id: "16",
+          title: "Balance Topup History",
+          path: "additional-reports/topuphistory",
+        },
+        {
+          uniqueId: "submenu_15_2_18",
+          id: "17",
+          title: "Bank List",
+          path: "additional-reports/list_bank",
+        },
+        {
+          uniqueId: "submenu_15_2_19",
+          id: "18",
+          title: "Aeps & Epos Payout Report",
+          path: "additional-reports/aeps_payout_report",
+        },
+        {
+          uniqueId: "submenu_15_2_20",
+          id: "19",
+          title: "CMS Bill Report",
+          path: "additional-reports/cms_bill_report",
+        },
+        {
+          uniqueId: "submenu_15_2_21",
+          id: "20",
+          title: "Postpaid Bill",
+          path: "additional-reports/postpaid_bill_transaction",
+        },
+        {
+          uniqueId: "submenu_15_2_22",
+          id: "21",
+          title: "Turbo E-loan Request",
+          path: "additional-reports/Turbo_payment_request",
+        },
+        {
+          uniqueId: "submenu_15_2_23",
+          id: "23",
+          title: "Payment Gateway Report          ",
+          path: "additional-reports/Pg_report_rz",
+        },
+        {
+          uniqueId: "submenu_15_2_24",
+          id: "23",
+          title: "Rupay Card Report ",
+          path: "additional-reports/ruapay_gift_cards_report",
+        },
+      ],
+    },
+    {
       uniqueId: "menu_4",
       id: "4",
       title: "Payment",
@@ -175,6 +321,12 @@ export const navigationData = (count) => {
           id: "4",
           title: "Payment Request ",
           path: "payment-request",
+        },
+        {
+          uniqueId: "submenu_4_5",
+          id: "5",
+          title: "Virtual Wallet ",
+          path: "wallet/virtual-wallet",
         },
       ],
     },
