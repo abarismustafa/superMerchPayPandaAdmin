@@ -322,6 +322,12 @@ export const navigationData = (count) => {
           title: "Payment Request ",
           path: "payment-request",
         },
+        {
+          uniqueId: "submenu_4_5",
+          id: "5",
+          title: "Virtual Wallet ",
+          path: "wallet/virtual-wallet",
+        },
       ],
     },
     {

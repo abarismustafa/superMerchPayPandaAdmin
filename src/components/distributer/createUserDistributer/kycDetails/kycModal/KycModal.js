@@ -1,22 +1,20 @@
 import React from 'react'
+import "../KycDetails.css"
 import { baseUrlImage } from '../../../../../baseUrl'
+import { IoCloseSharp } from 'react-icons/io5';
 
-function KycModal({ clickImage,setClickImage }) {
-    const handleClick = (e)=>{
-        console.log(e.target.classList.contains);
-        if (e.target.classList.contains('dismiss')) {
-            setClickImage(null)
-        }
-    }
+
+const KycModal = ({ imageUrl, alt, onClose }) => {
     return (
-        <>
-
-            <div  onClick={handleClick}><div className='overLay dismiss'>
-                <img src={`${baseUrlImage}${clickImage}`} alt='biger Image' />
-                <span onClick={handleClick}>x</span>
-            </div></div>
-        </>
-    )
-}
+        <div className="lightbox-overlay" onClick={onClose}>
+            <div className="lightbox-container" onClick={(e) => e.stopPropagation()}>
+                <img src={imageUrl} alt={alt} className="lightbox-image"  />
+                {/* <span className="close-button" onClick={onClose}>
+                <IoCloseSharp />
+                </span> */}
+            </div>
+        </div>
+    );
+};
 
 export default KycModal

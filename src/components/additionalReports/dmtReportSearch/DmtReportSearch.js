@@ -9,10 +9,8 @@ function DmtReportSearch() {
   const [dmtTtxn, setDmtTtxn] = useState()
   const [count, setCount] = useState(10)
   const [page, setPage] = useState(0)
-  const [totalCount, setTotalCount] = useState()
   const token = window.localStorage.getItem('userToken')
   const [loading, setLoadig] = useState(false)
-console.log(page);
   const submitForm = async (values) => {
     setLoadig(true)
     try {
@@ -56,7 +54,7 @@ console.log(page);
     <>
       <Breadcrumbs breadCrumbsTitle={"DMT Transaction Search"} />
       <DmtReportSearchFill submitForm={submitForm} userData={userData} page={page} count={count} token={token} loading={loading} />
-      <DmtReportSearchList setCount={setCount} onChangeVal={onChangeVal} dmtTtxn={dmtTtxn} totalCount={totalCount} loading={loading} />
+      <DmtReportSearchList onChangeVal={onChangeVal} dmtTtxn={dmtTtxn}  loading={loading} />
     </>
   )
 }

@@ -177,6 +177,8 @@ import Transactions from "./pages/transactions";
 import ViewProfileMemberPage from "./pages/viewProfileMember";
 import UtiPancardPage from "./pages/utiPandcard";
 import BillPayment from "./pages/billpayment";
+import WalletsReportsPage from "./pages/walletsReport";
+import AddWalletsReports from "./components/walletsReport/AddWalletsReports/AddWalletsReports";
 import Recharge from "./pages/recharge";
 import MoneyTransfer from "./pages/moneyTransfer";
 import RechargeReportsPage from "./pages/additionalReportsPages/rechargeReports";
@@ -202,6 +204,8 @@ import PostPaidBillPage from "./pages/additionalReportsPages/postPaidBill";
 import TurboElinePage from "./pages/additionalReportsPages/turboEline";
 import PaymentGatewayPage from "./pages/additionalReportsPages/paymentGatway";
 import RupayGiftCardPage from "./pages/additionalReportsPages/rupayGiftCard";
+import WallRep from "./pages/walletReport";
+import AddUpdateVirtualWall from "./components/virtualWallet/addUpdateVirtualWall/AddUpdateVirtualWall";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { isLogin } = useSelector((state) => state.auth);
@@ -696,19 +700,27 @@ function App() {
               />
               <Route
                 path="/admin/statement/apes/report/:id"
-                element={<Transactions/>}
+                element={<Transactions />}
+              />
+              <Route
+                path="/admin/wallets/report/:id"
+                element={<WalletsReportsPage />}
+              />
+              <Route
+                path="/admin/add-wallets/report"
+                element={<AddWalletsReports />}
               />
               <Route
                 path="/admin/statement/billpayment/report/:id"
-                element={<BillPayment/>}
+                element={<BillPayment />}
               />
               <Route
                 path="/admin/statement/recharge/report/:id"
-                element={<Recharge/>}
+                element={<Recharge />}
               />
               <Route
                 path="/admin/statement/moneyTransfer/report/:id"
-                element={<MoneyTransfer/>}
+                element={<MoneyTransfer />}
               />
               <Route
                 path="/admin/additional-reports/recharge-reports"
@@ -801,6 +813,14 @@ function App() {
               <Route
                 path="/admin/additional-reports/ruapay_gift_cards_report"
                 element={<RupayGiftCardPage/>}
+              />
+              <Route
+                path="/admin/wallet/virtual-wallet"
+                element={<WallRep/>}
+              />
+              <Route
+                path="/admin/wallet/add/virtual-wallet"
+                element={<AddUpdateVirtualWall/>}
               />
             </Route>
             <Route path="*" element={<LoginPage />} />

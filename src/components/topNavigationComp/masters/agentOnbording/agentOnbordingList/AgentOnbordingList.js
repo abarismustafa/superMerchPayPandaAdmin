@@ -106,9 +106,7 @@ function AgentOnbordingList() {
                                         {data && data?.map((item, i) => {
                                             return <tr role="row" className="odd">
                                                 <td className="sorting_1"><span>{i + 1}</span></td>
-                                                <td>
-                                                    {item?.createdAt}
-                                                </td>
+                                                <td> { new Date(item?.createdAt).getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear()}</td>
 
                                                 <td><span> {item?.first_name}</span></td>
                                                 <td className="sorting_1"><span> {item?.last_name}</span></td>

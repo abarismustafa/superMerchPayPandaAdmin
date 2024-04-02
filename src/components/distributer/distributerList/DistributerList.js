@@ -12,6 +12,7 @@ import MemberPermission from "../createUserDistributer/memberPermission/MemberPe
 import LockAmount from "../createUserDistributer/lockAmount/LockAmount";
 import ExportPdf from "../../../common/exportPdf/ExportPdf";
 import "../distributer.css"
+import { CSVLink } from "react-csv";
 
 function DistributerList({ params }) {
     const [show, setShow] = useState(false);
@@ -72,6 +73,7 @@ function DistributerList({ params }) {
     return (
         <>
             {loading && <Loadar />}
+
             <section className="ListDistributer m-4 ">
                 <div className="row">
                     <div className="col-xl-12">
@@ -86,6 +88,7 @@ function DistributerList({ params }) {
                                         + Invite Employee
                                     </button> */}
                                             <ExportPdf />
+                                            {/* <CSVLink  className="btn btn-succes" data={state}>Export Excel</CSVLink>*/}
                                         </div>
                                     </div>
                                     <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer ">
@@ -195,6 +198,7 @@ function DistributerList({ params }) {
                                                                     <Dropdown.Item href="/admin/report/pancard/3">UtiPancard</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statement/report/2">Account Stat...</Dropdown.Item>
                                                                     <Dropdown.Item href="/admin/statementwallet/report/2">Aeps Stat...</Dropdown.Item>
+                                                                    <Dropdown.Item href={`/admin/wallets/report/${item?._id}`}>Wallets Reports</Dropdown.Item>
                                                                 </Dropdown.Menu>
                                                             </Dropdown>
 

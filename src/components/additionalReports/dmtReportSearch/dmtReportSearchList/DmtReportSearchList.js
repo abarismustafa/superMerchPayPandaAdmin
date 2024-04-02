@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import ExportPdf from '../../../../common/exportPdf/ExportPdf'
 import { Pagination } from 'antd';
 import Loadar from '../../../../common/loader/Loader';
+import { CSVLink } from 'react-csv';
 
-function DmtReportSearchList({onChangeVal,dmtTtxn,totalCount,loading}) {
-    const [flag,setFlag] = useState(false)
+function DmtReportSearchList({onChangeVal,dmtTtxn,loading}) {
     
    const curdmtTtxn = dmtTtxn?.dmtTransaction
 
@@ -23,6 +23,7 @@ function DmtReportSearchList({onChangeVal,dmtTtxn,totalCount,loading}) {
                     + Invite Employee
                 </button> */}
                                         <ExportPdf />
+                                        <CSVLink  className="btn btn-succes" data={curdmtTtxn}>Export Excel</CSVLink>
                                     </div>
                                 </div>
                                 <div id="empoloyees-tblwrapper_wrapper" className="dataTables_wrapper no-footer">
@@ -76,8 +77,8 @@ function DmtReportSearchList({onChangeVal,dmtTtxn,totalCount,loading}) {
                                                 {/* <td> {i+1}</td> */}
                                                 <td> {item?.username}</td>
                                                 <td> {item?.customer_mobile}</td>
-                                                <td> {item?.createdAt}</td>
-                                                <td> {item?.updatedAt}</td>
+                                                <td> { new Date(item?.createdAt).getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear()}</td>
+                                                <td> { new Date(item?.updatedAt).getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear()}</td>
                                                 <td> {item?.txn_id}</td>
                                                 <td> {item?.account_number}</td>
                                                 <td> {item?.bank_name}</td>

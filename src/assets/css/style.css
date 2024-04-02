@@ -20639,7 +20639,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 @media only screen and (max-width: 63.9375rem) {
   .nav-header {
-    width: 5rem;
+    width: 12rem;
   }
 }
 
@@ -55080,7 +55080,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .nav-header {
   position: fixed;
-  border-top-left-radius: 0;
+  border-top-left-radius: 0;z-index: 9;
 }
 
 .tbl-captionn {

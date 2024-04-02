@@ -1,6 +1,10 @@
 import { Tab, Tabs } from "react-bootstrap"
 import Breadcrumbs from "../../common/breadcrumb/Breadcrumbs"
 import Aeps from "./aeps/Aeps"
+import AdharPay from "./adharPay/AdharPay"
+import DtmPay from "./dmt/DmtPay"
+import RechargePay from "./recharge/RechargePay"
+import BillPayment from "./billPayment/BillPayment"
 
 
 function UtiPancard() {
@@ -23,23 +27,17 @@ function UtiPancard() {
                             <Aeps />
                         </Tab>
                         <Tab eventKey={2} title={'AADHAR PAY'}>
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    {/* <RoleManeger /> */}
-                                </div>
-                                <div className="col-lg-6">
-                                    {/* <ChangeMapping /> */}
-                                </div>
-                            </div>
+                            <AdharPay />
                         </Tab>
                         <Tab eventKey={3} title={'DMT'}>
-                            {/* <StokeDetails /> */}
+                            <DtmPay />
                         </Tab>
                         <Tab eventKey={4} title={'RECHARGE'}>
-                            {/* <StokeDetails /> */}
+                            <RechargePay />
                         </Tab>
                         <Tab eventKey={5} title={'BILL PAYMENT'}>
                             {/* <StokeDetails /> */}
+                            <BillPayment />
                         </Tab>
 
                     </Tabs>

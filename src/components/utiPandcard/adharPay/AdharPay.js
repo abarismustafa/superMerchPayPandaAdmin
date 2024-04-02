@@ -1,9 +1,12 @@
+import AadharPaysatement from "./addharPayStatement/AddharPaySatement"
+import SearchAadhar from "./search/SerachAdhar"
 
 
 function AdharPay() {
     return (
         <>
-            AdharPay
+            <SearchAadhar />
+            <AadharPaysatement></AadharPaysatement>
         </>
     )
 }
