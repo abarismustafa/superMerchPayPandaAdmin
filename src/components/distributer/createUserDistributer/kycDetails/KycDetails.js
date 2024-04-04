@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { baseUrlImage } from '../../../../baseUrl';
 import KycModal from './kycModal/KycModal';
 
+import ReactFancyBox from 'react-fancybox'
+import 'react-fancybox/lib/fancybox.css'
+
 function KycDetails({ initialValues }) {
     console.log(initialValues);
     const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
@@ -53,14 +56,16 @@ function KycDetails({ initialValues }) {
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
                                                             <div className='document cursor-pointer	'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`)} />
-                                                                {isLightBoxOpen && (
-                                                                    <KycModal
-                                                                        imageUrl={currentImage}
-                                                                        alt={"alt"}
-                                                                        onClose={closeLightBox}
-                                                                    />
-                                                                )}
+
+
+                                                                <ReactFancyBox
+                                                                    thumbnail={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`}
+                                                                    image={`${baseUrlImage}${initialValues?.docs?.adhaar_front_card}`}
+                                                                    className="expact-ratio"
+
+                                                                />
+
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -70,14 +75,14 @@ function KycDetails({ initialValues }) {
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
                                                             <div className='document cursor-pointer	'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`)} />
-                                                                {isLightBoxOpen && (
-                                                                    <KycModal
-                                                                        imageUrl={currentImage}
-                                                                        alt={"alt"}
-                                                                        onClose={closeLightBox}
-                                                                    />
-                                                                )}
+
+
+                                                                <ReactFancyBox
+                                                                    thumbnail={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`}
+                                                                    image={`${baseUrlImage}${initialValues?.docs?.adhaar_back_card}`}
+                                                                    className="expact-ratio"
+
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -87,14 +92,13 @@ function KycDetails({ initialValues }) {
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
                                                             <div className='document cursor-pointer	'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.pan_card}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.pan_card}`)} />
-                                                                {isLightBoxOpen && (
-                                                                    <KycModal
-                                                                        imageUrl={currentImage}
-                                                                        alt={"alt"}
-                                                                        onClose={closeLightBox}
-                                                                    />
-                                                                )}
+
+                                                                <ReactFancyBox
+                                                                    thumbnail={`${baseUrlImage}${initialValues?.docs?.pan_card}`}
+                                                                    image={`${baseUrlImage}${initialValues?.docs?.pan_card}`}
+                                                                    className="expact-ratio"
+
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -104,14 +108,13 @@ function KycDetails({ initialValues }) {
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
                                                             <div className='document cursor-pointer	'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.bank_proof}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.bank_proof}`)} />
-                                                                {isLightBoxOpen && (
-                                                                    <KycModal
-                                                                        imageUrl={currentImage}
-                                                                        alt={"alt"}
-                                                                        onClose={closeLightBox}
-                                                                    />
-                                                                )}
+
+                                                                <ReactFancyBox
+                                                                    thumbnail={`${baseUrlImage}${initialValues?.docs?.bank_proof}`}
+                                                                    image={`${baseUrlImage}${initialValues?.docs?.bank_proof}`}
+                                                                    className="expact-ratio"
+
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,21 +124,20 @@ function KycDetails({ initialValues }) {
                                                     <div className='col-md-12 col-xl-12'>
                                                         <div className="border rounded overflow-hidden" style={{ maxHeight: "100px", maxWidth: "200px" }}>
                                                             <div className='document cursor-pointer	'>
-                                                                <img src={`${baseUrlImage}${initialValues?.docs?.gst}`} alt='Aadhar Front' style={{ width: "100%", overflow: "hidden" , cursor: 'pointer'  }} onClick={()=>openLightBox(`${baseUrlImage}${initialValues?.docs?.gst}`)} />
-                                                                {isLightBoxOpen && (
-                                                                    <KycModal
-                                                                        imageUrl={currentImage}
-                                                                        alt={"alt"}
-                                                                        onClose={closeLightBox}
-                                                                    />
-                                                                )}
+
+                                                                <ReactFancyBox
+                                                                    thumbnail={`${baseUrlImage}${initialValues?.docs?.gst}`}
+                                                                    image={`${baseUrlImage}${initialValues?.docs?.gst}`}
+                                                                    className="expact-ratio"
+
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                 </td>
-                                               
-                                               
+
+
                                             </tr>
 
                                         </tbody>
